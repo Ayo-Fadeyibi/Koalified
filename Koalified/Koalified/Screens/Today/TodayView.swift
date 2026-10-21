@@ -1,15 +1,15 @@
 import SwiftUI
 import Playgrounds
 
-struct ContentView: View {
+struct TodayView: View {
     var body: some View {
-        Text("Hello, world!")
+        Text("Today")
             .padding()
     }
 }
 
 #Preview {
-    ContentView()
+    TodayView()
 }
 
 #Playground {
