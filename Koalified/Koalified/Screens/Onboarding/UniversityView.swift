@@ -2,7 +2,7 @@ import SwiftUI
 
 struct UniversityView: View {
     @State private var universityName = ""
-    @State private var isUQSelected = true          // renamed, starts selected like the Figma design
+    @State private var isUQSelected = true
     @FocusState private var isTextInputFocused: Bool
 
     let universityList = [
@@ -39,7 +39,7 @@ struct UniversityView: View {
             HStack(spacing: 8) {
                 Image(systemName: "magnifyingglass")
                 TextField("Search or enter university", text: $universityName)
-                    .focused($isTextInputFocused)           // moved onto the TextField itself
+                    .focused($isTextInputFocused)
             }
             .padding()
             .background(Color.white)
@@ -55,7 +55,6 @@ struct UniversityView: View {
                 .padding(.bottom, 10)
                 .padding(.top, 10)
 
-            // The whole row is now the button: the HStack is inside the label
             Button {
                 isUQSelected.toggle()
             } label: {
@@ -64,7 +63,7 @@ struct UniversityView: View {
                         .foregroundStyle(Color.inkPrimary)
                         .fontWeight(.bold)
                     Spacer()
-                    if isUQSelected {                       // tick only exists when selected
+                    if isUQSelected {
                         Image(systemName: "checkmark")
                             .foregroundStyle(Color.inkPop)
                             .fontWeight(.bold)
@@ -78,7 +77,7 @@ struct UniversityView: View {
                         .stroke(isUQSelected ? Color.inkPop : Color.cardBorder, lineWidth: 2)
                 }
             }
-            .buttonStyle(.plain)                            // no default blue tint on the label
+            .buttonStyle(.plain)
 
             Text("FUTURE ADDITION")
                 .fontWeight(.bold)
@@ -86,30 +85,19 @@ struct UniversityView: View {
                 .padding(.bottom, 10)
                 .padding(.top, 10)
 
-            // Not buttons: these aren't tappable yet, so plain Text rows
             ForEach(universityList, id: \.self) { uni in
                 Text(uni)
                     .foregroundStyle(Color.inkSecondary)
                     .fontWeight(.bold)
-                    .frame(maxWidth: .infinity, alignment: .leading)  // stretch full width, text on the left
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .padding()
-                    .background(Color.cardBorder.opacity(0.5))        // muted grey fill
+                    .background(Color.cardBorder.opacity(0.5))        
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             }
 
             Spacer()
 
-            Button {
-                print("Clicked")
-            } label: {
-                Text("Continue")
-                    .fontWeight(.bold)
-                    .foregroundStyle(Color.white)
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.inkPop)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-            }
+            PrimaryButton(title: "Continue") {}
 
             Text("Koalified is independent. It is not an official UQ app and is not affiliated with, endorsed by, or operated by The University of Queensland.")
                 .foregroundStyle(Color.inkSecondary)
