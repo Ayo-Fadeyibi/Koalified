@@ -10,7 +10,13 @@ import SwiftUI
 struct CalculatorView: View {
     
     var body: some View {
-        Text("Calculator")
+        
+        if SampleData.classEvents.isEmpty {
+            CalculatorEmptyView()
+        }else {
+            Text("Calculator")
+        }
+        
     }
 }
 

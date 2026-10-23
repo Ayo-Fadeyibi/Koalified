@@ -1,32 +1,27 @@
-//
-//  SecondaryButton.swift
-//  Koalified
-//
-//  Created by Ayooluwa Fadeyibi on 22/10/2026.
-//
 import SwiftUI
 
 struct SecondaryButton: View {
     let title: String
     let action: () -> Void
-    
+
     var body: some View {
-        Button (action: action) {
+        Button(action: action) {
             Text(title)
-                .fontWeight(.bold)
+                .fontWeight(.semibold)
                 .foregroundStyle(Color.inkPop)
                 .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color.white)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .padding(.vertical, 16)
+                .background(Color.white, in: RoundedRectangle(cornerRadius: 14))
                 .overlay {
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.inkPop, lineWidth: 2)
+                    RoundedRectangle(cornerRadius: 14)
+                        .strokeBorder(Color.inkSecondary.opacity(0.35), lineWidth: 1.5)
                 }
         }
+        .buttonStyle(.plain)
     }
 }
 
 #Preview {
     SecondaryButton(title: "Hello World") {}
+        .padding()
 }

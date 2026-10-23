@@ -8,25 +8,31 @@
 import SwiftUI
 
 struct RootView: View {
+    @AppStorage("hasOnboarded") private var hasOnboarded = false
     
     var body: some View{
-        TabView {
-            
-            Tab("Today", systemImage: "calendar") {
-                TodayView()
-            }
-            
-            Tab ("Courses", systemImage: "book") {
-                CoursesView()
-            }
-            
-            Tab ("Calculator", systemImage: "plusminus.circle") {
-                CalculatorView()
-            }
-            
-            Tab ("Profile", systemImage: "person") {
-                ProfileView()
-            }
-        }.tint(Color.inkPop)
+        if hasOnboarded {
+            TabView {
+                
+                Tab("Today", systemImage: "calendar") {
+                    TodayView()
+                }
+                
+                Tab ("Courses", systemImage: "book") {
+                    CoursesView()
+                }
+                
+                Tab ("Calculator", image: "calculator") {
+                    CalculatorView()
+                }
+                
+                Tab ("Profile", systemImage: "person") {
+                    ProfileView()
+                }
+            }.tint(Color.inkPop)
+        } else {
+            OnboardingFlow()
+        }
+        
     }
 }

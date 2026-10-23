@@ -1,39 +1,38 @@
 import SwiftUI
 
 struct TodayView: View {
-    @State private var selectedView = "Agenda"
-    let options = ["Agenda", "Calendar"]
+    @State private var showAddMenu = false
     
     var body: some View {
-        
-        VStack(alignment: .leading, spacing: 10) {
-            Text("Today")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .foregroundStyle(Color.inkPrimary)
-            Text("\(Date.now, format: .dateTime.weekday().day().month(.wide).year()) · Koalified")
-                .foregroundStyle(Color.inkSecondary)
-                .padding(.bottom, 10)
-            
-            Picker("Today View", selection: $selectedView) {
-                ForEach (options, id: \.self) {
-                    option in Text(option)
+        ZStack(alignment: .bottomTrailing) {
+            VStack(alignment: .leading, spacing: 16) {
+                TodayHeader()
+
+                if SampleData.classEvents.isEmpty {
+                    TodayEmptyView()
+                } else {
+                    TodayContentView()
                 }
-            }.pickerStyle(.segmented)
-            
-            if selectedView == "Agenda" {
-                Text("Agenda")
-            } else {
-               Text("Calendar")
             }
+            .padding(16)
+            .background(Color.canvas)
+            
+            Button {
+                showAddMenu = true
+            } label: {
+                Image(systemName: "plus")
+                    .font(.title2.bold())
+                    .foregroundStyle(.white)
+                    .frame(width: 56, height: 56)
+                    .background(Color.inkPop, in: Capsule())
                 
+            }.padding(40)
+        }.sheet(isPresented: $showAddMenu) {
+            AddMenuSheet(onAddClass: {}, onAddDeadline: {}, onAddWidget: {})
+                .presentationDetents([.height(320)])
         }
-        .padding()
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .background(Color.canvas)
     }
 }
-
 #Preview {
     TodayView()
 }

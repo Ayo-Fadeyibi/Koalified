@@ -11,6 +11,11 @@
 struct CoursesView: View {
     
     var body: some View{
-        Text("Courses")
+        if SampleData.classEvents.isEmpty {
+            CoursesEmptyView()
+        } else {
+            Text("Courses")
+        }
+        
     }
 }
