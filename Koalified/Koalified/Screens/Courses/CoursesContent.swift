@@ -14,7 +14,7 @@ struct CoursesContent: View {
         VStack(alignment: .leading, spacing: 12) {
             Picker("Courses view", selection: $selectedView) {
                 ForEach(options, id: \.self) { option in
-                    Text(option)
+                    Text(LocalizedStringKey(option))
                 }
             }
             .pickerStyle(.segmented)
@@ -79,7 +79,7 @@ struct CoursesContent: View {
         return Button {
             filter = title
         } label: {
-            Text(title)
+            Text(LocalizedStringKey(title))
                 .font(.footnote.weight(.semibold))
                 .foregroundStyle(isSelected ? Color.white : Color.inkPrimary)
                 .padding(.horizontal, 16)

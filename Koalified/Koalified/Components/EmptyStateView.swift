@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct EmptyStateView: View {
-    let systemImage: String
-    let title: String
-    let message: String
-    let primaryTitle: String
+    let systemImage: String                 
+    let title: LocalizedStringKey
+    let message: LocalizedStringKey
+    let primaryTitle: LocalizedStringKey
     let primaryAction: () -> Void
-    let secondaryTitle: String
-    let secondaryAction: () -> Void
-
+    var secondaryTitle: LocalizedStringKey? = nil
+    var secondaryAction: (() -> Void)? = nil
+    
     var body: some View {
         VStack(spacing: 16) {
             Spacer()
@@ -35,7 +35,9 @@ struct EmptyStateView: View {
                 .multilineTextAlignment(.center)
 
             PrimaryButton(title: primaryTitle, action: primaryAction)
-            SecondaryButton(title: secondaryTitle, action: secondaryAction)
+            if let secondaryTitle, let secondaryAction {
+                SecondaryButton(title: secondaryTitle, action: secondaryAction)
+            }
 
             Spacer()
         }

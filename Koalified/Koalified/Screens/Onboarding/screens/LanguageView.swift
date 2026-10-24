@@ -9,19 +9,19 @@ import SwiftUI
 
 struct LanguageView: View {
     let languageSupported: [Language] = [
-        Language(native: "English", english: "English"),
-           Language(native: "简体中文", english: "Chinese (Simplified)"),
-           Language(native: "繁體中文", english: "Chinese (Traditional)"),
-           Language(native: "हिन्दी", english: "Hindi"),
-           Language(native: "Bahasa Indonesia", english: "Indonesian"),
-           Language(native: "한국어", english: "Korean"),
-           Language(native: "Tiếng Việt", english: "Vietnamese"),
-           Language(native: "日本語", english: "Japanese")
+        Language(native: "English", english: "English", code: "en"),
+        Language(native: "简体中文", english: "Chinese (Simplified)", code: "zh-Hans"),
+        Language(native: "繁體中文", english: "Chinese (Traditional)", code: "zh-Hant"),
+        Language(native: "हिन्दी", english: "Hindi", code: "hi"),
+        Language(native: "Bahasa Indonesia", english: "Indonesian", code: "id"),
+        Language(native: "한국어", english: "Korean", code: "ko"),
+        Language(native: "Tiếng Việt", english: "Vietnamese", code: "vi"),
+        Language(native: "日本語", english: "Japanese", code: "ja"),
     ]
     
     let onNext: () -> Void
     
-    @AppStorage("language") private var selectedLanguage = "English"
+    @AppStorage("language") private var languageCode = "en"
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -39,7 +39,7 @@ struct LanguageView: View {
             ScrollView {
                 ForEach(languageSupported) {language in
                     Button {
-                        selectedLanguage = language.english
+                        languageCode = language.code
                     } label: {
                         HStack {
                             VStack (alignment: .leading) {
@@ -54,7 +54,7 @@ struct LanguageView: View {
                             }
                             
                             Spacer()
-                            if language.english == selectedLanguage {
+                            if language.code == languageCode {
                                 Image(systemName: "checkmark")
                                     .font(.body.weight(.bold))
                                     .foregroundStyle(Color.accentText)
@@ -63,8 +63,8 @@ struct LanguageView: View {
                             .background(Color.surface, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
                             .overlay {
                                 RoundedRectangle(cornerRadius: Layout.radiusSmall)
-                                    .strokeBorder(language.english == selectedLanguage ? Color.inkPop : Color.cardBorder,
-                                                  lineWidth: language.english == selectedLanguage ? 2 : 1)
+                                    .strokeBorder(language.code == languageCode ? Color.inkPop : Color.cardBorder,
+                                                  lineWidth: language.code == languageCode ? 2 : 1)
                             }
                     }
                     .buttonStyle(.plain)

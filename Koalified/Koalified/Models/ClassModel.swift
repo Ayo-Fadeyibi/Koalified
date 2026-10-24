@@ -20,4 +20,5 @@ struct Language: Identifiable {
     let id = UUID()
     let native: String  // 简体中文
     let english: String // Chinese (Simplified)
+    let code: String    // e.g. "en", "zh-Hans"
 }
