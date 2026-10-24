@@ -15,7 +15,7 @@ struct TodayContentView: View {
         VStack(alignment: .leading, spacing: 10) {
             Picker("Today View", selection: $selectedView) {
                 ForEach (options, id: \.self) {
-                    option in Text(option)
+                    option in Text(LocalizedStringKey(option))
                 }
             }.pickerStyle(.segmented)
                 .padding(.bottom, 10)
@@ -107,7 +107,7 @@ struct TodayContentView: View {
                             Spacer()
 
                             // Kind pill (Lecture, Tutorial...)
-                            Text(data.kind)
+                            Text(data.kind.label)
                                 .font(.caption.weight(.semibold))
                                 .foregroundStyle(Color.accentText)
                                 .padding(.horizontal, 12)

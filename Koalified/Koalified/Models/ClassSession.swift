@@ -6,9 +6,18 @@
 //
 import Foundation
 import SwiftData
+import SwiftUI
 
 enum SessionType: String, Codable {
        case lecture, tutorial, practical
+    
+    var label: LocalizedStringKey {
+        switch self {
+        case .lecture: "Lecture"
+        case .tutorial: "Tutorial"
+        case .practical: "Practical"
+        }
+    }
    }
 
 @Model

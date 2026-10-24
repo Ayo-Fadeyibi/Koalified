@@ -231,6 +231,53 @@
         }
       }
     },
+    "Add a class" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कक्षा जोड़ें"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Tambah kelas"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "クラスを追加する"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "수업 추가"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Thêm buổi học"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "添加课堂"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "新增課堂"
+          }
+        }
+      }
+    },
     "Add a course" : {
       "localizations" : {
         "hi" : {
@@ -319,6 +366,53 @@
           "stringUnit" : {
             "state" : "machine_translated",
             "value" : "新增課程即可開始"
+          }
+        }
+      }
+    },
+    "Add a deadline" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "समय-सीमा जोड़ें"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Tambah tenggat waktu"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "期限を追加する"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "마감일 추가"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Thêm hạn chót"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "添加截止日期"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "新增截止日期"
           }
         }
       }
@@ -415,6 +509,53 @@
         }
       }
     },
+    "Add to your weekly timetable" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "अपनी साप्ताहिक समय-सारणी में जोड़ें"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Tambahkan ke jadwal kuliah mingguanmu"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "週間スケジュールに追加する"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "주간 시간표에 추가"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Thêm vào thời khóa biểu hằng tuần của bạn"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "添加到你的每周课表"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "加入你的每週課表"
+          }
+        }
+      }
+    },
     "Add your classes to get started" : {
       "localizations" : {
         "hi" : {
@@ -507,6 +648,53 @@
         }
       }
     },
+    "Agenda" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "एजेंडा"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Agenda"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "議題"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "일정"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Lịch trình"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "日程"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "行程"
+          }
+        }
+      }
+    },
     "All" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -550,6 +738,53 @@
           "stringUnit" : {
             "state" : "machine_translated",
             "value" : "全部"
+          }
+        }
+      }
+    },
+    "Assignment, quiz or exam date" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "असाइनमेंट, क्विज़ या परीक्षा की तारीख़"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Tanggal tugas, kuis, atau ujian"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "課題、小テスト、または試験の日程"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "과제, 퀴즈 또는 시험 날짜"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Ngày nộp bài tập, làm bài kiểm tra hoặc thi"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "作业、测验或考试日期"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "作業、小考或考試日期"
           }
         }
       }
@@ -1876,6 +2111,12 @@
             "value" : "Chú giải"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "图例"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "machine_translated",
@@ -2461,7 +2702,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "\n과거"
+            "value" : "과거"
           }
         },
         "vi" : {
@@ -2572,6 +2813,52 @@
           "stringUnit" : {
             "state" : "machine_translated",
             "value" : "貼上你的課表連結"
+          }
+        }
+      }
+    },
+    "Practical" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "प्रैक्टिकल"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Praktikum"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "実習"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "실습"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Thực hành"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "实验课"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "實驗課"
           }
         }
       }
@@ -3036,6 +3323,53 @@
         }
       }
     },
+    "Show your week on the Home screen" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "अपना सप्ताह होम स्क्रीन पर दिखाएँ"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Tampilkan jadwal mingguanmu di Layar Utama"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\nホーム画面にその週の予定を表示する"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "홈 화면에 이번 주 일정 표시"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Hiển thị tuần của bạn trên Màn hình chính"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "在主屏幕上查看你的一周安排"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "在主畫面顯示你這一週的行程"
+          }
+        }
+      }
+    },
     "Starts 09:00" : {
       "localizations" : {
         "hi" : {
@@ -3492,6 +3826,52 @@
           "stringUnit" : {
             "state" : "machine_translated",
             "value" : "10月20日 週二"
+          }
+        }
+      }
+    },
+    "Tutorial" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "ट्यूटोरियल"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Tutorial"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "学習用"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "튜토리얼"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Buổi thảo luận"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "辅导课"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "輔導課"
           }
         }
       }

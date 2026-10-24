@@ -53,10 +53,10 @@ struct AddMenuSheet: View {
         Button(action: action) {
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(title)
+                    Text(LocalizedStringKey(title))
                         .font(.body.weight(.semibold))
                         .foregroundStyle(Color.inkPrimary)
-                    Text(subtitle)
+                    Text(LocalizedStringKey(subtitle))
                         .font(.caption)
                         .foregroundStyle(Color.inkSecondary)
                 }

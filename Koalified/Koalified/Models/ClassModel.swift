@@ -10,7 +10,7 @@ import Foundation
 struct ClassEvent: Identifiable {
     let id = UUID()         // Unique ID for each event
     let courseCode: String  // Course code
-    let kind: String        // "Lecture", "Tutorial"
+    let kind: SessionType        // "Lecture", "Tutorial"
     let room: String        // room number
     let start: Date         // Event start time/date
     let end: Date           // Event end time/date

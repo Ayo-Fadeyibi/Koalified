@@ -14,11 +14,11 @@ enum SampleData {
     }
 
     static let classEvents: [ClassEvent] = [
-        ClassEvent(courseCode: "CSSE1001", kind: "Lecture", room: "50-201",
+        ClassEvent(courseCode: "CSSE1001", kind: .lecture, room: "50-201",
                    start: today(at: 9), end: today(at: 10)),
-        ClassEvent(courseCode: "MATH1051", kind: "Tutorial", room: "67-105",
+        ClassEvent(courseCode: "MATH1051", kind: .tutorial, room: "67-105",
                    start: today(at: 11), end: today(at: 12)),
-        ClassEvent(courseCode: "ECON1010", kind: "Lecture", room: "14-212",
+        ClassEvent(courseCode: "ECON1010", kind: .lecture, room: "14-212",
                    start: today(at: 13), end: today(at: 14))
     ]
 }
