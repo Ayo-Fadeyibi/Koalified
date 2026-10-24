@@ -44,9 +44,9 @@ struct YearView: View {
                             }
                         }
                         .padding(14)
-                        .background(Color.surface, in: RoundedRectangle(cornerRadius: 12))
+                        .background(Color.surface, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
                         .overlay {
-                            RoundedRectangle(cornerRadius: 12)
+                            RoundedRectangle(cornerRadius: Layout.radiusSmall)
                                 .strokeBorder(year == selectedYear ? Color.inkPop : Color.cardBorder,
                                               lineWidth: year == selectedYear ? 2 : 1)
                         }

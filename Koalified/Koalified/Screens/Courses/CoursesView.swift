@@ -6,9 +6,14 @@
 //
 
 
- import SwiftUI
+import SwiftUI
+import SwiftData
 
 struct CoursesView: View {
+    @Query private var courses: [Course]
+    @Environment(\.modelContext) private var modelContext
+    
+    @State private var showAddCourse = false
     
     var body: some View{
         ZStack(alignment: .bottomTrailing) {
@@ -16,8 +21,8 @@ struct CoursesView: View {
                 CoursesHeader()
                     .padding(.bottom, 10)
                 
-                if SampleData.classEvents.isEmpty {
-                    CoursesEmptyView()
+                if courses.isEmpty {
+                    CoursesEmptyView(onAdd: addTestCourse)
                 } else {
                     CoursesContent()
                 }
@@ -25,7 +30,7 @@ struct CoursesView: View {
             .background(Color.canvas)
             
             Button {
-                print("Something")
+                showAddCourse = true
             } label: {
                 Image(systemName: "plus")
                     .font(.title2.bold())
@@ -34,11 +39,21 @@ struct CoursesView: View {
                     .background(Color.inkPop, in: Capsule())
                 
             }.padding(40)
-        }
+        }.sheet(isPresented: $showAddCourse) { AddCourseSheet() }
         
+    }
+    
+    private func addTestCourse(){
+        modelContext.insert(Course(courseCode: "CSSE1001", term: .semester2, year: 2026, color: .teal))
     }
 }
 
-#Preview {
-    CoursesView()
+
+
+#Preview("With courses") {
+    CoursesView().modelContainer(PreviewData.container)
+}
+
+#Preview("Empty") {
+    CoursesView().modelContainer(EmptyPreviewData.container)
 }

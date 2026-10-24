@@ -11,9 +11,9 @@ struct SecondaryButton: View {
                 .foregroundStyle(Color.accentText)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 16)
-                .background(Color.surface, in: RoundedRectangle(cornerRadius: 14))
+                .background(Color.surface, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
                 .overlay {
-                    RoundedRectangle(cornerRadius: 14)
+                    RoundedRectangle(cornerRadius: Layout.radiusSmall)
                         .strokeBorder(Color.inkSecondary.opacity(0.35), lineWidth: 1.5)
                 }
         }

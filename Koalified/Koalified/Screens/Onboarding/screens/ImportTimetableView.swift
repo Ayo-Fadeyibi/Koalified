@@ -22,9 +22,9 @@ struct ImportTimetableView: View {
                 .autocorrectionDisabled()
                 .keyboardType(.URL)
                 .padding(16)
-                .background(Color.white, in: RoundedRectangle(cornerRadius: 14))
+                .background(Color.white, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
                 .overlay {
-                    RoundedRectangle(cornerRadius: 14)
+                    RoundedRectangle(cornerRadius: Layout.radiusSmall)
                         .strokeBorder(Color.cardBorder, lineWidth: 1)
                 }
 

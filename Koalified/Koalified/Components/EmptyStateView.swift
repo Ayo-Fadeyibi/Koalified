@@ -24,7 +24,7 @@ struct EmptyStateView: View {
                 .font(.system(size: 40))
                 .foregroundStyle(Color.accentText)
                 .frame(width: 96, height: 96)
-                .background(Color.cardBorder.opacity(0.5), in: RoundedRectangle(cornerRadius: 24))
+                .background(Color.cardBorder.opacity(0.5), in: RoundedRectangle(cornerRadius: Layout.radiusLarge))
 
             Text(title)
                 .font(.title3.weight(.bold))

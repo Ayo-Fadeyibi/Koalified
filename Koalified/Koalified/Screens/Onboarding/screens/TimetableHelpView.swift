@@ -52,9 +52,9 @@ struct TimetableHelpView: View {
                     .foregroundStyle(Color.inkSecondary)
             }
             .padding(14)
-            .background(Color.surface, in: RoundedRectangle(cornerRadius: 12))
+            .background(Color.surface, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
             .overlay {
-                RoundedRectangle(cornerRadius: 12)
+                RoundedRectangle(cornerRadius: Layout.radiusSmall)
                     .strokeBorder(Color.cardBorder, lineWidth: 1)
             }
         }

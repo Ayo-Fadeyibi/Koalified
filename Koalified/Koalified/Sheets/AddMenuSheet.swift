@@ -15,7 +15,7 @@ struct AddMenuSheet: View {
     let onAddWidget: () -> Void
     
     var body: some View {
-        VStack (alignment: .leading, spacing: 12) {
+        VStack (alignment: .leading, spacing: Layout.screenPadding) {
             HStack {
                 Text("Add")
                     .fontWeight(.bold)
@@ -66,9 +66,9 @@ struct AddMenuSheet: View {
                     .foregroundStyle(Color.inkSecondary)
             }
             .padding(14)
-            .background(Color.surface, in: RoundedRectangle(cornerRadius: 12))
+            .background(Color.surface, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
             .overlay {
-                RoundedRectangle(cornerRadius: 12)
+                RoundedRectangle(cornerRadius: Layout.radiusSmall)
                     .strokeBorder(Color.cardBorder, lineWidth: 1)
             }
         }

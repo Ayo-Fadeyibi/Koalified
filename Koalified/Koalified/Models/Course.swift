@@ -1,11 +1,25 @@
 import Foundation
 import SwiftData
 
+enum Term: String, Codable, CaseIterable {
+    case semester1, semester2, summer
+
+    var label: String {
+        switch self {
+        case .semester1: return "Semester 1"
+        case .semester2: return "Semester 2"
+        case .summer:    return "Summer"
+        }
+    }
+}
+
 @Model
 final class Course {
     var courseCode: String
     var title: String?
-    var semester: String
+    var term: Term
+    var year: Int
+    var semesterLabel: String { "\(term.label), \(year)" }
     var color: CourseColor
     var censusDate: Date?
     var lastDropDate: Date?
@@ -18,13 +32,15 @@ final class Course {
 
     init(courseCode: String,
          title: String? = nil,
-         semester: String,
+         term: Term,
+         year: Int,
          color: CourseColor,
          censusDate: Date? = nil,
          lastDropDate: Date? = nil) {
         self.courseCode = courseCode
         self.title = title
-        self.semester = semester
+        self.term = term
+        self.year = year
         self.color = color
         self.censusDate = censusDate
         self.lastDropDate = lastDropDate

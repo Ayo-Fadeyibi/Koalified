@@ -20,9 +20,9 @@ struct Card<Content: View>: View {
                 } .padding(16)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(Color.surface)
-            .clipShape(RoundedRectangle(cornerRadius: 14))
+            .clipShape(RoundedRectangle(cornerRadius: Layout.radiusCard))
             .overlay {
-                RoundedRectangle(cornerRadius: 14)
+                RoundedRectangle(cornerRadius: Layout.radiusCard)
                     .stroke(Color.cardBorder, lineWidth: 1)
         }
     }

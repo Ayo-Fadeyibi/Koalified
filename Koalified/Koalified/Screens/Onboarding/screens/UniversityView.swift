@@ -34,9 +34,9 @@ struct UniversityView: View {
                     .focused($isTextInputFocused)
             }
             .padding(14)
-            .background(Color.surface, in: RoundedRectangle(cornerRadius: 12))
+            .background(Color.surface, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
             .overlay {
-                RoundedRectangle(cornerRadius: 12)
+                RoundedRectangle(cornerRadius: Layout.radiusSmall)
                     .strokeBorder(isTextInputFocused ? Color.inkPop : Color.cardBorder,
                                   lineWidth: isTextInputFocused ? 2 : 1)
             }
@@ -59,9 +59,9 @@ struct UniversityView: View {
                     }
                 }
                 .padding(14)
-                .background(Color.surface, in: RoundedRectangle(cornerRadius: 12))
+                .background(Color.surface, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
                 .overlay {
-                    RoundedRectangle(cornerRadius: 12)
+                    RoundedRectangle(cornerRadius: Layout.radiusSmall)
                         .strokeBorder(isUQSelected ? Color.inkPop : Color.cardBorder,
                                       lineWidth: isUQSelected ? 2 : 1)
                 }
@@ -79,7 +79,7 @@ struct UniversityView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(14)
                         .background(Color.cardBorder.opacity(0.5),
-                                    in: RoundedRectangle(cornerRadius: 12))
+                                    in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
                 }
             }
 
@@ -96,7 +96,7 @@ struct UniversityView: View {
                 .foregroundStyle(Color.inkSecondary)
                 .multilineTextAlignment(.center)
         }
-        .padding(.horizontal, 16)
+        .padding(.horizontal, Layout.screenPadding)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .background(Color.canvas)
     }

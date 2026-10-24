@@ -65,7 +65,7 @@ struct TodayContentView: View {
                             .padding()
                             .frame(maxWidth: .infinity)
                             .background(Color.inkPop)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .clipShape(RoundedRectangle(cornerRadius: Layout.radiusSmall))
                         }
                     }
                 }

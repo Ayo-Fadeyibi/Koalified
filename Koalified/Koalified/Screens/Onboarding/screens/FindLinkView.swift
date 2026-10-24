@@ -38,9 +38,9 @@ struct FindLinkView: View {
             }
             .padding(16)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color.surface, in: RoundedRectangle(cornerRadius: 14))
+            .background(Color.surface, in: RoundedRectangle(cornerRadius: Layout.radiusCard))
             .overlay {
-                RoundedRectangle(cornerRadius: 14)
+                RoundedRectangle(cornerRadius: Layout.radiusCard)
                     .strokeBorder(Color.cardBorder, lineWidth: 1)
             }
 

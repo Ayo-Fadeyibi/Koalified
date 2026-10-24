@@ -47,7 +47,7 @@ struct WidgetPreviewPanel: View {
         }
         .padding(14)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color.inkPop, in: RoundedRectangle(cornerRadius: 20))
+        .background(Color.inkPop, in: RoundedRectangle(cornerRadius: Layout.radiusCard))
     }
 }
 
@@ -73,7 +73,7 @@ private func dueSoonWidget() -> some View {
     }
     .padding(14)
     .frame(maxWidth: .infinity, alignment: .leading)
-    .background(Color.surface, in: RoundedRectangle(cornerRadius: 20))
+    .background(Color.surface, in: RoundedRectangle(cornerRadius: Layout.radiusCard))
 }
 
 

@@ -60,9 +60,9 @@ struct LanguageView: View {
                                     .foregroundStyle(Color.accentText)
                             }
                         }.padding(14)
-                            .background(Color.surface, in: RoundedRectangle(cornerRadius: 12))
+                            .background(Color.surface, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
                             .overlay {
-                                RoundedRectangle(cornerRadius: 12)
+                                RoundedRectangle(cornerRadius: Layout.radiusSmall)
                                     .strokeBorder(language.english == selectedLanguage ? Color.inkPop : Color.cardBorder,
                                                   lineWidth: language.english == selectedLanguage ? 2 : 1)
                             }

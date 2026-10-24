@@ -48,9 +48,9 @@ struct CoursesContent: View {
                         .foregroundStyle(Color.accentText)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 14)
-                        .background(Color.surface, in: RoundedRectangle(cornerRadius: 12))
+                        .background(Color.surface, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
                         .overlay {
-                            RoundedRectangle(cornerRadius: 12)
+                            RoundedRectangle(cornerRadius: Layout.radiusSmall)
                                 .strokeBorder(Color.cardBorder, lineWidth: 1)
                         }
                 }
@@ -101,7 +101,7 @@ struct CoursesContent: View {
                     .font(.caption.weight(.bold))
                     .foregroundStyle(accent)
                     .frame(width: 52, height: 52)
-                    .background(accent.opacity(0.15), in: RoundedRectangle(cornerRadius: 12))
+                    .background(accent.opacity(0.15), in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
 
                 VStack(alignment: .leading, spacing: 6) {
                     HStack {
