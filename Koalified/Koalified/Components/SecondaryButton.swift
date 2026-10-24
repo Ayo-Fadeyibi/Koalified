@@ -8,10 +8,10 @@ struct SecondaryButton: View {
         Button(action: action) {
             Text(title)
                 .fontWeight(.semibold)
-                .foregroundStyle(Color.inkPop)
+                .foregroundStyle(Color.accentText)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 16)
-                .background(Color.white, in: RoundedRectangle(cornerRadius: 14))
+                .background(Color.surface, in: RoundedRectangle(cornerRadius: 14))
                 .overlay {
                     RoundedRectangle(cornerRadius: 14)
                         .strokeBorder(Color.inkSecondary.opacity(0.35), lineWidth: 1.5)

@@ -27,7 +27,7 @@ struct FindLinkView: View {
                     HStack(alignment: .top, spacing: 12) {
                         Text("\(index + 1)")
                             .font(.caption.weight(.bold))
-                            .foregroundStyle(Color.inkPop)
+                            .foregroundStyle(Color.accentText)
                             .frame(width: 24, height: 24)
                             .background(Color.inkPop.opacity(0.12), in: Circle())
                         Text(step)
@@ -38,7 +38,7 @@ struct FindLinkView: View {
             }
             .padding(16)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color.white, in: RoundedRectangle(cornerRadius: 14))
+            .background(Color.surface, in: RoundedRectangle(cornerRadius: 14))
             .overlay {
                 RoundedRectangle(cornerRadius: 14)
                     .strokeBorder(Color.cardBorder, lineWidth: 1)

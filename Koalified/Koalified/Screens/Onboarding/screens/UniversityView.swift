@@ -34,7 +34,7 @@ struct UniversityView: View {
                     .focused($isTextInputFocused)
             }
             .padding(14)
-            .background(Color.white, in: RoundedRectangle(cornerRadius: 12))
+            .background(Color.surface, in: RoundedRectangle(cornerRadius: 12))
             .overlay {
                 RoundedRectangle(cornerRadius: 12)
                     .strokeBorder(isTextInputFocused ? Color.inkPop : Color.cardBorder,
@@ -55,11 +55,11 @@ struct UniversityView: View {
                     if isUQSelected {
                         Image(systemName: "checkmark")
                             .font(.body.weight(.bold))
-                            .foregroundStyle(Color.inkPop)
+                            .foregroundStyle(Color.accentText)
                     }
                 }
                 .padding(14)
-                .background(Color.white, in: RoundedRectangle(cornerRadius: 12))
+                .background(Color.surface, in: RoundedRectangle(cornerRadius: 12))
                 .overlay {
                     RoundedRectangle(cornerRadius: 12)
                         .strokeBorder(isUQSelected ? Color.inkPop : Color.cardBorder,

@@ -40,11 +40,11 @@ struct YearView: View {
                             if year == selectedYear {
                                 Image(systemName: "checkmark")
                                     .font(.body.weight(.bold))
-                                    .foregroundStyle(Color.inkPop)
+                                    .foregroundStyle(Color.accentText)
                             }
                         }
                         .padding(14)
-                        .background(Color.white, in: RoundedRectangle(cornerRadius: 12))
+                        .background(Color.surface, in: RoundedRectangle(cornerRadius: 12))
                         .overlay {
                             RoundedRectangle(cornerRadius: 12)
                                 .strokeBorder(year == selectedYear ? Color.inkPop : Color.cardBorder,

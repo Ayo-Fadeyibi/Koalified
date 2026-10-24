@@ -26,7 +26,7 @@ struct AddMenuSheet: View {
                     dismiss()
                 } label: {
                     Text("Done")
-                        .foregroundStyle(Color.inkPop)
+                        .foregroundStyle(Color.accentText)
                         .fontWeight(.bold)
                 }
             }
@@ -66,7 +66,7 @@ struct AddMenuSheet: View {
                     .foregroundStyle(Color.inkSecondary)
             }
             .padding(14)
-            .background(Color.white, in: RoundedRectangle(cornerRadius: 12))
+            .background(Color.surface, in: RoundedRectangle(cornerRadius: 12))
             .overlay {
                 RoundedRectangle(cornerRadius: 12)
                     .strokeBorder(Color.cardBorder, lineWidth: 1)

@@ -22,7 +22,7 @@ struct EmptyStateView: View {
 
             Image(systemName: systemImage)
                 .font(.system(size: 40))
-                .foregroundStyle(Color.inkPop)
+                .foregroundStyle(Color.accentText)
                 .frame(width: 96, height: 96)
                 .background(Color.cardBorder.opacity(0.5), in: RoundedRectangle(cornerRadius: 24))
 

@@ -29,7 +29,7 @@ struct RootView: View {
                 Tab ("Profile", systemImage: "person") {
                     ProfileView()
                 }
-            }.tint(Color.inkPop)
+            }.tint(Color.accentText)
         } else {
             OnboardingFlow()
         }

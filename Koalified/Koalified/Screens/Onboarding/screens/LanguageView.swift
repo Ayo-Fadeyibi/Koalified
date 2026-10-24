@@ -57,10 +57,10 @@ struct LanguageView: View {
                             if language.english == selectedLanguage {
                                 Image(systemName: "checkmark")
                                     .font(.body.weight(.bold))
-                                    .foregroundStyle(Color.inkPop)
+                                    .foregroundStyle(Color.accentText)
                             }
                         }.padding(14)
-                            .background(Color.white, in: RoundedRectangle(cornerRadius: 12))
+                            .background(Color.surface, in: RoundedRectangle(cornerRadius: 12))
                             .overlay {
                                 RoundedRectangle(cornerRadius: 12)
                                     .strokeBorder(language.english == selectedLanguage ? Color.inkPop : Color.cardBorder,

@@ -32,7 +32,7 @@ struct TodayContentView: View {
                             Spacer()
                             Text("In 20 min")
                                 .font(.caption.weight(.bold))
-                                .foregroundStyle(Color.inkPop)
+                                .foregroundStyle(Color.accentText)
                                 .padding(.horizontal, 12)
                                 .padding(.vertical, 6)
                                 .background(Color.inkPop.opacity(0.12), in: Capsule())
@@ -61,7 +61,7 @@ struct TodayContentView: View {
                                 Image(systemName: "arrow.right")
                             }
                             .font(.subheadline.weight(.bold))
-                            .foregroundStyle(Color.white)
+                            .foregroundStyle(.white)
                             .padding()
                             .frame(maxWidth: .infinity)
                             .background(Color.inkPop)
@@ -92,6 +92,9 @@ struct TodayContentView: View {
                             }
                             .frame(width: 70, alignment: .leading)
 
+                            Divider()
+                                .frame(height: 40)
+                            
                             // Course and room
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(data.courseCode)
@@ -106,7 +109,7 @@ struct TodayContentView: View {
                             // Kind pill (Lecture, Tutorial...)
                             Text(data.kind)
                                 .font(.caption.weight(.semibold))
-                                .foregroundStyle(Color.inkPop)
+                                .foregroundStyle(Color.accentText)
                                 .padding(.horizontal, 12)
                                 .padding(.vertical, 6)
                                 .background(Color.inkPop.opacity(0.12), in: Capsule())
