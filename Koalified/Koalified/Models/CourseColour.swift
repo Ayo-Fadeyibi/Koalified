@@ -12,10 +12,10 @@ enum CourseColor: String, Codable, CaseIterable {
 
     var color: Color {
         switch self {
-        case .teal:  return Color.teal
-        case .blue:  return Color.blue
-        case .amber: return Color.amber
-        case .rose:  return Color.rose
+        case .teal:  return Color.newTeal
+        case .blue:  return Color.newBlue
+        case .amber: return Color.newAmber
+        case .rose:  return Color.newRose
         }
     }
 

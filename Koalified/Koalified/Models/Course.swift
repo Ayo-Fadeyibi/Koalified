@@ -53,4 +53,14 @@ final class Course {
             return total + item.weight * mark / 100
         }
     }
+    
+    var markedWeight: Double {
+        assessments.reduce(0) { total, item in
+            item.mark == nil ? total : total + item.weight
+        }
+    }
+
+    var markedAverage: Double? {
+        markedWeight > 0 ? earnedPoints / markedWeight * 100 : nil
+    }
 }

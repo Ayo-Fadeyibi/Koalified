@@ -27,43 +27,30 @@ struct CoursesContent: View {
                     }
                 }
 
-                // Section header
-                HStack {
-                    Text("Semester 2, 2026 · Current")
-                        .font(.headline)
-                        .foregroundStyle(Color.inkPrimary)
-                    Spacer()
-                    Text("\(courses.count) courses")
-                        .font(.footnote)
-                        .foregroundStyle(Color.inkSecondary)
-                }
-                .padding(.top, 4)
-
-                // Copy previous semester
-                Button {
-                    print("Copy a previous semester")
-                } label: {
-                    Text("Copy a previous semester")
-                        .font(.subheadline.weight(.bold))
-                        .foregroundStyle(Color.accentText)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 14)
-                        .background(Color.surface, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
-                        .overlay {
-                            RoundedRectangle(cornerRadius: Layout.radiusSmall)
-                                .strokeBorder(Color.cardBorder, lineWidth: 1)
-                        }
-                }
-                .buttonStyle(.plain)
-                
-                ForEach(courses) { course in
-                    courseCard(
-                        code: course.courseCode,
-                        title: course.title ?? "",
-                        accent: course.color.color,
-                        earned: course.earnedPoints
-                    )
-                }
+                ScrollView {
+                    // Section header
+                    HStack {
+                        Text("Semester 2, 2026 · Current")
+                            .font(.headline)
+                            .foregroundStyle(Color.inkPrimary)
+                        Spacer()
+                        Text("\(courses.count) courses")
+                            .font(.footnote)
+                            .foregroundStyle(Color.inkSecondary)
+                    }
+                    .padding(.top, 4)
+                    
+                    ForEach(courses) { course in
+                        NavigationLink(value: course) {
+                            courseCard(
+                                code: course.courseCode,
+                                title: course.title ?? "",
+                                accent: course.color.color,
+                                earned: course.earnedPoints
+                            )
+                        }.buttonStyle(.plain)
+                    }
+                }.scrollIndicators(.hidden)
             } else {
                 Text("Degree plan")
                     .foregroundStyle(Color.inkPrimary)

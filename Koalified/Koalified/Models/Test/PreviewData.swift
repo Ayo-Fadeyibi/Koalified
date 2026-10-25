@@ -1,12 +1,9 @@
-//
-//  PreviewData.swift
-//  Koalified
-//
-//  Created by Ayooluwa Fadeyibi on 24/10/2026.
-//
-
 import SwiftData
 import Foundation
+
+private func day(_ d: Int, _ m: Int) -> Date {
+    Calendar.current.date(from: DateComponents(year: 2026, month: m, day: d))!
+}
 
 @MainActor
 enum PreviewData {
@@ -26,10 +23,13 @@ enum PreviewData {
         context.insert(csse)
         context.insert(math)
 
-        let quiz = AssessmentItem(title: "Quiz 1", weight: 20,
-                                  dueDate: .now, mark: 100)
-        context.insert(quiz)
-        csse.assessments.append(quiz)
+        let items = [
+            AssessmentItem(title: "Weekly labs", weight: 10, dueDate: day(16, 10), mark: 80, course: csse),
+            AssessmentItem(title: "Assignment 1", weight: 20, dueDate: day(9, 10), mark: 60, course: csse),
+            AssessmentItem(title: "Software project", weight: 30, dueDate: day(23, 10), course: csse),
+            AssessmentItem(title: "Final exam", weight: 40, dueDate: day(6, 11), course: csse),
+        ]
+        items.forEach { context.insert($0) }
 
         return container
     }()

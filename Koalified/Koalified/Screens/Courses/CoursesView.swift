@@ -16,30 +16,36 @@ struct CoursesView: View {
     @State private var showAddCourse = false
     
     var body: some View{
-        ZStack(alignment: .bottomTrailing) {
-            VStack(alignment: .leading, spacing: 16) {
-                CoursesHeader()
-                    .padding(.bottom, 10)
+        NavigationStack{
+            ZStack(alignment: .bottomTrailing) {
+                VStack(alignment: .leading, spacing: 16) {
+                    CoursesHeader()
+                        .padding(.bottom, 10)
+                    
+                    if courses.isEmpty {
+                        CoursesEmptyView(onAdd: addTestCourse)
+                    } else {
+                        CoursesContent()
+                    }
+                }.padding(Layout.screenPadding)
+                .background(Color.canvas)
                 
-                if courses.isEmpty {
-                    CoursesEmptyView(onAdd: addTestCourse)
-                } else {
-                    CoursesContent()
+                Button {
+                    showAddCourse = true
+                } label: {
+                    Image(systemName: "plus")
+                        .font(.title2.bold())
+                        .foregroundStyle(.white)
+                        .frame(width: 56, height: 56)
+                        .background(Color.inkPop, in: Capsule())
+                    
+                }.padding(40)
+            } .background(Color.canvas)                          .toolbar(.hidden, for: .navigationBar)
+                .navigationDestination(for: Course.self) { course in
+                    CourseDetailView(course: course)
                 }
-            }.padding(16)
-            .background(Color.canvas)
-            
-            Button {
-                showAddCourse = true
-            } label: {
-                Image(systemName: "plus")
-                    .font(.title2.bold())
-                    .foregroundStyle(.white)
-                    .frame(width: 56, height: 56)
-                    .background(Color.inkPop, in: Capsule())
-                
-            }.padding(40)
-        }.sheet(isPresented: $showAddCourse) { AddCourseSheet() }
+            .sheet(isPresented: $showAddCourse) { AddCourseSheet() }
+        }
         
     }
     

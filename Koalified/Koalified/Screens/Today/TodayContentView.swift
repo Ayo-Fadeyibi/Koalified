@@ -76,7 +76,7 @@ struct TodayContentView: View {
                         .foregroundStyle(Color.inkPrimary)
                     Text("Tue 20 Oct")
                         .foregroundStyle(Color.inkSecondary)
-                }
+                }.padding(.top, 20)
                 
                 ForEach(SampleData.classEvents) { data in
                     Card {
