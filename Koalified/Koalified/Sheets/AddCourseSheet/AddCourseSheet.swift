@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import WidgetKit
 
 struct AddCourseSheet: View {
 
@@ -116,7 +117,10 @@ struct AddCourseSheet: View {
                                        term: term, year: year, color: colour))
         }
        
-
+        //Update the widget
+        try? modelContext.save()
+        WidgetCenter.shared.reloadAllTimelines()
+        
         // 6. Close the sheet
         dismiss()
     }

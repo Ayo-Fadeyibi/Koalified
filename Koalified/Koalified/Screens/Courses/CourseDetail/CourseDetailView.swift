@@ -31,7 +31,11 @@ struct CourseDetailView: View {
         .background(Color.canvas)
         .toolbar(.visible, for: .navigationBar)
         .navigationBarTitleDisplayMode(.inline)
-        .sheet(isPresented: $showAddAssessment) { /* AddAssessmentSheet */ }
+        .sheet(isPresented: $showAddAssessment) {
+            AddAssessmentSheet(course: course)
+                .presentationDetents([.height(320)])
+        }
+        
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Edit") { showEditCourse = true }

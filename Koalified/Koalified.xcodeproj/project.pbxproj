@@ -8,22 +8,84 @@
 
 /* Begin PBXBuildFile section */
 		BB79C9B1308CE6C4007F3C21 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BB79C9B0308CE6C4007F3C21 /* Localizable.xcstrings */; };
+		BB79C9E3308E0138007F3C21 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB79C9E2308E0138007F3C21 /* WidgetKit.framework */; };
+		BB79C9E5308E0138007F3C21 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB79C9E4308E0138007F3C21 /* SwiftUI.framework */; };
+		BB79C9F0308E013B007F3C21 /* KoalifiedWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BB79C9E0308E0138007F3C21 /* KoalifiedWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BB79C9EE308E013B007F3C21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000000 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB79C9DF308E0138007F3C21;
+			remoteInfo = KoalifiedWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BB79C9F5308E013B007F3C21 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "";
+			dstSubfolder = PlugIns;
+			files = (
+				BB79C9F0308E013B007F3C21 /* KoalifiedWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		000000000000000000000120 /* Koalified.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Koalified.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB79C9B0308CE6C4007F3C21 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		BB79C9E0308E0138007F3C21 /* KoalifiedWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KoalifiedWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB79C9E2308E0138007F3C21 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		BB79C9E4308E0138007F3C21 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		BB79C9F6308E018E007F3C21 /* KoalifiedWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KoalifiedWidgetExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		BB79C9F1308E013B007F3C21 /* Exceptions for "KoalifiedWidget" folder in "KoalifiedWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = BB79C9DF308E0138007F3C21 /* KoalifiedWidgetExtension */;
+		};
+		BB79C9FB308E02E3007F3C21 /* Exceptions for "Koalified" folder in "KoalifiedWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				App/AppStore.swift,
+				Models/AssessmentItem.swift,
+				Models/ClassSession.swift,
+				Models/Course.swift,
+				Models/CourseColour.swift,
+				Resources/SharedColors.xcassets,
+			);
+			target = BB79C9DF308E0138007F3C21 /* KoalifiedWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		000000000000000000000010 /* Koalified */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				BB79C9FB308E02E3007F3C21 /* Exceptions for "Koalified" folder in "KoalifiedWidgetExtension" target */,
+			);
 			path = Koalified;
 			sourceTree = "<group>";
 		};
 		BB4135023088E70700BED1AF /* KoalifiedTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = KoalifiedTests;
+			sourceTree = "<group>";
+		};
+		BB79C9E6308E0138007F3C21 /* KoalifiedWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				BB79C9F1308E013B007F3C21 /* Exceptions for "KoalifiedWidget" folder in "KoalifiedWidgetExtension" target */,
+			);
+			path = KoalifiedWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -34,14 +96,24 @@
 			files = (
 			);
 		};
+		BB79C9DD308E0138007F3C21 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				BB79C9E5308E0138007F3C21 /* SwiftUI.framework in Frameworks */,
+				BB79C9E3308E0138007F3C21 /* WidgetKit.framework in Frameworks */,
+			);
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		000000000000000000000001 = {
 			isa = PBXGroup;
 			children = (
+				BB79C9F6308E018E007F3C21 /* KoalifiedWidgetExtension.entitlements */,
 				BB79C9B0308CE6C4007F3C21 /* Localizable.xcstrings */,
 				000000000000000000000010 /* Koalified */,
+				BB79C9E6308E0138007F3C21 /* KoalifiedWidget */,
+				BB79C9E1308E0138007F3C21 /* Frameworks */,
 				000000000000000000000020 /* Products */,
 				BB4135023088E70700BED1AF /* KoalifiedTests */,
 			);
@@ -51,8 +123,18 @@
 			isa = PBXGroup;
 			children = (
 				000000000000000000000120 /* Koalified.app */,
+				BB79C9E0308E0138007F3C21 /* KoalifiedWidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		BB79C9E1308E0138007F3C21 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BB79C9E2308E0138007F3C21 /* WidgetKit.framework */,
+				BB79C9E4308E0138007F3C21 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -65,8 +147,12 @@
 				000000000000000120000000 /* Sources */,
 				000000000000000130000000 /* Frameworks */,
 				000000000000000140000000 /* Resources */,
+				BB79C9F5308E013B007F3C21 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
+			);
+			dependencies = (
+				BB79C9EF308E013B007F3C21 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				000000000000000000000010 /* Koalified */,
@@ -77,6 +163,24 @@
 			productReference = 000000000000000000000120 /* Koalified.app */;
 			productType = "com.apple.product-type.application";
 		};
+		BB79C9DF308E0138007F3C21 /* KoalifiedWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB79C9F2308E013B007F3C21 /* Build configuration list for PBXNativeTarget "KoalifiedWidgetExtension" */;
+			buildPhases = (
+				BB79C9DC308E0138007F3C21 /* Sources */,
+				BB79C9DD308E0138007F3C21 /* Frameworks */,
+				BB79C9DE308E0138007F3C21 /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				BB79C9E6308E0138007F3C21 /* KoalifiedWidget */,
+			);
+			name = KoalifiedWidgetExtension;
+			productName = KoalifiedWidgetExtension;
+			productReference = BB79C9E0308E0138007F3C21 /* KoalifiedWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -84,11 +188,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2630;
+				LastSwiftUpdateCheck = 2710;
 				LastUpgradeCheck = 2700;
 				TargetAttributes = {
 					000000000000000100000000 = {
 						CreatedOnToolsVersion = 26.3;
+					};
+					BB79C9DF308E0138007F3C21 = {
+						CreatedOnToolsVersion = 27.1;
 					};
 				};
 			};
@@ -114,6 +221,7 @@
 			projectRoot = "";
 			targets = (
 				000000000000000100000000 /* Koalified */,
+				BB79C9DF308E0138007F3C21 /* KoalifiedWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -125,6 +233,11 @@
 				BB79C9B1308CE6C4007F3C21 /* Localizable.xcstrings in Resources */,
 			);
 		};
+		BB79C9DE308E0138007F3C21 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -133,7 +246,20 @@
 			files = (
 			);
 		};
+		BB79C9DC308E0138007F3C21 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BB79C9EF308E013B007F3C21 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB79C9DF308E0138007F3C21 /* KoalifiedWidgetExtension */;
+			targetProxy = BB79C9EE308E013B007F3C21 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		000000000000000011000000 /* Debug configuration for PBXProject "Koalified" */ = {
@@ -273,6 +399,7 @@
 		000000000000000111000000 /* Debug configuration for PBXNativeTarget "Koalified" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Koalified/Koalified.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 44JRL9YXZH;
@@ -299,19 +426,21 @@
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		000000000000000112000000 /* Release configuration for PBXNativeTarget "Koalified" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Koalified/Koalified.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 44JRL9YXZH;
@@ -338,13 +467,81 @@
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BB79C9F3308E013B007F3C21 /* Debug configuration for PBXNativeTarget "KoalifiedWidgetExtension" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = KoalifiedWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 44JRL9YXZH;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KoalifiedWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = KoalifiedWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ayooluwafadeyibipersonalteam.Koalified.KoalifiedWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BB79C9F4308E013B007F3C21 /* Release configuration for PBXNativeTarget "KoalifiedWidgetExtension" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = KoalifiedWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 44JRL9YXZH;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KoalifiedWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = KoalifiedWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ayooluwafadeyibipersonalteam.Koalified.KoalifiedWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -364,6 +561,14 @@
 			buildConfigurations = (
 				000000000000000111000000 /* Debug configuration for PBXNativeTarget "Koalified" */,
 				000000000000000112000000 /* Release configuration for PBXNativeTarget "Koalified" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		BB79C9F2308E013B007F3C21 /* Build configuration list for PBXNativeTarget "KoalifiedWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB79C9F3308E013B007F3C21 /* Debug configuration for PBXNativeTarget "KoalifiedWidgetExtension" */,
+				BB79C9F4308E013B007F3C21 /* Release configuration for PBXNativeTarget "KoalifiedWidgetExtension" */,
 			);
 			defaultConfigurationName = Release;
 		};

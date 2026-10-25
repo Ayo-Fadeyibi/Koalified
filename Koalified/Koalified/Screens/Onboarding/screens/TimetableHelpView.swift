@@ -3,6 +3,8 @@ import SwiftUI
 struct TimetableHelpView: View {
     let onShowMe: () -> Void
     let onHaveIt: () -> Void
+    
+    @AppStorage("hasOnboarded") private var hasOnboarded = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -27,6 +29,8 @@ struct TimetableHelpView: View {
             }
 
             Spacer()
+            
+            PrimaryButton(title: "I'll add it later"){finish()}
 
         }
         .padding(.horizontal, 16)
@@ -59,6 +63,10 @@ struct TimetableHelpView: View {
             }
         }
         .buttonStyle(.plain)
+    }
+    
+    private func finish() {
+        hasOnboarded = true
     }
 }
 

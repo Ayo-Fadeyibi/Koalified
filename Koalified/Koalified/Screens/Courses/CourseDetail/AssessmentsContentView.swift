@@ -57,8 +57,9 @@ struct AssessmentsContentView: View {
                         .buttonStyle(.plain)
                     }
                 }
+                
 
-                SecondaryButton(title: "Add an assessment") { onAdd() }
+                PrimaryButton(title: "Add an assessment") { onAdd() }
                 SecondaryButton(title: "Open what-if calculator") { print("calculator") }
             }
 

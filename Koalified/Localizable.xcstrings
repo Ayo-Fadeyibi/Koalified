@@ -1307,6 +1307,52 @@
         }
       }
     },
+    "Can't add assessment" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "मूल्यांकन जोड़ा नहीं जा सकता"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Tidak bisa menambahkan penilaian"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "評価を追加できません"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "평가를 추가할 수 없어요"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Không thể thêm bài đánh giá"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "无法添加考核项目"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "無法新增考核項目"
+          }
+        }
+      }
+    },
     "Can't add course" : {
       "localizations" : {
         "hi" : {
@@ -1349,6 +1395,52 @@
           "stringUnit" : {
             "state" : "machine_translated",
             "value" : "無法新增課程"
+          }
+        }
+      }
+    },
+    "Cancel" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "रद्द करें"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Batal"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "キャンセル"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "취소"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Hủy"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "取消"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "取消"
           }
         }
       }
@@ -1953,6 +2045,52 @@
         }
       }
     },
+    "Due date" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "देय तिथि"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Tenggat waktu"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "期限"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "마감일"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Hạn chót"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "截止日期"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "截止日期"
+          }
+        }
+      }
+    },
     "DUE SOON" : {
       "localizations" : {
         "hi" : {
@@ -1999,6 +2137,52 @@
         }
       }
     },
+    "e.g. 20" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "जैसे 20"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Contoh: 20"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "例: 20"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "예: 20"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Ví dụ: 20"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "例如 20"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "例如 20"
+          }
+        }
+      }
+    },
     "e.g. CSSE1001" : {
       "localizations" : {
         "hi" : {
@@ -2041,6 +2225,52 @@
           "stringUnit" : {
             "state" : "machine_translated",
             "value" : "例如 CSSE1001"
+          }
+        }
+      }
+    },
+    "e.g. Quiz 1" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "जैसे क्विज़ 1"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Contoh: Kuis 1"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "例: 小テスト1"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "예: 퀴즈 1"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Ví dụ: Bài kiểm tra 1"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "例如 小测验 1"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "例如 小考 1"
           }
         }
       }
@@ -2409,6 +2639,52 @@
           "stringUnit" : {
             "state" : "machine_translated",
             "value" : "幫你管理課表和成績。"
+          }
+        }
+      }
+    },
+    "I'll add it later" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "मैं इसे बाद में जोड़ूँगा"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Nanti saya tambahkan"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "あとで追加します"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "나중에 추가할게요"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Tôi sẽ thêm sau"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "我稍后再添加"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "我晚點再新增"
           }
         }
       }
@@ -3884,6 +4160,52 @@
           "stringUnit" : {
             "state" : "machine_translated",
             "value" : "教室 50-201"
+          }
+        }
+      }
+    },
+    "Save assessment" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "मूल्यांकन सहेजें"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Simpan penilaian"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "評価を保存"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "평가 저장"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Lưu bài đánh giá"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "保存考核项目"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "儲存考核項目"
           }
         }
       }

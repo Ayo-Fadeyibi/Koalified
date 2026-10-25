@@ -2,10 +2,17 @@ import SwiftUI
 import SwiftData
 
 @main struct KoalifiedApp: App {
+    @Environment(\.scenePhase) private var scenePhase
+    
     var body: some Scene {
         WindowGroup {
             RootView()
-                .modelContainer(for: [Course.self, ClassSession.self, AssessmentItem.self])
+                .modelContainer(AppStore.container)
+                .onChange(of: scenePhase) { _, phase in
+                    if phase == .active {
+                        AppSync.dataChanged(in: AppStore.container.mainContext)
+                    }
+                }
         }
     }
 }
