@@ -1,6 +1,8 @@
 import SwiftUI
 import SwiftData
 
+/// Detail screen for one course: its code and title, then either an empty state or its assessments.
+/// Offers sheets to add an assessment and (via the Edit button) to edit the course.
 struct CourseDetailView: View {
     let course: Course
     @State private var showAddAssessment = false
@@ -46,6 +48,7 @@ struct CourseDetailView: View {
         }
     }
     
+    /// Course code as a large title with the course name underneath, if it has one.
     private var header: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(course.courseCode)

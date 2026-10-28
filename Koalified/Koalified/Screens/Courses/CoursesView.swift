@@ -9,6 +9,8 @@
 import SwiftUI
 import SwiftData
 
+/// The Courses tab. Shows the header and either the empty state or the list of courses,
+/// with a floating "+" button that opens the Add Course sheet. Tapping a course opens its detail screen.
 struct CoursesView: View {
     @Query private var courses: [Course]
     @Environment(\.modelContext) private var modelContext
@@ -16,7 +18,7 @@ struct CoursesView: View {
     @State private var showAddCourse = false
     
     var body: some View{
-        NavigationStack{
+        NavigationStack {
             ZStack(alignment: .bottomTrailing) {
                 VStack(alignment: .leading, spacing: 16) {
                     CoursesHeader()
@@ -40,7 +42,8 @@ struct CoursesView: View {
                         .background(Color.inkPop, in: Capsule())
                     
                 }.padding(40)
-            } .background(Color.canvas)                          .toolbar(.hidden, for: .navigationBar)
+            } .background(Color.canvas)
+                .toolbar(.hidden, for: .navigationBar)
                 .navigationDestination(for: Course.self) { course in
                     CourseDetailView(course: course)
                 }
@@ -49,6 +52,7 @@ struct CoursesView: View {
         
     }
     
+    /// Temporary helper: inserts a sample CSSE1001 course so the list can be tested.
     private func addTestCourse(){
         modelContext.insert(Course(courseCode: "CSSE1001", term: .semester2, year: 2026, color: .teal))
     }

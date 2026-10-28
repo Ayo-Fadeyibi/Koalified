@@ -1,6 +1,8 @@
 import SwiftUI
 
+/// Onboarding step 2: choose the year of study. First-years are sent on to the timetable help screen.
 struct YearView: View {
+    /// The options shown, in order.
     let years = [
         "1st year",
         "2nd year",
@@ -17,15 +19,11 @@ struct YearView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Step 2 of 3")
-                .font(.subheadline)
-                .foregroundStyle(Color.inkSecondary)
+                .secondaryTextStyling()
             Text("What year are you in?")
-                .foregroundStyle(Color.inkPrimary)
-                .fontWeight(.bold)
-                .font(.largeTitle)
+                .primaryTextStyling()
             Text("This helps us set up the right tips for you.")
-                .font(.subheadline)
-                .foregroundStyle(Color.inkSecondary)
+                .tinyText()
 
             VStack(spacing: 8) {
                 ForEach(years, id: \.self) { year in
@@ -43,13 +41,7 @@ struct YearView: View {
                                     .foregroundStyle(Color.accentText)
                             }
                         }
-                        .padding(14)
-                        .background(Color.surface, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
-                        .overlay {
-                            RoundedRectangle(cornerRadius: Layout.radiusSmall)
-                                .strokeBorder(year == selectedYear ? Color.inkPop : Color.cardBorder,
-                                              lineWidth: year == selectedYear ? 2 : 1)
-                        }
+                        .boxStyling(bgColor: Color.surface, cRadius: Layout.radiusSmall, sColor: year == selectedYear ? Color.inkPop : Color.cardBorder, lWidth: year == selectedYear ? 2 : 1)
                     }
                     .buttonStyle(.plain)
                 }
@@ -61,9 +53,7 @@ struct YearView: View {
                 onNext(selectedYear == "1st year")
             }
         }
-        .padding(.horizontal, 16)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .background(Color.canvas)
+        .mainContainerStyling()
     }
 }
 

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Side-by-side pickers for the semester (term) and the year (2025–2028).
 struct TermYearFields: View {
     
     @Binding var term: Term

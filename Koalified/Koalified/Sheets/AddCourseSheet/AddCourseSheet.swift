@@ -9,33 +9,40 @@ import SwiftUI
 import SwiftData
 import WidgetKit
 
+/// Sheet for adding a new course, or editing an existing one when `course` is passed in.
+/// Collects the code, name, term, year and colour, validates them, then saves and refreshes the widget.
 struct AddCourseSheet: View {
 
     @State private var term: Term = .semester2
     @State private var year = 2026
-    
+
     @State private var courseCode = ""
     @State private var courseName = ""
-    
+
     enum Field { case code, name }
     @FocusState private var focused: Field?
-    
+
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     @Query private var courses: [Course]
-    
+
     @State private var showError = false
     @State private var errorMessage = ""
-    
+
+    /// The colour the user tapped; nil means they haven't chosen one.
     @State private var chosenColor: CourseColor?
 
+    /// Colour used when none is chosen: cycles through the palette based on how many courses exist.
     private var autoColor: CourseColor {
         CourseColor.allCases[courses.count % CourseColor.allCases.count]
     }
+    /// The chosen colour, or the automatic one.
     private var selectedColor: CourseColor { chosenColor ?? autoColor }
-    
+
+    /// The course being edited, or nil when adding a new one.
     var course: Course? = nil
-    
+
+    /// Pre-fills the fields from `course` when editing.
     init(course: Course? = nil) {
         self.course = course
         _courseCode = State(initialValue: course?.courseCode ?? "")
@@ -65,8 +72,7 @@ struct AddCourseSheet: View {
             PrimaryButton(title: "Add course"){save()}
             
             Text("Enter assessment names, weights and dates yourself. No automatic lookup or course-profile extraction")
-                .font(.subheadline)
-                .foregroundStyle(Color.inkSecondary)
+                .secondaryTextStyling()
             
         }.padding(.top)
         .padding(.horizontal, Layout.screenPadding)
@@ -79,6 +85,8 @@ struct AddCourseSheet: View {
             }
     }
     
+    /// Validates the form and then updates the existing course or inserts a new one.
+    /// Shows an alert instead of saving if the code is empty or the course is a duplicate.
     private func save() {
         // 1. Clean the text
         let cleanCode = courseCode

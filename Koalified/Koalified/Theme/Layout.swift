@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Shared sizes and spacing so every screen looks consistent.
 enum Layout {
     // Corner radii
     static let radiusSmall: CGFloat = 12    // buttons, option rows

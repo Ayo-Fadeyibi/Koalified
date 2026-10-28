@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// The course code and optional course name text fields. Pressing return on the code moves focus to the name.
 struct CourseDetailsFields: View {
     @Binding var code: String
     @Binding var name: String

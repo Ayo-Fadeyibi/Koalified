@@ -1,5 +1,7 @@
 import SwiftUI
 
+/// Mock-up of the "Next class" and "Due soon" widgets on a gradient background,
+/// used to show the user what the widgets will look like. Shows sample data.
 struct WidgetPreviewPanel: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -21,6 +23,7 @@ struct WidgetPreviewPanel: View {
         )
     }
 
+    /// Dark tile showing the next class: course, type, time until it starts and room.
     private func nextClassWidget() -> some View {
         VStack(alignment: .leading, spacing: 2) {
             Text("NEXT CLASS")
@@ -51,6 +54,7 @@ struct WidgetPreviewPanel: View {
     }
 }
 
+/// Light tile showing the next assessment due: title, course and weight, and days left.
 private func dueSoonWidget() -> some View {
     VStack(alignment: .leading, spacing: 2) {
         Text("DUE SOON")

@@ -8,6 +8,7 @@
 import SwiftData
 import Foundation
 
+/// In-memory, empty SwiftData container for previews of empty states.
 @MainActor
 enum EmptyPreviewData {
     static let container: ModelContainer = {

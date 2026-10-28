@@ -7,7 +7,11 @@
 
 import SwiftUI
 
+/*
+ This view handles and display the data stored on the local storage including lecture time, location and courses. Includes a picker that displays the calendar view
+ */
 struct TodayContentView: View {
+    /// Which mode is showing: "Agenda" or "Calendar".
     @State private var selectedView = "Agenda"
     let options = ["Agenda", "Calendar"]
     
@@ -86,6 +90,8 @@ struct TodayContentView: View {
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(data.start, style: .time)
                                     .font(.headline)
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.8)
                                 Text(data.end, style: .time)
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
@@ -117,7 +123,7 @@ struct TodayContentView: View {
                     }
                 }
             } else {
-               Text("Calendar")
+               CalendarTabContent()
             }
                 
         }

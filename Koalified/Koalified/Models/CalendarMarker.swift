@@ -7,7 +7,9 @@
 
 import Foundation
 
+/// A dated event shown on the calendar: an assessment deadline or a course drop date.
 struct CalendarMarker: Identifiable {
+    /// `deadline` is an assessment due date; `drop` is a census or last-day-to-drop date.
     enum Kind { case deadline, drop }
 
     let id = UUID()
@@ -16,6 +18,7 @@ struct CalendarMarker: Identifiable {
     let title: String
     let courseCode: String
 
+    /// Flattens every course's assessments, census date and last drop date into one list of markers.
     static func markers(from courses: [Course]) -> [CalendarMarker] {
         courses.flatMap { course in
             var items = course.assessments.map {

@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A lightweight, non-persisted class occurrence used for display (e.g. the sample agenda).
 struct ClassEvent: Identifiable {
     let id = UUID()         // Unique ID for each event
     let courseCode: String  // Course code
@@ -16,12 +17,7 @@ struct ClassEvent: Identifiable {
     let end: Date           // Event end time/date
 }
 
-struct Language: Identifiable {
-    let id = UUID()
-    let native: String  // 简体中文
-    let english: String // Chinese (Simplified)
-    let code: String    // e.g. "en", "zh-Hans"
-}
+
 
 
 

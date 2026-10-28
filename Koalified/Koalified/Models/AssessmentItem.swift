@@ -8,6 +8,8 @@
 import Foundation
 import SwiftData
 
+/// A graded piece of work (assignment, quiz, exam) belonging to a course.
+/// `mark` is nil until the result is known.
 @Model
 final class AssessmentItem {
     var title: String

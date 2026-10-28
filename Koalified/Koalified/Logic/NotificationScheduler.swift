@@ -7,12 +7,15 @@
 
 import UserNotifications
 
+/// Schedules local notifications that remind the user the day before an assessment is due.
 enum NotificationScheduler {
+    /// Asks the user for notification permission. Returns whether it was granted.
     static func requestPermission() async -> Bool {
         let center = UNUserNotificationCenter.current()
         return (try? await center.requestAuthorization(options: [.alert, .sound, .badge])) ?? false
     }
     
+    /// One pending notification: when it fires and what it says.
     struct Reminder {
         let id: String
         let fireDate: Date
@@ -20,6 +23,8 @@ enum NotificationScheduler {
         let body: String
     }
 
+    /// Builds a reminder for every unmarked assessment, set for 9:00 the day before it is due.
+    /// Reminders that would fire in the past are skipped.
     static func reminders(for courses: [Course]) -> [Reminder] {
         let cal = Calendar.current
         var result: [Reminder] = []
@@ -42,6 +47,8 @@ enum NotificationScheduler {
         return result
     }
 
+    /// Clears all pending notifications and schedules the soonest 60 reminders
+    /// (iOS allows at most 64 pending local notifications).
     static func reschedule(courses: [Course]) {
         let center = UNUserNotificationCenter.current()
         center.removeAllPendingNotificationRequests()

@@ -7,12 +7,14 @@
 
 import SwiftUI
 
+/// Empty state for the Courses tab when no courses exist yet.
 struct CoursesEmptyView: View {
+    /// Called when the user taps "Add a course".
     let onAdd: () -> Void
 
     var body: some View {
         EmptyStateView(
-            systemImage: "book",
+            icon: .system("book"),
             title: "No courses yet",
             message: "Add your courses to track marks and see what you need. Importing your timetable adds them for you.",
             primaryTitle: "Add a course",

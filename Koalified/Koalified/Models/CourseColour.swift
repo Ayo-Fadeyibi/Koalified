@@ -7,9 +7,11 @@
 
 import SwiftUI
 
+/// The accent colours a course can be given. Stored by name so it can be saved with the course.
 enum CourseColor: String, Codable, CaseIterable {
     case teal, blue, amber, rose
 
+    /// The SwiftUI colour for this choice.
     var color: Color {
         switch self {
         case .teal:  return Color.newTeal

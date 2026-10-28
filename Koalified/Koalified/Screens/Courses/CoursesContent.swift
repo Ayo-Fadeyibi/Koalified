@@ -1,8 +1,12 @@
 import SwiftUI
 import SwiftData
 
+/// The Courses tab when courses exist: a "My courses / Degree plan" switch, filter chips
+/// (Current, Past, All) and a scrolling list of course cards that link to each course's detail.
 struct CoursesContent: View {
+    /// Which segment is showing: "My courses" or "Degree plan".
     @State private var selectedView = "My courses"
+    /// The selected filter chip: "Current", "Past" or "All".
     @State private var filter = "Current"
 
     let options = ["My courses", "Degree plan"]
@@ -61,6 +65,7 @@ struct CoursesContent: View {
 
     // MARK: - Pieces
 
+    /// A pill-shaped filter button; filled when it is the selected filter.
     private func chip(_ title: String) -> some View {
         let isSelected = filter == title
         return Button {
@@ -80,6 +85,8 @@ struct CoursesContent: View {
         .buttonStyle(.plain)
     }
 
+    /// Card for one course: a coloured code badge, title, progress bar and points earned out of 100.
+    /// The "On track" badge is static for now.
     private func courseCard(code: String, title: String, accent: Color, earned: Double) -> some View {
         Card {
             HStack(alignment: .top, spacing: 14) {

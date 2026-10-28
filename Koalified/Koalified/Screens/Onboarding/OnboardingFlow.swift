@@ -1,10 +1,15 @@
 import SwiftUI
 
+//This contains all the screen that appears in the onboarding
 enum OnboardingStep: Hashable {
     case language, university, year, timetableHelp, findLink, importTimetable
 }
 
+/*
+ This view handles the flow of the onboarding, it decides which screen comes before and next by using a switch case. Basically it keeps track which screen needs to be displayed and not during the onboarding with the WelcomeView as the root/start.
+ */
 struct OnboardingFlow: View {
+    /// The screens pushed on top of WelcomeView, in order.
     @State private var path: [OnboardingStep] = []
     @AppStorage("hasOnboarded") private var hasOnboarded = false
 
@@ -33,16 +38,8 @@ struct OnboardingFlow: View {
                             ImportTimetableView(onDone: { finish() })
                         }
                     }
-                    .toolbar {
-                        ToolbarItem(placement: .topBarTrailing) {
-                            Button {
-                                finish()
-                            } label: {
-                                Image(systemName: "xmark")
-                                    .font(.footnote.weight(.bold))
-                                    .foregroundStyle(Color.inkSecondary)
-                            }
-                        }
+                    .closeButton {
+                        finish()
                     }
                 }
         }

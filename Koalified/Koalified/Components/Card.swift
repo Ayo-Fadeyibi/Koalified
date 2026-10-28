@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Reusable rounded container with a surface background and border; wraps any content in a vertical stack.
 struct Card<Content: View>: View {
     let content: Content
     
@@ -17,14 +18,7 @@ struct Card<Content: View>: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             content
-                } .padding(16)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color.surface)
-            .clipShape(RoundedRectangle(cornerRadius: Layout.radiusCard))
-            .overlay {
-                RoundedRectangle(cornerRadius: Layout.radiusCard)
-                    .stroke(Color.cardBorder, lineWidth: 1)
-        }
+        }.boxStyling(bgColor: Color.surface, cRadius: Layout.radiusCard, sColor: Color.cardBorder, lWidth: 1)
     }
 }
 

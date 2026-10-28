@@ -6,6 +6,7 @@
 //
 import SwiftUI
 
+/// A labelled form row: a bold caption above a bordered input (text field, picker, etc.) passed as content.
 struct FormField<Content: View>: View {
     let label: String
     let content: Content

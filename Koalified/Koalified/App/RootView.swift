@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+/// Top-level view. Shows the main tab bar once onboarding is complete, otherwise the onboarding flow,
+/// and applies the user's chosen language to the whole app.
 struct RootView: View {
     @AppStorage("hasOnboarded") private var hasOnboarded = false
     @AppStorage("language") private var languageCode = "en"

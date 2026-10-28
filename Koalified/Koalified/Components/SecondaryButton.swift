@@ -1,5 +1,6 @@
 import SwiftUI
 
+/// Full-width outlined button for less prominent actions, shown beside a `PrimaryButton`.
 struct SecondaryButton: View {
     let title: LocalizedStringKey
     let action: () -> Void

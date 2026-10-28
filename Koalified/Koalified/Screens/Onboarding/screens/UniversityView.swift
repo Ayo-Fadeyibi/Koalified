@@ -1,10 +1,15 @@
 import SwiftUI
 
+/// Onboarding screen asking where the user studies. Only UQ is available for now;
+/// other universities are listed (disabled) as future additions.
 struct UniversityView: View {
+    /// Text typed in the search field (not used for filtering yet).
     @State private var universityName = ""
     @State private var isUQSelected = true
+    /// Whether the search field has focus; used to highlight its border.
     @FocusState private var isTextInputFocused: Bool
 
+    /// Universities planned for later.
     let universityList = [
         "Queensland University of Technology",
         "Griffith University",
@@ -18,11 +23,9 @@ struct UniversityView: View {
             // Heading
             VStack(alignment: .leading, spacing: 8) {
                 Text("Where do you study?")
-                    .font(.largeTitle.weight(.bold))
-                    .foregroundStyle(Color.inkPrimary)
+                    .primaryTextStyling()
                 Text("Helps organise your timetable and grades.")
-                    .font(.subheadline)
-                    .foregroundStyle(Color.inkSecondary)
+                    .secondaryTextStyling()
             }
             .padding(.bottom, 20)
 
@@ -33,13 +36,7 @@ struct UniversityView: View {
                 TextField("Search or enter university", text: $universityName)
                     .focused($isTextInputFocused)
             }
-            .padding(14)
-            .background(Color.surface, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
-            .overlay {
-                RoundedRectangle(cornerRadius: Layout.radiusSmall)
-                    .strokeBorder(isTextInputFocused ? Color.inkPop : Color.cardBorder,
-                                  lineWidth: isTextInputFocused ? 2 : 1)
-            }
+            .boxStyling(bgColor: Color.surface, cRadius:  Layout.radiusSmall, sColor: isTextInputFocused ? Color.inkPop : Color.cardBorder, lWidth: isTextInputFocused ? 2 : 1)
 
             // Available now
             sectionLabel("AVAILABLE NOW")
@@ -49,8 +46,7 @@ struct UniversityView: View {
             } label: {
                 HStack {
                     Text("The University of Queensland")
-                        .font(.body.weight(.bold))
-                        .foregroundStyle(Color.inkPrimary)
+                        .secondaryTextStyling()
                     Spacer()
                     if isUQSelected {
                         Image(systemName: "checkmark")
@@ -58,13 +54,7 @@ struct UniversityView: View {
                             .foregroundStyle(Color.accentText)
                     }
                 }
-                .padding(14)
-                .background(Color.surface, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
-                .overlay {
-                    RoundedRectangle(cornerRadius: Layout.radiusSmall)
-                        .strokeBorder(isUQSelected ? Color.inkPop : Color.cardBorder,
-                                      lineWidth: isUQSelected ? 2 : 1)
-                }
+                .boxStyling(bgColor: Color.surface, cRadius: Layout.radiusSmall, sColor: isUQSelected ? Color.inkPop : Color.cardBorder, lWidth: isUQSelected ? 2 : 1)
             }
             .buttonStyle(.plain)
 
@@ -96,9 +86,7 @@ struct UniversityView: View {
                 .foregroundStyle(Color.inkSecondary)
                 .multilineTextAlignment(.center)
         }
-        .padding(.horizontal, Layout.screenPadding)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .background(Color.canvas)
+        .mainContainerStyling()
     }
 
     // Small label used above each section

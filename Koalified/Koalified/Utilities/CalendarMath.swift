@@ -8,7 +8,12 @@
 import Foundation
 import SwiftUI
 
+//Built by claude, I don't understand this code yet
+/// Date calculations for the month grid on the calendar.
 enum CalendarMath {
+    /// Returns the cells for a month grid starting on Monday: `nil` for the blank cells
+    /// before the 1st, then one `Date` for every day of the month.
+    /// For example, a month whose 1st is a Wednesday starts with two `nil`s (Monday, Tuesday).
     static func days(in month: Date) -> [Date?] {
         var cal = Calendar.current
         cal.firstWeekday = 2                       // 2 = Monday (1 = Sunday)

@@ -6,15 +6,19 @@
 //
 
 import SwiftUI
+import SwiftData
 
+/// The Calculator tab. Currently a placeholder: shows the empty state, or a "Calculator" label.
+/// (Its empty check still uses sample data rather than real courses.)
 struct CalculatorView: View {
+    @Query private var courses: [Course]
     
     var body: some View {
         
-        if SampleData.classEvents.isEmpty {
+        if courses.isEmpty {
             CalculatorEmptyView()
         }else {
-            Text("Calculator")
+            CalculatorContent()
         }
         
     }

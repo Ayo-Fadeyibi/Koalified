@@ -8,6 +8,7 @@
 import WidgetKit
 import SwiftUI
 
+/// Entry point of the widget extension; lists the widgets it provides.
 @main
 struct KoalifiedWidgetBundle: WidgetBundle {
     var body: some Widget {

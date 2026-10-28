@@ -7,12 +7,14 @@
 
 import SwiftUI
 
+/// Empty state for a course with no assessments yet.
 struct AssessmentsEmptyView: View {
+    /// Called when the user taps "Add an assessment".
     let onAdd: () -> Void
 
     var body: some View {
         EmptyStateView(
-            systemImage: "book",
+            icon: .system("book"),
             title: "No assessments yet",
             message: "Add your assignments, quizzes and exams to track your marks and see what you need.",
             primaryTitle: "Add an assessment",

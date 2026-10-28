@@ -7,8 +7,10 @@
 
 import SwiftUI
 
+/// Sheet explaining how to add the Koalified widget from the Home Screen, with a button to widget settings.
 struct AddWidgetSheet: View {
     @Environment(\.dismiss) private var dismiss
+    /// Called when the user taps "Widget settings".
     let onSettings: () -> Void
     
     var body: some View {

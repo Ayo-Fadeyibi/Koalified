@@ -1,10 +1,12 @@
 import SwiftData
 import Foundation
 
+/// Builds a date in 2026 from a day and month, for sample assessment due dates.
 private func day(_ d: Int, _ m: Int) -> Date {
     Calendar.current.date(from: DateComponents(year: 2026, month: m, day: d))!
 }
 
+/// In-memory SwiftData container pre-filled with sample courses and assessments, for previews.
 @MainActor
 enum PreviewData {
     static let container: ModelContainer = {

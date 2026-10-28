@@ -7,10 +7,13 @@
 
 import SwiftUI
 
+/// A row of colour swatches for choosing a course colour. A tick marks the current choice;
+/// when nothing has been picked (`selection` is nil) the `fallback` colour is ticked.
 struct ColorPickerRow: View {
     @Binding var selection: CourseColor?
-    let fallback: CourseColor          
+    let fallback: CourseColor
 
+    /// The colour to show as selected.
     private var current: CourseColor { selection ?? fallback }
 
     var body: some View {

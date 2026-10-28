@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//This view displays the greeting ("Good Morning", "Good Afternoon", "Good Evening") and date
 struct TodayHeader: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -21,4 +22,9 @@ struct TodayHeader: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
+}
+
+
+#Preview {
+    TodayHeader()
 }

@@ -1,5 +1,8 @@
 import SwiftUI
 
+/**
+ This displays the today screen by utilising two different Views: An empty screen (TodayEmptyView()) and a content screen (TodayContentView()) depending on if local storage has any courses stored
+ */
 struct TodayView: View {
     @State private var showAddMenu = false
     

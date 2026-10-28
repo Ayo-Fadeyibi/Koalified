@@ -1,7 +1,10 @@
 import SwiftUI
 import SwiftData
 
+/// Sheet for adding an assessment (name, weight, due date) to `course`.
+/// On save it validates the input, asks for notification permission and refreshes reminders and the widget.
 struct AddAssessmentSheet: View {
+    /// The course the new assessment is added to.
     let course: Course
 
     @Environment(\.dismiss) private var dismiss
@@ -66,11 +69,14 @@ struct AddAssessmentSheet: View {
         }
     }
 
+    /// Shows the error alert with `message`.
     private func fail(_ message: String) {
         errorMessage = message
         showError = true
     }
 
+    /// Requires a name and a weight between 0 and 100 (exclusive of 0); otherwise shows an error.
+    /// Then inserts the assessment, syncs notifications/widget and closes the sheet.
     private func save() {
         let cleanName = name.trimmingCharacters(in: .whitespaces)
         guard !cleanName.isEmpty else {

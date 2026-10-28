@@ -8,9 +8,11 @@ import Foundation
 import SwiftData
 import SwiftUI
 
+/// The kind of class a session is.
 enum SessionType: String, Codable {
        case lecture, tutorial, practical
-    
+
+    /// Localized name shown in the UI.
     var label: LocalizedStringKey {
         switch self {
         case .lecture: "Lecture"
@@ -20,6 +22,8 @@ enum SessionType: String, Codable {
     }
    }
 
+/// One scheduled class (lecture, tutorial or practical) for a course, with its time and room.
+/// `icsUID` is the event's ID in an imported calendar file, used to recognise it on re-import.
 @Model
 final class ClassSession {
     var start: Date

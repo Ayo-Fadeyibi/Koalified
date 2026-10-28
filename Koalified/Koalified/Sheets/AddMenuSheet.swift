@@ -7,9 +7,11 @@
 
 import SwiftUI
 
+/// The "Add" menu opened by the floating + button on Today: choose to add a class, a deadline or a widget.
+/// Each choice runs its callback and then closes the sheet.
 struct AddMenuSheet: View {
     @Environment(\.dismiss) private var dismiss
-    
+
     let onAddClass: () -> Void
     let onAddDeadline: () -> Void
     let onAddWidget: () -> Void
@@ -49,6 +51,7 @@ struct AddMenuSheet: View {
             .background(Color.canvas)
     }
     
+    /// One tappable menu row with a title, a smaller subtitle and an arrow.
     private func optionRow(title: String, subtitle: String, action: @escaping () -> Void) -> some View {
         Button(action: action) {
             HStack {

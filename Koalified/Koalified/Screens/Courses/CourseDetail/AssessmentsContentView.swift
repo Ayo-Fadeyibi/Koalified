@@ -8,18 +8,24 @@
 import SwiftUI
 import SwiftData
 
+/// The body of the course detail screen when the course has assessments: a summary card,
+/// the marked and upcoming assessment lists, and buttons to add an assessment or open the calculator.
 struct AssessmentsContentView: View {
     let course: Course
-    
+
+    /// Called when the user taps "Add an assessment".
     let onAdd: () -> Void
 
+    /// Assessments that already have a mark, earliest due date first.
     private var marked: [AssessmentItem] {
         course.assessments.filter { $0.mark != nil }.sorted { $0.dueDate < $1.dueDate }
     }
+    /// Assessments still waiting for a mark, earliest due date first.
     private var upcoming: [AssessmentItem] {
         course.assessments.filter { $0.mark == nil }.sorted { $0.dueDate < $1.dueDate }
     }
 
+    /// Formats a number with at most one decimal place (e.g. 12.5, 20).
     private func num(_ value: Double) -> String {
         value.formatted(.number.precision(.fractionLength(0...1)))
     }
@@ -67,6 +73,8 @@ struct AssessmentsContentView: View {
         .background(Color.canvas)
     }
 
+    /// Two-column card: the weighted average of marked work and points earned (left),
+    /// and an estimated grade (right; not calculated yet, shows a dash).
     private var summaryCard: some View {
         Card {
             HStack(spacing: 16) {
@@ -98,6 +106,7 @@ struct AssessmentsContentView: View {
         }
     }
 
+    /// A card containing one `AssessmentRow` per item, with `trailing` content (mark or button) on each row.
     private func list<Trailing: View>(
         _ items: [AssessmentItem],
         @ViewBuilder trailing: @escaping (AssessmentItem) -> Trailing
@@ -113,6 +122,7 @@ struct AssessmentsContentView: View {
     }
 }
 
+/// One assessment in a list: its title, weight and due date, plus caller-supplied trailing content.
 struct AssessmentRow<Trailing: View>: View {
     let item: AssessmentItem
     let trailing: Trailing

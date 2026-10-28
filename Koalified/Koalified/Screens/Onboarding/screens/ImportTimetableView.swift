@@ -7,34 +7,30 @@
 
 import SwiftUI
 
+/// Final onboarding screen: a field to paste the timetable link and an Import button.
+/// (The import itself is not implemented yet; the button just finishes onboarding.)
 struct ImportTimetableView: View {
+    /// Called when the user taps Import.
     let onDone: () -> Void
+    /// The pasted timetable link.
     @State private var link = ""
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Import your timetable")
-                .font(.largeTitle.bold())
-                .foregroundStyle(Color.inkPrimary)
+                .primaryTextStyling()
 
             TextField("Paste your timetable link", text: $link)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
                 .keyboardType(.URL)
-                .padding(16)
-                .background(Color.white, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
-                .overlay {
-                    RoundedRectangle(cornerRadius: Layout.radiusSmall)
-                        .strokeBorder(Color.cardBorder, lineWidth: 1)
-                }
+                .boxStyling(bgColor: Color.white, cRadius: Layout.radiusSmall, sColor: Color.cardBorder, lWidth: 1)
 
             Spacer()
 
             PrimaryButton(title: "Import", action: onDone)
         }
-        .padding(.horizontal, 16)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .background(Color.canvas)
+        .mainContainerStyling()
     }
 }
 

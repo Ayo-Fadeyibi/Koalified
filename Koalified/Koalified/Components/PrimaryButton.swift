@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Full-width filled call-to-action button.
 struct PrimaryButton: View {
     
     let title: LocalizedStringKey

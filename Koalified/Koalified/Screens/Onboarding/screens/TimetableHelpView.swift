@@ -1,23 +1,23 @@
 import SwiftUI
 
+/// Onboarding step 3: asks whether the user needs help finding their timetable.
+/// They can be shown how, go straight to importing, or skip and finish onboarding.
 struct TimetableHelpView: View {
+    /// Called for "Yes, show me how".
     let onShowMe: () -> Void
+    /// Called for "No, I already have it".
     let onHaveIt: () -> Void
-    
+
     @AppStorage("hasOnboarded") private var hasOnboarded = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Step 3 of 3")
-                .font(.subheadline)
-                .foregroundStyle(Color.inkSecondary)
+                .secondaryTextStyling()
             Text("Do you need help finding your timetable?")
-                .foregroundStyle(Color.inkPrimary)
-                .fontWeight(.bold)
-                .font(.largeTitle)
+                .primaryTextStyling()
             Text("Koalified can read your UQ timetable from a link or a downloaded file. We'll show you where to find it.")
-                .font(.subheadline)
-                .foregroundStyle(Color.inkSecondary)
+                .secondaryTextStyling()
 
             VStack(spacing: 8) {
                 optionRow(title: "Yes, show me how",
@@ -33,9 +33,7 @@ struct TimetableHelpView: View {
             PrimaryButton(title: "I'll add it later"){finish()}
 
         }
-        .padding(.horizontal, 16)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .background(Color.canvas)
+        .mainContainerStyling()
     }
 
     // One tappable row: a title, a smaller line under it, and an arrow
@@ -55,16 +53,12 @@ struct TimetableHelpView: View {
                     .font(.footnote.weight(.semibold))
                     .foregroundStyle(Color.inkSecondary)
             }
-            .padding(14)
-            .background(Color.surface, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
-            .overlay {
-                RoundedRectangle(cornerRadius: Layout.radiusSmall)
-                    .strokeBorder(Color.cardBorder, lineWidth: 1)
-            }
+            .boxStyling(bgColor: Color.surface, cRadius: Layout.radiusSmall, sColor: Color.cardBorder, lWidth: 1)
         }
         .buttonStyle(.plain)
     }
     
+    // Marks onboarding as complete so RootView shows the main tabs.
     private func finish() {
         hasOnboarded = true
     }

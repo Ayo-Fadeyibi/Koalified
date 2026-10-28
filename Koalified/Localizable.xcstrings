@@ -427,6 +427,9 @@
         }
       }
     },
+    "Account and settings · Koalified" : {
+
+    },
     "Add" : {
       "localizations" : {
         "hi" : {
@@ -1262,6 +1265,7 @@
       }
     },
     "Calendar" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -1537,6 +1541,12 @@
         }
       }
     },
+    "Clear" : {
+
+    },
+    "Coming up" : {
+
+    },
     "Continue" : {
       "localizations" : {
         "hi" : {
@@ -1629,6 +1639,9 @@
           }
         }
       }
+    },
+    "Course" : {
+
     },
     "Courses" : {
       "localizations" : {
@@ -1906,6 +1919,9 @@
           }
         }
       }
+    },
+    "Customise Koala" : {
+
     },
     "Degree plan" : {
       "localizations" : {
@@ -2688,6 +2704,9 @@
           }
         }
       }
+    },
+    "Image" : {
+
     },
     "Import" : {
       "localizations" : {
@@ -3565,6 +3584,12 @@
         }
       }
     },
+    "Nothing coming up" : {
+
+    },
+    "Nothing on this day" : {
+
+    },
     "Nothing to show yet. Import your timetable, or add classes by hand." : {
       "localizations" : {
         "hi" : {
@@ -4256,6 +4281,9 @@
         }
       }
     },
+    "See what's coming" : {
+
+    },
     "Semester" : {
       "localizations" : {
         "hi" : {
@@ -4439,6 +4467,9 @@
           }
         }
       }
+    },
+    "Share exam target" : {
+
     },
     "Show your week on the Home screen" : {
       "extractionState" : "manual",
@@ -4671,6 +4702,9 @@
         }
       }
     },
+    "Study coach, cloud sync and social features are planned for later. Your manual planner works without them." : {
+
+    },
     "The calculator needs a course with its assessments and weights. Add one and enter any marks you already have." : {
       "localizations" : {
         "hi" : {
@@ -4901,6 +4935,9 @@
         }
       }
     },
+    "Try different marks" : {
+
+    },
     "Tue 20 Oct" : {
       "localizations" : {
         "hi" : {
@@ -4993,6 +5030,9 @@
         }
       }
     },
+    "University of Queensland · BE (Honours)" : {
+
+    },
     "Upcoming · %lld" : {
       "localizations" : {
         "hi" : {
@@ -5038,6 +5078,9 @@
           }
         }
       }
+    },
+    "Upcoming Features" : {
+
     },
     "Welcome to Koalified" : {
       "localizations" : {
@@ -5360,6 +5403,9 @@
           }
         }
       }
+    },
+    "Your name" : {
+
     },
     "Your semester, sorted." : {
       "localizations" : {

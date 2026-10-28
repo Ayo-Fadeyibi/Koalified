@@ -6,6 +6,7 @@
 //
 import SwiftUI
 
+/// First onboarding screen: app name, tagline and a "Let's Go" button.
 struct WelcomeView: View {
     let onNext: () -> Void
     
@@ -14,9 +15,10 @@ struct WelcomeView: View {
             Spacer()
             // koala image here: Image("koala").resizable().scaledToFit().frame(width: 220)
             Text("Welcome to Koalified")
-                .font(.largeTitle.weight(.bold))
+                .primaryTextStyling()
             Text("Your semester, sorted.")
-                .foregroundStyle(Color.inkSecondary)
+                .secondaryTextStyling()
+            
             Spacer()
             PrimaryButton(title: "Let's Go", action: onNext)
         }
