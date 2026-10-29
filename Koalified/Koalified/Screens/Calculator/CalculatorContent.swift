@@ -13,7 +13,7 @@ struct CalculatorContent: View {
     /// Picker selection is a plain String key, not the Course itself: SwiftData models can change
     /// their hash (temporary -> permanent ID) while SwiftUI holds them as dictionary keys, which crashes.
     @State private var selectedCourseKey: String?
-    @State private var selectedGrade = ""
+    @State private var selectedGrade: Int? = nil
 
     /// Stable, unique key for a course (code + term + year).
     private func key(for course: Course) -> String {
@@ -39,11 +39,12 @@ struct CalculatorContent: View {
             
             ScrollView (.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 12) {
-                    ForEach(SampleData.grades, id: \.self) { grade in
+                    ForEach(GradeData.grades, id: \.self) { grade in
                         Button {
                             selectedGrade = grade
                         } label: {
-                            Text(grade)
+                            Text("Grade \(grade)")
+                                .font(.subheadline)
                                 .foregroundStyle(Color.inkPop)
                                 .fontWeight(.bold)
                                 .boxStyling(bgColor: Color.surface, cRadius: Layout.radiusSmall, sColor: grade == selectedGrade ? Color.inkPop : Color.cardBorder, lWidth: grade == selectedGrade ? 2 : 1)
@@ -55,8 +56,11 @@ struct CalculatorContent: View {
             
             Spacer()
             
-            PrimaryButton(title: "Try different marks"){}
-            SecondaryButton(title: "Share exam target"){}
+            VStack {
+                PrimaryButton(title: "Try different marks") {}
+                SecondaryButton(title: "Share exam target") {}
+            }
+            .padding(.bottom, 16)
             
         }
         .mainContainerStyling()

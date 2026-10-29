@@ -35,7 +35,6 @@ enum SampleData {
     static let profileLinks = [
         "Settings",
         "Import timetable (.ics)",
-        "Import from Excel",
         "Degree program",
         "Home Screen widgets",
         "Export and backup",

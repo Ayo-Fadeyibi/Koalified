@@ -36,7 +36,7 @@ struct CloseButton: ViewModifier {
                             Button {
                                 action()
                             } label: {
-                                Image(systemName: "xmark")
+                                Text("Skip")
                                     .font(.footnote.weight(.bold))
                                     .foregroundStyle(Color.inkSecondary)
                 }

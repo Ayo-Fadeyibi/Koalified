@@ -11,12 +11,7 @@ struct SecondaryButton: View {
                 .fontWeight(.semibold)
                 .foregroundStyle(Color.accentText)
                 .frame(maxWidth: .infinity)
-                .padding(.vertical, 16)
-                .background(Color.surface, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
-                .overlay {
-                    RoundedRectangle(cornerRadius: Layout.radiusSmall)
-                        .strokeBorder(Color.inkSecondary.opacity(0.35), lineWidth: 1.5)
-                }
+                .boxStyling(bgColor: Color.surface, cRadius: Layout.radiusSmall, sColor: Color.inkSecondary.opacity(0.35), lWidth: 1.5)
         }
         .buttonStyle(.plain)
     }

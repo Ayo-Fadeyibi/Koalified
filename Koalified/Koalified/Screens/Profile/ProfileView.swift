@@ -12,67 +12,74 @@ struct ProfileView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading, spacing: 12) {
-                Text("Profile")
-                    .primaryTextStyling()
-                
-                Text("Account and settings · Koalified")
-                    .secondaryTextStyling()
-                
-                Card {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Profile")
+                        .primaryTextStyling()
                     
-                    VStack {
-                        HStack (spacing: 12) {
-                            Text("Image")
-                                .foregroundStyle(Color.white)
-                                .fontWeight(.bold)
-                                .padding(Layout.screenPadding)
-                                .background(Color.inkPop, in: Circle())
-                            
-                            VStack(alignment: .leading) {
-                                Text("Your name")
-                                    .fontWeight(.bold)
-                                    .foregroundStyle(Color.primary)
-                                
-                                Text("University of Queensland · BE (Honours)")
-                                    .secondaryTextStyling()
-                            }
-                        }
-                        
-                        SecondaryButton(title: "Customise Koala"){}
-                    }
-                }
-              
-                Card {
-                    Text("Upcoming Features")
-                        .foregroundStyle(Color.inkPop)
-                        .fontWeight(.bold)
-                    
-                    Text("Study coach, cloud sync and social features are planned for later. Your manual planner works without them.")
+                    Text("Account and settings · Koalified")
                         .secondaryTextStyling()
                     
-                    SecondaryButton(title: "See what's coming"){}
-                }
-                
-                Card {
-                    ForEach(SampleData.profileLinks, id: \.self) {link in
-                        Button {
+                    Card {
+                        
+                        VStack {
+                            HStack (spacing: 12) {
+                                Text("Image")
+                                    .foregroundStyle(Color.white)
+                                    .fontWeight(.bold)
+                                    .padding(Layout.screenPadding)
+                                    .background(Color.inkPop, in: Circle())
+                                
+                                VStack(alignment: .leading) {
+                                    Text("Your name")
+                                        .fontWeight(.bold)
+                                        .foregroundStyle(Color.primary)
+                                    
+                                    Text("University of Queensland · BE (Honours)")
+                                        .secondaryTextStyling()
+                                }
+                            }
                             
-                        } label: {
-                            Text(link)
-                                .secondaryTextStyling()
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .font(.footnote.weight(.semibold))
-                                .foregroundStyle(Color.inkSecondary)
-                        }
-                        if link != SampleData.profileLinks.last {
-                            Divider().padding(.horizontal, 14)
+                            SecondaryButton(title: "Customise Koala"){}
                         }
                     }
-                }
-                
-            }.mainContainerStyling()
+                  
+                    Card {
+                        HStack {
+                            Image("sparkles")
+                                .foregroundStyle(Color.inkPop)
+                            Text("Upcoming Features")
+                                .foregroundStyle(Color.inkPop)
+                                .fontWeight(.bold)
+                        }
+                        
+                        Text("Study coach, cloud sync and social features are planned for later. Your manual planner works without them.")
+                            .secondaryTextStyling()
+                        
+                        TertiaryButton(title: "See what's coming"){}
+                    }
+                    
+                    Card {
+                        ForEach(SampleData.profileLinks, id: \.self) {link in
+                            Button {
+                                
+                            } label: {
+                                Text(link)
+                                    .secondaryTextStyling()
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .font(.footnote.weight(.semibold))
+                                    .foregroundStyle(Color.inkSecondary)
+                            }.padding(10)
+                            if link != SampleData.profileLinks.last {
+                                Divider().padding(.horizontal, 14)
+                            }
+                        }
+                    }
+                    
+                }.mainContainerStyling()
+            }.scrollIndicators(.hidden)
+                .background(Color.canvas.ignoresSafeArea())
         }
     }
 }
