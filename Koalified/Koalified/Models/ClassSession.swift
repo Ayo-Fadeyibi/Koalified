@@ -10,17 +10,19 @@ import SwiftUI
 
 /// The kind of class a session is.
 enum SessionType: String, Codable {
-       case lecture, tutorial, practical
+       case LEC, TUT, PRA, STU, APP
 
     /// Localized name shown in the UI.
     var label: LocalizedStringKey {
         switch self {
-        case .lecture: "Lecture"
-        case .tutorial: "Tutorial"
-        case .practical: "Practical"
+        case .LEC: "Lecture"
+        case .TUT: "Tutorial"
+        case .PRA: "Practical"
+        case .STU: "Studio"
+        case .APP: "Applied"
         }
     }
-   }
+}
 
 /// One scheduled class (lecture, tutorial or practical) for a course, with its time and room.
 /// `icsUID` is the event's ID in an imported calendar file, used to recognise it on re-import.

@@ -21,6 +21,13 @@
 			remoteGlobalIDString = BB79C9DF308E0138007F3C21;
 			remoteInfo = KoalifiedWidgetExtension;
 		};
+		BBF1B073309382650018FAFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000000 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 000000000000000100000000;
+			remoteInfo = Koalified;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,6 +49,7 @@
 		BB79C9E2308E0138007F3C21 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		BB79C9E4308E0138007F3C21 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		BB79C9F6308E018E007F3C21 /* KoalifiedWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KoalifiedWidgetExtension.entitlements; sourceTree = "<group>"; };
+		BBF1B06F309382650018FAFF /* KoalifiedUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KoalifiedUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -75,17 +83,17 @@
 			path = Koalified;
 			sourceTree = "<group>";
 		};
-		BB4135023088E70700BED1AF /* KoalifiedTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = KoalifiedTests;
-			sourceTree = "<group>";
-		};
 		BB79C9E6308E0138007F3C21 /* KoalifiedWidget */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				BB79C9F1308E013B007F3C21 /* Exceptions for "KoalifiedWidget" folder in "KoalifiedWidgetExtension" target */,
 			);
 			path = KoalifiedWidget;
+			sourceTree = "<group>";
+		};
+		BBF1B070309382650018FAFF /* KoalifiedUnitTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = KoalifiedUnitTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -103,6 +111,11 @@
 				BB79C9E3308E0138007F3C21 /* WidgetKit.framework in Frameworks */,
 			);
 		};
+		BBF1B06C309382650018FAFF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -113,9 +126,9 @@
 				BB79C9B0308CE6C4007F3C21 /* Localizable.xcstrings */,
 				000000000000000000000010 /* Koalified */,
 				BB79C9E6308E0138007F3C21 /* KoalifiedWidget */,
+				BBF1B070309382650018FAFF /* KoalifiedUnitTests */,
 				BB79C9E1308E0138007F3C21 /* Frameworks */,
 				000000000000000000000020 /* Products */,
-				BB4135023088E70700BED1AF /* KoalifiedTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -124,6 +137,7 @@
 			children = (
 				000000000000000000000120 /* Koalified.app */,
 				BB79C9E0308E0138007F3C21 /* KoalifiedWidgetExtension.appex */,
+				BBF1B06F309382650018FAFF /* KoalifiedUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,7 +170,6 @@
 			);
 			fileSystemSynchronizedGroups = (
 				000000000000000000000010 /* Koalified */,
-				BB4135023088E70700BED1AF /* KoalifiedTests */,
 			);
 			name = Koalified;
 			productName = MyApp;
@@ -181,6 +194,27 @@
 			productReference = BB79C9E0308E0138007F3C21 /* KoalifiedWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		BBF1B06E309382650018FAFF /* KoalifiedUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BBF1B075309382650018FAFF /* Build configuration list for PBXNativeTarget "KoalifiedUnitTests" */;
+			buildPhases = (
+				BBF1B06B309382650018FAFF /* Sources */,
+				BBF1B06C309382650018FAFF /* Frameworks */,
+				BBF1B06D309382650018FAFF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BBF1B074309382650018FAFF /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				BBF1B070309382650018FAFF /* KoalifiedUnitTests */,
+			);
+			name = KoalifiedUnitTests;
+			productName = KoalifiedUnitTests;
+			productReference = BBF1B06F309382650018FAFF /* KoalifiedUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -196,6 +230,10 @@
 					};
 					BB79C9DF308E0138007F3C21 = {
 						CreatedOnToolsVersion = 27.1;
+					};
+					BBF1B06E309382650018FAFF = {
+						CreatedOnToolsVersion = 27.1;
+						TestTargetID = 000000000000000100000000;
 					};
 				};
 			};
@@ -222,6 +260,7 @@
 			targets = (
 				000000000000000100000000 /* Koalified */,
 				BB79C9DF308E0138007F3C21 /* KoalifiedWidgetExtension */,
+				BBF1B06E309382650018FAFF /* KoalifiedUnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -234,6 +273,11 @@
 			);
 		};
 		BB79C9DE308E0138007F3C21 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		BBF1B06D309382650018FAFF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
 			);
@@ -251,6 +295,11 @@
 			files = (
 			);
 		};
+		BBF1B06B309382650018FAFF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -258,6 +307,11 @@
 			isa = PBXTargetDependency;
 			target = BB79C9DF308E0138007F3C21 /* KoalifiedWidgetExtension */;
 			targetProxy = BB79C9EE308E013B007F3C21 /* PBXContainerItemProxy */;
+		};
+		BBF1B074309382650018FAFF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 000000000000000100000000 /* Koalified */;
+			targetProxy = BBF1B073309382650018FAFF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -545,6 +599,51 @@
 			};
 			name = Release;
 		};
+		BBF1B076309382650018FAFF /* Debug configuration for PBXNativeTarget "KoalifiedUnitTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 44JRL9YXZH;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ayooluwafadeyibipersonalteam.KoalifiedUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Koalified.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Koalified";
+			};
+			name = Debug;
+		};
+		BBF1B077309382650018FAFF /* Release configuration for PBXNativeTarget "KoalifiedUnitTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 44JRL9YXZH;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ayooluwafadeyibipersonalteam.KoalifiedUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Koalified.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Koalified";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -569,6 +668,14 @@
 			buildConfigurations = (
 				BB79C9F3308E013B007F3C21 /* Debug configuration for PBXNativeTarget "KoalifiedWidgetExtension" */,
 				BB79C9F4308E013B007F3C21 /* Release configuration for PBXNativeTarget "KoalifiedWidgetExtension" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		BBF1B075309382650018FAFF /* Build configuration list for PBXNativeTarget "KoalifiedUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BBF1B076309382650018FAFF /* Debug configuration for PBXNativeTarget "KoalifiedUnitTests" */,
+				BBF1B077309382650018FAFF /* Release configuration for PBXNativeTarget "KoalifiedUnitTests" */,
 			);
 			defaultConfigurationName = Release;
 		};

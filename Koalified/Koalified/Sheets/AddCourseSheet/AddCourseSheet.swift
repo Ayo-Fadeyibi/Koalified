@@ -13,7 +13,7 @@ import WidgetKit
 /// Collects the code, name, term, year and colour, validates them, then saves and refreshes the widget.
 struct AddCourseSheet: View {
 
-    @State private var term: Term = .semester2
+    @State private var term: Term = .S2
     @State private var year = 2026
 
     @State private var courseCode = ""
@@ -47,7 +47,7 @@ struct AddCourseSheet: View {
         self.course = course
         _courseCode = State(initialValue: course?.courseCode ?? "")
         _courseName = State(initialValue: course?.title ?? "")
-        _term = State(initialValue: course?.term ?? .semester2)
+        _term = State(initialValue: course?.term ?? .S2)
         _year = State(initialValue: course?.year ?? 2026)
     }
     

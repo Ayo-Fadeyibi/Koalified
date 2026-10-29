@@ -18,10 +18,10 @@ enum PreviewData {
 
         let csse = Course(courseCode: "CSSE1001",
                           title: "Introduction to Software Engineering",
-                          term: .semester2, year: 2026, color: .teal)
+                          term: .S2, year: 2026, color: .teal)
         let math = Course(courseCode: "MATH1051",
                           title: "Calculus & Linear Algebra I",
-                          term: .semester2, year: 2026, color: .blue)
+                          term: .S2, year: 2026, color: .blue)
         context.insert(csse)
         context.insert(math)
 

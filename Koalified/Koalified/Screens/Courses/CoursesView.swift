@@ -54,7 +54,7 @@ struct CoursesView: View {
     
     /// Temporary helper: inserts a sample CSSE1001 course so the list can be tested.
     private func addTestCourse(){
-        modelContext.insert(Course(courseCode: "CSSE1001", term: .semester2, year: 2026, color: .teal))
+        modelContext.insert(Course(courseCode: "CSSE1001", term: .S2, year: 2026, color: .teal))
     }
 }
 

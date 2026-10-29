@@ -3,13 +3,13 @@ import SwiftData
 
 /// The teaching period a course runs in.
 enum Term: String, Codable, CaseIterable {
-    case semester1, semester2, summer
+    case S1, S2, summer
 
     /// Display name, e.g. "Semester 1".
     var label: String {
         switch self {
-        case .semester1: return "Semester 1"
-        case .semester2: return "Semester 2"
+        case .S1: return "Semester 1"
+        case .S2: return "Semester 2"
         case .summer:    return "Summer"
         }
     }

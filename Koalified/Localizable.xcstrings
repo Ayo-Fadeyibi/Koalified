@@ -1125,6 +1125,9 @@
         }
       }
     },
+    "Applied" : {
+
+    },
     "Assignment, quiz or exam date" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4707,6 +4710,9 @@
           }
         }
       }
+    },
+    "Studio" : {
+
     },
     "Study coach, cloud sync and social features are planned for later. Your manual planner works without them." : {
 
