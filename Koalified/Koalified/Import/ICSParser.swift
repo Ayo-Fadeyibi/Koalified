@@ -63,6 +63,11 @@ func parseDescription(_ text: String) -> DescriptionInfo? {
     let pieces = firstLine.components(separatedBy: ", ")
     let parts = pieces[0].components(separatedBy: "_")
     
+    let title = item(from: lines, at: 1) // String? lgorithms and Data Structures
+    let locationLine = item(from: lines, at: 3) ?? "" //01-E112 – St Lucia – Collaborative – Forgan Smith
+    let isClashable = locationLine.contains("(Clashable)") // Bool
+    let isRecorded = firstLine.contains("Recorded") // Bool
+    
     guard let courseCode = item(from: parts, at: 0) else { return nil } //COMP3506
     
     let term: Term? = item(from: parts, at: 1).flatMap { Term(rawValue: $0) }   //S2
@@ -84,8 +89,7 @@ func parseDescription(_ text: String) -> DescriptionInfo? {
          staffName = (name == "-") ? nil : name
     }
     
-    return DescriptionInfo(courseCode: courseCode, term: term, year: year, campus: campus, classNumber: classNumber, mode: mode, typeCode: typeCode, staffName: staffName)
-    // …
+    return DescriptionInfo(title: title, courseCode: courseCode, term: term, year: year, campus: campus, classNumber: classNumber, mode: mode, typeCode: typeCode, staffName: staffName, isClashable: isClashable, isRecorded: isRecorded)
 }
 
 //func makeParsedEvent(from raw: [ICSKey: String]) -> ParsedEvent? {

@@ -26,7 +26,9 @@ struct ParsedEvent {
     let isRecorded: Bool
 }
 
+//Struct that contains all the values to be extracted from the description
 struct DescriptionInfo {
+    let title: String?
     let courseCode: String
     let term: Term?
     let year: Int?
@@ -35,4 +37,6 @@ struct DescriptionInfo {
     let mode: String?
     let typeCode: String?
     let staffName: String?
+    let isClashable: Bool
+    let isRecorded: Bool
 }

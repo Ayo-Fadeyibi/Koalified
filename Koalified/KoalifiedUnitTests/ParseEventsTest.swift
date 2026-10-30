@@ -110,5 +110,7 @@ final class ParseEventsTests: XCTestCase {
         XCTAssertEqual("COMP3506", courseCode)
         XCTAssertEqual(Term.S2, term)
         XCTAssertEqual("Mackenzie, Joel", staffName)
+        XCTAssertTrue(info.isRecorded)
+        XCTAssertTrue(info.isClashable)
     }
 }
