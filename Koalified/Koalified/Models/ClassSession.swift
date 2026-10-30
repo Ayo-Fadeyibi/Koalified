@@ -30,7 +30,6 @@ enum SessionType: String, Codable {
         case EVT   // Event
         case COM   // IT Computing
         case PAS   // Peer Assisted Study Session (PASS)
-        case ALL   // All / Miscellaneous (Used as a generic system catch-all
     
         case unknown
 
@@ -54,7 +53,6 @@ enum SessionType: String, Codable {
         case .EVT: "Event"
         case .COM: "Computing"
         case .PAS: "PASS"
-        case .ALL: "Class"
         case .unknown: "Class"
         }
     }
