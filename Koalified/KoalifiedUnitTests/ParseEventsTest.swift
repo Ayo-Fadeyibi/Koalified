@@ -53,19 +53,19 @@ END:VEVENT
 """#
 
 final class ParseEventsTests: XCTestCase {
-
+    
     func testParsesThreeEvents() {
         let events = parseEvents(from: sampleDate)
         print("events found:", events.count)
         XCTAssertEqual(events.count, 3)
     }
-
+    
     func testIgnoresTimezoneBlock() {
         // The VTIMEZONE block has a DTSTART (1970) that must not become an event.
         let events = parseEvents(from: sampleDate)
         XCTAssertFalse(events.contains { $0[.start]?.contains("1970") == true })
     }
-
+    
     func testReadsKeysWithParameters() {
         // DTSTART;TZID=Australia/Brisbane:20260305T140000 -> key DTSTART, value after the first colon
         let first = parseEvents(from: sampleDate).first
@@ -76,7 +76,7 @@ final class ParseEventsTests: XCTestCase {
     func testParsesBrisbaneDate() throws {
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = TimeZone(identifier: "Australia/Brisbane")!
-
+        
         let parts = DateComponents(year: 2026, month: 3, day: 5, hour: 14, minute: 0)
         let expected = try XCTUnwrap(calendar.date(from: parts))   // returns Date?
         XCTAssertEqual(parseICSDate("20260305T140000"), expected)
@@ -86,5 +86,29 @@ final class ParseEventsTests: XCTestCase {
         XCTAssertNil(parseICSDate("banana"))
         XCTAssertNil(parseICSDate(""))
         XCTAssertNil(parseICSDate("2026-03-05"))   // wrong format, with dashes
+    }
+    
+    func testUnEscape() {
+        let text = unescape(#"Staff: Mackenzie\, Joel"#)
+        let expected = "Staff: Mackenzie, Joel"
+        XCTAssertEqual(text, expected)
+    }
+    
+    func testUnescapeNewline() {
+        let text = unescape(#"Line one\nLine two"#)
+        XCTAssertEqual(text, "Line one\nLine two")
+    }
+    
+    func testParseDescription() throws {
+        let text = #"COMP3506_S2_2026_STLUCIA_60789_IN\, LEC01\, 01_Recorded\nAlgorithms and Data Structures\nStaff: Mackenzie\, Joel\nLocation: Delayed viewing (Clashable)"#
+        let info = try XCTUnwrap(parseDescription(text))
+        
+        let courseCode = info.courseCode
+        let term = info.term
+        let staffName = info.staffName
+        
+        XCTAssertEqual("COMP3506", courseCode)
+        XCTAssertEqual(Term.S2, term)
+        XCTAssertEqual("Mackenzie, Joel", staffName)
     }
 }

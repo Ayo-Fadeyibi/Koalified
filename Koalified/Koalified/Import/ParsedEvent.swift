@@ -7,10 +7,11 @@
 
 import Foundation
 
+// The struct that contains all the values to be extracted from the .ics file
 struct ParsedEvent {
     let uid: String
     let courseCode: String
-    let title: String
+    let title: String?
     let start: Date
     let end: Date
     let room: String?
@@ -25,3 +26,13 @@ struct ParsedEvent {
     let isRecorded: Bool
 }
 
+struct DescriptionInfo {
+    let courseCode: String
+    let term: Term?
+    let year: Int?
+    let campus: String?
+    let classNumber: String?
+    let mode: String?
+    let typeCode: String?
+    let staffName: String?
+}
