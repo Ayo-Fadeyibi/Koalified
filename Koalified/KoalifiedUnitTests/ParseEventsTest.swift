@@ -72,4 +72,19 @@ final class ParseEventsTests: XCTestCase {
         XCTAssertEqual(first?[.start], "20260305T140000")
         XCTAssertEqual(first?[.uid], "uid0")
     }
+    
+    func testParsesBrisbaneDate() throws {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(identifier: "Australia/Brisbane")!
+
+        let parts = DateComponents(year: 2026, month: 3, day: 5, hour: 14, minute: 0)
+        let expected = try XCTUnwrap(calendar.date(from: parts))   // returns Date?
+        XCTAssertEqual(parseICSDate("20260305T140000"), expected)
+    }
+    
+    func testRejectsBadInput() {
+        XCTAssertNil(parseICSDate("banana"))
+        XCTAssertNil(parseICSDate(""))
+        XCTAssertNil(parseICSDate("2026-03-05"))   // wrong format, with dashes
+    }
 }
