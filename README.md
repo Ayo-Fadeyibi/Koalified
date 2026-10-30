@@ -38,6 +38,7 @@ Some decisions worth reading in the code:
 1. v0.1 Prototype: tab shell, Today, Courses, course detail, marks, SwiftData storage
 2. v0.5 Beta: `.ics` import, calendar, widgets, reminders, TestFlight
 3. v1.0 App Store launch
+4. Next version: **Other courses**. Classes whose `.ics` entry has no term or year are kept in their own section. Once the user adds a semester and year, the course moves into Courses automatically. Designs are in Figma under "UPCOMING · 23".
 
 ## Privacy rules
 - The app never asks for or handles UQ passwords.

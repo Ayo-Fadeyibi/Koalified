@@ -120,7 +120,7 @@ func detectSemesters(from events: [ParsedEvent]) -> [DetectedSemester] {
     let groups = Dictionary(grouping: events, by: { SemesterKey(term: $0.term, year: $0.year) })
 
     let result = groups.map { key, bucket in
-        // build one DetectedSemester from this key and its bucket
+        // build DetectedSemester from this key and its bucket
         let codes = Set(bucket.map { $0.courseCode })   // {"COMP3506", "CSSE3200", ...}
         let courseCount = codes.count
         
