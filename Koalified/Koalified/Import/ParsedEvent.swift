@@ -14,7 +14,7 @@ struct ParsedEvent {
     let title: String?
     let start: Date
     let end: Date
-    let room: String?
+    let location: String?
     let term: Term?
     let year: Int?
     let type: SessionType?
@@ -39,4 +39,16 @@ struct DescriptionInfo {
     let staffName: String?
     let isClashable: Bool
     let isRecorded: Bool
+}
+
+struct SemesterKey: Hashable {
+    let term: Term?
+    let year: Int?
+}
+
+struct DetectedSemester {
+    let term: Term?
+    let year: Int?
+    let courseCount: Int
+    let classCount: Int
 }

@@ -113,4 +113,52 @@ final class ParseEventsTests: XCTestCase {
         XCTAssertTrue(info.isRecorded)
         XCTAssertTrue(info.isClashable)
     }
+    
+    func testParseICS() throws {
+        let events = parseICS(sampleDate)
+        XCTAssertEqual(events.count, 3)
+
+        let first = try XCTUnwrap(events.first)
+        // add assertions for first.uid, first.courseCode, first.term, first.year, first.type
+        XCTAssertEqual(first.uid, "uid0")
+        XCTAssertEqual(first.courseCode, "COMP3400")
+        XCTAssertEqual(first.term, Term.S1)
+        XCTAssertEqual(first.year, 2026)
+        XCTAssertEqual(first.type, SessionType.APP)
+    }
+    
+    // Builds one VEVENT in the same shape as your real file.
+    private func makeEvent(uid: String, code: String, term: String) -> String {
+        #"""
+        BEGIN:VEVENT
+        DTSTART;TZID=Australia/Brisbane:20260305T140000
+        DTEND;TZID=Australia/Brisbane:20260305T150000
+        SUMMARY:Test class\, APP01
+        LOCATION:09-221 – St Lucia – Seminar – Michie
+        DESCRIPTION:\#(code)_\#(term)_2026_STLUCIA_21275_IN\, APP01\, 07\nTest class\nStaff: -\nLocation: 09-221
+        UID:\#(uid)
+        END:VEVENT
+        """#
+    }
+
+    func testDetectSemestersNewestFirst() {
+        let text = [
+            "BEGIN:VCALENDAR",
+            makeEvent(uid: "a", code: "COMP3400", term: "S1"),
+            makeEvent(uid: "b", code: "COMP3400", term: "S1"),
+            makeEvent(uid: "c", code: "COMP3506", term: "S2"),
+            "END:VCALENDAR"
+        ].joined(separator: "\n")
+
+        let semesters = detectSemesters(from: parseICS(text))
+
+        XCTAssertEqual(semesters.count, 2)
+        // newest first: S2 before S1
+        XCTAssertEqual(semesters[0].term, Term.S2)
+        XCTAssertEqual(semesters[0].classCount, 1)
+        XCTAssertEqual(semesters[0].courseCount, 1)
+        XCTAssertEqual(semesters[1].term, Term.S1)
+        XCTAssertEqual(semesters[1].classCount, 2)
+        XCTAssertEqual(semesters[1].courseCount, 1)
+    }
 }

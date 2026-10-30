@@ -10,7 +10,29 @@ import SwiftUI
 
 /// The kind of class a session is.
 enum SessionType: String, Codable {
-       case LEC, TUT, PRA, STU, APP
+    // Original 5 cases
+        case LEC   // Lecture
+        case TUT   // Tutorial
+        case PRA   // Practical
+        case STU   // Studio
+        case APP   // Applied Class
+        
+        // The remaining 13 official UQ session types
+        case WKS   // Workshop
+        case CLN   // Clinical Teaching
+        case SEM   // Seminar
+        case EXM   // Exam
+        case REC   // Recorded
+        case PLM   // Placement
+        case FLD   // Fieldwork
+        case SYM   // Symposium
+        case CON   // Consultation
+        case EVT   // Event
+        case COM   // IT Computing
+        case PAS   // Peer Assisted Study Session (PASS)
+        case ALL   // All / Miscellaneous (Used as a generic system catch-all
+    
+        case unknown
 
     /// Localized name shown in the UI.
     var label: LocalizedStringKey {
@@ -20,6 +42,20 @@ enum SessionType: String, Codable {
         case .PRA: "Practical"
         case .STU: "Studio"
         case .APP: "Applied"
+        case .WKS: "Workshop"
+        case .CLN: "Clinical"
+        case .SEM: "Seminar"
+        case .EXM: "Exam"
+        case .REC: "Recorded"
+        case .PLM: "Placement"
+        case .FLD: "Fieldwork"
+        case .SYM: "Symposium"
+        case .CON: "Consultation"
+        case .EVT: "Event"
+        case .COM: "Computing"
+        case .PAS: "PASS"
+        case .ALL: "Class"
+        case .unknown: "Class"
         }
     }
 }

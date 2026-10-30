@@ -1498,6 +1498,9 @@
         }
       }
     },
+    "Class" : {
+
+    },
     "Class details & directions" : {
       "localizations" : {
         "hi" : {
@@ -1547,7 +1550,16 @@
     "Clear" : {
 
     },
+    "Clinical" : {
+
+    },
     "Coming up" : {
+
+    },
+    "Computing" : {
+
+    },
+    "Consultation" : {
 
     },
     "Continue" : {
@@ -2477,6 +2489,15 @@
           }
         }
       }
+    },
+    "Event" : {
+
+    },
+    "Exam" : {
+
+    },
+    "Fieldwork" : {
+
     },
     "Find your timetable link" : {
       "localizations" : {
@@ -3780,6 +3801,9 @@
         }
       }
     },
+    "PASS" : {
+
+    },
     "Past" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3918,6 +3942,9 @@
           }
         }
       }
+    },
+    "Placement" : {
+
     },
     "Practical" : {
       "localizations" : {
@@ -4102,6 +4129,9 @@
           }
         }
       }
+    },
+    "Recorded" : {
+
     },
     "Room %@" : {
       "localizations" : {
@@ -4381,6 +4411,9 @@
           }
         }
       }
+    },
+    "Seminar" : {
+
     },
     "Set up manually" : {
       "localizations" : {
@@ -4715,6 +4748,9 @@
 
     },
     "Study coach, cloud sync and social features are planned for later. Your manual planner works without them." : {
+
+    },
+    "Symposium" : {
 
     },
     "The calculator needs a course with its assessments and weights. Add one and enter any marks you already have." : {
@@ -5323,6 +5359,9 @@
           }
         }
       }
+    },
+    "Workshop" : {
+
     },
     "Year" : {
       "localizations" : {
