@@ -10,7 +10,7 @@ enum Term: String, Codable, CaseIterable {
         switch self {
         case .S1: return "Semester 1"
         case .S2: return "Semester 2"
-        case .S3: return "Summer Semester"
+        case .S3: return "Summer"
         }
     }
     

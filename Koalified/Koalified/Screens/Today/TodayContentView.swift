@@ -37,7 +37,7 @@ struct TodayContentView: View {
                         // Course
                         Text("CSSE1001 · Lecture")
                             .font(.fredoka(.title3, .bold))
-                            .foregroundStyle(Color.inkPrimary)
+                            .foregroundStyle(Color.newInk)
 
                         // Room and start time, each with an icon
                         HStack(spacing: 16) {

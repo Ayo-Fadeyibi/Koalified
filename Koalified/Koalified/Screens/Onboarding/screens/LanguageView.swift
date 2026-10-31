@@ -51,7 +51,7 @@ struct LanguageView: View {
                     }
                     .buttonStyle(.plain)
                 }
-            }
+            }.scrollIndicators(.hidden)
             
             PrimaryButton(title: "Continue", action: onNext)
             
