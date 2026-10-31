@@ -37,9 +37,9 @@ struct CoursesView: View {
                 } label: {
                     Image(systemName: "plus")
                         .font(.title2.bold())
-                        .foregroundStyle(.white)
-                        .frame(width: 56, height: 56)
-                        .background(Color.inkPop, in: Capsule())
+                        .foregroundStyle(Color.newInk)
+                        .frame(width: Layout.fabSize, height: Layout.fabSize)
+                        .neoBrutalist(backgroundColor: Color.inkMint, cornerRadius: Layout.fabSize / 2)
                     
                 }.padding(40)
             } .background(Color.canvas)

@@ -42,10 +42,10 @@ struct TimetableHelpView: View {
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(title)
-                        .font(.body.weight(.semibold))
+                        .font(.fredoka(.body, .semibold))
                         .foregroundStyle(Color.inkPrimary)
                     Text(subtitle)
-                        .font(.caption)
+                        .font(.fredoka(.caption))
                         .foregroundStyle(Color.inkSecondary)
                 }
                 Spacer()

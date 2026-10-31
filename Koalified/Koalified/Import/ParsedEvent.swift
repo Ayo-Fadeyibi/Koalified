@@ -46,9 +46,12 @@ struct SemesterKey: Hashable {
     let year: Int?
 }
 
-struct DetectedSemester {
+struct DetectedSemester: Identifiable {
     let term: Term?
     let year: Int?
     let courseCount: Int
     let classCount: Int
+
+    /// Stable id for lists and selection, e.g. "S2-2026" or "none-none".
+    var id: String { "\(term?.rawValue ?? "none")-\(year.map(String.init) ?? "none")" }
 }

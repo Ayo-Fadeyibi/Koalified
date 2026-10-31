@@ -8,7 +8,7 @@ struct SecondaryButton: View {
     var body: some View {
         Button(action: action) {
             Text(title)
-                .fontWeight(.semibold)
+                .font(.fredoka(.body, .semibold))
                 .foregroundStyle(Color.accentText)
                 .frame(maxWidth: .infinity)
                 .boxStyling(bgColor: Color.surface, cRadius: Layout.radiusSmall, sColor: Color.inkSecondary.opacity(0.35), lWidth: 1.5)

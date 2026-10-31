@@ -55,12 +55,11 @@ struct AddCourseSheet: View {
         VStack(alignment: .leading, spacing: Layout.screenPadding) {
             Text("Set up this course")
                 .foregroundStyle(Color.inkPrimary)
-                .font(.largeTitle)
-                .fontWeight(.bold)
+                .font(.fredoka(.largeTitle, .bold))
             
             Text("Enter assessment from your own course information")
                 .foregroundStyle(.inkSecondary)
-                .font(.subheadline)
+                .font(.fredoka(.subheadline))
             
            
             CourseDetailsFields(code: $courseCode, name: $courseName)

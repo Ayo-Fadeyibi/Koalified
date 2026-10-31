@@ -47,7 +47,7 @@ struct MonthGridView: View {
                     Button { shift(-1) } label: { Image(systemName: "chevron.left") }
                     Spacer()
                     Text(month.formatted(.dateTime.month(.wide).year()))
-                        .font(.subheadline.weight(.semibold))
+                        .font(.fredoka(.subheadline, .semibold))
                     Spacer()
                     Button { shift(1) } label: { Image(systemName: "chevron.right") }
                 }
@@ -57,7 +57,7 @@ struct MonthGridView: View {
                 LazyVGrid(columns: columns) {
                     ForEach(weekdaySymbols.indices, id: \.self) { i in
                         Text(weekdaySymbols[i])
-                            .font(.caption)
+                            .font(.fredoka(.caption))
                             .foregroundStyle(Color.inkSecondary)
                     }
                 }
@@ -87,7 +87,7 @@ struct MonthGridView: View {
             selectedDate = isSelected ? nil : date
         } label: {
             Text("\(calendar.component(.day, from: date))")
-                .font(.subheadline.weight(isToday ? .bold : .regular))
+                .font(.fredoka(.subheadline, isToday ? .bold : .regular))
                 .foregroundStyle(isToday ? Color.white : Color.inkPrimary)
                 .frame(width: 32, height: 32)
                 .background(isToday ? Color.inkPop : Color.clear, in: Circle())

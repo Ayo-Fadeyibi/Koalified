@@ -20,8 +20,7 @@ struct AddMenuSheet: View {
         VStack (alignment: .leading, spacing: Layout.screenPadding) {
             HStack {
                 Text("Add")
-                    .fontWeight(.bold)
-                    .font(.title2)
+                    .font(.fredoka(.title2, .bold))
                     .foregroundStyle(Color.inkPrimary)
                 Spacer()
                 Button {
@@ -29,7 +28,7 @@ struct AddMenuSheet: View {
                 } label: {
                     Text("Done")
                         .foregroundStyle(Color.accentText)
-                        .fontWeight(.bold)
+                        .font(.fredoka(.body, .bold))
                 }
             }
             
@@ -57,10 +56,10 @@ struct AddMenuSheet: View {
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(LocalizedStringKey(title))
-                        .font(.body.weight(.semibold))
+                        .font(.fredoka(.body, .semibold))
                         .foregroundStyle(Color.inkPrimary)
                     Text(LocalizedStringKey(subtitle))
-                        .font(.caption)
+                        .font(.fredoka(.caption))
                         .foregroundStyle(Color.inkSecondary)
                 }
                 Spacer()

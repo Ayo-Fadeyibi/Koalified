@@ -145,3 +145,8 @@ func detectSemesters(from events: [ParsedEvent]) -> [DetectedSemester] {
     
     }
 }
+
+
+func events(in semester: DetectedSemester, from events: [ParsedEvent]) -> [ParsedEvent] {
+    return events.filter { $0.term == semester.term && $0.year == semester.year }
+}

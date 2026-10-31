@@ -23,14 +23,13 @@ struct AddAssessmentSheet: View {
         VStack(alignment: .leading, spacing: Layout.screenPadding) {
             HStack {
                 Text("Add an assessment")
-                    .fontWeight(.bold)
-                    .font(.title2)
+                    .font(.fredoka(.title2, .bold))
                     .foregroundStyle(Color.inkPrimary)
                 Spacer()
                 Button { dismiss() } label: {
                     Text("Cancel")
                         .foregroundStyle(Color.accentText)
-                        .fontWeight(.bold)
+                        .font(.fredoka(.body, .bold))
                 }
             }
 

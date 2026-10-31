@@ -8,43 +8,35 @@
 import SwiftUI
 
 /*
- This view handles and display the data stored on the local storage including lecture time, location and courses. Includes a picker that displays the calendar view
+ This view handles and display the data stored on the local storage including lecture time, location and courses. Shows either the agenda or, when `showCalendar` is true, the calendar view
  */
 struct TodayContentView: View {
-    /// Which mode is showing: "Agenda" or "Calendar".
-    @State private var selectedView = "Agenda"
-    let options = ["Agenda", "Calendar"]
+    /// True to show the calendar instead of the agenda (toggled by the button in `TodayHeader`).
+    let showCalendar: Bool
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Picker("Today View", selection: $selectedView) {
-                ForEach (options, id: \.self) {
-                    option in Text(LocalizedStringKey(option))
-                }
-            }.pickerStyle(.segmented)
-                .padding(.bottom, 10)
-            
-            if selectedView == "Agenda" {
+            if !showCalendar {
                 Card {
                     VStack(alignment: .leading, spacing: 10) {
 
                         // Header row
                         HStack {
                             Text("NEXT CLASS")
-                                .font(.caption.weight(.semibold))
+                                .font(.fredoka(.caption, .semibold))
                                 .foregroundStyle(Color.inkSecondary)
                             Spacer()
                             Text("In 20 min")
-                                .font(.caption.weight(.bold))
+                                .font(.fredoka(.caption, .bold))
                                 .foregroundStyle(Color.accentText)
                                 .padding(.horizontal, 12)
                                 .padding(.vertical, 6)
-                                .background(Color.inkPop.opacity(0.12), in: Capsule())
+                                .neoBrutalist(backgroundColor: Color.surface, cornerRadius: 20, shadowOffset: 2)
                         }
 
                         // Course
                         Text("CSSE1001 · Lecture")
-                            .font(.title3.weight(.bold))
+                            .font(.fredoka(.title3, .bold))
                             .foregroundStyle(Color.inkPrimary)
 
                         // Room and start time, each with an icon
@@ -52,7 +44,7 @@ struct TodayContentView: View {
                             Label("Room 50-201", systemImage: "mappin.and.ellipse")
                             Label("Starts 09:00", systemImage: "clock")
                         }
-                        .font(.footnote)
+                        .font(.fredoka(.footnote))
                         .foregroundStyle(Color.inkSecondary)
 
                         // Button
@@ -64,7 +56,7 @@ struct TodayContentView: View {
                                 Spacer()
                                 Image(systemName: "arrow.right")
                             }
-                            .font(.subheadline.weight(.bold))
+                            .font(.fredoka(.subheadline, .bold))
                             .foregroundStyle(.white)
                             .padding()
                             .frame(maxWidth: .infinity)
@@ -76,7 +68,7 @@ struct TodayContentView: View {
                 
                 HStack (spacing: 5) {
                     Text("Today")
-                        .fontWeight(.bold)
+                        .font(.fredoka(.body, .bold))
                         .foregroundStyle(Color.inkPrimary)
                     Text("Tue 20 Oct")
                         .foregroundStyle(Color.inkSecondary)
@@ -89,11 +81,11 @@ struct TodayContentView: View {
                             // Time column
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(data.start, style: .time)
-                                    .font(.headline)
+                                    .font(.fredoka(.headline))
                                     .lineLimit(1)
                                     .minimumScaleFactor(0.8)
                                 Text(data.end, style: .time)
-                                    .font(.caption)
+                                    .font(.fredoka(.caption))
                                     .foregroundStyle(.secondary)
                             }
                             .frame(width: 70, alignment: .leading)
@@ -104,9 +96,9 @@ struct TodayContentView: View {
                             // Course and room
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(data.courseCode)
-                                    .font(.headline)
+                                    .font(.fredoka(.headline))
                                 Label("Room \(data.room)", systemImage: "mappin.and.ellipse")
-                                    .font(.caption)
+                                    .font(.fredoka(.caption))
                                     .foregroundStyle(.secondary)
                             }
 
@@ -114,11 +106,11 @@ struct TodayContentView: View {
 
                             // Kind pill (Lecture, Tutorial...)
                             Text(data.kind.label)
-                                .font(.caption.weight(.semibold))
+                                .font(.fredoka(.caption, .semibold))
                                 .foregroundStyle(Color.accentText)
                                 .padding(.horizontal, 12)
                                 .padding(.vertical, 6)
-                                .background(Color.inkPop.opacity(0.12), in: Capsule())
+                                .neoBrutalist(backgroundColor: Color.surface, cornerRadius: 20, shadowOffset: 2)
                         }
                     }
                 }
@@ -132,5 +124,5 @@ struct TodayContentView: View {
 }
 
 #Preview {
-    TodayContentView()
+    TodayContentView(showCalendar: false)
 }

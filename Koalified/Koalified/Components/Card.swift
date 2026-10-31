@@ -27,7 +27,7 @@ struct Card<Content: View>: View {
         Color.canvas.ignoresSafeArea()
         Card {
             VStack(alignment: .leading, spacing: 4) {
-                Text("CSSE1001").font(.headline)
+                Text("CSSE1001").font(.fredoka(.headline))
                 Text("Running mark 66.7%").foregroundStyle(Color.inkSecondary)
             }
             HStack {

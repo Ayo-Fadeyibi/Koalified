@@ -38,27 +38,27 @@ struct AssessmentsContentView: View {
                 
                 if !marked.isEmpty {
                     Text("Marked · \(marked.count)")
-                        .font(.subheadline.weight(.semibold))
+                        .font(.fredoka(.subheadline, .semibold))
                         .foregroundStyle(Color.inkSecondary)
                     AssessmentList(marked) { item in
                         Text("\(Int((item.mark ?? 0).rounded()))%")
-                            .font(.headline)
+                            .font(.fredoka(.headline))
                             .foregroundStyle(Color.inkPrimary)
                     }
                 }
                 
                 if !upcoming.isEmpty {
                     Text("Upcoming · \(upcoming.count)")
-                        .font(.subheadline.weight(.semibold))
+                        .font(.fredoka(.subheadline, .semibold))
                         .foregroundStyle(Color.inkSecondary)
                     AssessmentList(upcoming) { _ in
                         Button { print("add mark") } label: {
                             Label("Add mark", systemImage: "plus")
-                                .font(.caption.weight(.semibold))
+                                .font(.fredoka(.caption, .semibold))
                                 .foregroundStyle(Color.accentText)
                                 .padding(.horizontal, 12)
                                 .padding(.vertical, 7)
-                                .background(Color.inkPop.opacity(0.12), in: Capsule())
+                                .neoBrutalist(backgroundColor: Color.surface, cornerRadius: 20, shadowOffset: 2)
                         }
                         .buttonStyle(.plain)
                     }
@@ -79,26 +79,26 @@ struct AssessmentsContentView: View {
         Card {
             HStack(spacing: 16) {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("MARKED AVERAGE").font(.caption2.weight(.semibold))
+                    Text("MARKED AVERAGE").font(.fredoka(.caption2, .semibold))
                         .foregroundStyle(Color.inkSecondary)
                     Text(course.markedAverage.map { "\(num($0))%" } ?? "–")
-                        .font(.title.weight(.bold))
+                        .font(.fredoka(.title, .bold))
                         .foregroundStyle(Color.inkPrimary)
                     Text("\(num(course.earnedPoints)) / \(num(course.markedWeight)) points earned")
-                        .font(.caption).foregroundStyle(Color.inkSecondary)
+                        .font(.fredoka(.caption)).foregroundStyle(Color.inkSecondary)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Divider().frame(height: 60)
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("ESTIMATED GRADE").font(.caption2.weight(.semibold))
+                    Text("ESTIMATED GRADE").font(.fredoka(.caption2, .semibold))
                         .foregroundStyle(Color.inkSecondary)
                     Text("–")
-                        .font(.title.weight(.bold))
+                        .font(.fredoka(.title, .bold))
                         .foregroundStyle(Color.inkPrimary)
                     Text("At your current average")
-                        .font(.caption).foregroundStyle(Color.inkSecondary)
+                        .font(.fredoka(.caption)).foregroundStyle(Color.inkSecondary)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }

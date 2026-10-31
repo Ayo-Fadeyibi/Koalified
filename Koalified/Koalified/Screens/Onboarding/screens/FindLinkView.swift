@@ -18,12 +18,12 @@ struct FindLinkView: View {
                 ForEach(Array(SampleData.steps.enumerated()), id: \.offset) { index, step in
                     HStack(alignment: .top, spacing: 12) {
                         Text("\(index + 1)")
-                            .font(.caption.weight(.bold))
+                            .font(.fredoka(.caption, .bold))
                             .foregroundStyle(Color.accentText)
                             .frame(width: 24, height: 24)
                             .background(Color.inkPop.opacity(0.12), in: Circle())
                         Text(step)
-                            .font(.subheadline)
+                            .font(.fredoka(.subheadline))
                             .foregroundStyle(Color.inkPrimary)
                     }
                 }

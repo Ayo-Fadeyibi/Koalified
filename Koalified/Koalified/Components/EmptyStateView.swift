@@ -40,16 +40,16 @@ struct EmptyStateView: View {
             icon.image
                 .resizable()
                 .scaledToFit()
-                .font(.system(size: 40))
+                .font(.fredoka(size: 40))
                 .foregroundStyle(Color.accentText)
                 .frame(width: 96, height: 96)
                 
 
             Text(title)
-                .font(.title3.weight(.bold))
+                .font(.fredoka(.title3, .bold))
 
             Text(message)
-                .font(.subheadline)
+                .font(.fredoka(.subheadline))
                 .foregroundStyle(Color.inkSecondary)
                 .multilineTextAlignment(.center)
 

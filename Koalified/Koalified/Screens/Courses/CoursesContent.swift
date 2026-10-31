@@ -35,11 +35,11 @@ struct CoursesContent: View {
                     // Section header
                     HStack {
                         Text("Semester 2, 2026 · Current")
-                            .font(.headline)
+                            .font(.fredoka(.headline))
                             .foregroundStyle(Color.inkPrimary)
                         Spacer()
                         Text("\(courses.count) courses")
-                            .font(.footnote)
+                            .font(.fredoka(.footnote))
                             .foregroundStyle(Color.inkSecondary)
                     }
                     .padding(.top, 4)
@@ -72,15 +72,11 @@ struct CoursesContent: View {
             filter = title
         } label: {
             Text(LocalizedStringKey(title))
-                .font(.footnote.weight(.semibold))
-                .foregroundStyle(isSelected ? Color.white : Color.inkPrimary)
+                .font(.fredoka(.footnote, .semibold))
+                .foregroundStyle(Color.newInk)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
-                .background(isSelected ? Color.inkPop : Color.surface, in: Capsule())
-                .overlay {
-                    Capsule()
-                        .strokeBorder(isSelected ? Color.clear : Color.cardBorder, lineWidth: 1)
-                }
+                .neoBrutalist(backgroundColor: isSelected ? Color.inkMint : Color.surface, cornerRadius: 20, shadowOffset: 3)
         }
         .buttonStyle(.plain)
     }
@@ -92,7 +88,7 @@ struct CoursesContent: View {
             HStack(alignment: .top, spacing: 14) {
                 // Badge: first four letters of the code
                 Text(String(code.prefix(4)))
-                    .font(.caption.weight(.bold))
+                    .font(.fredoka(.caption, .bold))
                     .foregroundStyle(accent)
                     .frame(width: 52, height: 52)
                     .background(accent.opacity(0.15), in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
@@ -100,7 +96,7 @@ struct CoursesContent: View {
                 VStack(alignment: .leading, spacing: 6) {
                     HStack {
                         Text(code)
-                            .font(.headline)
+                            .font(.fredoka(.headline))
                             .foregroundStyle(accent)
                         Spacer()
                         Image(systemName: "chevron.right")
@@ -109,7 +105,7 @@ struct CoursesContent: View {
                     }
 
                     Text(title)
-                        .font(.footnote)
+                        .font(.fredoka(.footnote))
                         .foregroundStyle(Color.inkPrimary)
 
                     ProgressView(value: earned, total: 100)
@@ -117,11 +113,11 @@ struct CoursesContent: View {
 
                     HStack {
                         Text("\(Int(earned)) of 100 points earned so far")
-                            .font(.caption)
+                            .font(.fredoka(.caption))
                             .foregroundStyle(Color.inkSecondary)
                         Spacer()
                         Text("On track")
-                            .font(.caption2.weight(.semibold))
+                            .font(.fredoka(.caption2, .semibold))
                             .foregroundStyle(Color.accentText)
                             .padding(.horizontal, 10)
                             .padding(.vertical, 4)

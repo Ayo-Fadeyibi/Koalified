@@ -38,6 +38,9 @@ struct RootView: View {
                 OnboardingFlow()
             }
             
-        }.environment(\.locale, Locale(identifier: languageCode))
+        }
+        // Default font for any text that doesn't set its own.
+        .font(.fredoka(.body))
+        .environment(\.locale, Locale(identifier: languageCode))
     }
 }

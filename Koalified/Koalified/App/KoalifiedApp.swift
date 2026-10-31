@@ -5,6 +5,11 @@ import SwiftData
 @main struct KoalifiedApp: App {
     @Environment(\.scenePhase) private var scenePhase
 
+    init() {
+        // Use Fredoka in tab bar labels, segmented pickers and navigation titles.
+        Fredoka.applyAppearance()
+    }
+    
     var body: some Scene {
         WindowGroup {
             RootView()

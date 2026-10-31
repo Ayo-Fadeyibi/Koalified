@@ -33,12 +33,11 @@ struct LanguageView: View {
                         HStack {
                             VStack (alignment: .leading) {
                                 Text(language.native)
-                                    .font(.subheadline)
-                                    .fontWeight(.bold)
+                                    .font(.fredoka(.subheadline, .bold))
                                     .foregroundStyle(Color.inkPrimary)
                                 
                                 Text(language.english)
-                                    .font(.caption)
+                                    .font(.fredoka(.caption))
                                     .foregroundStyle(Color.inkSecondary)
                             }
                             
@@ -48,7 +47,7 @@ struct LanguageView: View {
                                     .font(.body.weight(.bold))
                                     .foregroundStyle(Color.accentText)
                             }
-                        }.boxStyling(bgColor: Color.surface, cRadius: Layout.radiusSmall, sColor: language.code == languageCode ? Color.inkPop : Color.cardBorder, lWidth: language.code == languageCode ? 2 : 1)
+                        }.boxStyling(bgColor: language.code == languageCode ? Color.inkMint : Color.surface, cRadius: Layout.radiusSmall, sColor: Color.cardBorder, lWidth: 1)
                     }
                     .buttonStyle(.plain)
                 }

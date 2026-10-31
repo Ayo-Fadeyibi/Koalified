@@ -7,18 +7,36 @@
 
 import SwiftUI
 
-//This view displays the greeting ("Good Morning", "Good Afternoon", "Good Evening") and date
+/// Header of the Today screen: a large "Good morning" title with today's date underneath,
+/// and a button on the right that switches between the agenda and the calendar.
 struct TodayHeader: View {
+    /// True while the calendar is showing instead of the agenda.
+    @Binding var showCalendar: Bool
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text("Good morning,")
-                .font(.subheadline)
-                .foregroundStyle(Color.inkSecondary)
-            Text("Today")
-                .font(.largeTitle.weight(.bold))
-            Text(Date.now, format: .dateTime.weekday().day().month().year())
-                .font(.footnote)
-                .foregroundStyle(Color.inkSecondary)
+        HStack(alignment: .top) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Good morning")
+                    .font(.fredoka(.largeTitle, .bold))
+                    .foregroundStyle(Color.inkPrimary)
+                Text(Date.now, format: .dateTime.weekday(.abbreviated).month(.abbreviated).day().year())
+                    .font(.fredoka(.footnote))
+                    .foregroundStyle(Color.inkSecondary)
+            }
+            Spacer()
+
+            Button {
+                showCalendar.toggle()
+            } label: {
+                // Calendar icon opens the calendar; the list icon returns to the agenda.
+                Image(systemName: showCalendar ? "list.bullet" : "calendar")
+                    .font(.title3.weight(.semibold))
+                    .foregroundStyle(Color.accentText)
+                    .frame(width: 48, height: 48)
+                    .neoBrutalist(backgroundColor: Color.surface, cornerRadius: Layout.radiusSmall)
+            }
+            .buttonStyle(.plain)
+            .accessibilityLabel(showCalendar ? "Agenda" : "Calendar")
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -26,5 +44,7 @@ struct TodayHeader: View {
 
 
 #Preview {
-    TodayHeader()
+    @Previewable @State var showCalendar = false
+    TodayHeader(showCalendar: $showCalendar)
+        .padding()
 }

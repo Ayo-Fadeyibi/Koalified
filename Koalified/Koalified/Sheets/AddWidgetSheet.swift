@@ -17,8 +17,7 @@ struct AddWidgetSheet: View {
         VStack (alignment: .leading, spacing: 12) {
             HStack {
                 Text("Add a widget")
-                    .fontWeight(.bold)
-                    .font(.title2)
+                    .font(.fredoka(.title2, .bold))
                     .foregroundStyle(Color.inkPrimary)
                 Spacer()
                 Button {
@@ -26,7 +25,7 @@ struct AddWidgetSheet: View {
                 } label: {
                     Text("Done")
                         .foregroundStyle(Color.accentText)
-                        .fontWeight(.bold)
+                        .font(.fredoka(.body, .bold))
                 }
             }
             
@@ -35,7 +34,7 @@ struct AddWidgetSheet: View {
             Spacer()
             
             Text("Widgets are added from your Home Screen: touch and hold, tap +, then choose Koalified and a size.")
-                .font(.caption)
+                .font(.fredoka(.caption))
                 .foregroundStyle(Color.inkSecondary)
             
             PrimaryButton(title: "Widget settings"){

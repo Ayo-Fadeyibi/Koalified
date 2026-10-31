@@ -19,21 +19,15 @@ struct FormField<Content: View>: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(label)
-                .font(.subheadline)
+                .font(.fredoka(.subheadline, .bold))
                 .foregroundStyle(Color.inkSecondary)
-                .fontWeight(.bold)
 
             content
-                .font(.subheadline)
-                .fontWeight(.bold)
+                .font(.fredoka(.subheadline, .bold))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 10)
-                .background(Color.surface, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
-                .overlay {
-                    RoundedRectangle(cornerRadius: Layout.radiusSmall)
-                        .strokeBorder(Color.cardBorder, lineWidth: 1)
-                }
+                .neoBrutalist(backgroundColor: Color.surface, cornerRadius: Layout.radiusSmall, shadowOffset: 3)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }

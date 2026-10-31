@@ -40,11 +40,11 @@ struct ComingUpCard: View {
                     VStack(alignment: .leading, spacing: 12) {
                         HStack {
                             Text(selectedDate, format: .dateTime.weekday(.wide).day().month(.wide))
-                                .font(.subheadline.weight(.semibold))
+                                .font(.fredoka(.subheadline, .semibold))
                                 .foregroundStyle(Color.inkPrimary)
                             Spacer()
                             Button("Clear", action: onClear)
-                                .font(.caption.weight(.semibold))
+                                .font(.fredoka(.caption, .semibold))
                                 .foregroundStyle(Color.accentText)
                         }
                         rows(onSelectedDay, emptyText: "Nothing on this day")
@@ -54,7 +54,7 @@ struct ComingUpCard: View {
 
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Coming up")
-                        .font(.subheadline.weight(.semibold))
+                        .font(.fredoka(.subheadline, .semibold))
                         .foregroundStyle(Color.inkPrimary)
                     rows(upcoming, emptyText: "Nothing coming up")
                 }
@@ -68,7 +68,7 @@ struct ComingUpCard: View {
     private func rows(_ items: [CalendarMarker], emptyText: LocalizedStringKey) -> some View {
         if items.isEmpty {
             Text(emptyText)
-                .font(.subheadline)
+                .font(.fredoka(.subheadline))
                 .foregroundStyle(Color.inkSecondary)
         } else {
             ForEach(items) { marker in
@@ -83,9 +83,9 @@ struct ComingUpCard: View {
         HStack(spacing: 12) {
             VStack(spacing: 0) {
                 Text("\(calendar.component(.day, from: marker.date))")
-                    .font(.headline)
+                    .font(.fredoka(.headline))
                 Text(marker.date, format: .dateTime.month(.abbreviated))
-                    .font(.caption2)
+                    .font(.fredoka(.caption2))
             }
             .foregroundStyle(Color.inkPrimary)
             .frame(width: 46, height: 48)
@@ -94,10 +94,10 @@ struct ComingUpCard: View {
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(marker.title)
-                    .font(.subheadline.weight(.semibold))
+                    .font(.fredoka(.subheadline, .semibold))
                     .foregroundStyle(Color.inkPrimary)
                 Text(marker.courseCode)
-                    .font(.caption)
+                    .font(.fredoka(.caption))
                     .foregroundStyle(Color.inkSecondary)
             }
             Spacer()

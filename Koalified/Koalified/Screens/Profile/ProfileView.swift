@@ -9,7 +9,8 @@ import SwiftUI
 
 /// The Profile tab. Placeholder for now.
 struct ProfileView: View {
-    
+    @State private var showImport = false
+
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -26,13 +27,13 @@ struct ProfileView: View {
                             HStack (spacing: 12) {
                                 Text("Image")
                                     .foregroundStyle(Color.white)
-                                    .fontWeight(.bold)
+                                    .font(.fredoka(.body, .bold))
                                     .padding(Layout.screenPadding)
                                     .background(Color.inkPop, in: Circle())
                                 
                                 VStack(alignment: .leading) {
                                     Text("Your name")
-                                        .fontWeight(.bold)
+                                        .font(.fredoka(.body, .bold))
                                         .foregroundStyle(Color.primary)
                                     
                                     Text("University of Queensland · BE (Honours)")
@@ -41,6 +42,7 @@ struct ProfileView: View {
                             }
                             
                             SecondaryButton(title: "Customise Koala"){}
+                            SecondaryButton(title: "Import timetable (.ics)") { showImport = true }
                         }
                     }
                   
@@ -50,7 +52,7 @@ struct ProfileView: View {
                                 .foregroundStyle(Color.inkPop)
                             Text("Upcoming Features")
                                 .foregroundStyle(Color.inkPop)
-                                .fontWeight(.bold)
+                                .font(.fredoka(.body, .bold))
                         }
                         
                         Text("Study coach, cloud sync and social features are planned for later. Your manual planner works without them.")
@@ -81,6 +83,7 @@ struct ProfileView: View {
             }.scrollIndicators(.hidden)
                 .background(Color.canvas.ignoresSafeArea())
         }
+        .sheet(isPresented: $showImport) { ImportFlowView() }
     }
 }
 

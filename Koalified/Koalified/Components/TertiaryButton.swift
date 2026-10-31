@@ -14,7 +14,7 @@ struct TertiaryButton: View {
     var body: some View {
         Button (action: action) {
             Text(title)
-                .fontWeight(.bold)
+                .font(.fredoka(.body, .bold))
                 .foregroundStyle(Color.inkPop)
                 .frame(maxWidth: .infinity)
                 .boxStyling(bgColor: Color.white, cRadius: Layout.radiusSmall, sColor: Color.inkPop, lWidth: 2)

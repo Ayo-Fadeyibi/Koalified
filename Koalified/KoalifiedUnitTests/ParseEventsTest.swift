@@ -161,4 +161,22 @@ final class ParseEventsTests: XCTestCase {
         XCTAssertEqual(semesters[1].classCount, 2)
         XCTAssertEqual(semesters[1].courseCount, 1)
     }
+
+    func testEventsInSemesterKeepsOnlyThatSemester() {
+        let text = [
+            "BEGIN:VCALENDAR",
+            makeEvent(uid: "a", code: "COMP3400", term: "S1"),
+            makeEvent(uid: "b", code: "COMP3400", term: "S1"),
+            makeEvent(uid: "c", code: "COMP3506", term: "S2"),
+            "END:VCALENDAR"
+        ].joined(separator: "\n")
+
+        let parsed = parseICS(text)
+        let s1 = DetectedSemester(term: .S1, year: 2026, courseCount: 1, classCount: 2)
+
+        let result = events(in: s1, from: parsed)
+
+        XCTAssertEqual(result.count, 2)
+        XCTAssertEqual(result.map { $0.uid }, ["a", "b"])
+    }
 }

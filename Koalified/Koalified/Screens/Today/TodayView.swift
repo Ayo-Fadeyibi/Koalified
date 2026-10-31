@@ -5,16 +5,18 @@ import SwiftUI
  */
 struct TodayView: View {
     @State private var showAddMenu = false
+    /// Whether Today shows the calendar instead of the agenda.
+    @State private var showCalendar = false
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             VStack(alignment: .leading, spacing: 16) {
-                TodayHeader()
+                TodayHeader(showCalendar: $showCalendar)
 
                 if SampleData.classEvents.isEmpty {
                     TodayEmptyView()
                 } else {
-                    TodayContentView()
+                    TodayContentView(showCalendar: showCalendar)
                 }
             }
             .padding(16)
@@ -25,9 +27,9 @@ struct TodayView: View {
             } label: {
                 Image(systemName: "plus")
                     .font(.title2.bold())
-                    .foregroundStyle(.white)
-                    .frame(width: 56, height: 56)
-                    .background(Color.inkPop, in: Capsule())
+                    .foregroundStyle(Color.newInk)
+                    .frame(width: Layout.fabSize, height: Layout.fabSize)
+                    .neoBrutalist(backgroundColor: Color.inkMint, cornerRadius: Layout.fabSize / 2)
                 
             }.padding(40)
         }.sheet(isPresented: $showAddMenu) {

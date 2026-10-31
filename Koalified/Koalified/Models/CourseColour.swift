@@ -14,10 +14,10 @@ enum CourseColor: String, Codable, CaseIterable {
     /// The SwiftUI colour for this choice.
     var color: Color {
         switch self {
-        case .teal:  return Color.newTeal
-        case .blue:  return Color.newBlue
-        case .amber: return Color.newAmber
-        case .rose:  return Color.newRose
+        case .teal:  return Color.tealFill
+        case .blue:  return Color.blueFill
+        case .amber: return Color.amberFill
+        case .rose:  return Color.roseFill
         }
     }
 

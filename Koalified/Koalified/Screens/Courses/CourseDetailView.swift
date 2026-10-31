@@ -52,11 +52,11 @@ struct CourseDetailView: View {
     private var header: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(course.courseCode)
-                .font(.largeTitle.weight(.bold))
+                .font(.fredoka(.largeTitle, .bold))
                 .foregroundStyle(Color.inkPrimary)
             if let title = course.title {
                 Text(title)
-                    .font(.subheadline)
+                    .font(.fredoka(.subheadline))
                     .foregroundStyle(Color.inkSecondary)
             }
         }

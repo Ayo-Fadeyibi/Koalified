@@ -27,25 +27,25 @@ struct WidgetPreviewPanel: View {
     private func nextClassWidget() -> some View {
         VStack(alignment: .leading, spacing: 2) {
             Text("NEXT CLASS")
-                .font(.system(size: 11, weight: .semibold))
+                .font(.fredoka(size: 11, .semibold))
                 .foregroundStyle(.white.opacity(0.8))
 
             Text("CSSE1001")
-                .font(.system(size: 22, weight: .bold))
+                .font(.fredoka(size: 22, .bold))
                 .foregroundStyle(.white)
 
             Text("Lecture")
-                .font(.system(size: 12))
+                .font(.fredoka(size: 12))
                 .foregroundStyle(.white.opacity(0.8))
 
             Spacer()
 
             Text("in 20 min")
-                .font(.system(size: 17, weight: .semibold))
+                .font(.fredoka(size: 17, .semibold))
                 .foregroundStyle(.white)
 
             Text("Room 50-201")
-                .font(.system(size: 11))
+                .font(.fredoka(size: 11))
                 .foregroundStyle(.white.opacity(0.8))
         }
         .padding(14)
@@ -58,21 +58,21 @@ struct WidgetPreviewPanel: View {
 private func dueSoonWidget() -> some View {
     VStack(alignment: .leading, spacing: 2) {
         Text("DUE SOON")
-            .font(.system(size: 11, weight: .semibold))
+            .font(.fredoka(size: 11, .semibold))
             .foregroundStyle(Color.accentText.opacity(0.8))
 
         Text("Problem set 3")
-            .font(.system(size: 17, weight: .bold))
+            .font(.fredoka(size: 17, .bold))
             .foregroundStyle(Color.inkPrimary)
 
         Text("MATH1051 15%")
-            .font(.system(size: 12))
+            .font(.fredoka(size: 12))
             .foregroundStyle(Color.inkSecondary.opacity(0.8))
 
         Spacer()
 
         Text("1 day left")
-            .font(.system(size: 17, weight: .semibold))
+            .font(.fredoka(size: 17, .semibold))
             .foregroundStyle(Color.inkPrimary)
     }
     .padding(14)

@@ -16,12 +16,11 @@ struct PrimaryButton: View {
     var body: some View {
         Button (action: action) {
             Text(title)
-                .fontWeight(.bold)
-                .foregroundStyle(Color.surface)
+                .font(.fredoka(.body, .bold))
+                .foregroundStyle(Color.newInk)
                 .frame(maxWidth: .infinity)
                 .padding()
-                .background(Color.inkPop)
-                .clipShape(RoundedRectangle(cornerRadius: Layout.radiusSmall))
+                .neoBrutalist(backgroundColor: Color.inkMint, cornerRadius: Layout.radiusSmall)
         }
     }
 }

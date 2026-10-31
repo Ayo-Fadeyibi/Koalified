@@ -46,10 +46,10 @@ var body: some View {
     HStack(spacing: 12) {
         VStack(alignment: .leading, spacing: 2) {
             Text(item.title)
-                .font(.subheadline.weight(.semibold))
+                .font(.fredoka(.subheadline, .semibold))
                 .foregroundStyle(Color.inkPrimary)
             Text("\(Int(item.weight))% of course · due \(item.dueDate.formatted(.dateTime.day().month(.abbreviated)))")
-                .font(.caption)
+                .font(.fredoka(.caption))
                 .foregroundStyle(Color.inkSecondary)
         }
         Spacer()

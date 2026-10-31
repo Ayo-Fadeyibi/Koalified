@@ -36,7 +36,7 @@ struct UniversityView: View {
                 TextField("Search or enter university", text: $universityName)
                     .focused($isTextInputFocused)
             }
-            .boxStyling(bgColor: Color.surface, cRadius:  Layout.radiusSmall, sColor: isTextInputFocused ? Color.inkPop : Color.cardBorder, lWidth: isTextInputFocused ? 2 : 1)
+            .boxStyling(bgColor: isTextInputFocused ? Color.inkMint : Color.surface, cRadius: Layout.radiusSmall, sColor: Color.cardBorder, lWidth: 1)
 
             // Available now
             sectionLabel("AVAILABLE NOW")
@@ -54,7 +54,7 @@ struct UniversityView: View {
                             .foregroundStyle(Color.accentText)
                     }
                 }
-                .boxStyling(bgColor: Color.surface, cRadius: Layout.radiusSmall, sColor: isUQSelected ? Color.inkPop : Color.cardBorder, lWidth: isUQSelected ? 2 : 1)
+                .boxStyling(bgColor: isUQSelected ? Color.inkMint : Color.surface, cRadius: Layout.radiusSmall, sColor: Color.cardBorder, lWidth: 1)
             }
             .buttonStyle(.plain)
 
@@ -64,7 +64,7 @@ struct UniversityView: View {
             VStack(spacing: 8) {
                 ForEach(universityList, id: \.self) { uni in
                     Text(uni)
-                        .font(.body.weight(.semibold))
+                        .font(.fredoka(.body, .semibold))
                         .foregroundStyle(Color.inkSecondary)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(14)
@@ -82,7 +82,7 @@ struct UniversityView: View {
                 .padding(.bottom, 12)
 
             Text("Koalified is independent. It is not an official UQ app and is not affiliated with, endorsed by, or operated by The University of Queensland.")
-                .font(.caption)
+                .font(.fredoka(.caption))
                 .foregroundStyle(Color.inkSecondary)
                 .multilineTextAlignment(.center)
         }
@@ -92,7 +92,7 @@ struct UniversityView: View {
     // Small label used above each section
     private func sectionLabel(_ text: String) -> some View {
         Text(text)
-            .font(.caption.weight(.bold))
+            .font(.fredoka(.caption, .bold))
             .tracking(0.5)
             .foregroundStyle(Color.inkSecondary)
             .padding(.top, 24)

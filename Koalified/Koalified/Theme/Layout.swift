@@ -14,6 +14,10 @@ enum Layout {
     static let radiusCard: CGFloat = 14     // cards
     static let radiusLarge: CGFloat = 20    // widgets and big panels
 
+    // Neo-brutalist box style
+    static let borderWidth: CGFloat = 2     // thick dark outline
+    static let shadowOffset: CGFloat = 4    // hard shadow, down and to the right
+
     // Spacing
     static let screenPadding: CGFloat = 16
     static let sectionSpacing: CGFloat = 12

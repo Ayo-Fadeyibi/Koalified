@@ -44,10 +44,9 @@ struct CalculatorContent: View {
                             selectedGrade = grade
                         } label: {
                             Text("Grade \(grade)")
-                                .font(.subheadline)
+                                .font(.fredoka(.subheadline, .bold))
                                 .foregroundStyle(Color.inkPop)
-                                .fontWeight(.bold)
-                                .boxStyling(bgColor: Color.surface, cRadius: Layout.radiusSmall, sColor: grade == selectedGrade ? Color.inkPop : Color.cardBorder, lWidth: grade == selectedGrade ? 2 : 1)
+                                .boxStyling(bgColor: grade == selectedGrade ? Color.inkMint : Color.surface, cRadius: Layout.radiusSmall, sColor: Color.cardBorder, lWidth: 1)
 
                         }
                     }

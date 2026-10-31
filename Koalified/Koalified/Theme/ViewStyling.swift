@@ -7,21 +7,19 @@
 
 import SwiftUI
 
-/// Wraps content in a padded, rounded box with a coloured border.
+/// Wraps content in a padded neo-brutalist box (thick border, hard shadow).
+/// `strokeColor` and `lineWidth` are kept so existing call sites compile, but the border is now always the
+/// ink colour; show a selected state by changing `backgroundColor` instead.
 struct BoxStyling: ViewModifier {
     let backgroundColor: Color
     let cornerRadius: CGFloat
     let strokeColor: Color
     let lineWidth: CGFloat
-    
+
     func body (content: Content) -> some View {
         content
             .padding(Layout.screenPadding)
-                .background(backgroundColor, in: RoundedRectangle(cornerRadius: cornerRadius))
-                    .overlay {
-                        RoundedRectangle(cornerRadius:cornerRadius)
-                            .strokeBorder(strokeColor, lineWidth: lineWidth)
-        }
+            .neoBrutalist(backgroundColor: backgroundColor, cornerRadius: cornerRadius)
     }
 }
 
@@ -37,7 +35,7 @@ struct CloseButton: ViewModifier {
                                 action()
                             } label: {
                                 Text("Skip")
-                                    .font(.footnote.weight(.bold))
+                                    .font(.fredoka(.footnote, .bold))
                                     .foregroundStyle(Color.inkSecondary)
                 }
             }
@@ -58,19 +56,18 @@ extension View {
     /// Large bold screen title.
     func primaryTextStyling() -> some View {
         self.foregroundStyle(Color.inkPrimary)
-        .fontWeight(.bold)
-        .font(.largeTitle)
+        .font(.fredoka(.largeTitle, .bold))
     }
     
     /// Subheadline text in the secondary ink colour (subtitles, captions).
     func secondaryTextStyling() -> some View {
-        self.font(.subheadline)
+        self.font(.fredoka(.subheadline))
             .foregroundStyle(Color.inkSecondary)
     }
     
     /// Small secondary text; currently styled the same as `secondaryTextStyling`.
     func tinyText () -> some View {
-        self.font(.subheadline)
+        self.font(.fredoka(.subheadline))
             .foregroundStyle(Color.inkSecondary)
     }
     

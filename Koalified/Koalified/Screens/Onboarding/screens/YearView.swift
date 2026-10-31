@@ -32,7 +32,7 @@ struct YearView: View {
                     } label: {
                         HStack {
                             Text(year)
-                                .font(.body.weight(.semibold))
+                                .font(.fredoka(.body, .semibold))
                                 .foregroundStyle(Color.inkPrimary)
                             Spacer()
                             if year == selectedYear {
@@ -41,7 +41,7 @@ struct YearView: View {
                                     .foregroundStyle(Color.accentText)
                             }
                         }
-                        .boxStyling(bgColor: Color.surface, cRadius: Layout.radiusSmall, sColor: year == selectedYear ? Color.inkPop : Color.cardBorder, lWidth: year == selectedYear ? 2 : 1)
+                        .boxStyling(bgColor: year == selectedYear ? Color.inkMint : Color.surface, cRadius: Layout.radiusSmall, sColor: Color.cardBorder, lWidth: 1)
                     }
                     .buttonStyle(.plain)
                 }

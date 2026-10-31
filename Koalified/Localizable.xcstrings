@@ -754,6 +754,9 @@
         }
       }
     },
+    "Add classes manually" : {
+
+    },
     "Add course" : {
       "localizations" : {
         "hi" : {
@@ -1268,7 +1271,6 @@
       }
     },
     "Calendar" : {
-      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -1451,6 +1453,15 @@
           }
         }
       }
+    },
+    "Choose .ics file" : {
+
+    },
+    "Choose a different file" : {
+
+    },
+    "Choose the .ics calendar file you downloaded from your timetable." : {
+
     },
     "Choose your language" : {
       "localizations" : {
@@ -2545,7 +2556,11 @@
         }
       }
     },
+    "Good morning" : {
+
+    },
     "Good morning," : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -2781,6 +2796,9 @@
         }
       }
     },
+    "Import %@" : {
+
+    },
     "Import timetable" : {
       "localizations" : {
         "hi" : {
@@ -2826,6 +2844,9 @@
           }
         }
       }
+    },
+    "Import timetable (.ics)" : {
+
     },
     "Import your timetable" : {
       "localizations" : {
@@ -3565,6 +3586,9 @@
         }
       }
     },
+    "No classes found" : {
+
+    },
     "No courses yet" : {
       "localizations" : {
         "hi" : {
@@ -3610,6 +3634,9 @@
           }
         }
       }
+    },
+    "Nothing changed. Your timetable was already up to date." : {
+
     },
     "Nothing coming up" : {
 
@@ -4891,6 +4918,9 @@
         }
       }
     },
+    "Timetable imported" : {
+
+    },
     "Today" : {
       "localizations" : {
         "hi" : {
@@ -4938,6 +4968,7 @@
       }
     },
     "Today View" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -5130,6 +5161,9 @@
     "Upcoming Features" : {
 
     },
+    "We couldn't read any classes from this file" : {
+
+    },
     "Welcome to Koalified" : {
       "localizations" : {
         "hi" : {
@@ -5267,6 +5301,9 @@
           }
         }
       }
+    },
+    "Which semester?" : {
+
     },
     "Widget settings" : {
       "localizations" : {
@@ -5454,6 +5491,15 @@
           }
         }
       }
+    },
+    "Your classes are ready." : {
+
+    },
+    "Your file has classes from %@" : {
+
+    },
+    "Your file stays on this device. Nothing is uploaded or shared." : {
+
     },
     "Your name" : {
 
