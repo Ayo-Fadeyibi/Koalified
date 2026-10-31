@@ -13,6 +13,49 @@ struct CoursesContent: View {
     let filters = ["Current", "Past", "All"]
     
     @Query private var courses: [Course]
+    
+    private var newestFirst: [Course] {
+        courses.sorted {
+            $0.year == $1.year ? $0.term.sortOrder > $1.term.sortOrder : $0.year > $1.year
+        }
+    }
+    
+    private var visibleCourses: [Course] {
+        guard let newest = newestFirst.first else { return [] }
+        switch filter {
+        case "Current":
+            return courses.filter{$0.year == newest.year && $0.term == newest.term}
+        case "Past":
+            return courses.filter{$0.year != newest.year || $0.term != newest.term}
+        default:
+            return newestFirst
+        }
+    }
+    
+    private struct SemesterSection: Identifiable {
+        let id: String
+        let title: String
+        let courses: [Course]
+    }
+    
+    private var sections: [SemesterSection] {
+        let groups = Dictionary(grouping: visibleCourses, by: { SemesterKey(term: $0.term, year: $0.year) })
+        let keys = groups.keys.sorted {
+            let year0 = $0.year ?? 0
+            let year1 = $1.year ?? 0
+            if year0 != year1 { return year0 > year1 }
+            return ($0.term?.sortOrder ?? 0) > ($1.term?.sortOrder ?? 0)
+        }
+        
+        return keys.compactMap { key in
+            guard let term = key.term, let year = key.year else { return nil }
+            return SemesterSection(
+                id: "\(term.rawValue)-\(year)",
+                title: "\(term.label), \(year)",
+                courses: groups[key] ?? []
+            )
+        }
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -33,28 +76,30 @@ struct CoursesContent: View {
 
                 ScrollView {
                     // Section header
-                    HStack {
-                        Text("Semester 2, 2026 · Current")
-                            .font(.fredoka(.headline))
-                            .foregroundStyle(Color.inkPrimary)
-                        Spacer()
-                        Text("\(courses.count) courses")
-                            .font(.fredoka(.footnote))
-                            .foregroundStyle(Color.inkSecondary)
-                    }
-                    .padding(.top, 4)
+                    ForEach(sections) { section in
+                        HStack { Text(section.title)
+                                .font(.fredoka(.headline))
+                                .foregroundStyle(Color.inkPrimary)
+                            Spacer()
+                            Text("\(section.courses.count) courses")
+                                .font(.fredoka(.footnote))
+                                .foregroundStyle(Color.inkSecondary)
+                        }
+                        .padding(.top, 4)
+                        
+                        ForEach(section.courses) { course in
+                            NavigationLink(value: course) {
+                                courseCard(
+                                    code: course.courseCode,
+                                    title: course.title ?? "",
+                                    accent: course.color.color,
+                                    earned: course.earnedPoints
+                                )
+                            }.buttonStyle(.plain)
+                        }
+                    }.scrollIndicators(.hidden)
                     
-                    ForEach(courses) { course in
-                        NavigationLink(value: course) {
-                            courseCard(
-                                code: course.courseCode,
-                                title: course.title ?? "",
-                                accent: course.color.color,
-                                earned: course.earnedPoints
-                            )
-                        }.buttonStyle(.plain)
-                    }
-                }.scrollIndicators(.hidden)
+                }
             } else {
                 Text("Degree plan")
                     .foregroundStyle(Color.inkPrimary)
@@ -131,6 +176,7 @@ struct CoursesContent: View {
         }
     }
 }
+
 
 #Preview {
     ScrollView {

@@ -4394,6 +4394,7 @@
       }
     },
     "Semester 2, 2026 · Current" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
