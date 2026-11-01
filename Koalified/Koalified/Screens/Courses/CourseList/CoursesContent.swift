@@ -70,7 +70,7 @@ struct CoursesContent: View {
                 // Filter chips
                 HStack(spacing: 8) {
                     ForEach(filters, id: \.self) { title in
-                        chip(title)
+                        CourseFilterChip(title: title, isSelected: filter == title) { filter = title }
                     }
                 }
 
@@ -89,7 +89,7 @@ struct CoursesContent: View {
                         
                         ForEach(section.courses) { course in
                             NavigationLink(value: course) {
-                                courseCard(
+                                CourseCard(
                                     code: course.courseCode,
                                     title: course.title ?? "",
                                     accent: course.color.color,
@@ -106,74 +106,6 @@ struct CoursesContent: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-    }
-
-    // MARK: - Pieces
-
-    /// A pill-shaped filter button; filled when it is the selected filter.
-    private func chip(_ title: String) -> some View {
-        let isSelected = filter == title
-        return Button {
-            filter = title
-        } label: {
-            Text(LocalizedStringKey(title))
-                .font(.fredoka(.footnote, .semibold))
-                .foregroundStyle(Color.newInk)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
-                .neoBrutalist(backgroundColor: isSelected ? Color.inkMint : Color.surface, cornerRadius: 20, shadowOffset: 3)
-        }
-        .buttonStyle(.plain)
-    }
-
-    /// Card for one course: a coloured code badge, title, progress bar and points earned out of 100.
-    /// The "On track" badge is static for now.
-    private func courseCard(code: String, title: String, accent: Color, earned: Double) -> some View {
-        Card {
-            HStack(alignment: .top, spacing: 14) {
-                // Badge: first four letters of the code
-                Text(String(code.prefix(4)))
-                    .font(.fredoka(.caption, .bold))
-                    .foregroundStyle(accent)
-                    .frame(width: 52, height: 52)
-                    .background(accent.opacity(0.15), in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
-
-                VStack(alignment: .leading, spacing: 6) {
-                    HStack {
-                        Text(code)
-                            .font(.fredoka(.headline))
-                            .foregroundStyle(accent)
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                            .font(.footnote.weight(.semibold))
-                            .foregroundStyle(Color.inkPrimary)
-                    }
-
-                    Text(title)
-                        .font(.fredoka(.footnote))
-                        .foregroundStyle(Color.inkPrimary)
-
-                    ProgressView(value: earned, total: 100)
-                        .tint(accent)
-
-                    HStack {
-                        Text("\(Int(earned)) of 100 points earned so far")
-                            .font(.fredoka(.caption))
-                            .foregroundStyle(Color.inkSecondary)
-                        Spacer()
-                        Text("On track")
-                            .font(.fredoka(.caption2, .semibold))
-                            .foregroundStyle(Color.accentText)
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 4)
-                            .overlay {
-                                Capsule()
-                                    .strokeBorder(Color.accentText, lineWidth: 1)
-                            }
-                    }
-                }
-            }
-        }
     }
 }
 

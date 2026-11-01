@@ -2,46 +2,10 @@
 //  ViewStyling.swift
 //  Koalified
 //
-//  Created by Ayooluwa Fadeyibi on 28/10/2026.
+//  Shortcuts on `View` for screen containers, text styles and the modifiers in this folder.
 //
 
 import SwiftUI
-
-/// Wraps content in a padded neo-brutalist box (thick border, hard shadow).
-/// `strokeColor` and `lineWidth` are kept so existing call sites compile, but the border is now always the
-/// ink colour; show a selected state by changing `backgroundColor` instead.
-struct BoxStyling: ViewModifier {
-    let backgroundColor: Color
-    let cornerRadius: CGFloat
-    let strokeColor: Color
-    let lineWidth: CGFloat
-
-    func body (content: Content) -> some View {
-        content
-            .padding(Layout.screenPadding)
-            .neoBrutalist(backgroundColor: backgroundColor, cornerRadius: cornerRadius)
-    }
-}
-
-/// Adds an "X" button to the top-right of the navigation bar that runs `action` (used to dismiss sheets).
-struct CloseButton: ViewModifier {
-    let action: () -> Void
-
-    func body(content: Content) -> some View {
-        content
-            .toolbar {
-                        ToolbarItem(placement: .topBarTrailing) {
-                            Button {
-                                action()
-                            } label: {
-                                Text("Skip")
-                                    .font(.fredoka(.footnote, .bold))
-                                    .foregroundStyle(Color.inkSecondary)
-                }
-            }
-        }
-    }
-}
 
 /// Convenience styling helpers used across screens.
 extension View {
@@ -76,7 +40,7 @@ extension View {
         self.modifier(BoxStyling(backgroundColor: bgColor, cornerRadius: cRadius, strokeColor: sColor, lineWidth: lWidth))
     }
     
-    /// Adds a top-right close ("X") button that calls `action`.
+    /// Adds a top-right "Skip" button that calls `action`.
     func closeButton(action: @escaping () -> Void) -> some View {
         // apply the CloseButton modifier to self
         self.modifier(CloseButton(action: action))
