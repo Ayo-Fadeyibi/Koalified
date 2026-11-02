@@ -21,9 +21,10 @@ struct OnboardingComicView: View {
     let onFinish: () -> Void
     
     let panels = [
-        ComicPanel(imageName: "comic_01_chaos", caption: "Too many apps, Too many tabs."),
-        ComicPanel(imageName: "comic_01_chaos", caption: "Something Something."),
-        ComicPanel(imageName: "comic_01_chaos", caption: "Ice on my wrist.")
+        ComicPanel(imageName: "comic_01_chaos", caption: "Too many apps. Too many tabs."),
+        ComicPanel(imageName: "comic_02_deadlines", caption: "Too many deadlines."),
+        ComicPanel(imageName: "comic_03_hero", caption: "Koalified to the rescue."),
+        ComicPanel(imageName: "comic_04_calm", caption: "Breathe. It’s all sorted.")
     ]
     
     var body: some View {
@@ -51,11 +52,13 @@ struct OnboardingComicView: View {
                     }
                 }.padding(.horizontal)
             
-        }.background(Color.canvas.ignoresSafeArea())
+        }.padding(.top, 40)
+        .background(Color.canvas.ignoresSafeArea())
             .overlay(alignment: .topTrailing) { SecondaryButton(title: "Skip") {onFinish()}
                     .frame(width: 100, height: 40).padding(.horizontal, 16)
                     .opacity(pageNumber < panels.count - 1 ? 1 : 0)
                     .disabled(pageNumber == panels.count - 1)
+                    .padding(.top, 10)
             }
     }
 }
