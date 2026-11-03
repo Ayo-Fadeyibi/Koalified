@@ -6,7 +6,7 @@ struct SplashView: View {
 
     let letters = ["K", "O", "A", "L", "I", "F", "I", "E", "D"]
 
-    let colours = [Color.inkPrimary, Color.pinkFill, Color.warmFill, Color.inkMint]
+    let colours = [Color.endGradient, Color.pinkFill, Color.warmFill, Color.inkMint]
 
     // One entry per floating tile: which symbol, colour, tilt, and where it sits.
     private struct SplashIcon {
@@ -21,7 +21,7 @@ struct SplashView: View {
         SplashIcon(symbol: "calendar", fill: Color.pinkFill, tilt: -10, x: -120, y: -130),
         SplashIcon(symbol: "alarm", fill: Color.warmFill, tilt: 8, x: 125, y: -104),
         SplashIcon(symbol: "plus.forwardslash.minus", fill: Color.inkMint, tilt: 6, x: -115, y: 140),
-        SplashIcon(symbol: "note.text", fill: Color.inkPrimary, tilt: -8, x: 120, y: 120)
+        SplashIcon(symbol: "note.text", fill: Color.endGradient, tilt: -8, x: 120, y: 120)
     ]
 
     private let letterSpacing: CGFloat = 3
@@ -30,10 +30,12 @@ struct SplashView: View {
     @State private var appeared = false
 
     /// Size of one letter tile so all the letters fit on the screen, whatever its width.
-    /// Width left = screen width - side margins - gaps between tiles - room for the hard shadow.
+    /// Width left = screen width - side margins - gaps between tiles - room for each tile's hard shadow
+    /// (every tile reserves `shadowOffset` of extra width, so it counts once per tile).
     private func tileSize(for screenWidth: CGFloat) -> CGFloat {
         let gaps = letterSpacing * CGFloat(letters.count - 1)
-        let available = screenWidth - 2 * Layout.screenPadding - gaps - Layout.shadowOffset
+        let shadows = Layout.shadowOffset * CGFloat(letters.count)
+        let available = screenWidth - 2 * Layout.screenPadding - gaps - shadows
         return min(available / CGFloat(letters.count), maxTileSize)
     }
 
@@ -66,6 +68,7 @@ struct SplashView: View {
                         ForEach(letters.indices, id: \.self) { index in
                             Text(letters[index])
                                 .font(.fredoka(size: tile * 0.6, .bold))
+                                .foregroundStyle(Color.newInk)
                                 .frame(width: tile, height: tile)
                                 .neoBrutalist(
                                     backgroundColor: colours[index % colours.count],

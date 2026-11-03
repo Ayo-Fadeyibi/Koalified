@@ -21,7 +21,7 @@ struct AddMenuSheet: View {
             HStack {
                 Text("Add")
                     .font(.fredoka(.title2, .bold))
-                    .foregroundStyle(Color.inkPrimary)
+                    .foregroundStyle(Color.accentText)
                 Spacer()
                 Button {
                     dismiss()
@@ -57,7 +57,7 @@ struct AddMenuSheet: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(LocalizedStringKey(title))
                         .font(.fredoka(.body, .semibold))
-                        .foregroundStyle(Color.inkPrimary)
+                        .foregroundStyle(Color.accentText)
                     Text(LocalizedStringKey(subtitle))
                         .font(.fredoka(.caption))
                         .foregroundStyle(Color.inkSecondary)
@@ -66,13 +66,8 @@ struct AddMenuSheet: View {
                 Image(systemName: "chevron.right")
                     .font(.footnote.weight(.semibold))
                     .foregroundStyle(Color.inkSecondary)
-            }
-            .padding(14)
-            .background(Color.surface, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
-            .overlay {
-                RoundedRectangle(cornerRadius: Layout.radiusSmall)
-                    .strokeBorder(Color.cardBorder, lineWidth: 1)
-            }
+                
+            }.boxStyling(bgColor: Color.surface, cRadius: Layout.radiusSmall, sColor: Color.cardBorder, lWidth: Layout.radiusSmall)
         }
         .buttonStyle(.plain)
     }

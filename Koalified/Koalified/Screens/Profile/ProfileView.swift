@@ -10,6 +10,7 @@ import SwiftUI
 /// The Profile tab. Placeholder for now.
 struct ProfileView: View {
     @State private var showImport = false
+    @State private var showComic = false
 
     var body: some View {
         NavigationStack {
@@ -61,6 +62,20 @@ struct ProfileView: View {
                         TertiaryButton(title: "See what's coming"){}
                     }
                     
+                    // The comic used to open the app; it now lives here.
+                    Card {
+                        Button {
+                            showComic = true
+                        } label: {
+                            Text("The Koalified story")
+                                .secondaryTextStyling()
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .font(.footnote.weight(.semibold))
+                                .foregroundStyle(Color.inkSecondary)
+                        }.padding(10)
+                    }
+                    
                     Card {
                         ForEach(SampleData.profileLinks, id: \.self) {link in
                             Button {
@@ -84,6 +99,9 @@ struct ProfileView: View {
                 .background(Color.canvas.ignoresSafeArea())
         }
         .sheet(isPresented: $showImport) { ImportFlowView() }
+        .fullScreenCover(isPresented: $showComic) {
+            OnboardingComicView(onFinish: { showComic = false }, finishTitle: "Done")
+        }
     }
 }
 

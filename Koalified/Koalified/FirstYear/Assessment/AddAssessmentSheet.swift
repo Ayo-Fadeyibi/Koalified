@@ -24,7 +24,7 @@ struct AddAssessmentSheet: View {
             HStack {
                 Text("Add an assessment")
                     .font(.fredoka(.title2, .bold))
-                    .foregroundStyle(Color.inkPrimary)
+                    .foregroundStyle(Color.accentText)
                 Spacer()
                 Button { dismiss() } label: {
                     Text("Cancel")

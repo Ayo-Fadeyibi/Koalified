@@ -18,7 +18,7 @@ struct LanguageView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Step 1 of 3")
+            Text("Step 1 of 2")
                 .secondaryTextStyling()
             Text("Choose your language")
                 .primaryTextStyling()

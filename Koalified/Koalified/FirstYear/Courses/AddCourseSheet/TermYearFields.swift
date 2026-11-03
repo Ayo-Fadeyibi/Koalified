@@ -24,7 +24,7 @@ struct TermYearFields: View {
                 }
                 .labelsHidden()
                 .pickerStyle(.menu)
-                .tint(Color.inkPrimary)
+                .tint(Color.accentText)
             }
 
             FormField("Year") {
@@ -35,7 +35,7 @@ struct TermYearFields: View {
                 }
                 .labelsHidden()
                 .pickerStyle(.menu)
-                .tint(Color.inkPrimary)
+                .tint(Color.accentText)
             }
         }
     }

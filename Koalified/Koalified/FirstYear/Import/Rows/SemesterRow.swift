@@ -26,7 +26,7 @@ struct SemesterRow: View {
                             .font(.fredoka(.subheadline, .semibold))
                             .foregroundStyle(Color.inkPrimary)
                         if let status {
-                            StatusTag(text: status, color: status == "Past" ? Color.inkSecondary : Color.inkPop)
+                            StatusTag(text: status, color: status == "Past" ? Color.inkSecondary : Color.accentText)
                         }
                     }
                     Text(subtitle)

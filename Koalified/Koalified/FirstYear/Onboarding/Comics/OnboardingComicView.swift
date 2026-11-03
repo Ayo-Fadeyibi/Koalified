@@ -19,6 +19,8 @@ struct OnboardingComicView: View {
     @State private var pageNumber = 0
     
     let onFinish: () -> Void
+    /// Label on the last panel's button.
+    var finishTitle: LocalizedStringKey = "Get started"
     
     let panels = [
         ComicPanel(imageName: "comic_01_chaos", caption: "Too many apps. Too many tabs."),
@@ -44,7 +46,7 @@ struct OnboardingComicView: View {
                 .padding(.bottom, 24)
             
     
-                PrimaryButton(title: pageNumber == panels.count - 1 ? "Get started" : "Next"){
+                PrimaryButton(title: pageNumber == panels.count - 1 ? finishTitle : "Next"){
                     if pageNumber < panels.count - 1 {
                         withAnimation {pageNumber += 1 }
                     } else {
