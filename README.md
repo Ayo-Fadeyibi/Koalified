@@ -1,6 +1,6 @@
 # Koalified
 
-A campus planner for UQ students: classes, courses and assessments, a deadline calendar, reminders, a Home Screen widget and a target-grade calculator. Built with SwiftUI and SwiftData. Everything stays on the device: no accounts, no backend.
+A campus planner for UQ students: classes, courses and assessments, a deadline calendar, reminders, a Home Screen widget and a target-grade calculator. Built with SwiftUI and SwiftData. Everything stays on the device: no accounts, no backend. With help from coursemates
 
 > Not an official UQ app. Grades and dates come from what the student enters or imports. The ECP and Blackboard are the source of truth.
 
