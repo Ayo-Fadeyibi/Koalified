@@ -1,4 +1,4 @@
-package Koalified.Screens;
+package com.koalified.Screens;
 
 public class CalculatorScreen {
 

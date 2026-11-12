@@ -1,4 +1,4 @@
-package Koalified.Models;
+package com.koalified.Models;
 
 public class ClassSession {
 

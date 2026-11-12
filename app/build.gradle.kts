@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    namespace = "Koalified.Widgets"
+    namespace = "com.koalified"
     compileSdk {
         version = release(37)
     }
 
     defaultConfig {
-        applicationId = "Koalified.Widgets"
+        applicationId = "com.koalified"
         minSdk = 26
         targetSdk = 37
         versionCode = 1

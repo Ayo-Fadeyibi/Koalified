@@ -1,4 +1,4 @@
-package Koalified.Models;
+package com.koalified.Models;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

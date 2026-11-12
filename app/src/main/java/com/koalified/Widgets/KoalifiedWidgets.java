@@ -1,5 +1,7 @@
-package Koalified.Widgets;
+package com.koalified.Widgets;
 
+
+import com.koalified.R;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
