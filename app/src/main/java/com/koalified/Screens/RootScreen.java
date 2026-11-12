@@ -7,7 +7,7 @@ import android.app.Activity;
 import android.view.View;
 import com.koalified.R;
 
-public class HomeScreen extends Activity {
+public class RootScreen extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

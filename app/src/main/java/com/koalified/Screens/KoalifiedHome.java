@@ -30,7 +30,7 @@ public class KoalifiedHome extends Activity {
             return;
         }
         openingHome = true;
-        startActivity(new Intent(this, HomeScreen.class));
+        startActivity(new Intent(this, RootScreen.class));
         finish();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     };
@@ -90,8 +90,7 @@ public class KoalifiedHome extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        // iOS re-syncs reminders and widget data when the app becomes active.
-        // Hook the Android notification/widget refresh here once those services are implemented.
+        // TODO: Hook the Android notification/widget refresh here once those services are implemented.
         if (!openingHome) {
             refreshAndroidAppData();
         }
