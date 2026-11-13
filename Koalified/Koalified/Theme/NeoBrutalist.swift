@@ -8,14 +8,14 @@
 import SwiftUI
 
 /// Draws a flat rounded box with a thick border and a hard shadow offset to the bottom-right.
-/// Border and shadow default to `Color.newInk`, which flips to white in dark mode so they stay visible.
+/// Border and shadow default to `Color.textPrimary`, which flips to white in dark mode so they stay visible.
 struct NeoBrutalistCard: ViewModifier {
-    var backgroundColor: Color = Color.surface
+    var backgroundColor: Color = Color.cardSurface
     var cornerRadius: CGFloat = Layout.radiusCard
     var borderWidth: CGFloat = Layout.borderWidth
     var shadowOffset: CGFloat = Layout.shadowOffset
-    var borderColor: Color = Color.newInk
-    var shadowColor: Color = Color.newInk
+    var borderColor: Color = Color.textPrimary
+    var shadowColor: Color = Color.textPrimary
 
     func body(content: Content) -> some View {
         content
@@ -43,12 +43,12 @@ struct NeoBrutalistCard: ViewModifier {
 extension View {
     /// Applies the neo-brutalist box style (see `NeoBrutalistCard`). Does not add padding.
     func neoBrutalist(
-        backgroundColor: Color = Color.surface,
+        backgroundColor: Color = Color.cardSurface,
         cornerRadius: CGFloat = Layout.radiusCard,
         borderWidth: CGFloat = Layout.borderWidth,
         shadowOffset: CGFloat = Layout.shadowOffset,
-        borderColor: Color = Color.newInk,
-        shadowColor: Color = Color.newInk
+        borderColor: Color = Color.textPrimary,
+        shadowColor: Color = Color.textPrimary
     ) -> some View {
         self.modifier(
             NeoBrutalistCard(

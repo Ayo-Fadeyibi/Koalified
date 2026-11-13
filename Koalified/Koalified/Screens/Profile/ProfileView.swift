@@ -30,7 +30,7 @@ struct ProfileView: View {
                                     .foregroundStyle(Color.white)
                                     .font(.fredoka(.body, .bold))
                                     .padding(Layout.screenPadding)
-                                    .background(Color.inkPop, in: Circle())
+                                    .background(Color.greenDeep, in: Circle())
                                 
                                 VStack(alignment: .leading) {
                                     Text("Your name")
@@ -50,9 +50,9 @@ struct ProfileView: View {
                     Card {
                         HStack {
                             Image("sparkles")
-                                .foregroundStyle(Color.inkPop)
+                                .foregroundStyle(Color.greenDeep)
                             Text("Upcoming Features")
-                                .foregroundStyle(Color.inkPop)
+                                .foregroundStyle(Color.greenDeep)
                                 .font(.fredoka(.body, .bold))
                         }
                         
@@ -72,7 +72,7 @@ struct ProfileView: View {
                             Spacer()
                             Image(systemName: "chevron.right")
                                 .font(.footnote.weight(.semibold))
-                                .foregroundStyle(Color.inkSecondary)
+                                .foregroundStyle(Color.textSecondary)
                         }.padding(10)
                     }
                     
@@ -86,7 +86,7 @@ struct ProfileView: View {
                                 Spacer()
                                 Image(systemName: "chevron.right")
                                     .font(.footnote.weight(.semibold))
-                                    .foregroundStyle(Color.inkSecondary)
+                                    .foregroundStyle(Color.textSecondary)
                             }.padding(10)
                             if link != SampleData.profileLinks.last {
                                 Divider().padding(.horizontal, 14)
@@ -96,7 +96,7 @@ struct ProfileView: View {
                     
                 }.mainContainerStyling()
             }.scrollIndicators(.hidden)
-                .background(Color.canvas.ignoresSafeArea())
+                .background(Color.screenBackground.ignoresSafeArea())
         }
         .sheet(isPresented: $showImport) { ImportFlowView() }
         .fullScreenCover(isPresented: $showComic) {

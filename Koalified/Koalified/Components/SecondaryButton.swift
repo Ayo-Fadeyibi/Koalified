@@ -4,16 +4,27 @@ import SwiftUI
 struct SecondaryButton: View {
     let title: LocalizedStringKey
     let action: () -> Void
-
+    
     var body: some View {
         Button(action: action) {
-            Text(title)
-                .font(.fredoka(.body, .semibold))
-                .foregroundStyle(Color.accentText)
-                .frame(maxWidth: .infinity)
-                .boxStyling(bgColor: Color.surface, cRadius: Layout.radiusSmall, sColor: Color.inkSecondary.opacity(0.35), lWidth: 1.5)
-        }
-        .buttonStyle(.plain)
+            HStack {
+                Text(title)
+                    .font(.fredoka(.body, .semibold))
+                    .foregroundStyle(Color.textPrimary)
+                    
+                
+                Spacer()
+                
+                Text(">")
+                    .font(.fredoka(.body))
+                    .foregroundStyle(Color.textPrimary)
+            }.frame(maxWidth: .infinity)
+                .padding(20)
+                .overlay(
+                    RoundedRectangle(cornerRadius: Layout.radiusSmall)
+                        .strokeBorder(Color.black, lineWidth: 2)
+                )
+        }.buttonStyle(.plain)
     }
 }
 

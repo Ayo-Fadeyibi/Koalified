@@ -15,6 +15,20 @@ enum NotificationScheduler {
         return (try? await center.requestAuthorization(options: [.alert, .sound, .badge])) ?? false
     }
     
+    /// Asks for permission only if the user has never been asked, so it is safe to call after every import.
+    /// Returns whether notifications are allowed afterwards.
+    static func requestPermissionIfNeeded() async -> Bool {
+        let settings = await UNUserNotificationCenter.current().notificationSettings()
+        switch settings.authorizationStatus {
+        case .notDetermined:
+            return await requestPermission()
+        case .authorized, .provisional, .ephemeral:
+            return true
+        default:
+            return false
+        }
+    }
+    
     /// One pending notification: when it fires and what it says.
     struct Reminder {
         let id: String

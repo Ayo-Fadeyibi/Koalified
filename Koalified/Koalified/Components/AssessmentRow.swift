@@ -47,16 +47,16 @@ var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(item.title)
                 .font(.fredoka(.subheadline, .semibold))
-                .foregroundStyle(Color.inkPrimary)
+                .foregroundStyle(Color.textPrimary)
             Text("\(Int(item.weight))% of course · due \(item.dueDate.formatted(.dateTime.day().month(.abbreviated)))")
                 .font(.fredoka(.caption))
-                .foregroundStyle(Color.inkSecondary)
+                .foregroundStyle(Color.textSecondary)
         }
         Spacer()
         trailing
         Image(systemName: "chevron.right")
             .font(.footnote.weight(.semibold))
-            .foregroundStyle(Color.inkSecondary)
+            .foregroundStyle(Color.textSecondary)
     }
     .padding(14)
 }

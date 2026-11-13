@@ -394,6 +394,9 @@
         }
       }
     },
+    ">" : {
+
+    },
     "1 day left" : {
       "localizations" : {
         "hi" : {
@@ -535,6 +538,9 @@
           }
         }
       }
+    },
+    "Add a class manually" : {
+
     },
     "Add a course" : {
       "localizations" : {
@@ -956,6 +962,7 @@
       }
     },
     "Add your classes to get started" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -1144,6 +1151,9 @@
     "Applied" : {
 
     },
+    "Assessments" : {
+
+    },
     "Assignment, quiz or exam date" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1290,6 +1300,7 @@
       }
     },
     "Calendar" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -1472,6 +1483,9 @@
           }
         }
       }
+    },
+    "Check it before you keep it" : {
+
     },
     "Choose a .ics file" : {
 
@@ -1685,6 +1699,9 @@
     "Course" : {
 
     },
+    "Course timetable" : {
+
+    },
     "Courses" : {
       "localizations" : {
         "hi" : {
@@ -1732,6 +1749,7 @@
       }
     },
     "Courses by semester · Koalified" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -2010,6 +2028,9 @@
           }
         }
       }
+    },
+    "Delete" : {
+
     },
     "Do you need help finding your timetable?" : {
       "localizations" : {
@@ -2572,9 +2593,6 @@
         }
       }
     },
-    "First-year course codes detected. We will show beginner tips like hurdles and the census date." : {
-
-    },
     "Found in your timetable" : {
 
     },
@@ -2928,6 +2946,9 @@
           }
         }
       }
+    },
+    "Import your timetable to see your next class, deadlines and directions." : {
+
     },
     "in 20 min" : {
       "localizations" : {
@@ -3689,6 +3710,7 @@
 
     },
     "Nothing to show yet. Import your timetable, or add classes by hand." : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -3781,6 +3803,7 @@
       }
     },
     "On track" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -4495,6 +4518,7 @@
 
     },
     "Set up manually" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -4983,6 +5007,9 @@
         }
       }
     },
+    "Timetable" : {
+
+    },
     "Timetable imported" : {
 
     },
@@ -5226,6 +5253,9 @@
     "Upcoming Features" : {
 
     },
+    "View" : {
+
+    },
     "We couldn't read any classes from this file" : {
 
     },
@@ -5274,6 +5304,9 @@
           }
         }
       }
+    },
+    "Welcome to your semester" : {
+
     },
     "What year are you in?" : {
       "localizations" : {
@@ -5557,7 +5590,13 @@
         }
       }
     },
+    "You should review the courses, class times and any assessment data found in your import." : {
+
+    },
     "Your classes are ready." : {
+
+    },
+    "Your day starts here." : {
 
     },
     "Your file has classes from %@" : {

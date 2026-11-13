@@ -20,7 +20,7 @@ struct CloseButton: ViewModifier {
                             } label: {
                                 Text("Skip")
                                     .font(.fredoka(.footnote, .bold))
-                                    .foregroundStyle(Color.inkSecondary)
+                                    .foregroundStyle(Color.textSecondary)
                 }
             }
         }

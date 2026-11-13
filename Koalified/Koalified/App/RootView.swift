@@ -18,11 +18,15 @@ struct RootView: View {
             if hasOnboarded {
                 TabView {
                     
-                    Tab("Today", systemImage: "calendar") {
+                    Tab("Today", image: "house") {
                         TodayView()
                     }
                     
-                    Tab ("Courses", systemImage: "book") {
+                    Tab("Timetable", image: "calendar-range") {
+                        CalendarTabContent()
+                    }
+                    
+                    Tab ("Courses", image: "book-open") {
                         CoursesView()
                     }
                     
@@ -30,10 +34,7 @@ struct RootView: View {
                         CalculatorView()
                     }
                     
-                    Tab ("Profile", systemImage: "person") {
-                        ProfileView()
-                    }
-                }.tint(Color.accentText)
+                }.tint(Color.accent)
             } else {
                 OnboardingFlow()
             }

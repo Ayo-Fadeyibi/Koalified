@@ -18,17 +18,17 @@ struct Card<Content: View>: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             content
-        }.boxStyling(bgColor: Color.surface, cRadius: Layout.radiusCard, sColor: Color.cardBorder, lWidth: 1)
+        }.boxStyling(bgColor: Color.cardSurface, cRadius: Layout.radiusCard, sColor: Color.cardBorder, lWidth: 1)
     }
 }
 
 #Preview {
     ZStack {
-        Color.canvas.ignoresSafeArea()
+        Color.screenBackground.ignoresSafeArea()
         Card {
             VStack(alignment: .leading, spacing: 4) {
                 Text("CSSE1001").font(.fredoka(.headline))
-                Text("Running mark 66.7%").foregroundStyle(Color.inkSecondary)
+                Text("Running mark 66.7%").foregroundStyle(Color.textSecondary)
             }
             HStack {
                 Text("Assignment")

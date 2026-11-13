@@ -15,9 +15,9 @@ struct PageDots: View {
         HStack(spacing: 8) {
             ForEach(0..<count, id: \.self) { index in
                 Capsule()
-                    .fill(index == current ? Color.inkPrimary : Color.inkMint.opacity(0.3))
+                    .fill(index == current ? Color.brandMint : Color.tintMint.opacity(0.3))
                     .frame(width: index == current ? 32 : 14, height: 14)
-                    .overlay(Capsule().strokeBorder(Color.newInk, lineWidth: 3))
+                    .overlay(Capsule().strokeBorder(Color.textPrimary, lineWidth: 3))
             }
         }.animation(.snappy, value: current)
     }

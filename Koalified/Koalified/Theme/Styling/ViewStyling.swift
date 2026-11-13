@@ -14,25 +14,25 @@ extension View {
     func mainContainerStyling() -> some View {
         self.padding(.horizontal, Layout.screenPadding)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            .background(Color.canvas)
+            .background(Color.screenBackground)
     }
     
     /// Large bold screen title.
     func primaryTextStyling() -> some View {
-        self.foregroundStyle(Color.inkPrimary)
+        self.foregroundStyle(Color.textPrimary)
         .font(.fredoka(.largeTitle, .bold))
     }
     
     /// Subheadline text in the secondary ink colour (subtitles, captions).
     func secondaryTextStyling() -> some View {
         self.font(.fredoka(.subheadline))
-            .foregroundStyle(Color.inkSecondary)
+            .foregroundStyle(Color.textSecondary)
     }
     
     /// Small secondary text; currently styled the same as `secondaryTextStyling`.
     func tinyText () -> some View {
         self.font(.fredoka(.subheadline))
-            .foregroundStyle(Color.inkSecondary)
+            .foregroundStyle(Color.textSecondary)
     }
     
     /// Applies `BoxStyling` with the given background, corner radius, border colour and border width.

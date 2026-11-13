@@ -17,7 +17,7 @@ import SwiftData
             // The ZStack gives the transitions a container to animate in; without one the swap can just jump.
             ZStack {
                 // Solid backdrop so the window colour never shows through mid cross-fade.
-                Color.canvas.ignoresSafeArea()
+                Color.screenBackground.ignoresSafeArea()
 
                 // First run: splash, then RootView shows the onboarding flow (language, import).
                 if hasOnboarded || !showSplash {

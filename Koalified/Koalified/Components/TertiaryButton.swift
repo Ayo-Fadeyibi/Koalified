@@ -15,9 +15,9 @@ struct TertiaryButton: View {
         Button (action: action) {
             Text(title)
                 .font(.fredoka(.body, .bold))
-                .foregroundStyle(Color.inkPop)
+                .foregroundStyle(Color.greenDeep)
                 .frame(maxWidth: .infinity)
-                .boxStyling(bgColor: Color.surface, cRadius: Layout.radiusSmall, sColor: Color.inkPop, lWidth: 2)
+                .boxStyling(bgColor: Color.cardSurface, cRadius: Layout.radiusSmall, sColor: Color.greenDeep, lWidth: 2)
                 
         }.buttonStyle(.plain)
     }

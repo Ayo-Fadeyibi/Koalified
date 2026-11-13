@@ -12,15 +12,16 @@ struct PrimaryButton: View {
     
     let title: LocalizedStringKey
     let action: () -> Void
+    /// Corner radius of the button. Pass a large value for a pill shape.
+    var cornerRadius: CGFloat = Layout.radiusSmall
     
     var body: some View {
         Button (action: action) {
             Text(title)
                 .font(.fredoka(.body, .bold))
-                .foregroundStyle(Color.newInk)
+                .foregroundStyle(Color.textPrimary)
                 .frame(maxWidth: .infinity)
-                .padding()
-                .neoBrutalist(backgroundColor: Color.inkMint, cornerRadius: Layout.radiusSmall)
+                .boxStyling(bgColor: Color.mintFill, cRadius: cornerRadius, sColor: Color.textSecondary, lWidth: 1.5)
         }
     }
 }

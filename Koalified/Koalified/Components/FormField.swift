@@ -20,14 +20,14 @@ struct FormField<Content: View>: View {
         VStack(alignment: .leading, spacing: 6) {
             Text(label)
                 .font(.fredoka(.subheadline, .bold))
-                .foregroundStyle(Color.inkSecondary)
+                .foregroundStyle(Color.textSecondary)
 
             content
                 .font(.fredoka(.subheadline, .bold))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 10)
-                .neoBrutalist(backgroundColor: Color.surface, cornerRadius: Layout.radiusSmall, shadowOffset: 3)
+                .neoBrutalist(backgroundColor: Color.cardSurface, cornerRadius: Layout.radiusSmall, shadowOffset: 3)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }

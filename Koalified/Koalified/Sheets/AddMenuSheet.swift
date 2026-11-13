@@ -21,13 +21,13 @@ struct AddMenuSheet: View {
             HStack {
                 Text("Add")
                     .font(.fredoka(.title2, .bold))
-                    .foregroundStyle(Color.accentText)
+                    .foregroundStyle(Color.accent)
                 Spacer()
                 Button {
                     dismiss()
                 } label: {
                     Text("Done")
-                        .foregroundStyle(Color.accentText)
+                        .foregroundStyle(Color.accent)
                         .font(.fredoka(.body, .bold))
                 }
             }
@@ -47,7 +47,7 @@ struct AddMenuSheet: View {
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             .padding()
-            .background(Color.canvas)
+            .background(Color.screenBackground)
     }
     
     /// One tappable menu row with a title, a smaller subtitle and an arrow.
@@ -57,17 +57,17 @@ struct AddMenuSheet: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(LocalizedStringKey(title))
                         .font(.fredoka(.body, .semibold))
-                        .foregroundStyle(Color.accentText)
+                        .foregroundStyle(Color.accent)
                     Text(LocalizedStringKey(subtitle))
                         .font(.fredoka(.caption))
-                        .foregroundStyle(Color.inkSecondary)
+                        .foregroundStyle(Color.textSecondary)
                 }
                 Spacer()
                 Image(systemName: "chevron.right")
                     .font(.footnote.weight(.semibold))
-                    .foregroundStyle(Color.inkSecondary)
+                    .foregroundStyle(Color.textSecondary)
                 
-            }.boxStyling(bgColor: Color.surface, cRadius: Layout.radiusSmall, sColor: Color.cardBorder, lWidth: Layout.radiusSmall)
+            }.boxStyling(bgColor: Color.cardSurface, cRadius: Layout.radiusSmall, sColor: Color.cardBorder, lWidth: Layout.radiusSmall)
         }
         .buttonStyle(.plain)
     }
