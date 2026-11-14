@@ -13,7 +13,7 @@ struct CoursesHeader: View {
         HStack {
             Text("Courses")
                 .font(.fredoka(.title2, .bold))
-                .foregroundStyle(Color.greenDeep)
+                .foregroundStyle(Color.textPrimary)
             
             Spacer()
             
@@ -22,10 +22,10 @@ struct CoursesHeader: View {
                     } label: {
                 Image("user")
                     .font(.title3.weight(.semibold))
-                    .foregroundStyle(Color.textPrimary)
+                    .foregroundStyle(Color.onMint)
                     .frame(width: 48, height: 48)
                     .background(Color.mintFill, in: Circle())
-                    .overlay(Circle().strokeBorder(Color.textPrimary, lineWidth: 2))
+                    .overlay(Circle().strokeBorder(Color.inkBorder, lineWidth: 2))
             }
            
                     }

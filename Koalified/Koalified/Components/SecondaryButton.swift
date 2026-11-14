@@ -20,9 +20,10 @@ struct SecondaryButton: View {
                     .foregroundStyle(Color.textPrimary)
             }.frame(maxWidth: .infinity)
                 .padding(20)
+                .background(Color.cardSurface, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
                 .overlay(
                     RoundedRectangle(cornerRadius: Layout.radiusSmall)
-                        .strokeBorder(Color.black, lineWidth: 2)
+                        .strokeBorder(Color.inkBorder, lineWidth: 2)
                 )
         }.buttonStyle(.plain)
     }

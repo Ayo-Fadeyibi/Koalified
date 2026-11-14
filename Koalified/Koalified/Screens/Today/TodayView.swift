@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 /**
  This displays the today screen by utilising two different Views: An empty screen (TodayEmptyView()) and a content screen (TodayContentView()) depending on if local storage has any courses stored
@@ -6,10 +7,10 @@ import SwiftUI
 struct TodayView: View {
     @State private var showAddMenu = false
     @State private var showImport = false
-    /// Whether Today shows the calendar instead of the agenda.
-    @State private var showCalendar = false
     
-    @State private var  emptyState = true
+    @State private var  emptyState = false
+    
+    @Query private var courses: [Course]
     
     var body: some View {
         NavigationStack {
@@ -17,14 +18,17 @@ struct TodayView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     TodayHeader()
 
-                    if emptyState{
+                    if courses.isEmpty{
                         TodayEmptyView(onImport: { showImport = true },
-                                       onAddManually: { showAddMenu = true })
+                        onAddManually: { showAddMenu = true })
                     } else {
-                        TodayContentView(showCalendar: showCalendar)
+                        TodayContentView()
                     }
                 }
-                .padding(16)
+                .padding([.horizontal, .top], 16)
+                .padding(.bottom, courses.isEmpty ? 16 : 0)
+                // With classes, let the list run behind the tab bar instead of stopping above it.
+                .ignoresSafeArea(edges: courses.isEmpty ? [] : .bottom)
                 .background(Color.screenBackground)
                 
                 Button {
@@ -32,7 +36,7 @@ struct TodayView: View {
                 } label: {
                     Image(systemName: "plus")
                         .font(.title2.bold())
-                        .foregroundStyle(Color.textPrimary)
+                        .foregroundStyle(Color.onMint)
                         .frame(width: Layout.fabSize, height: Layout.fabSize)
                         .neoBrutalist(backgroundColor: Color.mintFill, cornerRadius: Layout.fabSize / 2)
                     

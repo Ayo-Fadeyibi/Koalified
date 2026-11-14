@@ -443,10 +443,23 @@
         }
       }
     },
+    "3 days left · 15% of course grade" : {
+
+    },
+    "29 October" : {
+
+    },
+    "A free day for a study session, catching up or taking a break." : {
+
+    },
+    "A LITTLE BREATHING ROOM" : {
+
+    },
     "Account and settings · Koalified" : {
 
     },
     "Add" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -1151,6 +1164,9 @@
     "Applied" : {
 
     },
+    "Assessment Wallet" : {
+
+    },
     "Assessments" : {
 
     },
@@ -1484,7 +1500,19 @@
         }
       }
     },
+    "CENSUS" : {
+
+    },
+    "CENSUS DATE · 9 DAYS LEFT" : {
+
+    },
     "Check it before you keep it" : {
+
+    },
+    "Check official semester dates" : {
+
+    },
+    "Check the last day to withdraw without course fees for your semester." : {
 
     },
     "Choose a .ics file" : {
@@ -1543,6 +1571,7 @@
 
     },
     "Class details & directions" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -1796,6 +1825,7 @@
       }
     },
     "Courses view" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -1887,7 +1917,11 @@
         }
       }
     },
+    "CSSE1001 · Individual" : {
+
+    },
     "CSSE1001 · Lecture" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -2997,6 +3031,7 @@
       }
     },
     "In 20 min" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -3134,6 +3169,9 @@
           }
         }
       }
+    },
+    "Know your next milestone" : {
+
     },
     "Koalified can read your UQ timetable from a link or a downloaded file. We'll show you where to find it." : {
       "localizations" : {
@@ -3509,6 +3547,12 @@
         }
       }
     },
+    "MID SEM BREAK  DATE · 9 DAYS LEFT" : {
+
+    },
+    "MID-BREAK" : {
+
+    },
     "My courses" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3652,6 +3696,9 @@
       }
     },
     "No classes found" : {
+
+    },
+    "No classes today." : {
 
     },
     "No courses yet" : {
@@ -4231,6 +4278,9 @@
         }
       }
     },
+    "Quiz 1" : {
+
+    },
     "Recorded" : {
 
     },
@@ -4421,6 +4471,9 @@
     "See what's coming" : {
 
     },
+    "See your week" : {
+
+    },
     "Semester" : {
       "localizations" : {
         "hi" : {
@@ -4513,6 +4566,9 @@
           }
         }
       }
+    },
+    "Semester Dates" : {
+
     },
     "Seminar" : {
 
@@ -4667,6 +4723,7 @@
 
     },
     "Starts 09:00" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -4861,6 +4918,9 @@
 
     },
     "Study coach, cloud sync and social features are planned for later. Your manual planner works without them." : {
+
+    },
+    "SWOTVAC" : {
 
     },
     "Symposium" : {
@@ -5110,6 +5170,7 @@
 
     },
     "Tue 20 Oct" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -5254,6 +5315,12 @@
 
     },
     "View" : {
+
+    },
+    "View Assessment" : {
+
+    },
+    "Walk there in Apple Maps" : {
 
     },
     "We couldn't read any classes from this file" : {

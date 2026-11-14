@@ -5,6 +5,7 @@
 //  Created by Ayooluwa Fadeyibi on 31/10/2026.
 //
 
+import Foundation
 import SwiftData
 
 struct ImportResult: Hashable {
@@ -12,6 +13,24 @@ struct ImportResult: Hashable {
     var updated = 0
     var unchanged = 0
     var skipped = 0   // events with no term or year
+}
+
+/// Pulls the building name out of a location like "46-230 – St Lucia – Collaborative – Andrew N. Liveris".
+/// The building is the last " – " part; returns nil when the location has fewer than 4 parts (e.g. online).
+func buildingName(from location: String?) -> String? {
+    guard let location else { return nil }
+    let parts = location.components(separatedBy: " – ")
+    guard parts.count >= 4, let last = parts.last else { return nil }
+    let name = last.trimmingCharacters(in: .whitespaces)
+    return name.isEmpty ? nil : name
+}
+
+/// Pulls the room code out of a location like "46-230 – St Lucia – Collaborative – Andrew N. Liveris".
+/// The room is the first " – " part; a location with a single part is returned as is, and nil gives "".
+func roomCode(from location: String?) -> String {
+    guard let location else { return "" }
+    let first = location.components(separatedBy: " – ").first ?? location
+    return first.trimmingCharacters(in: .whitespaces)
 }
 
 //Handles importation and update of timetable
@@ -48,14 +67,17 @@ func importEvents(_ events: [ParsedEvent], into context: ModelContext) throws ->
         // TODO: session logic goes here
         if let existing = byUID[event.uid] {
             let newType = event.type ?? .unknown
-            let newRoom = event.location ?? ""
+            let newRoom = roomCode(from: event.location)
+            let newBuilding = buildingName(from: event.location)
 
             if existing.start != event.start || existing.end != event.end
-                || existing.type != newType || existing.room != newRoom {
+                || existing.type != newType || existing.room != newRoom
+                || existing.building != newBuilding {
                 // update the fields on existing
                 existing.start = event.start
                 existing.end = event.end
                 existing.room = newRoom
+                existing.building = newBuilding
                 existing.type = newType
                 result.updated += 1
             } else {
@@ -65,7 +87,8 @@ func importEvents(_ events: [ParsedEvent], into context: ModelContext) throws ->
         } else {
             let session = ClassSession(start: event.start, end: event.end,
                                        type: event.type ?? .unknown,
-                                       room: event.location ?? "",
+                                       room: roomCode(from: event.location),
+                                       building: buildingName(from: event.location),
                                        icsUID: event.uid, course: course)
             context.insert(session)
             result.added += 1

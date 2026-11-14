@@ -7,7 +7,7 @@ import SwiftUI
 
 /// One class in today's list: start and end time, course code and room, and a pill for the class type.
 struct TodayClassRow: View {
-    let event: ClassEvent
+    let event: ClassSession
 
     var body: some View {
         Card {
@@ -15,32 +15,32 @@ struct TodayClassRow: View {
 
                 // Time column
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(event.start, style: .time)
+                    Text(event.start.formatted(date: .omitted, time: .shortened))
                         .font(.fredoka(.headline))
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.8)
-                    Text(event.end, style: .time)
-                        .font(.fredoka(.caption))
+                    Text(event.end.formatted(date: .omitted, time: .shortened))
+                        .font(.fredoka(.subheadline))
                         .foregroundStyle(.secondary)
                 }
-                .frame(width: 70, alignment: .leading)
+                .lineLimit(1)
+                .fixedSize()
 
                 Divider()
                     .frame(height: 40)
                 
                 // Course and room
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(event.courseCode)
+                    Text(event.course?.courseCode ?? "")
                         .font(.fredoka(.headline))
                     Label("Room \(event.room)", systemImage: "mappin.and.ellipse")
                         .font(.fredoka(.caption))
+                        .lineLimit(1)
                         .foregroundStyle(.secondary)
                 }
 
                 Spacer()
 
                 // Kind pill (Lecture, Tutorial...)
-                Text(event.kind.label)
+                Text(event.type.label)
                     .font(.fredoka(.caption, .semibold))
                     .foregroundStyle(Color.accent)
                     .padding(.horizontal, 12)
@@ -52,6 +52,13 @@ struct TodayClassRow: View {
 }
 
 #Preview {
-    TodayClassRow(event: SampleData.classEvents[0])
+    let start = Date().addingTimeInterval(20 * 60)
+    let session = ClassSession(start: start,
+                               end: start.addingTimeInterval(60 * 60),
+                               type: .LEC,
+                               room: "50-201",
+                               building: "Hawken Engineering Building"
+    )
+    TodayClassRow(event: session)
         .padding()
 }

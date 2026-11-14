@@ -31,24 +31,29 @@ struct CoursesView: View {
                     } else {
                         CoursesContent(path: $path)
                     }
-                }.padding(Layout.screenPadding)
-                    .background(Color.screenBackground)
+                }
+                .padding([.horizontal, .top], Layout.screenPadding)
+                .padding(.bottom, courses.isEmpty ? Layout.screenPadding : 0)
+                // With courses, let the list run behind the tab bar instead of stopping above it.
+                .ignoresSafeArea(edges: courses.isEmpty ? [] : .bottom)
+                .background(Color.screenBackground)
                 
                 Button {
                     showAddCourse = true
                 } label: {
                     Image(systemName: "plus")
                         .font(.title2.bold())
-                        .foregroundStyle(Color.textPrimary)
+                        .foregroundStyle(Color.onMint)
                         .frame(width: Layout.fabSize, height: Layout.fabSize)
                         .neoBrutalist(backgroundColor: Color.mintFill, cornerRadius: Layout.fabSize / 2)
                     
                 }.padding(40)
             } .background(Color.screenBackground)
+                .sheet(isPresented: $showAddCourse) { AddCourseSheet() }
                 .toolbar(.hidden, for: .navigationBar)
                 .navigationDestination(for: Course.self) { course in
                     CourseDetailView(course: course)
-                        .sheet(isPresented: $showAddCourse) { AddCourseSheet() }
+                        
                 }
         }
     }

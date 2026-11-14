@@ -38,7 +38,7 @@ struct StartImportView: View {
                     .textInputAutocapitalization(.never)
                     .autocorrectionDisabled()
                     .keyboardType(.URL)
-                    .boxStyling(bgColor: Color.white, cRadius: Layout.radiusSmall, sColor: Color.cardBorder, lWidth: 1)
+                    .boxStyling(bgColor: Color.cardSurface, cRadius: Layout.radiusSmall, sColor: Color.cardBorder, lWidth: 1)
                 PrimaryButton(title: "Import from link") { onImportLink(link) }
                     .disabled(link.trimmingCharacters(in: .whitespaces).isEmpty)
             }

@@ -17,7 +17,7 @@ struct PageDots: View {
                 Capsule()
                     .fill(index == current ? Color.brandMint : Color.tintMint.opacity(0.3))
                     .frame(width: index == current ? 32 : 14, height: 14)
-                    .overlay(Capsule().strokeBorder(Color.textPrimary, lineWidth: 3))
+                    .overlay(Capsule().strokeBorder(Color.inkBorder, lineWidth: 3))
             }
         }.animation(.snappy, value: current)
     }

@@ -23,8 +23,13 @@ struct CalendarTabContent: View {
                 ComingUpCard(markers: markers,
                              selectedDate: selectedDate,
                              onClear: { selectedDate = nil })
+                // Lets the last item scroll clear of the tab bar
+                Color.clear.frame(height: 100)
             }.scrollIndicators(.hidden)
         }
+        // Let the list run behind the tab bar instead of stopping above it.
+        .ignoresSafeArea(edges: .bottom)
+        .background(Color.screenBackground)
     }
 }
 

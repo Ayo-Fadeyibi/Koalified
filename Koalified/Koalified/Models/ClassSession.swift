@@ -66,14 +66,16 @@ final class ClassSession {
     var end: Date
     var type: SessionType
     var room: String
+    var building: String?
     var icsUID: String?
     var course: Course?
-    
-    init(start: Date, end: Date, type: SessionType, room: String, icsUID: String? = nil, course: Course? = nil) {
+
+    init(start: Date, end: Date, type: SessionType, room: String, building: String? = nil, icsUID: String? = nil, course: Course? = nil) {
         self.start = start
         self.end = end
         self.type = type
         self.room = room
+        self.building = building
         self.icsUID = icsUID
         self.course = course
     }

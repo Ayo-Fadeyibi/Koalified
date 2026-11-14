@@ -19,7 +19,7 @@ struct PrimaryButton: View {
         Button (action: action) {
             Text(title)
                 .font(.fredoka(.body, .bold))
-                .foregroundStyle(Color.textPrimary)
+                .foregroundStyle(Color.onMint)
                 .frame(maxWidth: .infinity)
                 .boxStyling(bgColor: Color.mintFill, cRadius: cornerRadius, sColor: Color.textSecondary, lWidth: 1.5)
         }

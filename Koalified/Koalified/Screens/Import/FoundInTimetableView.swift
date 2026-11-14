@@ -49,7 +49,7 @@ struct FoundInTimetableView: View {
             Button(action: onConfirm) {
                 Text("Looks right")
                     .font(.fredoka(.body, .bold))
-                    .foregroundStyle(Color.textPrimary)
+                    .foregroundStyle(Color.onMint)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
                     .neoBrutalist(backgroundColor: Color.mintFill, cornerRadius: 30)

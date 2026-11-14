@@ -30,6 +30,8 @@ struct EmptyStateView<Content: View>: View {
     let primaryAction2: (() -> Void)?
     let secondaryTitle: LocalizedStringKey?
     let secondaryAction: (() -> Void)?
+    let secondaryTitle2: LocalizedStringKey?
+    let secondaryAction2: (() -> Void)?
 
     init(
         header1: LocalizedStringKey? = nil,
@@ -44,6 +46,8 @@ struct EmptyStateView<Content: View>: View {
         primaryAction2: (() -> Void)? = nil,
         secondaryTitle: LocalizedStringKey? = nil,
         secondaryAction: (() -> Void)? = nil,
+        secondaryTitle2: LocalizedStringKey? = nil,
+        secondaryAction2: (() -> Void)? = nil,
         @ViewBuilder content: () -> Content
     ) {
         self.header1 = header1
@@ -58,6 +62,8 @@ struct EmptyStateView<Content: View>: View {
         self.primaryAction2 = primaryAction2
         self.secondaryTitle = secondaryTitle
         self.secondaryAction = secondaryAction
+        self.secondaryTitle2 = secondaryTitle2
+        self.secondaryAction2 = secondaryAction2
         self.content = content()
     }
 
@@ -94,6 +100,10 @@ struct EmptyStateView<Content: View>: View {
                     if let primaryTitle2, let primaryAction2 {
                         PrimaryButton(title: primaryTitle2, action: primaryAction2, cornerRadius: 30)
                     }
+                    
+                    if let secondaryTitle2, let secondaryAction2 {
+                        secondaryRow(secondaryTitle2, action: secondaryAction2)
+                    }
                 }
             }
         }
@@ -106,7 +116,7 @@ struct EmptyStateView<Content: View>: View {
     }
 
     private var hasSecondCard: Bool {
-        header2 != nil || title2 != nil || message2 != nil || primaryTitle2 != nil
+        header2 != nil || title2 != nil || message2 != nil || primaryTitle2 != nil || secondaryTitle2 != nil
     }
 
     /// Small monospaced all-caps label above a title.
@@ -145,14 +155,18 @@ extension EmptyStateView where Content == EmptyView {
         primaryAction1: (() -> Void)? = nil,
         primaryAction2: (() -> Void)? = nil,
         secondaryTitle: LocalizedStringKey? = nil,
-        secondaryAction: (() -> Void)? = nil
+        secondaryAction: (() -> Void)? = nil,
+        secondaryTitle2: LocalizedStringKey? = nil,
+        secondaryAction2: (() -> Void)? = nil
     ) {
         self.init(header1: header1, header2: header2,
                   title1: title1, title2: title2,
                   message1: message1, message2: message2,
                   primaryTitle1: primaryTitle1, primaryTitle2: primaryTitle2,
                   primaryAction1: primaryAction1, primaryAction2: primaryAction2,
-                  secondaryTitle: secondaryTitle, secondaryAction: secondaryAction) {
+                  secondaryTitle: secondaryTitle, secondaryAction: secondaryAction,
+                  secondaryTitle2: secondaryTitle2, secondaryAction2: secondaryAction2
+        ) {
             EmptyView()
         }
     }
@@ -170,7 +184,9 @@ extension EmptyStateView where Content == EmptyView {
             primaryTitle1: "Import timetable",
             primaryAction1: {},
             secondaryTitle: "Add a class manually",
-            secondaryAction: {}
+            secondaryAction: {},
+            secondaryTitle2: "Hello",
+            secondaryAction2: {}
         )
         .padding(16)
     }

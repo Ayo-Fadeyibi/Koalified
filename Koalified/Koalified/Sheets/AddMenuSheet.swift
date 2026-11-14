@@ -19,9 +19,6 @@ struct AddMenuSheet: View {
     var body: some View {
         VStack (alignment: .leading, spacing: Layout.screenPadding) {
             HStack {
-                Text("Add")
-                    .font(.fredoka(.title2, .bold))
-                    .foregroundStyle(Color.accent)
                 Spacer()
                 Button {
                     dismiss()
@@ -52,24 +49,7 @@ struct AddMenuSheet: View {
     
     /// One tappable menu row with a title, a smaller subtitle and an arrow.
     private func optionRow(title: String, subtitle: String, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            HStack {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(LocalizedStringKey(title))
-                        .font(.fredoka(.body, .semibold))
-                        .foregroundStyle(Color.accent)
-                    Text(LocalizedStringKey(subtitle))
-                        .font(.fredoka(.caption))
-                        .foregroundStyle(Color.textSecondary)
-                }
-                Spacer()
-                Image(systemName: "chevron.right")
-                    .font(.footnote.weight(.semibold))
-                    .foregroundStyle(Color.textSecondary)
-                
-            }.boxStyling(bgColor: Color.cardSurface, cRadius: Layout.radiusSmall, sColor: Color.cardBorder, lWidth: Layout.radiusSmall)
-        }
-        .buttonStyle(.plain)
+        SecondaryButton(title: LocalizedStringKey(title), action: action)
     }
 }
 

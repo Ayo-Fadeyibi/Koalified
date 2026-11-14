@@ -8,17 +8,20 @@
 import SwiftUI
 
 /// Reusable rounded container with a surface background and border; wraps any content in a vertical stack.
+/// The background defaults to `cardSurface`; pass `bgColor` to tint a card.
 struct Card<Content: View>: View {
+    let bgColor: Color
     let content: Content
     
-    init(@ViewBuilder content: () -> Content) {
+    init(bgColor: Color = Color.cardSurface, @ViewBuilder content: () -> Content) {
+        self.bgColor = bgColor
         self.content = content()
     }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             content
-        }.boxStyling(bgColor: Color.cardSurface, cRadius: Layout.radiusCard, sColor: Color.cardBorder, lWidth: 1)
+        }.boxStyling(bgColor: bgColor, cRadius: Layout.radiusCard, sColor: Color.cardBorder, lWidth: 1)
     }
 }
 

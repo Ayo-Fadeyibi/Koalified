@@ -34,14 +34,17 @@ struct CourseCard: View {
                                 .foregroundStyle(accent)
                             Spacer()
                             Button {
-                                showFolder.toggle()
+                                withAnimation(.spring(response: 0.32, dampingFraction: 0.82)) {
+                                    showFolder.toggle()
+                                }
                             } label: {
                                 Image(showFolder ? "folder-open" : "folder-closed")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 16, height: 16)
+                                    .frame(width: 25, height: 25)
                                     .foregroundStyle(Color.textPrimary)
                             }
+                            .buttonStyle(.plain)
                         }
 
                         Text(title)
@@ -76,6 +79,7 @@ struct CourseCard: View {
                     }
                     
                 }
+                
             }
         }
     }
