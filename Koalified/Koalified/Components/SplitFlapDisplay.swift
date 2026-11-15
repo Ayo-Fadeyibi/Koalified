@@ -9,10 +9,16 @@ import SwiftUI
 
 import SwiftUI
 
+/// A row of flip tiles showing `text`. Tapping the board flips every tile again with a light mechanical tick;
+/// change `replayTrigger` (e.g. on pull to refresh) to flip it from outside.
 struct SplitFlapDisplay: View {
     let text: String
+    var replayTrigger: Int = 0
     var tileBackground: Color = Color(red: 0.11, green: 0.16, blue: 0.14)
     var seamColor: Color = Color(red: 0.25, green: 0.34, blue: 0.30)
+
+    /// Bumped on every tap or external replay; drives both the tiles' re-flip and the haptic.
+    @State private var flipCount = 0
 
     var body: some View {
         HStack(spacing: 4) {
@@ -20,11 +26,16 @@ struct SplitFlapDisplay: View {
                 SplitFlapTile(
                     character: String(character),
                     staggerDelay: Double(index) * 0.05,
+                    replayToken: flipCount,
                     tileBackground: tileBackground,
                     seamColor: seamColor
                 )
             }
         }
+        .contentShape(Rectangle())
+        .onTapGesture { flipCount += 1 }
+        .onChange(of: replayTrigger) { _, _ in flipCount += 1 }
+        .sensoryFeedback(.impact(weight: .light), trigger: flipCount)
     }
 }
 
@@ -62,6 +73,8 @@ private struct HalfFlapView: View {
 struct SplitFlapTile: View {
     let character: String
     var staggerDelay: Double = 0
+    /// Changes each time the board should flip again.
+    var replayToken: Int = 0
     let tileBackground: Color
     let seamColor: Color
 
@@ -119,6 +132,23 @@ struct SplitFlapTile: View {
         .onChange(of: character) { _, newValue in
             guard newValue != currentChar else { return }
             triggerFlip(to: newValue)
+        }
+        .onChange(of: replayToken) { _, _ in
+            replay()
+        }
+    }
+
+    /// Spins through a different character and then back to the real one, like a board refreshing.
+    private func replay() {
+        let spinChars = Array("ABCDEFGHJKLMNPRSTUVWXYZ0123456789")
+        let spin = String(spinChars.randomElement() ?? "X")
+        let target = character
+
+        Task { @MainActor in
+            try? await Task.sleep(for: .seconds(staggerDelay))
+            triggerFlip(to: spin == target ? "-" : spin)
+            try? await Task.sleep(for: .seconds(0.4))
+            triggerFlip(to: target)
         }
     }
 

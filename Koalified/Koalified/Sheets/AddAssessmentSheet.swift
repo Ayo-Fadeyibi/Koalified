@@ -26,11 +26,7 @@ struct AddAssessmentSheet: View {
                     .font(.fredoka(.title2, .bold))
                     .foregroundStyle(Color.accent)
                 Spacer()
-                Button { dismiss() } label: {
-                    Text("Cancel")
-                        .foregroundStyle(Color.accent)
-                        .font(.fredoka(.body, .bold))
-                }
+                TextButton(title: "Cancel") { dismiss() }
             }
 
             FormField("Name") {

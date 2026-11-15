@@ -10,7 +10,7 @@ struct TodayClassRow: View {
     let event: ClassSession
 
     var body: some View {
-        Card {
+        PlainCard {
             HStack(spacing: 16) {
 
                 // Time column

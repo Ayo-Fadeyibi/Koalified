@@ -20,13 +20,7 @@ struct AddWidgetSheet: View {
                     .font(.fredoka(.title2, .bold))
                     .foregroundStyle(Color.textPrimary)
                 Spacer()
-                Button {
-                    dismiss()
-                } label: {
-                    Text("Done")
-                        .foregroundStyle(Color.accent)
-                        .font(.fredoka(.body, .bold))
-                }
+                TextButton(title: "Done") { dismiss() }
             }
             
             Text("Preview")
@@ -42,7 +36,6 @@ struct AddWidgetSheet: View {
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             .padding()
-            .background(Color.screenBackground)
     }
 }
 

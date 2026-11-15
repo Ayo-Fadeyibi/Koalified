@@ -76,7 +76,6 @@ struct AddCourseSheet: View {
         }.padding(.top)
         .padding(.horizontal, Layout.screenPadding)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            .background(Color.screenBackground)
             .alert("Can't add course", isPresented: $showError) {
                 Button("OK", role: .cancel) { }
             } message: {

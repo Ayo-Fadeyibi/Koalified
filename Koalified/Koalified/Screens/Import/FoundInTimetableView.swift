@@ -46,15 +46,7 @@ struct FoundInTimetableView: View {
             }
             .scrollIndicators(.hidden)
 
-            Button(action: onConfirm) {
-                Text("Looks right")
-                    .font(.fredoka(.body, .bold))
-                    .foregroundStyle(Color.onMint)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 16)
-                    .neoBrutalist(backgroundColor: Color.mintFill, cornerRadius: 30)
-            }
-            .buttonStyle(.plain)
+            PrimaryButton(title: "Looks right", action: onConfirm)
         }
         .padding(.top, 24)
         .padding(.bottom, Layout.screenPadding)

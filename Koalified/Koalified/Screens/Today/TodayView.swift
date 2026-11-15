@@ -31,20 +31,13 @@ struct TodayView: View {
                 .ignoresSafeArea(edges: courses.isEmpty ? [] : .bottom)
                 .background(Color.screenBackground)
                 
-                Button {
-                    showAddMenu = true
-                } label: {
-                    Image(systemName: "plus")
-                        .font(.title2.bold())
-                        .foregroundStyle(Color.onMint)
-                        .frame(width: Layout.fabSize, height: Layout.fabSize)
-                        .neoBrutalist(backgroundColor: Color.mintFill, cornerRadius: Layout.fabSize / 2)
-                    
-                }.padding(40)
+                FloatingAddButton { showAddMenu = true }
+                    .padding(40)
             }
-            .sheet(isPresented: $showImport) { ImportFlowView() }
+            .sheet(isPresented: $showImport) { ImportFlowView().sheetBorder() }
             .sheet(isPresented: $showAddMenu) {
                 AddMenuSheet(onAddClass: {}, onAddDeadline: {}, onAddWidget: {})
+                    .sheetBorder(topInset: 2.5)
                     .presentationDetents([.height(320)])
             }
         }

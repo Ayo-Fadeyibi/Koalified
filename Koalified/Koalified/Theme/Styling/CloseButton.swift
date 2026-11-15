@@ -15,13 +15,8 @@ struct CloseButton: ViewModifier {
         content
             .toolbar {
                         ToolbarItem(placement: .topBarTrailing) {
-                            Button {
-                                action()
-                            } label: {
-                                Text("Skip")
-                                    .font(.fredoka(.footnote, .bold))
-                                    .foregroundStyle(Color.textSecondary)
-                }
+                            TextButton(title: "Skip", color: Color.textSecondary,
+                                       font: .fredoka(.footnote, .bold), action: action)
             }
         }
     }

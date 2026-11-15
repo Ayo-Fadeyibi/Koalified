@@ -2,72 +2,78 @@
 //  CalculatorContent.swift
 //  Koalified
 //
-//  Created by Ayooluwa Fadeyibi on 28/10/2026.
-//
 
 import SwiftUI
 import SwiftData
 
+/// The Calculator tab when courses exist: pick a course, choose a target grade, see the average needed on
+/// what's left, and review the marks already locked in.
 struct CalculatorContent: View {
     @Query private var courses: [Course]
+
     /// Picker selection is a plain String key, not the Course itself: SwiftData models can change
     /// their hash (temporary -> permanent ID) while SwiftUI holds them as dictionary keys, which crashes.
     @State private var selectedCourseKey: String?
-    @State private var selectedGrade: Int? = nil
+    @State private var selectedGrade = 5
+    /// Set when the user taps "Edit recorded marks".
+    @State private var editingCourse: Course?
 
     /// Stable, unique key for a course (code + term + year).
     private func key(for course: Course) -> String {
         "\(course.courseCode)-\(course.term.rawValue)-\(course.year)"
     }
-    
-    var body: some View {
-        VStack (alignment: .leading, spacing: Layout.sectionSpacing) {
-            Text("Calculator")
-                .primaryTextStyling()
-            
-            FormField("Course") {
-                Picker("Course", selection: $selectedCourseKey) {
-                    ForEach(courses) { course in
-                        Text(course.courseCode).tag(Optional(key(for: course)))
-                    }
-                }
-                .labelsHidden()
-                .pickerStyle(.menu)
-                .tint(Color.brandMint)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            
-            ScrollView (.horizontal, showsIndicators: false) {
-                LazyHStack(spacing: 12) {
-                    ForEach(GradeData.grades, id: \.self) { grade in
-                        Button {
-                            selectedGrade = grade
-                        } label: {
-                            Text("Grade \(grade)")
-                                .font(.fredoka(.subheadline, .bold))
-                                .foregroundStyle(Color.greenDeep)
-                                .boxStyling(bgColor: grade == selectedGrade ? Color.tintMint : Color.cardSurface, cRadius: Layout.radiusSmall, sColor: Color.cardBorder, lWidth: 1)
 
-                        }
+    private var selectedCourse: Course? {
+        courses.first { key(for: $0) == selectedCourseKey } ?? courses.first
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: Layout.sectionSpacing) {
+            coursePicker
+
+            ScrollView {
+                VStack(alignment: .leading, spacing: Layout.sectionSpacing) {
+                    if let course = selectedCourse {
+                        TargetGradeCard(targetGrade: $selectedGrade)
+                        RequiredMarkCard(course: course, targetGrade: selectedGrade)
+                        LockedInCard(course: course) { editingCourse = course }
                     }
+
+                    // Lets the last card scroll clear of the tab bar
+                    Color.clear.frame(height: 100)
                 }
-            }.fixedSize(horizontal: false, vertical: true)
-            
-            Spacer()
-            
-            VStack {
-                PrimaryButton(title: "Try different marks") {}
-                SecondaryButton(title: "Share exam target") {}
             }
-            .padding(.bottom, 16)
-            
+            .scrollIndicators(.hidden)
         }
-        .mainContainerStyling()
+        .ignoresSafeArea(edges: .bottom)
+        .navigationDestination(item: $editingCourse) { CourseDetailView(course: $0) }
+    }
+
+    /// Course dropdown (the shared `FloatingDropdown`), keyed by the stable course key.
+    private var coursePicker: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text("Course")
+                .font(.fredoka(.subheadline, .bold))
+                .foregroundStyle(Color.textSecondary)
+
+            FloatingDropdown(
+                options: courses.map(key(for:)),
+                selection: Binding(
+                    get: { selectedCourse.map(key(for:)) ?? "" },
+                    set: { selectedCourseKey = $0 }
+                )
+            ) { courseKey in
+                courses.first { key(for: $0) == courseKey }?.courseCode ?? courseKey
+            }
+        }
+        .zIndex(1)
     }
 }
 
-
 #Preview {
-    CalculatorContent()
-        .modelContainer(PreviewData.container)
+    NavigationStack {
+        CalculatorContent()
+            .padding(16)
+    }
+    .modelContainer(PreviewData.container)
 }

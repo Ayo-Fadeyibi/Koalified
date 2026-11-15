@@ -41,22 +41,10 @@ struct UniversityView: View {
             // Available now
             sectionLabel("AVAILABLE NOW")
 
-            Button {
-                isUQSelected = true
-            } label: {
-                HStack {
-                    Text("The University of Queensland")
-                        .secondaryTextStyling()
-                    Spacer()
-                    if isUQSelected {
-                        Image(systemName: "checkmark")
-                            .font(.body.weight(.bold))
-                            .foregroundStyle(Color.accent)
-                    }
-                }
-                .boxStyling(bgColor: isUQSelected ? Color.tintMint : Color.cardSurface, cRadius: Layout.radiusSmall, sColor: Color.cardBorder, lWidth: 1)
+            SelectableRow(isSelected: isUQSelected, action: { isUQSelected = true }) {
+                Text("The University of Queensland")
+                    .secondaryTextStyling()
             }
-            .buttonStyle(.plain)
 
             // Future
             sectionLabel("FUTURE ADDITION")

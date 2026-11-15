@@ -38,18 +38,10 @@ struct CoursesView: View {
                 .ignoresSafeArea(edges: courses.isEmpty ? [] : .bottom)
                 .background(Color.screenBackground)
                 
-                Button {
-                    showAddCourse = true
-                } label: {
-                    Image(systemName: "plus")
-                        .font(.title2.bold())
-                        .foregroundStyle(Color.onMint)
-                        .frame(width: Layout.fabSize, height: Layout.fabSize)
-                        .neoBrutalist(backgroundColor: Color.mintFill, cornerRadius: Layout.fabSize / 2)
-                    
-                }.padding(40)
+                FloatingAddButton { showAddCourse = true }
+                    .padding(40)
             } .background(Color.screenBackground)
-                .sheet(isPresented: $showAddCourse) { AddCourseSheet() }
+                .sheet(isPresented: $showAddCourse) { AddCourseSheet().sheetBorder() }
                 .toolbar(.hidden, for: .navigationBar)
                 .navigationDestination(for: Course.self) { course in
                     CourseDetailView(course: course)

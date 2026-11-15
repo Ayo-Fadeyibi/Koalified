@@ -5,6 +5,7 @@ import SwiftData
 @main struct KoalifiedApp: App {
     @Environment(\.scenePhase) private var scenePhase
     @AppStorage("hasOnboarded") private var hasOnboarded = false
+    @AppStorage("appColorScheme") private var appColorScheme: AppColorScheme = .system
     @State private var showSplash = true
 
     init() {
@@ -35,6 +36,8 @@ import SwiftData
                         .transition(.opacity)
                 }
             }
+            // On the container, not RootView, so the splash and onboarding follow the chosen theme too.
+            .preferredColorScheme(appColorScheme.colorScheme)
             // Animate the swaps here, on the container. A bare withAnimation around an
             // @AppStorage write doesn't reliably carry the animation into a view swap.
             .animation(.easeInOut(duration: 0.7), value: showSplash)

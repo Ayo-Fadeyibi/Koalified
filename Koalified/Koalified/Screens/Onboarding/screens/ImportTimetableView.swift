@@ -35,7 +35,7 @@ struct ImportTimetableView: View {
             }
 
             // Paste-a-link card
-            VStack(alignment: .leading, spacing: 14) {
+            PlainCard {
                 Text("Paste a link")
                     .font(.fredoka(.body, .bold))
                     .foregroundStyle(Color.textPrimary)
@@ -51,14 +51,13 @@ struct ImportTimetableView: View {
                                   cornerRadius: Layout.radiusSmall,
                                   shadowOffset: 0,
                                   shadowColor: .clear)
-                pillButton("Import from link", fill: Color.mintFill) { onImportLink(link) }
+                PrimaryButton(title: "Import from link") { onImportLink(link) }
             }
-            .boxStyling(bgColor: Color.cardSurface, cRadius: Layout.radiusLarge, sColor: Color.cardBorder, lWidth: 1)
 
-            pillButton("Choose a .ics file", fill: Color.tintMint, action: onChooseFile)
+            PrimaryButton(title: "Choose a .ics file", action: onChooseFile, bgColor: Color.tintMint)
 
             // Privacy note
-            VStack(alignment: .leading, spacing: 6) {
+            PlainCard(bgColor: Color.tintAmber) {
                 Text("Your link stays on this phone")
                     .font(.fredoka(.subheadline, .bold))
                     .foregroundStyle(Color.textPrimary)
@@ -66,8 +65,6 @@ struct ImportTimetableView: View {
                     .font(.fredoka(.footnote))
                     .foregroundStyle(Color.textPrimary.opacity(0.75))
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .boxStyling(bgColor: Color.tintAmber, cRadius: Layout.radiusLarge, sColor: Color.cardBorder, lWidth: 1)
 
             if let errorMessage {
                 Text(errorMessage)
@@ -77,30 +74,12 @@ struct ImportTimetableView: View {
 
             Spacer()
             if let onSkip {
-                Button(action: onSkip) {
-                    Text("Skip, I'll add classes by hand")
-                        .font(.fredoka(.subheadline, .bold))
-                        .foregroundStyle(Color.accent)
-                        .frame(maxWidth: .infinity)
-                }
-                .buttonStyle(.plain)
+                TextButton(title: "Skip, I'll add classes by hand", font: .fredoka(.subheadline, .bold), action: onSkip)
+                    .frame(maxWidth: .infinity)
             }
         }
         .padding(.top, 24)
         .padding(.bottom, Layout.screenPadding)
-    }
-
-    /// Full-width pill button: thick border and hard shadow, dark label.
-    private func pillButton(_ title: LocalizedStringKey, fill: Color, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            Text(title)
-                .font(.fredoka(.body, .bold))
-                .foregroundStyle(Color.textPrimary)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 16)
-                .neoBrutalist(backgroundColor: fill, cornerRadius: 30)
-        }
-        .buttonStyle(.plain)
     }
 }
 

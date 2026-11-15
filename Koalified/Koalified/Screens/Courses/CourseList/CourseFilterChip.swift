@@ -12,15 +12,9 @@ struct CourseFilterChip: View {
     let action: () -> Void
 
     var body: some View {
-        Button(action: action) {
-            Text(LocalizedStringKey(title))
-                .font(.fredoka(.footnote, .semibold))
-                .foregroundStyle(Color.textPrimary)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
-                .neoBrutalist(backgroundColor: isSelected ? Color.tintMint : Color.cardSurface, cornerRadius: 20, shadowOffset: 3)
-        }
-        .buttonStyle(.plain)
+        PillButton(title: LocalizedStringKey(title),
+                   bgColor: isSelected ? Color.tintMint : Color.cardSurface,
+                   action: action)
     }
 }
 

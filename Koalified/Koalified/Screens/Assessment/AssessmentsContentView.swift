@@ -52,15 +52,8 @@ struct AssessmentsContentView: View {
                         .font(.fredoka(.subheadline, .semibold))
                         .foregroundStyle(Color.textSecondary)
                     AssessmentList(upcoming) { _ in
-                        Button { print("add mark") } label: {
-                            Label("Add mark", systemImage: "plus")
-                                .font(.fredoka(.caption, .semibold))
-                                .foregroundStyle(Color.accent)
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 7)
-                                .neoBrutalist(backgroundColor: Color.cardSurface, cornerRadius: 20, shadowOffset: 2)
-                        }
-                        .buttonStyle(.plain)
+                        PillButton(title: "Add mark", systemImage: "plus", color: Color.accent,
+                                   horizontalPadding: 12, verticalPadding: 7, shadowOffset: 2) { print("add mark") }
                     }
                 }
                 

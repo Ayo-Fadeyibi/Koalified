@@ -1,0 +1,67 @@
+//
+//  ProfileDestination.swift
+//  Koalified
+//
+//  Every screen the Profile tab can push. Rows link with `NavigationLink(value:)` and
+//  `ProfileView` maps each value to its screen in one place.
+//
+
+import SwiftUI
+
+enum ProfileDestination: Hashable {
+    case notifications, language, replayTour
+    case addWidget, semesterReceipt, about, helpFeedback
+    case reviewCourses, removeLink, deleteData
+
+    /// Row and screen title.
+    var title: LocalizedStringKey {
+        switch self {
+        case .notifications: "Notifications"
+        case .language: "Language"
+        case .replayTour: "Replay the tour"
+        case .addWidget: "Add a widget"
+        case .semesterReceipt: "Your Semester receipt"
+        case .about: "About Koalified"
+        case .helpFeedback: "Help & feedback"
+        case .reviewCourses: "Review courses"
+        case .removeLink: "Remove timetable link"
+        case .deleteData: "Delete semester data"
+        }
+    }
+}
+
+/// One tappable row in a Profile section: icon, title and a chevron.
+struct ProfileRow: View {
+    let destination: ProfileDestination
+
+    var body: some View {
+        NavigationLink(value: destination) {
+            HStack(spacing: 12) {
+
+                Text(destination.title)
+                    .font(.fredoka(.body, .semibold))
+                    .foregroundStyle(Color.textPrimary)
+
+                Spacer()
+
+                Image(systemName: "chevron.right")
+                    .font(.footnote.weight(.semibold))
+                    .foregroundStyle(Color.textSecondary)
+               
+            }
+            .padding()
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+    }
+}
+
+#Preview {
+    NavigationStack {
+        Card {
+            ProfileRow(destination: .notifications)
+            ProfileRow(destination: .language)
+        }
+        .padding()
+    }
+}

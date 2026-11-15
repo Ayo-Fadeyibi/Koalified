@@ -102,6 +102,16 @@
         }
       }
     },
+    "%@ of %@ pts" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ of %2$@ pts"
+          }
+        }
+      }
+    },
     "%@, %@. Check it looks right." : {
       "localizations" : {
         "en" : {
@@ -449,10 +459,19 @@
     "29 October" : {
 
     },
+    "a %lld is already banked" : {
+
+    },
+    "A %lld is out of reach this semester." : {
+
+    },
     "A free day for a study session, catching up or taking a break." : {
 
     },
     "A LITTLE BREATHING ROOM" : {
+
+    },
+    "About Koalified" : {
 
     },
     "Account and settings · Koalified" : {
@@ -1263,7 +1282,13 @@
         }
       }
     },
+    "average on what's left" : {
+
+    },
     "Back" : {
+
+    },
+    "Banked so far" : {
 
     },
     "Bring in your timetable" : {
@@ -1454,6 +1479,9 @@
         }
       }
     },
+    "can't be reached" : {
+
+    },
     "Cancel" : {
       "localizations" : {
         "hi" : {
@@ -1617,13 +1645,7 @@
         }
       }
     },
-    "Clear" : {
-
-    },
     "Clinical" : {
-
-    },
-    "Coming up" : {
 
     },
     "Computing" : {
@@ -2014,7 +2036,13 @@
         }
       }
     },
-    "Customise Koala" : {
+    "Dark Mode" : {
+
+    },
+    "DAY" : {
+
+    },
+    "Day view →" : {
 
     },
     "Degree plan" : {
@@ -2064,6 +2092,12 @@
       }
     },
     "Delete" : {
+
+    },
+    "Delete semester data" : {
+
+    },
+    "Delete Something" : {
 
     },
     "Do you need help finding your timetable?" : {
@@ -2434,6 +2468,9 @@
         }
       }
     },
+    "Edit recorded marks" : {
+
+    },
     "Enter assessment from your own course information" : {
       "localizations" : {
         "hi" : {
@@ -2575,6 +2612,9 @@
     "Event" : {
 
     },
+    "Everything left · %lld%%" : {
+
+    },
     "Exam" : {
 
     },
@@ -2686,6 +2726,18 @@
     "Grade %lld" : {
 
     },
+    "Helllllo" : {
+
+    },
+    "Hellllo" : {
+
+    },
+    "Hello" : {
+
+    },
+    "Hello World" : {
+
+    },
     "Hello, world!" : {
       "localizations" : {
         "hi" : {
@@ -2731,6 +2783,9 @@
           }
         }
       }
+    },
+    "Help & feedback" : {
+
     },
     "Helps organise your timetable and grades." : {
       "localizations" : {
@@ -2827,9 +2882,6 @@
         }
       }
     },
-    "Image" : {
-
-    },
     "Import" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -2878,6 +2930,9 @@
       }
     },
     "Import %@" : {
+
+    },
+    "Import again" : {
 
     },
     "Import again any time. Changes update, nothing gets duplicated." : {
@@ -2932,9 +2987,6 @@
         }
       }
     },
-    "Import timetable (.ics)" : {
-
-    },
     "Import your timetable" : {
       "localizations" : {
         "hi" : {
@@ -2980,6 +3032,9 @@
           }
         }
       }
+    },
+    "Import your timetable to personalise your course list and semester progress." : {
+
     },
     "Import your timetable to see your next class, deadlines and directions." : {
 
@@ -3311,6 +3366,9 @@
         }
       }
     },
+    "Language" : {
+
+    },
     "Lecture" : {
       "localizations" : {
         "hi" : {
@@ -3406,7 +3464,19 @@
         }
       }
     },
+    "Light Mode" : {
+
+    },
+    "LOCKED IN" : {
+
+    },
     "Looks right" : {
+
+    },
+    "MAKE IT YOUR SEMESTER" : {
+
+    },
+    "Make it yours" : {
 
     },
     "Marked · %lld" : {
@@ -3551,6 +3621,9 @@
 
     },
     "MID-BREAK" : {
+
+    },
+    "More" : {
 
     },
     "My courses" : {
@@ -3747,13 +3820,10 @@
         }
       }
     },
+    "No marks recorded yet" : {
+
+    },
     "Nothing changed. Your timetable was already up to date." : {
-
-    },
-    "Nothing coming up" : {
-
-    },
-    "Nothing on this day" : {
 
     },
     "Nothing to show yet. Import your timetable, or add classes by hand." : {
@@ -3802,6 +3872,9 @@
           }
         }
       }
+    },
+    "Notifications" : {
+
     },
     "OK" : {
       "localizations" : {
@@ -4140,6 +4213,9 @@
         }
       }
     },
+    "Preferences" : {
+
+    },
     "Preview" : {
       "localizations" : {
         "hi" : {
@@ -4281,7 +4357,19 @@
     "Quiz 1" : {
 
     },
+    "Ready when you are." : {
+
+    },
     "Recorded" : {
+
+    },
+    "Remove timetable link" : {
+
+    },
+    "Replay the tour" : {
+
+    },
+    "Review courses" : {
 
     },
     "Room %@" : {
@@ -4468,7 +4556,7 @@
         }
       }
     },
-    "See what's coming" : {
+    "Secured" : {
 
     },
     "See your week" : {
@@ -4566,6 +4654,9 @@
           }
         }
       }
+    },
+    "Semester Data" : {
+
     },
     "Semester Dates" : {
 
@@ -4665,9 +4756,6 @@
           }
         }
       }
-    },
-    "Share exam target" : {
-
     },
     "Show your week on the Home screen" : {
       "extractionState" : "manual",
@@ -4917,13 +5005,13 @@
     "Studio" : {
 
     },
-    "Study coach, cloud sync and social features are planned for later. Your manual planner works without them." : {
-
-    },
     "SWOTVAC" : {
 
     },
     "Symposium" : {
+
+    },
+    "TARGET GRADE" : {
 
     },
     "The calculator needs a course with its assessments and weights. Add one and enter any marks you already have." : {
@@ -4971,9 +5059,6 @@
           }
         }
       }
-    },
-    "The Koalified story" : {
-
     },
     "The University of Queensland" : {
       "localizations" : {
@@ -5073,6 +5158,9 @@
     "Timetable imported" : {
 
     },
+    "TO REACH A %lld" : {
+
+    },
     "Today" : {
       "localizations" : {
         "hi" : {
@@ -5165,9 +5253,6 @@
           }
         }
       }
-    },
-    "Try different marks" : {
-
     },
     "Tue 20 Oct" : {
       "extractionState" : "stale",
@@ -5262,7 +5347,7 @@
         }
       }
     },
-    "University of Queensland · BE (Honours)" : {
+    "University of your choice" : {
 
     },
     "Upcoming · %lld" : {
@@ -5311,7 +5396,7 @@
         }
       }
     },
-    "Upcoming Features" : {
+    "UQ timetable link · Imported today" : {
 
     },
     "View" : {
@@ -5324,6 +5409,12 @@
 
     },
     "We couldn't read any classes from this file" : {
+
+    },
+    "WEEK" : {
+
+    },
+    "Week view →" : {
 
     },
     "Welcome to Koalified" : {
@@ -5678,6 +5769,9 @@
     "Your name" : {
 
     },
+    "Your Semester receipt" : {
+
+    },
     "Your semester, sorted." : {
       "localizations" : {
         "hi" : {
@@ -5723,6 +5817,9 @@
           }
         }
       }
+    },
+    "Your timetable" : {
+
     }
   },
   "version" : "1.3"

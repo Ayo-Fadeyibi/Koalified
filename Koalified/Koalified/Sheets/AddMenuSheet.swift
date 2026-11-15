@@ -20,13 +20,7 @@ struct AddMenuSheet: View {
         VStack (alignment: .leading, spacing: Layout.screenPadding) {
             HStack {
                 Spacer()
-                Button {
-                    dismiss()
-                } label: {
-                    Text("Done")
-                        .foregroundStyle(Color.accent)
-                        .font(.fredoka(.body, .bold))
-                }
+                TextButton(title: "Done") { dismiss() }
             }
             
             
@@ -44,13 +38,36 @@ struct AddMenuSheet: View {
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             .padding()
-            .background(Color.screenBackground)
     }
     
     /// One tappable menu row with a title, a smaller subtitle and an arrow.
     private func optionRow(title: String, subtitle: String, action: @escaping () -> Void) -> some View {
-        SecondaryButton(title: LocalizedStringKey(title), action: action)
+        Button {
+            action()
+        } label: {
+            HStack {
+                
+                VStack(alignment: .leading) {
+                    Text(title)
+                        .font(.fredoka(.body, .bold))
+                        .foregroundStyle(Color.textPrimary)
+                    Text(subtitle)
+                        .secondaryTextStyling()
+                }
+                
+                Spacer()
+                
+                Text(">")
+                    .font(.fredoka(.body))
+                    .foregroundStyle(Color.textPrimary)
+            }.boxStyling(bgColor: Color.cardSurface, cRadius: Layout.radiusLarge, sColor: Color.textPrimary, lWidth: 2)
+            
+        }
+        
+        
     }
+    
+    
 }
 
 

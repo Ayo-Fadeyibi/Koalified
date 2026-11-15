@@ -26,30 +26,21 @@ struct LanguageView: View {
                 .secondaryTextStyling()
             
             ScrollView {
-                ForEach(LanguageString.languageSupported) {language in
-                    Button {
-                        languageCode = language.code
-                    } label: {
-                        HStack {
-                            VStack (alignment: .leading) {
+                VStack(spacing: 12) {
+                    ForEach(LanguageString.languageSupported) { language in
+                        SelectableRow(isSelected: language.code == languageCode,
+                                      action: { languageCode = language.code }) {
+                            VStack(alignment: .leading) {
                                 Text(language.native)
                                     .font(.fredoka(.subheadline, .bold))
                                     .foregroundStyle(Color.textPrimary)
-                                
+
                                 Text(language.english)
                                     .font(.fredoka(.caption))
                                     .foregroundStyle(Color.textSecondary)
                             }
-                            
-                            Spacer()
-                            if language.code == languageCode {
-                                Image(systemName: "checkmark")
-                                    .font(.body.weight(.bold))
-                                    .foregroundStyle(Color.accent)
-                            }
-                        }.boxStyling(bgColor: language.code == languageCode ? Color.tintMint : Color.cardSurface, cRadius: Layout.radiusSmall, sColor: Color.cardBorder, lWidth: 1)
+                        }
                     }
-                    .buttonStyle(.plain)
                 }
             }.scrollIndicators(.hidden)
             

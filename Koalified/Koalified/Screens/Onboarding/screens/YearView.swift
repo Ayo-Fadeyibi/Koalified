@@ -27,23 +27,11 @@ struct YearView: View {
 
             VStack(spacing: 8) {
                 ForEach(years, id: \.self) { year in
-                    Button {
-                        selectedYear = year
-                    } label: {
-                        HStack {
-                            Text(year)
-                                .font(.fredoka(.body, .semibold))
-                                .foregroundStyle(Color.textPrimary)
-                            Spacer()
-                            if year == selectedYear {
-                                Image(systemName: "checkmark")
-                                    .font(.body.weight(.bold))
-                                    .foregroundStyle(Color.accent)
-                            }
-                        }
-                        .boxStyling(bgColor: year == selectedYear ? Color.tintMint : Color.cardSurface, cRadius: Layout.radiusSmall, sColor: Color.cardBorder, lWidth: 1)
+                    SelectableRow(isSelected: year == selectedYear, action: { selectedYear = year }) {
+                        Text(year)
+                            .font(.fredoka(.body, .semibold))
+                            .foregroundStyle(Color.textPrimary)
                     }
-                    .buttonStyle(.plain)
                 }
             }
 

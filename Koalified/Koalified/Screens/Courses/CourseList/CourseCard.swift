@@ -24,7 +24,7 @@ struct CourseCard: View {
     @State private var path = NavigationPath()
 
     var body: some View {
-            Card {
+            PlainCard {
                 HStack(alignment: .top, spacing: 14) {
 
                     VStack(alignment: .leading, spacing: 6) {
@@ -64,12 +64,12 @@ struct CourseCard: View {
 
                 // Spans the whole card, under both the badge and the details.
                 HStack(spacing: 8) {
-                    actionButton("Edit", action: onEdit)
-                    actionButton("View") {
+                    ActionButton(title: "Edit", action: onEdit)
+                    ActionButton(title: "View") {
                         onView()
                         path.append(course)
                     }
-                    actionButton("Delete", color: Color.errorText, action: onDelete)
+                    ActionButton(title: "Delete", color: Color.errorText, action: onDelete)
                 }
                 
                 if showFolder {
@@ -81,27 +81,7 @@ struct CourseCard: View {
                 }
                 
             }
-        }
     }
-
-    /// Compact bordered button that stays on one line. Three of them share the card width equally.
-    private func actionButton(_ title: LocalizedStringKey,
-                              color: Color = Color.textPrimary,
-                              action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            Text(title)
-                .font(.fredoka(.subheadline, .bold))
-                .foregroundStyle(color)
-                .lineLimit(1)
-                .minimumScaleFactor(0.8)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 10)
-                .neoBrutalist(backgroundColor: Color.cardSurface,
-                              cornerRadius: Layout.radiusSmall,
-                              shadowOffset: 0,
-                              shadowColor: .clear)
-        }
-        .buttonStyle(.plain)
 }
 
 #Preview("Course cards") {

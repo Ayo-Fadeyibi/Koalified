@@ -112,11 +112,11 @@ struct ImportFlowView: View {
     }
 }
 
-/// Background and padding shared by every import screen.
+/// Padding shared by every import screen. The background comes from the sheet (`sheetBorder`) or, in
+/// onboarding, from `OnboardingFlow`.
 private extension View {
     func screenStyle() -> some View {
         self.mainContainerStyling()
-            .background(Color.screenBackground.ignoresSafeArea())
     }
 }
 

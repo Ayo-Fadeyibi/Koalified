@@ -35,6 +35,7 @@ struct CourseDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $showAddAssessment) {
             AddAssessmentSheet(course: course)
+                .sheetBorder(topInset: 2.5)
                 .presentationDetents([.height(320)])
         }
         
@@ -45,6 +46,7 @@ struct CourseDetailView: View {
         }
         .sheet(isPresented: $showEditCourse) {
             AddCourseSheet(course: course)
+                .sheetBorder()
         }
     }
     

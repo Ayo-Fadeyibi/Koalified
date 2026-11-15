@@ -8,22 +8,38 @@
 import SwiftUI
 import SwiftData
 
-/// The Calculator tab. Currently a placeholder: shows the empty state, or a "Calculator" label.
-/// (Its empty check still uses sample data rather than real courses.)
+/// The Calculator tab. Shows the title and either the empty state (no courses yet) or the grade calculator.
 struct CalculatorView: View {
     @Query private var courses: [Course]
-    
+
+    @State private var showAddCourse = false
+    @State private var showImport = false
+
     var body: some View {
-        
-        if courses.isEmpty {
-            CalculatorEmptyView()
-        }else {
-            CalculatorContent()
+        NavigationStack {
+            VStack(alignment: .leading, spacing: Layout.sectionSpacing) {
+                CalculatorHeader()
+
+                if courses.isEmpty {
+                    CalculatorEmptyView(onAddCourse: { showAddCourse = true },
+                                        onImport: { showImport = true })
+                } else {
+                    CalculatorContent()
+                }
+            }
+            .mainContainerStyling()
+            .background(Color.screenBackground)
+            .toolbar(.hidden, for: .navigationBar)
+            .sheet(isPresented: $showAddCourse) { AddCourseSheet().sheetBorder() }
+            .sheet(isPresented: $showImport) { ImportFlowView().sheetBorder() }
         }
-        
     }
 }
 
-#Preview {
-    CalculatorView()
+#Preview("With courses") {
+    CalculatorView().modelContainer(PreviewData.container)
+}
+
+#Preview("Empty") {
+    CalculatorView().modelContainer(EmptyPreviewData.container)
 }

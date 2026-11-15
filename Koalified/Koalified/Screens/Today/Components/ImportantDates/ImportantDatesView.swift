@@ -11,6 +11,7 @@ struct ImportantDatesView: View {
     
     var body: some View{
         
+        
         VStack(alignment: .leading, spacing: 30) {
             Text("Semester Dates")
                 .primaryTextStyling()
@@ -18,12 +19,23 @@ struct ImportantDatesView: View {
             Text("Know your next milestone")
                 .font(.fredoka(.body, .bold))
             
-            PrimaryButton(title: "Check official semester dates"){}
-                .frame(width: 400)
+            Link(destination: URL(string: "https://about.uq.edu.au/academic-calendar")!) {
+                HStack(spacing: 8) {
+                    Text("Check official semester dates")
+                        .font(.fredoka(.subheadline, .bold))
+                }
+                .font(.fredoka(.body, .bold))
+                .foregroundStyle(Color.onMint)
+                .frame(maxWidth: .infinity)
+                .boxStyling(bgColor: Color.mintFill, cRadius: Layout.radiusLarge, sColor: Color.textSecondary, lWidth: 1.5)
+            }.frame(maxWidth: .infinity)
             
+            ScrollView {
+                
             Card{
                 Text("CENSUS DATE · 9 DAYS LEFT")
                     .font(.fredoka(.body, .bold))
+                    .foregroundStyle(Color.textPrimary)
                     .padding(5)
                     .background(Color.label)
                 
@@ -32,11 +44,14 @@ struct ImportantDatesView: View {
                 
                 Text("Check the last day to withdraw without course fees for your semester.")
                     .secondaryTextStyling()
+                    // Let the text take as many lines as it needs instead of being squeezed to one
+                    .fixedSize(horizontal: false, vertical: true)
             }
             
             Card{
                 Text("MID SEM BREAK  DATE · 9 DAYS LEFT")
                     .font(.fredoka(.body, .bold))
+                    .foregroundStyle(Color.textPrimary)
                     .padding(5)
                     .background(Color.label)
                 
@@ -45,11 +60,14 @@ struct ImportantDatesView: View {
                 
                 Text("Check the last day to withdraw without course fees for your semester.")
                     .secondaryTextStyling()
+                    // Let the text take as many lines as it needs instead of being squeezed to one
+                    .fixedSize(horizontal: false, vertical: true)
             }
             
             Card{
                 Text("CENSUS DATE · 9 DAYS LEFT")
                     .font(.fredoka(.body, .bold))
+                    .foregroundStyle(Color.textPrimary)
                     .padding(5)
                     .background(Color.label)
                 
@@ -58,10 +76,16 @@ struct ImportantDatesView: View {
                 
                 Text("Check the last day to withdraw without course fees for your semester.")
                     .secondaryTextStyling()
+                    // Let the text take as many lines as it needs instead of being squeezed to one
+                    .fixedSize(horizontal: false, vertical: true)
             }
+        }.scrollIndicators(.hidden)
+                .background(Color.screenBackground)
+            
         }.padding()
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .background(Color.screenBackground)
+            .background(Color.screenBackground)
+            .frame(maxWidth: .infinity, alignment: .topLeading)
+        
         
     }
     

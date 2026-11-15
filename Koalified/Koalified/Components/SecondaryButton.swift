@@ -20,11 +20,7 @@ struct SecondaryButton: View {
                     .foregroundStyle(Color.textPrimary)
             }.frame(maxWidth: .infinity)
                 .padding(20)
-                .background(Color.cardSurface, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
-                .overlay(
-                    RoundedRectangle(cornerRadius: Layout.radiusSmall)
-                        .strokeBorder(Color.inkBorder, lineWidth: 2)
-                )
+                .plainStyling()
         }.buttonStyle(.plain)
     }
 }

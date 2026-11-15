@@ -8,33 +8,30 @@
 import SwiftUI
 import SwiftData
 
-/// The Calendar mode of the Today screen: a month grid of deadlines and drop dates
-/// above a card listing what is coming up (or what is on the day the user tapped).
+/// The Timetable tab: a fixed header above a scrolling weekly grid of classes (or a single day) and an add-class button.
 struct CalendarTabContent: View {
-    @Query private var courses: [Course]
-    @State private var selectedDate: Date?
-
     var body: some View {
-        let markers = CalendarMarker.markers(from: courses)
+        NavigationStack {
+            // The header and week controls stay put; only the timetable and button below them scroll.
+            VStack(alignment: .leading, spacing: 16) {
+                CalendarHeader()
+                    .padding(.bottom, 10)
 
-        VStack(spacing: 16) {
-            MonthGridView(markers: markers, selectedDate: $selectedDate)
-            ScrollView {
-                ComingUpCard(markers: markers,
-                             selectedDate: selectedDate,
-                             onClear: { selectedDate = nil })
-                // Lets the last item scroll clear of the tab bar
-                Color.clear.frame(height: 100)
-            }.scrollIndicators(.hidden)
+                // Week controls are fixed; the grid and the button scroll beneath them.
+                WeekGridView {
+                    PrimaryButton(title: "Add a class") {}
+                }
+            }
+            .padding([.horizontal, .top], Layout.screenPadding)
+            // Let the scrolling content run behind the tab bar instead of stopping above it.
+            .ignoresSafeArea(edges: .bottom)
+            .background(Color.screenBackground)
+            .toolbar(.hidden, for: .navigationBar)
         }
-        // Let the list run behind the tab bar instead of stopping above it.
-        .ignoresSafeArea(edges: .bottom)
-        .background(Color.screenBackground)
     }
 }
 
 #Preview {
     CalendarTabContent()
-        .padding()
         .modelContainer(PreviewData.container)
 }
