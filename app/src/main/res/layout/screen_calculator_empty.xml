@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/k_screen_background"
+    android:fillViewport="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/k_screen_padding">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/k_calculator_title"
+            android:textColor="@color/k_text_primary"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/k_neo_card"
+            android:orientation="vertical"
+            android:padding="20dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/k_calculator_empty_title"
+                android:textColor="@color/k_text_primary"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/k_calculator_empty_message"
+                android:textColor="@color/k_text_secondary"
+                android:textSize="15sp" />
+            <Button
+                android:id="@+id/calculator_add_course"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:backgroundTint="@color/k_brand_mint"
+                android:text="@string/k_add_course"
+                android:textAllCaps="false"
+                android:textColor="@color/k_on_mint"
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/calculator_import_timetable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/k_card_surface"
+                android:text="@string/k_import_timetable"
+                android:textAllCaps="false"
+                android:textColor="@color/k_text_primary" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

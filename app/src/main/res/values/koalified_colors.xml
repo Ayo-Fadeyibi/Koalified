@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Colors mapped from the main-branch SharedColors asset catalog. -->
+    <color name="k_screen_background">#FFF7EF</color>
+    <color name="k_card_surface">#FFFFFFFF</color>
+    <color name="k_text_primary">#242322</color>
+    <color name="k_text_secondary">#656777</color>
+    <color name="k_ink_border">#242322</color>
+    <color name="k_ink_shadow">#242322</color>
+    <color name="k_brand_mint">#45DEA4</color>
+    <color name="k_mint_fill">#BFF2DD</color>
+    <color name="k_on_mint">#183D33</color>
+    <color name="k_tint_mint">#DDF8EA</color>
+    <color name="k_tint_lavender">#DDD5FF</color>
+    <color name="k_tint_amber">#FFE3A6</color>
+    <color name="k_white">#FFFFFFFF</color>
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Offset solid layer approximates SwiftUI's crisp neo-brutalist shadow. -->
+    <item android:left="@dimen/k_hard_shadow_offset" android:top="@dimen/k_hard_shadow_offset">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/k_ink_shadow" />
+            <corners android:radius="@dimen/k_radius_card" />
+        </shape>
+    </item>
+    <item android:bottom="@dimen/k_hard_shadow_offset" android:right="@dimen/k_hard_shadow_offset">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/k_card_surface" />
+            <stroke android:width="@dimen/k_border_width" android:color="@color/k_ink_border" />
+            <corners android:radius="@dimen/k_radius_card" />
+        </shape>
+    </item>
+</layer-list>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="k_screen_background">#FF0D0F10</color>
+    <color name="k_card_surface">#FF181B1D</color>
+    <color name="k_text_primary">#FFF1F5F3</color>
+    <color name="k_text_secondary">#FFB4B9B7</color>
+    <color name="k_ink_border">#FF2E3438</color>
+    <color name="k_ink_shadow">#FF3B4247</color>
+    <color name="k_brand_mint">#FFF1F5F3</color>
+    <color name="k_mint_fill">#FF344740</color>
+    <color name="k_on_mint">#FFF1F5F3</color>
+    <color name="k_tint_mint">#FF263A32</color>
+    <color name="k_tint_lavender">#FF3E3850</color>
+    <color name="k_tint_amber">#FF493D29</color>
+    <color name="k_white">#FF181B1D</color>
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="k_today_greeting">Good morning</string>
+    <string name="k_today_empty_heading">Welcome to your semester</string>
+    <string name="k_today_empty_title">Your day starts here.</string>
+    <string name="k_today_empty_message">Import your timetable to see your next class, deadlines and directions.</string>
+    <string name="k_review_import_note">Review the courses, class times and assessment data found in your import.</string>
+    <string name="k_import_timetable">Import timetable</string>
+    <string name="k_add_class_manually">Add a class manually</string>
+    <string name="k_courses_title">Courses</string>
+    <string name="k_courses_empty_title">No courses yet</string>
+    <string name="k_courses_empty_message">Add your courses to track marks and see what you need. Importing your timetable adds them for you.</string>
+    <string name="k_add_course">Add a course</string>
+    <string name="k_calculator_title">Calculator</string>
+    <string name="k_calculator_empty_title">Add a course to start</string>
+    <string name="k_calculator_empty_message">The calculator needs a course with its assessments and weights. Add one and enter any marks you already have.</string>
+    <string name="k_profile_title">Profile</string>
+    <string name="k_profile_subtitle">Account and settings · Koalified</string>
+    <string name="k_profile_name">Your name</string>
+    <string name="k_profile_university">University of Queensland · BE (Honours)</string>
+    <string name="k_customise_koala">Customise Koala</string>
+    <string name="k_upcoming_features">Upcoming Features</string>
+    <string name="k_upcoming_features_message">Study coach, cloud sync and social features are planned for later. Your manual planner works without them.</string>
+    <string name="k_koalified_story">The Koalified story</string>
+    <string name="k_add">Add</string>
+    <string name="k_course_label">Course</string>
+    <string name="k_grade">Grade</string>
+    <string name="k_try_different_marks">Try different marks</string>
+    <string name="k_share_exam_target">Share exam target</string>
+</resources>

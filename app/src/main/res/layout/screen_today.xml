@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/k_screen_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/k_screen_padding"
+        android:paddingTop="24dp"
+        android:paddingEnd="@dimen/k_screen_padding"
+        android:paddingBottom="@dimen/k_screen_padding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/k_today_greeting"
+                    android:textColor="@color/k_text_primary"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/today_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wednesday, 17 November"
+                    android:textColor="@color/k_text_secondary"
+                    android:textSize="14sp" />
+            </LinearLayout>
+            <ImageButton
+                android:id="@+id/today_profile_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/k_profile_avatar"
+                android:contentDescription="Profile"
+                android:src="@drawable/ic_launcher_foreground"
+                android:scaleType="centerInside"
+                android:padding="12dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/k_neo_card"
+            android:orientation="vertical"
+            android:padding="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/k_today_empty_heading"
+                android:textColor="@color/k_text_secondary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/k_today_empty_title"
+                android:textColor="@color/k_text_primary"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/k_today_empty_message"
+                android:textColor="@color/k_text_secondary"
+                android:textSize="15sp" />
+            <Button
+                android:id="@+id/action_import_timetable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/k_brand_mint"
+                android:text="@string/k_import_timetable"
+                android:textAllCaps="false"
+                android:textColor="@color/k_on_mint"
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/action_add_class_manually"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/k_card_surface"
+                android:text="@string/k_add_class_manually"
+                android:textAllCaps="false"
+                android:textColor="@color/k_text_primary" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/k_review_import_note"
+                android:textColor="@color/k_text_secondary"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Important dates"
+            android:textColor="@color/k_text_primary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/k_neo_card"
+            android:orientation="vertical"
+            android:padding="16dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nothing due yet"
+                android:textColor="@color/k_text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Your deadlines and class reminders will show here."
+                android:textColor="@color/k_text_secondary"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
