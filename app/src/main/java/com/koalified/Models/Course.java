@@ -14,8 +14,6 @@ public class Course {
     public String term;
     public int year;
     public String color;
-    public Long censusDateMillis;
-    public Long lastDropDateMillis;
 
     public Course(
         String courseCode,

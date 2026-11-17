@@ -1,0 +1,110 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="ArgumentSelectionDefects" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="ArrayIndexOutOfBounds" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="CMakeDeprecatedCommands" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="CMakeMismatchedCommandArguments" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="CheckStyle" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="ClangTidy" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="ClangdErrorsAndWarnings" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="ComposeErroneousRelation" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="ComposeMissingKeys" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="ComposeUnknownKeys" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="ComposeUnknownValues" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="ComposeUnquotedPorts" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="ConstantConditionsOC" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="ConstantFunctionResult" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="ConstantParameter" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="DanglingPointer" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="DockerFileAddOrCopyPaths" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="DockerFileArgumentCount" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="DockerFileAssignments" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="DockerFileCopyHeredoc" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="DockerFileDuplicatedStageName" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="DockerFileEntrypointWithoutExec" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="DockerFileHeredocDelimiters" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="DockerFileRunCommandMissingContinuation" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="DockerJsonFormStringLiterals" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="EmptyDeclOrStmt" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="EndlessLoop" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXAbbrClass" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXDuplicateProperty" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXDuplicateResource" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXGradlePropertiesTestId" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXInvalidEscape" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="GDXJavaAssetsFileError" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXJavaFlushInsideLoop" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXJavaInvalidPropertyKey" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="GDXJavaLogLevel" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXJavaMissingFlush" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXJavaNonExistingAsset" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="GDXJavaProfilingCode" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXJavaStaticResource" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXJavaTestId" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXJavaUnsafeIterator" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXJavaUnusedTag" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXJsonDuplicateProperty" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXKotlinAssetsFileError" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXKotlinFlushInsideLoop" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXKotlinInvalidPropertyKey" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="GDXKotlinLogLevel" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXKotlinMissingFlush" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXKotlinNonExistingAsset" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="GDXKotlinProfilingCode" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXKotlinStaticResource" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXKotlinTestId" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXKotlinUnsafeIterator" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXKotlinUnusedTag" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXMalformedColorString" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="GDXMissingFilesPermission" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXMissingProperty" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="GDXNonExistingClass" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="GDXNonExistingField" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="GDXNonExistingFile" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="GDXNonExistingResourceInAlias" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXOpenGLVersion" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXSkinDeprecated" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXSkinType" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXToplevel" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="GDXUnknownAttribute" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="GDXUnknownClass" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="GDXXmlTestId" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="HidingNonVirtualFunction" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="LocalValueEscapesScope" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="LoopDoesntUseConditionVariable" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="MarkdownIncorrectTableFormatting" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="MarkdownIncorrectlyNumberedListItem" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="MarkdownLinkDestinationWithSpaces" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="MarkdownNoTableBorders" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="MarkdownOutdatedTableOfContents" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="MarkdownTablePipeInCodeSpan" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="MarkdownUnresolvedFileReference" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="MarkdownUnresolvedHeaderReference" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="MarkdownUnresolvedLinkLabel" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="MemoryLeak" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="MissingFinalNewline" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="MisspelledHeader" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="NotImplementedFunctions" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="NotInitializedField" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="NullDereference" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="OCUnusedClass" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="OCUnusedConcept" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="OCUnusedGlobalDeclaration" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="OCUnusedInstanceVariable" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="OCUnusedMacro" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="OCUnusedMethod" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="OCUnusedProperty" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="OCUnusedStruct" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="OCUnusedTemplateParameter" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="OCUnusedTypeAlias" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PreprocessorComment" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="Simplify" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="UnconstrainedVariableType" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="UnreachableCallsOfFunction" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="UnusedLocalVariable" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="UnusedParameter" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="UnusedValue" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="VirtualCallInCtorOrDtor" enabled="false" level="WARNING" enabled_by_default="false" />
+  </profile>
+</component>

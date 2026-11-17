@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -39,8 +38,7 @@ public class KoalifiedHome extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences preferences = getSharedPreferences(
-                PREFERENCES_NAME, MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
         boolean hasOnboarded = preferences.getBoolean(KEY_HAS_ONBOARDED, false);
 
         if (hasOnboarded) {
