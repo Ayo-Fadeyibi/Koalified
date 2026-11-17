@@ -44,7 +44,7 @@ struct LanguageView: View {
                 }
             }.scrollIndicators(.hidden)
             
-            PrimaryButton(title: "Continue", action: onNext)
+            PlainPrimaryButton(title: "Continue", action: onNext)
             
         }.mainContainerStyling()
     }

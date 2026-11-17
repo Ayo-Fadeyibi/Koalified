@@ -42,9 +42,13 @@ struct AddCourseSheet: View {
     /// The course being edited, or nil when adding a new one.
     var course: Course? = nil
 
+    /// Called after a course is saved, just before the sheet closes, so the presenting view can show a confirmation.
+    var onSaved: (() -> Void)? = nil
+
     /// Pre-fills the fields from `course` when editing.
-    init(course: Course? = nil) {
+    init(course: Course? = nil, onSaved: (() -> Void)? = nil) {
         self.course = course
+        self.onSaved = onSaved
         _courseCode = State(initialValue: course?.courseCode ?? "")
         _courseName = State(initialValue: course?.title ?? "")
         _term = State(initialValue: course?.term ?? .S2)
@@ -76,11 +80,7 @@ struct AddCourseSheet: View {
         }.padding(.top)
         .padding(.horizontal, Layout.screenPadding)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            .alert("Can't add course", isPresented: $showError) {
-                Button("OK", role: .cancel) { }
-            } message: {
-                Text(errorMessage)
-            }
+            .PopUp(isPresented: $showError, message: LocalizedStringKey(errorMessage), image: "circle-x", colour: Color.redFill, feedback: .error)
     }
     
     /// Validates the form and then updates the existing course or inserts a new one.
@@ -127,7 +127,8 @@ struct AddCourseSheet: View {
         try? modelContext.save()
         WidgetCenter.shared.reloadAllTimelines()
         
-        // 6. Close the sheet
+        // 6. Close the sheet and let the presenter confirm
+        onSaved?()
         dismiss()
     }
 }

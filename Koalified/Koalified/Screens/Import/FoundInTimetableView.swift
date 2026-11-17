@@ -46,7 +46,7 @@ struct FoundInTimetableView: View {
             }
             .scrollIndicators(.hidden)
 
-            PrimaryButton(title: "Looks right", action: onConfirm)
+            PlainPrimaryButton(title: "Looks right", action: onConfirm)
         }
         .padding(.top, 24)
         .padding(.bottom, Layout.screenPadding)
@@ -68,7 +68,8 @@ struct FoundInTimetableView: View {
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .neoBrutalist(backgroundColor: fill, cornerRadius: Layout.radiusCard)
+        .background(fill)
+        .plainStyling()
     }
 }
 

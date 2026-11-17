@@ -20,7 +20,7 @@ struct NoClassesFoundView: View {
             Text("We couldn't read any classes from this file")
                 .secondaryTextStyling()
 
-            Card {
+            PlainCard {
                 HelpRow(title: "Check the file type",
                         text: "Use the .ics calendar file you downloaded from your timetable, not a screenshot or PDF.")
                 Divider()

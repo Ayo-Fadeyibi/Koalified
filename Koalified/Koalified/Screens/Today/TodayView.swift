@@ -37,9 +37,10 @@ struct TodayView: View {
             .sheet(isPresented: $showImport) { ImportFlowView().sheetBorder() }
             .sheet(isPresented: $showAddMenu) {
                 AddMenuSheet(onAddClass: {}, onAddDeadline: {}, onAddWidget: {})
-                    .sheetBorder(topInset: 2.5)
-                    .presentationDetents([.height(320)])
+                    .sheetBorder(topInset: 0.4)
+                    .presentationDetents([.height(350)])
             }
+            .profileDestination()
         }
     }
 }

@@ -22,12 +22,16 @@ struct ImportantDatesView: View {
             Link(destination: URL(string: "https://about.uq.edu.au/academic-calendar")!) {
                 HStack(spacing: 8) {
                     Text("Check official semester dates")
-                        .font(.fredoka(.subheadline, .bold))
+                        .font(.fredoka(.body, .bold))
                 }
-                .font(.fredoka(.body, .bold))
                 .foregroundStyle(Color.onMint)
+                .padding()
                 .frame(maxWidth: .infinity)
-                .boxStyling(bgColor: Color.mintFill, cRadius: Layout.radiusLarge, sColor: Color.textSecondary, lWidth: 1.5)
+                .background(Color.mintFill, in: RoundedRectangle(cornerRadius: Layout.radiusLarge))
+                .overlay(
+                    RoundedRectangle(cornerRadius: Layout.radiusLarge)
+                        .strokeBorder(Color.inkBorder, lineWidth: 2)
+                )
             }.frame(maxWidth: .infinity)
             
             ScrollView {

@@ -37,7 +37,7 @@ struct YearView: View {
 
             Spacer()
 
-            PrimaryButton(title: "Continue") {
+            PlainPrimaryButton(title: "Continue") {
                 onNext(selectedYear == "1st year")
             }
         }

@@ -15,6 +15,10 @@ struct NextClassView: View {
     /// and flips the room board again.
     @State private var refreshCount = 0
     
+    private var findTodaySession: [ClassSession] {
+        findTodaysSessions(from: sessions)
+    }
+    
     private var upcomingSessions: [ClassSession] {
         findUpcomingSessions(from: sessions)
     }
@@ -32,8 +36,10 @@ struct NextClassView: View {
 
     var body: some View {
         VStack{
-            if nextSession == nil {
+            if nextSession == nil && findTodaySession.isEmpty {
                 NoClassView(onImport: {}, onAddManually: {})
+            } else if nextSession == nil {
+                AllDoneToday()
             } else {
                 Card(bgColor: Color.tintMint) {
                     VStack(alignment: .leading, spacing: 14) {
@@ -86,7 +92,7 @@ struct NextClassView: View {
                         }
 
                         // Button
-                        PrimaryButton(title: "Walk there in Apple Maps"){}
+                        PlainPrimaryButton(title: "Walk there in Apple Maps"){}
                     }
                 }
                 // Only the later classes scroll; the banner and next-class card stay put.

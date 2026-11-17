@@ -25,7 +25,7 @@ struct ChooseSemesterView: View {
             Text("Your file has classes from \(plural(semesters.count, "semester"))")
                 .secondaryTextStyling()
 
-            Card {
+            PlainCard {
                 ForEach(semesters) { semester in
                     SemesterRow(
                         title: semester.title,
@@ -45,7 +45,7 @@ struct ChooseSemesterView: View {
 
             Spacer()
 
-            PrimaryButton(title: LocalizedStringKey("Import \(plural(selected.count, "semester"))"), action: onImport)
+            PlainPrimaryButton(title: LocalizedStringKey("Import \(plural(selected.count, "semester"))"), action: onImport)
                 .disabled(selected.isEmpty)
                 .opacity(selected.isEmpty ? 0.4 : 1)
             SecondaryButton(title: "Choose a different file", action: onChooseDifferentFile)

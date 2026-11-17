@@ -21,7 +21,7 @@ struct ImportDoneView: View {
                  : "Your classes are ready.")
                 .secondaryTextStyling()
 
-            Card {
+            PlainCard {
                 ResultRow(label: "Added", value: result.added)
                 Divider()
                 ResultRow(label: "Updated", value: result.updated)
@@ -34,7 +34,7 @@ struct ImportDoneView: View {
             }
 
             Spacer()
-            PrimaryButton(title: "Done", action: onDone)
+            PlainPrimaryButton(title: "Done", action: onDone)
         }
         .padding(.top, 24)
         .padding(.bottom, Layout.screenPadding)

@@ -20,7 +20,7 @@ struct WelcomeView: View {
                 .secondaryTextStyling()
             
             Spacer()
-            PrimaryButton(title: "Let's Go", action: onNext)
+            PlainPrimaryButton(title: "Let's Go", action: onNext)
         }
         .padding(16)
         .frame(maxWidth: .infinity)

@@ -14,6 +14,7 @@ struct CalculatorView: View {
 
     @State private var showAddCourse = false
     @State private var showImport = false
+    @State private var showAdded = false
 
     var body: some View {
         NavigationStack {
@@ -30,7 +31,9 @@ struct CalculatorView: View {
             .mainContainerStyling()
             .background(Color.screenBackground)
             .toolbar(.hidden, for: .navigationBar)
-            .sheet(isPresented: $showAddCourse) { AddCourseSheet().sheetBorder() }
+            .profileDestination()
+            .sheet(isPresented: $showAddCourse) { AddCourseSheet(onSaved: { showAdded = true }).sheetBorder() }
+            .PopUp(isPresented: $showAdded, message: "Course added successfully", image: "circle-check", colour: Color.mintFill)
             .sheet(isPresented: $showImport) { ImportFlowView().sheetBorder() }
         }
     }

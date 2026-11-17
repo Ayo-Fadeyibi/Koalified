@@ -16,7 +16,8 @@ struct CoursesView: View {
     @Environment(\.modelContext) private var modelContext
     
     @State private var showAddCourse = false
-    
+    @State private var showAdded = false
+
     @State var path = NavigationPath()
     
     var body: some View{
@@ -41,8 +42,10 @@ struct CoursesView: View {
                 FloatingAddButton { showAddCourse = true }
                     .padding(40)
             } .background(Color.screenBackground)
-                .sheet(isPresented: $showAddCourse) { AddCourseSheet().sheetBorder() }
+                .sheet(isPresented: $showAddCourse) { AddCourseSheet(onSaved: { showAdded = true }).sheetBorder() }
+                .PopUp(isPresented: $showAdded, message: "Course added successfully", image: "circle-check", colour: Color.mintFill)
                 .toolbar(.hidden, for: .navigationBar)
+                .profileDestination()
                 .navigationDestination(for: Course.self) { course in
                     CourseDetailView(course: course)
                         

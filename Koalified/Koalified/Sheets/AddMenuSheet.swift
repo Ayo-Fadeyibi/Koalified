@@ -24,49 +24,21 @@ struct AddMenuSheet: View {
             }
             
             
-            optionRow(title: "Add a class", subtitle: "Add to your weekly timetable") {
+          SecondaryButton(title: "Add a class", message: "Add to your weekly timetable") {
                 onAddClass()
                 dismiss()
             }
-            optionRow(title: "Add a deadline", subtitle: "Assignment, quiz or exam date") {
+            SecondaryButton(title: "Add a deadline", message: "Assignment, quiz or exam date") {
                 onAddDeadline()
                 dismiss()
             }
-            optionRow(title: "Add a widget", subtitle: "Show your week on the Home screen") {
+            SecondaryButton(title: "Add a widget", message: "Show your week on the Home screen") {
                 onAddWidget()
                 dismiss()
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             .padding()
     }
-    
-    /// One tappable menu row with a title, a smaller subtitle and an arrow.
-    private func optionRow(title: String, subtitle: String, action: @escaping () -> Void) -> some View {
-        Button {
-            action()
-        } label: {
-            HStack {
-                
-                VStack(alignment: .leading) {
-                    Text(title)
-                        .font(.fredoka(.body, .bold))
-                        .foregroundStyle(Color.textPrimary)
-                    Text(subtitle)
-                        .secondaryTextStyling()
-                }
-                
-                Spacer()
-                
-                Text(">")
-                    .font(.fredoka(.body))
-                    .foregroundStyle(Color.textPrimary)
-            }.boxStyling(bgColor: Color.cardSurface, cRadius: Layout.radiusLarge, sColor: Color.textPrimary, lWidth: 2)
-            
-        }
-        
-        
-    }
-    
     
 }
 

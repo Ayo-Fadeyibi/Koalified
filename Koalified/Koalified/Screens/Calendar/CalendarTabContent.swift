@@ -27,6 +27,7 @@ struct CalendarTabContent: View {
             .ignoresSafeArea(edges: .bottom)
             .background(Color.screenBackground)
             .toolbar(.hidden, for: .navigationBar)
+            .profileDestination()
         }
     }
 }

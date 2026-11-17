@@ -1180,6 +1180,9 @@
         }
       }
     },
+    "All done for today" : {
+
+    },
     "Applied" : {
 
     },
@@ -1434,6 +1437,7 @@
       }
     },
     "Can't add course" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -1645,6 +1649,9 @@
         }
       }
     },
+    "Class wrapped. Get some rest" : {
+
+    },
     "Clinical" : {
 
     },
@@ -1748,6 +1755,9 @@
       }
     },
     "Course" : {
+
+    },
+    "Course added successfully" : {
 
     },
     "Course timetable" : {
@@ -2667,10 +2677,16 @@
         }
       }
     },
+    "Find your timetable link or download the file" : {
+
+    },
     "Found in your timetable" : {
 
     },
     "Get started" : {
+
+    },
+    "Go straight to importing" : {
 
     },
     "Good morning" : {
@@ -2722,6 +2738,9 @@
           }
         }
       }
+    },
+    "Got it" : {
+
     },
     "Grade %lld" : {
 
@@ -3823,6 +3842,9 @@
     "No marks recorded yet" : {
 
     },
+    "No, I already have it" : {
+
+    },
     "Nothing changed. Your timetable was already up to date." : {
 
     },
@@ -4557,6 +4579,9 @@
       }
     },
     "Secured" : {
+
+    },
+    "See tomorrow’s classes" : {
 
     },
     "See your week" : {
@@ -5702,6 +5727,9 @@
         }
       }
     },
+    "Yes, show me how" : {
+
+    },
     "You do this on UQ's own page. Koalified never sees your UQ password." : {
       "localizations" : {
         "hi" : {
@@ -5749,6 +5777,9 @@
       }
     },
     "You should review the courses, class times and any assessment data found in your import." : {
+
+    },
+    "You’re clear for the rest of the evening." : {
 
     },
     "Your classes are ready." : {

@@ -8,6 +8,17 @@
 
 import SwiftUI
 
+/// Pushes the Profile screen itself. Value-based so it lands on the same navigation path as the
+/// Profile rows; a view-based link would sit outside a path-bound stack and hide the rows' screens behind it.
+struct ProfileRoot: Hashable {}
+
+extension View {
+    /// Registers the Profile screen. Apply inside each tab's NavigationStack.
+    func profileDestination() -> some View {
+        navigationDestination(for: ProfileRoot.self) { _ in ProfileView() }
+    }
+}
+
 enum ProfileDestination: Hashable {
     case notifications, language, replayTour
     case addWidget, semesterReceipt, about, helpFeedback

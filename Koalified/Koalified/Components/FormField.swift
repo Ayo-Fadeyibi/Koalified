@@ -27,8 +27,12 @@ struct FormField<Content: View>: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 10)
-                .neoBrutalist(backgroundColor: Color.cardSurface, cornerRadius: Layout.radiusSmall, shadowOffset: 3)
+                .plainStyling()
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
+}
+
+#Preview {
+    FormField("Hello"){}
 }

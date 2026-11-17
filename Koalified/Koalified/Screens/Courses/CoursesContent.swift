@@ -51,7 +51,7 @@ struct CoursesContent: View {
                 // must sit above the button and list below it for the menu to float on top.
                 .zIndex(1)
 
-                PrimaryButton(title: "Assessment Wallet"){}
+                PlainPrimaryButton(title: "Assessment Wallet"){}
                     .padding(.bottom, 20)
 
                 ScrollView {

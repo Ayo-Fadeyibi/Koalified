@@ -18,44 +18,19 @@ struct TimetableHelpView: View {
                 .primaryTextStyling()
             Text("Koalified can read your UQ timetable from a link or a downloaded file. We'll show you where to find it.")
                 .secondaryTextStyling()
-
-            VStack(spacing: 8) {
-                optionRow(title: "Yes, show me how",
-                          subtitle: "Find your timetable link or download the file",
-                          action: onShowMe)
-                optionRow(title: "No, I already have it",
-                          subtitle: "Go straight to importing",
-                          action: onHaveIt)
-            }
-
-            Spacer()
             
-            PrimaryButton(title: "I'll add it later"){finish()}
-
-        }
-        .mainContainerStyling()
-    }
-
-    // One tappable row: a title, a smaller line under it, and an arrow
-    private func optionRow(title: String, subtitle: String, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            HStack {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(title)
-                        .font(.fredoka(.body, .semibold))
-                        .foregroundStyle(Color.textPrimary)
-                    Text(subtitle)
-                        .font(.fredoka(.caption))
-                        .foregroundStyle(Color.textSecondary)
-                }
+            VStack(spacing: 8) {
+                SecondaryButton(title: "Yes, show me how", message: "Find your timetable link or download the file", action: onShowMe)
+                
+                SecondaryButton(title: "No, I already have it", message: "Go straight to importing", action: onHaveIt)
+                
                 Spacer()
-                Image(systemName: "chevron.right")
-                    .font(.footnote.weight(.semibold))
-                    .foregroundStyle(Color.textSecondary)
+                
+                PlainPrimaryButton(title: "I'll add it later"){finish()}
+                
             }
-            .boxStyling(bgColor: Color.cardSurface, cRadius: Layout.radiusSmall, sColor: Color.cardBorder, lWidth: 1)
+            .mainContainerStyling()
         }
-        .buttonStyle(.plain)
     }
     
     // Marks onboarding as complete so RootView shows the main tabs.

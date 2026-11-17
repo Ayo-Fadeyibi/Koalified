@@ -3,16 +3,24 @@ import SwiftUI
 /// Full-width outlined button for less prominent actions, shown beside a `PrimaryButton`.
 struct SecondaryButton: View {
     let title: LocalizedStringKey
+    var message: LocalizedStringKey? = nil
     let action: () -> Void
     
     var body: some View {
         Button(action: action) {
             HStack {
-                Text(title)
-                    .font(.fredoka(.body, .semibold))
-                    .foregroundStyle(Color.textPrimary)
-                    
-                
+                VStack(alignment: .leading) {
+                    Text(title)
+                        .font(.fredoka(.body, .semibold))
+                        .foregroundStyle(Color.textPrimary)
+                        
+                    if let message {
+                        Text(message)
+                            .font(.fredoka(.caption))
+                            .secondaryTextStyling()
+                    }
+                }
+
                 Spacer()
                 
                 Text(">")
@@ -26,6 +34,6 @@ struct SecondaryButton: View {
 }
 
 #Preview {
-    SecondaryButton(title: "Hello World") {}
+    SecondaryButton(title: "Hello World", message: "Hello......") {}
         .padding()
 }

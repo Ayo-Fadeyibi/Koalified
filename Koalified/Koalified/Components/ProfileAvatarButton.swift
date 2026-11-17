@@ -8,9 +8,7 @@ import SwiftUI
 /// Round mint avatar in a screen header that opens the Profile screen.
 struct ProfileAvatarButton: View {
     var body: some View {
-        NavigationLink {
-            ProfileView()
-        } label: {
+        NavigationLink(value: ProfileRoot()) {
             Image("user")
                 .font(.title3.weight(.semibold))
                 .foregroundStyle(Color.onMint)

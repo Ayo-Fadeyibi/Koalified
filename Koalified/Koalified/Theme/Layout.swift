@@ -12,7 +12,7 @@ enum Layout {
     // Corner radii
     static let radiusSmall: CGFloat = 12    // buttons, option rows
     static let radiusCard: CGFloat = 14     // cards
-    static let radiusLarge: CGFloat = 20    // widgets and big panels
+    static let radiusLarge: CGFloat = 30    // widgets and big panels
 
     // Neo-brutalist box style
     static let borderWidth: CGFloat = 2     // thick dark outline

@@ -78,7 +78,7 @@ struct EmptyStateView<Content: View>: View {
                     }
                     if let message1 { messageText(message1) }
                     if let primaryTitle1, let primaryAction1 {
-                        PrimaryButton(title: primaryTitle1, action: primaryAction1, cornerRadius: 30)
+                        PlainPrimaryButton(title: primaryTitle1, action: primaryAction1, cornerRadius: 30)
                     }
                     if let secondaryTitle, let secondaryAction {
                         secondaryRow(secondaryTitle, action: secondaryAction)

@@ -62,18 +62,20 @@ struct CourseCard: View {
                     }
                 }
 
-                // Spans the whole card, under both the badge and the details.
-                HStack(spacing: 8) {
-                    ActionButton(title: "Edit", action: onEdit)
-                    ActionButton(title: "View") {
-                        onView()
-                        path.append(course)
-                    }
-                    ActionButton(title: "Delete", color: Color.errorText, action: onDelete)
-                }
+              
                 
                 if showFolder {
                     VStack{
+                        // Spans the whole card, under both the badge and the details.
+                        HStack(spacing: 8) {
+                            ActionButton(title: "Edit", action: onEdit)
+                            ActionButton(title: "View") {
+                                onView()
+                                path.append(course)
+                            }
+                            ActionButton(title: "Delete", color: Color.errorText, action: onDelete)
+                        }
+                        
                         SecondaryButton(title: "Assessments"){}
                         SecondaryButton(title: "Course timetable"){}
                     }
