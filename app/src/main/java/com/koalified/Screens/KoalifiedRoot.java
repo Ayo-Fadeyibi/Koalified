@@ -13,26 +13,26 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 /**
- * Android entry point corresponding to the iOS KoalifiedApp.
- * Shows a short first-run splash, then hands off to the app's home screen.
+ * Android entry point corresponding to the iOS KoalifiedApp. Shows a short first-run splash, then
+ * hands off to the app's home screen.
  */
-public class KoalifiedHome extends Activity {
+public class KoalifiedRoot extends Activity {
+
     private static final String PREFERENCES_NAME = "koalified_preferences";
     private static final String KEY_HAS_ONBOARDED = "hasOnboarded";
     private static final long SPLASH_DURATION_MS = 700L;
 
     private final Handler handler = new Handler(Looper.getMainLooper());
-    private boolean openingHome = false;
-
     private final Runnable openHome = () -> {
         if (isFinishing() || isDestroyed()) {
             return;
         }
         openingHome = true;
-        startActivity(new Intent(this, RootScreen.class));
+        startActivity(new Intent(this, HomeScreen.class));
         finish();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     };
+    private boolean openingHome = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,13 +82,24 @@ public class KoalifiedHome extends Activity {
 
         root.setAlpha(0f);
         setContentView(root);
-        root.animate().alpha(1f).setDuration(SPLASH_DURATION_MS).start();
+        root
+                .animate()
+                .alpha(1f)
+                .setDuration(SPLASH_DURATION_MS)
+                .start();
+    }
+
+    @Override
+    protected void onDestroy() {
+        handler.removeCallbacks(openHome);
+        super.onDestroy();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // TODO: Hook the Android notification/widget refresh here once those services are implemented.
+        // TODO: Hook the Android notification/widget refresh here once those services are
+        //  implemented.
         if (!openingHome) {
             refreshAndroidAppData();
         }
@@ -96,11 +107,5 @@ public class KoalifiedHome extends Activity {
 
     private void refreshAndroidAppData() {
         // TODO: refresh local reminders and widget data when those Android features are added.
-    }
-
-    @Override
-    protected void onDestroy() {
-        handler.removeCallbacks(openHome);
-        super.onDestroy();
     }
 }

@@ -1,122 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/k_screen_background"
+  android:fillViewport="true">
+
+  <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/k_screen_background"
-    android:fillViewport="true">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/k_screen_padding">
+
     <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:background="@drawable/k_neo_card"
+      android:orientation="vertical"
+      android:padding="16dp">
+
+      <Button
+        android:id="@+id/profile_customise_koala"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/k_screen_padding">
-        <TextView
+        android:layout_marginTop="14dp"
+        android:backgroundTint="@color/k_card_surface"
+        android:text="@string/k_customise_koala"
+        android:textAllCaps="false"
+        android:textColor="@color/k_text_primary" />
+
+      <Button
+        android:id="@+id/profile_import_timetable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/k_card_surface"
+        android:text="@string/k_import_timetable"
+        android:textAllCaps="false"
+        android:textColor="@color/k_text_primary" />
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="12dp"
+          android:layout_weight="1"
+          android:orientation="vertical">
+
+          <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/k_profile_title"
+            android:text="@string/k_profile_name"
             android:textColor="@color/k_text_primary"
-            android:textSize="26sp"
+            android:textSize="17sp"
             android:textStyle="bold" />
-        <TextView
+
+          <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/k_profile_subtitle"
+            android:layout_marginTop="3dp"
+            android:text="@string/k_profile_university"
             android:textColor="@color/k_text_secondary"
-            android:textSize="14sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/k_neo_card"
-            android:orientation="vertical"
-            android:padding="16dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="52dp"
-                    android:layout_height="52dp"
-                    android:background="@drawable/k_profile_avatar"
-                    android:gravity="center"
-                    android:text="K"
-                    android:textColor="@color/k_on_mint"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/k_profile_name"
-                        android:textColor="@color/k_text_primary"
-                        android:textSize="17sp"
-                        android:textStyle="bold" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:text="@string/k_profile_university"
-                        android:textColor="@color/k_text_secondary"
-                        android:textSize="13sp" />
-                </LinearLayout>
-            </LinearLayout>
-            <Button
-                android:id="@+id/profile_customise_koala"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:backgroundTint="@color/k_card_surface"
-                android:text="@string/k_customise_koala"
-                android:textAllCaps="false"
-                android:textColor="@color/k_text_primary" />
-            <Button
-                android:id="@+id/profile_import_timetable"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/k_card_surface"
-                android:text="@string/k_import_timetable"
-                android:textAllCaps="false"
-                android:textColor="@color/k_text_primary" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            android:background="@drawable/k_neo_card"
-            android:orientation="vertical"
-            android:padding="16dp">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="✦  @string/k_upcoming_features"
-                android:textColor="@color/k_on_mint"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/k_upcoming_features_message"
-                android:textColor="@color/k_text_secondary"
-                android:textSize="14sp" />
+            android:textSize="13sp" />
         </LinearLayout>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            android:background="@drawable/k_neo_card"
-            android:padding="18dp"
-            android:text="@string/k_koalified_story                         ›"
-            android:textColor="@color/k_text_primary"
-            android:textSize="16sp" />
+          android:layout_width="52dp"
+          android:layout_height="52dp"
+          android:background="@drawable/k_profile_avatar"
+          android:gravity="center"
+          android:text="K"
+          android:textColor="@color/k_on_mint"
+          android:textSize="22sp"
+          android:textStyle="bold" />
+      </LinearLayout>
     </LinearLayout>
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="14dp"
+      android:background="@drawable/k_neo_card"
+      android:orientation="vertical"
+      android:padding="16dp">
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="✦  @string/k_upcoming_features"
+        android:textColor="@color/k_on_mint"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/k_upcoming_features_message"
+        android:textColor="@color/k_text_secondary"
+        android:textSize="14sp" />
+    </LinearLayout>
+
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/k_profile_title"
+      android:textColor="@color/k_text_primary"
+      android:textSize="26sp"
+      android:textStyle="bold" />
+
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="4dp"
+      android:text="@string/k_profile_subtitle"
+      android:textColor="@color/k_text_secondary"
+      android:textSize="14sp" />
+
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="14dp"
+      android:background="@drawable/k_neo_card"
+      android:padding="18dp"
+      android:text="@string/k_koalified_story"
+      android:textColor="@color/k_text_primary"
+      android:textSize="16sp" />
+  </LinearLayout>
 </ScrollView>
