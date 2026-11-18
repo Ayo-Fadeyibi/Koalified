@@ -16,7 +16,7 @@ import android.widget.TextView;
  * Android entry point corresponding to the iOS KoalifiedApp.
  * Shows a short first-run splash, then hands off to the app's home screen.
  */
-public class KoalifiedHome extends Activity {
+public class KoalifiedRoot extends Activity {
     private static final String PREFERENCES_NAME = "koalified_preferences";
     private static final String KEY_HAS_ONBOARDED = "hasOnboarded";
     private static final long SPLASH_DURATION_MS = 700L;
@@ -29,7 +29,7 @@ public class KoalifiedHome extends Activity {
             return;
         }
         openingHome = true;
-        startActivity(new Intent(this, RootScreen.class));
+        startActivity(new Intent(this, HomeScreen.class));
         finish();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     };

@@ -12,7 +12,7 @@
     android:supportsRtl="true"
     android:theme="@style/Theme.KoalifiedAndroid">
     <activity
-      android:name=".Screens.KoalifiedHome"
+      android:name=".Screens.KoalifiedRoot"
       android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,7 @@
       </intent-filter>
     </activity>
     <activity
-      android:name=".Screens.RootScreen"
+      android:name=".Screens.HomeScreen"
       android:exported="false" />
   </application>
 

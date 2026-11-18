@@ -1,22 +1,28 @@
 package com.koalified.Screens;
 
-
+import android.content.Intent;
 import android.widget.Toast;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
 import com.koalified.R;
 
-public class RootScreen extends Activity {
+public class HomeScreen extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        setPlaceholderAction(R.id.action_today, "Today view is ready for timetable data.");
-        setPlaceholderAction(R.id.action_courses, "Course tracking is coming next.");
-        setPlaceholderAction(R.id.action_calculator, "Grade calculator is coming next.");
+        findViewById(R.id.action_courses).setOnClickListener(view ->
+            startActivity(new Intent(HomeScreen.this, CoursesScreen.class))
+        );
+        findViewById(R.id.action_today).setOnClickListener(view ->
+            startActivity(new Intent(HomeScreen.this, HomeScreen.class))
+        );
+        findViewById(R.id.action_calculator).setOnClickListener(view ->
+            startActivity(new Intent(HomeScreen.this, CalculatorScreen.class))
+        );
     }
+
 
     private void setPlaceholderAction(int viewId, String message) {
         View action = findViewById(viewId);

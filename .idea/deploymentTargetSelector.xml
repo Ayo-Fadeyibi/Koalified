@@ -2,11 +2,7 @@
 <project version="4">
   <component name="deploymentTargetSelector">
     <selectionStates>
-      <SelectionState runConfigName="Koalified-Android">
-        <option name="selectionMode" value="DROPDOWN" />
-        <DialogSelection />
-      </SelectionState>
-      <SelectionState runConfigName="KoalifiedHome">
+      <SelectionState runConfigName="KoalifiedRoot">
         <option name="selectionMode" value="DROPDOWN" />
         <DialogSelection />
       </SelectionState>
