@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/k_screen_background"
+  android:fillViewport="true">
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="18dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="18dp"
+      android:padding="15dp"
+      android:background="@drawable/k_neo_card"
+      android:orientation="vertical">
+
+      <Button
+        android:id="@+id/action_today_import_timetable"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/k_brand_mint"
+        android:text="Import timetable"
+        android:textAllCaps="false"
+        android:textColor="@color/k_on_mint" />
+
+      <Button
+        android:id="@+id/action_today_add_class"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/k_card_surface"
+        android:text="Add a class manually     ›"
+        android:textAllCaps="false"
+        android:textColor="@color/k_text_primary" />
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Import your timetable to see classes, deadlines and reminders."
+        android:textColor="@color/k_text_secondary"
+        android:textSize="13sp" />
+
+      <TextView
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TODAY"
+        android:textColor="@color/k_text_secondary"
+        android:textSize="10sp" />
+
+      <TextView
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="Your day starts here."
+        android:textColor="@color/k_text_primary"
+        android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:padding="13dp"
+      android:background="@drawable/k_neo_card"
+      android:orientation="vertical">
+
+      <TextView
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nothing due yet"
+        android:textColor="@color/k_text_primary"
+        android:textSize="14sp" />
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Assessment deadlines will show here."
+        android:textColor="@color/k_text_secondary"
+        android:textSize="12sp" />
+    </LinearLayout>
+
+    <TextView
+      android:textStyle="bold"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Today"
+      android:textColor="@color/k_text_primary"
+      android:textSize="26sp" />
+
+    <TextView
+      android:textStyle="bold"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="18dp"
+      android:text="Due soon"
+      android:textColor="@color/k_text_primary"
+      android:textSize="18sp" />
+
+    <TextView
+      android:id="@+id/today_date"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="4dp"
+      android:text="Tuesday, 20 October"
+      android:textColor="@color/k_text_secondary"
+      android:textSize="13sp" />
+
+  </LinearLayout>
+</ScrollView>

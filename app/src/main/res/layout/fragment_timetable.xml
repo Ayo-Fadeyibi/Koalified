@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/k_screen_background"
+  android:fillViewport="true">
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="18dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="18dp"
+      android:padding="15dp"
+      android:background="@drawable/k_neo_card"
+      android:orientation="vertical">
+
+      <Button
+        android:id="@+id/action_import_timetable"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginTop="11dp"
+        android:backgroundTint="@color/k_brand_mint"
+        android:text="Import timetable"
+        android:textAllCaps="false"
+        android:textColor="@color/k_on_mint" />
+
+      <Button
+        android:id="@+id/action_add_timetable_class"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/k_card_surface"
+        android:text="Add a class manually     ›"
+        android:textAllCaps="false"
+        android:textColor="@color/k_text_primary" />
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Import your timetable file or link to get your classes in one place."
+        android:textColor="@color/k_text_secondary"
+        android:textSize="13sp" />
+
+      <TextView
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="YOUR SEMESTER STARTS HERE"
+        android:textColor="@color/k_text_secondary"
+        android:textSize="10sp" />
+
+      <TextView
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="Bring in your timetable."
+        android:textColor="@color/k_text_primary"
+        android:textSize="19sp" />
+    </LinearLayout>
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="12dp"
+      android:padding="13dp"
+      android:background="@drawable/k_neo_card"
+      android:orientation="vertical">
+
+      <TextView
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Check it before you keep it"
+        android:textColor="@color/k_text_primary"
+        android:textSize="14sp" />
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Review the courses, classes and assessment data found in your import."
+        android:textColor="@color/k_text_secondary"
+        android:textSize="12sp" />
+    </LinearLayout>
+
+    <TextView
+      android:textStyle="bold"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Timetable"
+      android:textColor="@color/k_text_primary"
+      android:textSize="26sp" />
+
+  </LinearLayout>
+</ScrollView>
