@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.koalified"
-        minSdk = 26
+        minSdk = 27
         targetSdk = 37
         versionCode = 1
         versionName = "1.0"

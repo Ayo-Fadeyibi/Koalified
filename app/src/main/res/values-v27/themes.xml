@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.KoalifiedAndroid" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/ink</item>
+        <item name="colorPrimaryVariant">@color/ink_secondary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/brand_mint</item>
+        <item name="colorSecondaryVariant">@color/teal_fill</item>
+        <item name="colorOnSecondary">@color/ink</item>
+
+        <item name="android:windowBackground">@color/k_screen_background</item>
+        <item name="android:statusBarColor">@color/k_screen_background</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/k_screen_background</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:navigationBarDividerColor">@android:color/transparent</item>
+        <item name="android:fontFamily">@font/fredoka</item>
+        <item name="fontFamily">@font/fredoka</item>
+    </style>
+</resources>
