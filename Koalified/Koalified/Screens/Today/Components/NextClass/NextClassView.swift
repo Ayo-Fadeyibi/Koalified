@@ -7,116 +7,146 @@ import SwiftUI
 import SwiftData
 
 /// The highlighted card at the top of the agenda: the next class, when it starts, where it is,
-/// and a button for class details and directions. Shows sample data for now.
+/// and a button for class details and directions.
 struct NextClassView: View {
-   var sessions: [ClassSession]
+    var sessions: [ClassSession]
 
-    /// Bumped on pull to refresh: re-reads the clock, so a finished class gives way to the next upcoming one,
-    /// and flips the room board again.
+    /// Bumped on pull-to-refresh or board tap: re-reads the clock and flips the room board again.
     @State private var refreshCount = 0
-    
-    private var findTodaySession: [ClassSession] {
-        findTodaysSessions(from: sessions)
-    }
-    
-    private var upcomingSessions: [ClassSession] {
-        findUpcomingSessions(from: sessions)
-    }
-
-    private var nextSession: ClassSession? {
-        upcomingSessions.first
-    }
-
-    /// The sessions after the next one, for the list below the card.
-    private var laterSessions: [ClassSession] {
-        Array(upcomingSessions.dropFirst())
-    }
-    
-    
+    @Environment(\.openURL) private var openURL
 
     var body: some View {
-        VStack{
-            if nextSession == nil && findTodaySession.isEmpty {
-                NoClassView(onImport: {}, onAddManually: {})
-            } else if nextSession == nil {
-                AllDoneToday()
-            } else {
-                Card(bgColor: Color.tintMint) {
-                    VStack(alignment: .leading, spacing: 14) {
+        TimelineView(.everyMinute) { context in
+            let now = context.date
+            let todaySessions = findTodaysSessions(from: sessions, now: now)
+            let upcomingSessions = findUpcomingSessions(from: sessions, now: now)
 
-                        // Header: label on the left, live countdown on the right
-                        HStack(alignment: .center) {
-                            Text("NEXT CLASS")
-                                .font(.fredoka(.caption, .semibold))
-                                .foregroundStyle(Color.textSecondary)
+            let nextSession = upcomingSessions.first
+            let laterSessions = Array(upcomingSessions.dropFirst())
+            let timeLeft = countdownLabel(to: nextSession, now: now)
+            let isLive = timeLeft.caseInsensitiveCompare("Now") == .orderedSame
 
-                            Spacer()
+            VStack(spacing: 16) {
+                if nextSession == nil && todaySessions.isEmpty {
+                    NoClassView(onImport: {}, onAddManually: {})
+                } else if nextSession == nil {
+                    AllDoneToday()
+                } else if let nextSession {
+                    // 1. Hero Next Class Card
+                    Card {
+                        VStack(alignment: .leading, spacing: 14) {
 
-                            // Refreshes every minute so the countdown stays current
-                            TimelineView(.periodic(from: .now, by: 60)) { context in
-                                Text(verbatim: countdownLabel(to: nextSession, now: context.date))
+                            // Header: Eyebrow label + live countdown pill
+                            HStack(alignment: .center) {
+                                Text(isLive ? "IN PROGRESS" : "NEXT CLASS")
                                     .font(.fredoka(.caption, .bold))
-                                    .foregroundStyle(Color.accent)
+                                    .foregroundStyle(Color.textSecondary)
+
+                                Spacer()
+
+                                Text(verbatim: timeLeft.uppercased())
+                                    .font(.fredoka(.caption, .bold))
+                                    .foregroundStyle(isLive ? Color.textPrimary : Color.accent)
                                     .padding(.horizontal, 12)
-                                    .padding(.vertical, 6)
-                                    .plainStyling()
+                                    .padding(.vertical, 5)
+                                    .background(isLive ? Color.tintAmber : Color.tintMint, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: Layout.radiusSmall)
+                                            .strokeBorder(Color.inkBorder, lineWidth: 2)
+                                    )
                             }
-                        }
 
-                        // Title: course code on its own line, then class type and time beneath
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(verbatim: nextSession?.course?.courseCode ?? "")
-                                .font(.fredoka(.title2, .bold))
-                                .foregroundStyle(Color.textPrimary)
-
-                            Text(nextSession?.type.label ?? SessionType.unknown.label)
-                                .font(.fredoka(.subheadline, .semibold))
-                                .foregroundStyle(Color.accent)
-                            + Text(verbatim: "  ·  \(timeRange(from: nextSession))")
-                                .font(.fredoka(.subheadline, .semibold))
-                                .foregroundStyle(Color.textSecondary)
-                        }
-
-                        // Room code on the flap display, with the building underneath
-                        VStack(alignment: .leading, spacing: 8) {
-                            SplitFlapDisplay(text: nextSession?.room ?? "", replayTrigger: refreshCount)
-
-                            if let building = nextSession?.building {
-                                Label(building, systemImage: "mappin.and.ellipse")
-                                    .font(.fredoka(.subheadline, .semibold))
-                                    .foregroundStyle(Color.textPrimary)
-                                    .padding()
-                                    .plainStyling()
+                            // Course Code + Class Type & Time
+                            VStack(alignment: .leading, spacing: 2) {
+                                HStack {
+                                    Text(verbatim: nextSession.course?.courseCode ?? "CLASS")
+                                        .font(.fredoka(.title2, .bold))
+                                        .foregroundStyle(Color.textPrimary)
                                     
-                            }
-                        }
+                                    Spacer()
+                                    
+                                    if let building = nextSession.building, !building.isEmpty {
+                                        Text(building)
+                                            .font(.fredoka(.subheadline, .semibold))
+                                            .foregroundStyle(Color.textPrimary)
+                                            .lineLimit(1)
+                                            .padding(.horizontal, 12)
+                                            .padding(.vertical, 7)
+                                            .background(isLive ? Color.tintAmber : Color.tintMint, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: Layout.radiusSmall)
+                                                    .strokeBorder(Color.inkBorder, lineWidth: 2)
+                                            )
+                                    }
+                            
+                                }
 
-                        // Button
-                        PlainPrimaryButton(title: "Walk there in Apple Maps"){}
-                    }
-                }
-                // Only the later classes scroll; the banner and next-class card stay put.
-                // The bottom padding keeps the last row clear of the + button and tab bar.
-                ScrollView {
-                    VStack(spacing: 10) {
-                        ForEach(laterSessions) { session in
-                            TodayClassRow(event: session)
+                                HStack(spacing: 6) {
+                                    Text(nextSession.type.label)
+                                        .font(.fredoka(.subheadline, .bold))
+                                        .foregroundStyle(Color.accent)
+
+                                    Text("·")
+                                        .font(.fredoka(.subheadline, .bold))
+                                        .foregroundStyle(Color.textSecondary)
+
+                                    Text(verbatim: timeRange(from: nextSession))
+                                        .font(.fredoka(.subheadline, .semibold))
+                                        .foregroundStyle(Color.textSecondary)
+                                }
+                               
+                            }
+
+                            // Building Pill + Walking Directions Action
+                           
+                                VStack(alignment: .leading, spacing: 10) {
+                                    
+                                    
+                                    // Split-Flap Room Board (tappable to replay mechanical clack)
+                                    SplitFlapDisplay(text: nextSession.room, replayTrigger: refreshCount, tileHeight: 46)
+                                        .onTapGesture { refreshCount += 1 }
+                                        .sensoryFeedback(.impact(weight: .light), trigger: refreshCount)
+
+                                    if let building = nextSession.building, !building.isEmpty,
+                                       let url = mapsWalkingURL(to: building) {
+                                        PlainPrimaryButton(title: "Walk there in Apple Maps") {
+                                            openURL(url)
+                                        }
+                                    }
+                    
+                                }
+                            
                         }
                     }
-                    .padding(.bottom, 140)
-                }
-                .scrollIndicators(.hidden)
-                // Pull down to refresh: moves on to the next upcoming class if the current one has ended.
-                .scrollBounceBehavior(.always)
-                .refreshable {
-                    refreshCount += 1
-                    // Hold the spinner while the board flips
-                    try? await Task.sleep(for: .milliseconds(600))
+
+                    // 2. Later Classes List (only rendered when there are more classes today)
+                    if !laterSessions.isEmpty {
+                        ScrollView {
+                            VStack(alignment: .leading, spacing: 10) {
+                                Text("UPCOMING TODAY")
+                                    .font(.fredoka(.caption, .bold))
+                                    .foregroundStyle(Color.textSecondary)
+                                    .padding(.horizontal, 4)
+
+                                ForEach(laterSessions) { session in
+                                    TodayClassRow(event: session)
+                                }
+                            }
+                            .padding(.bottom, 140)
+                        }
+                        .scrollIndicators(.hidden)
+                        .scrollBounceBehavior(.always)
+                        .refreshable {
+                            refreshCount += 1
+                            try? await Task.sleep(for: .milliseconds(600))
+                        }
+                    } else {
+                        Spacer(minLength: 0)
+                    }
+                    
                 }
             }
-            }
-        
-        
+        }
         
     }
 }
@@ -124,12 +154,20 @@ struct NextClassView: View {
 #Preview {
     let start = Date().addingTimeInterval(20 * 60)
     let sessions = [
-        ClassSession(start: start,
-                     end: start.addingTimeInterval(60 * 60),
-                     type: .LEC,
-                     room: "50-201",
-                    building: "Hawken Engineering Building"
-                    )
+        ClassSession(
+            start: start,
+            end: start.addingTimeInterval(60 * 60),
+            type: .LEC,
+            room: "50-201",
+            building: "Hawken Engineering Building"
+        ),
+        ClassSession(
+            start: start.addingTimeInterval(120 * 60),
+            end: start.addingTimeInterval(180 * 60),
+            type: .TUT,
+            room: "11A-130",
+            building: "ModWest"
+        )
     ]
     return NextClassView(sessions: sessions)
         .padding()

@@ -12,83 +12,59 @@ struct ImportantDatesView: View {
     var body: some View{
         
         
-        VStack(alignment: .leading, spacing: 30) {
-            Text("Semester Dates")
-                .primaryTextStyling()
+        TimelineView(.everyMinute) {
+            context in
             
-            Text("Know your next milestone")
-                .font(.fredoka(.body, .bold))
+            let milestones = upcomingMilestones(from: Milestone.all)
             
-            Link(destination: URL(string: "https://about.uq.edu.au/academic-calendar")!) {
-                HStack(spacing: 8) {
-                    Text("Check official semester dates")
-                        .font(.fredoka(.body, .bold))
-                }
-                .foregroundStyle(Color.onMint)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.mintFill, in: RoundedRectangle(cornerRadius: Layout.radiusLarge))
-                .overlay(
-                    RoundedRectangle(cornerRadius: Layout.radiusLarge)
-                        .strokeBorder(Color.inkBorder, lineWidth: 2)
-                )
-            }.frame(maxWidth: .infinity)
-            
-            ScrollView {
-                
-            Card{
-                Text("CENSUS DATE · 9 DAYS LEFT")
-                    .font(.fredoka(.body, .bold))
-                    .foregroundStyle(Color.textPrimary)
-                    .padding(5)
-                    .background(Color.label)
-                
-                Text("29 October")
+            VStack(alignment: .leading, spacing: 30) {
+                Text("Semester Dates")
                     .primaryTextStyling()
                 
-                Text("Check the last day to withdraw without course fees for your semester.")
-                    .secondaryTextStyling()
-                    // Let the text take as many lines as it needs instead of being squeezed to one
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            
-            Card{
-                Text("MID SEM BREAK  DATE · 9 DAYS LEFT")
+                Text("Know your next milestone")
                     .font(.fredoka(.body, .bold))
-                    .foregroundStyle(Color.textPrimary)
-                    .padding(5)
-                    .background(Color.label)
                 
-                Text("29 October")
-                    .primaryTextStyling()
+                Link(destination: URL(string: "https://about.uq.edu.au/academic-calendar")!) {
+                    HStack(spacing: 8) {
+                        Text("Check official semester dates")
+                            .font(.fredoka(.body, .bold))
+                    }
+                    .foregroundStyle(Color.onMint)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.mintFill, in: RoundedRectangle(cornerRadius: Layout.radiusLarge))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: Layout.radiusLarge)
+                            .strokeBorder(Color.inkBorder, lineWidth: 2)
+                    )
+                }.frame(maxWidth: .infinity)
                 
-                Text("Check the last day to withdraw without course fees for your semester.")
-                    .secondaryTextStyling()
-                    // Let the text take as many lines as it needs instead of being squeezed to one
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            
-            Card{
-                Text("CENSUS DATE · 9 DAYS LEFT")
-                    .font(.fredoka(.body, .bold))
-                    .foregroundStyle(Color.textPrimary)
-                    .padding(5)
-                    .background(Color.label)
+                ScrollView {
+                    
+                    ForEach(milestones) { milestone in
+                        Card{
+                            
+                            Badge(text: "\(milestone.title) · \(daysLabel(daysUntil(milestone.date))) LEFT", colour: Color.label)
+                            
+                            Text(milestone.date, format: .dateTime.day().month(.wide))
+                                .primaryTextStyling()
+                            
+                            Text(milestone.note)
+                                .secondaryTextStyling()
+                                // Let the text take as many lines as it needs instead of being squeezed to one
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                        
+                    }
+                    
                 
-                Text("29 October")
-                    .primaryTextStyling()
+            }.scrollIndicators(.hidden)
+                    .background(Color.screenBackground)
                 
-                Text("Check the last day to withdraw without course fees for your semester.")
-                    .secondaryTextStyling()
-                    // Let the text take as many lines as it needs instead of being squeezed to one
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-        }.scrollIndicators(.hidden)
+            }.padding()
                 .background(Color.screenBackground)
-            
-        }.padding()
-            .background(Color.screenBackground)
-            .frame(maxWidth: .infinity, alignment: .topLeading)
+                .frame(maxWidth: .infinity, alignment: .topLeading)
+        }
         
         
     }

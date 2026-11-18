@@ -13,5 +13,6 @@ import SwiftUI
 struct KoalifiedWidgetBundle: WidgetBundle {
     var body: some Widget {
         KoalifiedWidget()
+        NextClassWidget()
     }
 }

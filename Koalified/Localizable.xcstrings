@@ -50,6 +50,19 @@
         }
       }
     },
+    "·" : {
+
+    },
+    "%@ · %@ LEFT" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ · %2$@ LEFT"
+          }
+        }
+      }
+    },
     "%@ / %@ points earned" : {
       "localizations" : {
         "en" : {
@@ -454,9 +467,6 @@
       }
     },
     "3 days left · 15% of course grade" : {
-
-    },
-    "29 October" : {
 
     },
     "a %lld is already banked" : {
@@ -1532,19 +1542,10 @@
         }
       }
     },
-    "CENSUS" : {
-
-    },
-    "CENSUS DATE · 9 DAYS LEFT" : {
-
-    },
     "Check it before you keep it" : {
 
     },
     "Check official semester dates" : {
-
-    },
-    "Check the last day to withdraw without course fees for your semester." : {
 
     },
     "Choose a .ics file" : {
@@ -2689,9 +2690,6 @@
     "Go straight to importing" : {
 
     },
-    "Good morning" : {
-
-    },
     "Good morning," : {
       "extractionState" : "stale",
       "localizations" : {
@@ -3150,6 +3148,9 @@
           }
         }
       }
+    },
+    "IN PROGRESS" : {
+
     },
     "Introduction to Software Engineering" : {
       "localizations" : {
@@ -3635,12 +3636,6 @@
           }
         }
       }
-    },
-    "MID SEM BREAK  DATE · 9 DAYS LEFT" : {
-
-    },
-    "MID-BREAK" : {
-
     },
     "More" : {
 
@@ -5030,9 +5025,6 @@
     "Studio" : {
 
     },
-    "SWOTVAC" : {
-
-    },
     "Symposium" : {
 
     },
@@ -5420,6 +5412,9 @@
           }
         }
       }
+    },
+    "UPCOMING TODAY" : {
+
     },
     "UQ timetable link · Imported today" : {
 

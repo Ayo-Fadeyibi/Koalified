@@ -1,11 +1,9 @@
 //
-//  SplitFlapDisplay.swift.swift
+//  SplitFlapDisplay.swift
 //  Koalified
 //
 //  Created by Ayooluwa Fadeyibi on 14/11/2026.
 //
-
-import SwiftUI
 
 import SwiftUI
 
@@ -14,6 +12,8 @@ import SwiftUI
 struct SplitFlapDisplay: View {
     let text: String
     var replayTrigger: Int = 0
+    /// Height of each tile; the character size scales with it.
+    var tileHeight: CGFloat = 60
     var tileBackground: Color = Color(red: 0.11, green: 0.16, blue: 0.14)
     var seamColor: Color = Color(red: 0.25, green: 0.34, blue: 0.30)
 
@@ -27,6 +27,7 @@ struct SplitFlapDisplay: View {
                     character: String(character),
                     staggerDelay: Double(index) * 0.05,
                     replayToken: flipCount,
+                    tileHeight: tileHeight,
                     tileBackground: tileBackground,
                     seamColor: seamColor
                 )
@@ -46,14 +47,15 @@ private struct HalfFlapView: View {
 
     let character: String
     let half: Half
+    let tileHeight: CGFloat
     let tileBackground: Color
 
     var body: some View {
         Text(character)
-            .font(.system(size: 32, weight: .bold, design: .monospaced))
+            .font(.system(size: tileHeight * 0.53, weight: .bold, design: .monospaced))
             .foregroundStyle(.white)
             .frame(maxWidth: .infinity)
-            .frame(height: 60)
+            .frame(height: tileHeight)
             .background(tileBackground)
             .mask(
                 VStack(spacing: 0) {
@@ -75,6 +77,7 @@ struct SplitFlapTile: View {
     var staggerDelay: Double = 0
     /// Changes each time the board should flip again.
     var replayToken: Int = 0
+    var tileHeight: CGFloat = 60
     let tileBackground: Color
     let seamColor: Color
 
@@ -87,13 +90,13 @@ struct SplitFlapTile: View {
     var body: some View {
         ZStack {
             // 1. Background Top Half
-            HalfFlapView(character: nextChar, half: .top, tileBackground: tileBackground)
+            HalfFlapView(character: nextChar, half: .top, tileHeight: tileHeight, tileBackground: tileBackground)
 
             // 2. Background Bottom Half
-            HalfFlapView(character: currentChar, half: .bottom, tileBackground: tileBackground)
+            HalfFlapView(character: currentChar, half: .bottom, tileHeight: tileHeight, tileBackground: tileBackground)
 
             // 3. Animated Top Flap
-            HalfFlapView(character: currentChar, half: .top, tileBackground: tileBackground)
+            HalfFlapView(character: currentChar, half: .top, tileHeight: tileHeight, tileBackground: tileBackground)
                 .rotation3DEffect(
                     .degrees(topFlipAngle),
                     axis: (x: 1, y: 0, z: 0),
@@ -106,7 +109,7 @@ struct SplitFlapTile: View {
                 )
 
             // 4. Animated Bottom Flap
-            HalfFlapView(character: nextChar, half: .bottom, tileBackground: tileBackground)
+            HalfFlapView(character: nextChar, half: .bottom, tileHeight: tileHeight, tileBackground: tileBackground)
                 .rotation3DEffect(
                     .degrees(bottomFlipAngle),
                     axis: (x: 1, y: 0, z: 0),
@@ -119,7 +122,7 @@ struct SplitFlapTile: View {
                 .fill(seamColor)
                 .frame(height: 1.5)
         }
-        .frame(height: 60)
+        .frame(height: tileHeight)
         .clipShape(RoundedRectangle(cornerRadius: 6))
         .onAppear {
             guard !hasAppeared else { return }

@@ -12,19 +12,21 @@ import SwiftUI
 struct TodayHeader: View {
 
     var body: some View {
-        HStack(alignment: .top) {
-            VStack(alignment: .leading, spacing: 4) {
-                Text("Good morning")
-                    .font(.fredoka(.largeTitle, .bold))
-                    .foregroundStyle(Color.textPrimary)
-                Text(Date.now, format: .dateTime.weekday(.abbreviated).month(.abbreviated).day().year())
-                    .font(.fredoka(.footnote))
-                    .foregroundStyle(Color.textSecondary)
-            }
-            Spacer()
+        TimelineView (.everyMinute) {
+            context in HStack(alignment: .top) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(greeting(at: context.date))
+                        .font(.fredoka(.largeTitle, .bold))
+                        .foregroundStyle(Color.textPrimary)
+                    Text(context.date, format: .dateTime.weekday(.abbreviated).month(.abbreviated).day().year())
+                        .font(.fredoka(.footnote))
+                        .foregroundStyle(Color.textSecondary)
+                }
+                Spacer()
 
-            ProfileAvatarButton()
-            
+                ProfileAvatarButton()
+                
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }

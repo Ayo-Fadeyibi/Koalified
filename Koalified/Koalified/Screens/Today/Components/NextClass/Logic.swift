@@ -8,9 +8,9 @@
 import Foundation
 
 //Returns the class sessions that occurs today
-func findTodaysSessions (from sessions: [ClassSession]) -> [ClassSession] {
+func findTodaysSessions (from sessions: [ClassSession], now: Date = .now) -> [ClassSession] {
     let calendar = Calendar.current
-    var todaySessions = sessions.filter{calendar.isDateInToday($0.start)}
+    var todaySessions = sessions.filter{calendar.isDate($0.start, inSameDayAs: now)}
     todaySessions.sort{
         $0.start < $1.start
     }
@@ -22,7 +22,7 @@ func findTodaysSessions (from sessions: [ClassSession]) -> [ClassSession] {
 /// The first element is the next class; the rest follow it.
 func findUpcomingSessions (from sessions: [ClassSession], now: Date = .now) -> [ClassSession] {
     // Today's sessions are already sorted by start time
-    findTodaysSessions(from: sessions).filter { $0.end > now }
+    findTodaysSessions(from: sessions, now: now).filter { $0.end > now }
 }
 
 /// "9:00 AM - 10:00 AM" for the next session, or empty when there isn't one.
@@ -39,4 +39,90 @@ func countdownLabel(to session: ClassSession?, now: Date = .now) -> String {
     guard minutes >= 60 else { return "In \(minutes) min" }
     let (hours, remainder) = minutes.quotientAndRemainder(dividingBy: 60)
     return remainder == 0 ? "In \(hours)h" : "In \(hours)h \(remainder)m"
+}
+
+func mapsWalkingURL(to destination: String) -> URL? {
+    let cleaned = destination.trimmingCharacters(in: .whitespacesAndNewlines)
+    guard !cleaned.isEmpty else { return nil }
+
+    let knownSuffixes = ["building", "library", "tower", "centre", "center", "lab", "laboratory", "hall", "theatre", "modwest"]
+    let lower = cleaned.lowercased()
+    let lastString = lower.split(separator: " ").last
+    let hasSuffix = knownSuffixes.contains { lastString?.contains($0) ?? false }
+
+    let queryName = hasSuffix ? cleaned : "\(cleaned) Building"
+
+    var components = URLComponents()
+    components.scheme = "https"
+    components.host = "maps.apple.com"
+    components.path = "/"
+    components.queryItems = [
+        URLQueryItem(name: "daddr", value: "\(queryName)"),
+        URLQueryItem(name: "dirflg", value: "w")
+    ]
+
+    return components.url
+}
+
+func greeting (at now: Date = .now) -> String {
+    let hour = Calendar.current.component(.hour, from: now)
+    
+    switch hour{
+    case 5..<12:
+        return "Good morning"
+        
+    case 12..<17:
+        return "Good afternoon"
+        
+    case 17..<22:
+        return "Good evening"
+        
+    default:
+        return "Still up?"
+    }
+    
+}
+
+func daysUntil(_ date: Date, from now: Date = .now) -> Int {
+    let calendar = Calendar.current
+    return calendar.dateComponents([.day], from: calendar.startOfDay(for: now), to: calendar.startOfDay(for: date)).day ?? 0
+}
+
+func makeDate(day: Int, month: Int, year: Int = Calendar.current.component(.year, from: .now)) -> Date? {
+    var components = DateComponents()
+    components.year = year
+    components.month = month
+    components.day = day
+    return Calendar.current.date(from: components)
+}
+
+func upcomingMilestones(from: [Milestone], now: Date = .now) -> [Milestone] {
+    var mileStones = from
+    mileStones.sort {
+        $0.date < $1.date
+    }
+    
+    let upcoming = mileStones.filter {
+        daysUntil($0.date, from: now) >= 0
+    }
+    
+    return upcoming
+}
+
+func nextMileStone(from list: [Milestone], now date: Date = .now) -> [Milestone] {
+    let upcoming = upcomingMilestones(from: list, now: date)
+    return Array(upcoming.prefix(3))
+}
+
+func daysLabel(_ days: Int) -> String {
+    switch days{
+    case 0:
+        return "TODAY"
+    case 1:
+        return "1 DAY"
+        
+    default:
+        return "\(days) DAYS"
+    }
+    
 }

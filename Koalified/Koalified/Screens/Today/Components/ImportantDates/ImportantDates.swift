@@ -11,20 +11,34 @@ import SwiftUI
 /// split by thick dividers inside one bordered box. Tapping it opens the full semester dates.
 struct ImportantDates: View {
     var body: some View {
-        NavigationLink {
-            ImportantDatesView()
-        } label: {
-            HStack(spacing: 0) {
-                tile("CENSUS", days: "9 DAYS", fill: Color.tintAmber)
-                divider
-                tile("MID-BREAK", days: "22 DAYS", fill: Color.tintMint)
-                divider
-                tile("SWOTVAC", days: "54 DAYS", fill: Color.cardSurface)
+        TimelineView(.everyMinute) {
+            context in
+            
+            let upcoming = nextMileStone(from: Milestone.all, now: context.date)
+            
+            let colors = [
+                Color.tintAmber,
+                Color.tintMint,
+                Color.cardSurface
+            ]
+            
+            NavigationLink {
+                ImportantDatesView()
+            } label: {
+                HStack(spacing: 0) {
+                    ForEach(Array(upcoming.enumerated()), id: \.element.id) { index, milestone in
+                        tile(LocalizedStringKey(milestone.title), days: "\(daysUntil(milestone.date, from: context.date))d", fill: colors[index])
+                        
+                        if index < upcoming.count - 1 {
+                            divider
+                        }
+                    }
+                }
+                .fixedSize(horizontal: false, vertical: true)
+                .overlay(Rectangle().strokeBorder(Color.inkBorder, lineWidth: 2))
             }
-            .fixedSize(horizontal: false, vertical: true)
-            .overlay(Rectangle().strokeBorder(Color.inkBorder, lineWidth: 2))
+            .buttonStyle(.plain)
         }
-        .buttonStyle(.plain)
     }
 
     /// One milestone: its name above the days remaining, centred on a coloured fill.

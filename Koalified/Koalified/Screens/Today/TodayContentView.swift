@@ -14,20 +14,11 @@ import SwiftData
 struct TodayContentView: View {
     
     @Query var sessions: [ClassSession]
-    
-    private var todaySessions: [ClassSession] {
-        findTodaysSessions(from: sessions)
-    }
      
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             ImportantDates()
-
-            if todaySessions.isEmpty {
-                NoClassView(onImport: {}, onAddManually: {})
-            } else {
                 NextClassView(sessions: sessions)
-            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         

@@ -56,6 +56,30 @@ enum SessionType: String, Codable {
         case .unknown: "Class"
         }
     }
+
+    /// Localized name as a plain `String`, for places that can't take a `LocalizedStringKey` (e.g. the widget snapshot).
+    var localizedName: String {
+        switch self {
+        case .LEC: String(localized: "Lecture")
+        case .TUT: String(localized: "Tutorial")
+        case .PRA: String(localized: "Practical")
+        case .STU: String(localized: "Studio")
+        case .APP: String(localized: "Applied")
+        case .WKS: String(localized: "Workshop")
+        case .CLN: String(localized: "Clinical")
+        case .SEM: String(localized: "Seminar")
+        case .EXM: String(localized: "Exam")
+        case .REC: String(localized: "Recorded")
+        case .PLM: String(localized: "Placement")
+        case .FLD: String(localized: "Fieldwork")
+        case .SYM: String(localized: "Symposium")
+        case .CON: String(localized: "Consultation")
+        case .EVT: String(localized: "Event")
+        case .COM: String(localized: "Computing")
+        case .PAS: String(localized: "PASS")
+        case .unknown: String(localized: "Class")
+        }
+    }
 }
 
 /// One scheduled class (lecture, tutorial or practical) for a course, with its time and room.

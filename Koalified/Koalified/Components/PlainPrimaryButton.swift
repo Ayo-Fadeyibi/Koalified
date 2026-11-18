@@ -12,6 +12,7 @@ struct PlainPrimaryButton: View {
     let action: () -> Void
     /// Corner radius of the button. Pass a large value for a pill shape.
     var cornerRadius: CGFloat = Layout.radiusLarge
+    var colour: Color? = nil
     
     var body: some View {
         Button (action: action) {
@@ -20,7 +21,7 @@ struct PlainPrimaryButton: View {
                 .foregroundStyle(Color.onMint)
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(Color.mintFill, in: RoundedRectangle(cornerRadius: Layout.radiusLarge))
+                .background(colour ?? Color.mintFill, in: RoundedRectangle(cornerRadius: Layout.radiusLarge))
                 .overlay(
                     RoundedRectangle(cornerRadius: Layout.radiusLarge)
                         .strokeBorder(Color.inkBorder, lineWidth: 2)
