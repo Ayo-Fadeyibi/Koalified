@@ -116,7 +116,9 @@ struct ImportFlowView: View {
 /// onboarding, from `OnboardingFlow`.
 private extension View {
     func screenStyle() -> some View {
-        self.mainContainerStyling()
+        // No background here: an opaque one would cover the sheet's border.
+        self.padding(.horizontal, Layout.screenPadding)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
 }
 

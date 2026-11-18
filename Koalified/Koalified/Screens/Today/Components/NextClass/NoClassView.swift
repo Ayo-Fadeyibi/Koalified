@@ -9,12 +9,6 @@ import SwiftUI
 
 struct NoClassView: View {
     
-    /// Called when the user taps "Import timetable".
-    let onImport: () -> Void
-    /// Called when the user taps "Add a class manually".
-    let onAddManually: () -> Void
-
-    
     var body: some View {
         EmptyStateView(
             header1: "A LITTLE BREATHING ROOM",
@@ -34,5 +28,5 @@ struct NoClassView: View {
 }
 
 #Preview {
-    NoClassView(onImport: {}, onAddManually: {})
+    NoClassView()
 }

@@ -89,7 +89,7 @@ func importEvents(_ events: [ParsedEvent], into context: ModelContext) throws ->
                                        type: event.type ?? .unknown,
                                        room: roomCode(from: event.location),
                                        building: buildingName(from: event.location),
-                                       icsUID: event.uid, course: course)
+                                       icsUID: event.uid, course: course, clashable: event.isClashable)
             context.insert(session)
             result.added += 1
         }

@@ -93,8 +93,9 @@ final class ClassSession {
     var building: String?
     var icsUID: String?
     var course: Course?
+    var clashable: Bool?
 
-    init(start: Date, end: Date, type: SessionType, room: String, building: String? = nil, icsUID: String? = nil, course: Course? = nil) {
+    init(start: Date, end: Date, type: SessionType, room: String, building: String? = nil, icsUID: String? = nil, course: Course? = nil, clashable: Bool? = nil) {
         self.start = start
         self.end = end
         self.type = type
@@ -102,5 +103,6 @@ final class ClassSession {
         self.building = building
         self.icsUID = icsUID
         self.course = course
+        self.clashable = clashable
     }
 }

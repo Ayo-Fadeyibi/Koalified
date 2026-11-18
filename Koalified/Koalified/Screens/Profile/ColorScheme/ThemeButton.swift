@@ -36,5 +36,6 @@ struct ThemeToggleButton: View {
             .neoBrutalist(backgroundColor: Color.cardSurface, cornerRadius: Layout.radiusSmall)
         }
         .buttonStyle(.plain)
+        .sensoryFeedback(.impact(weight: .medium), trigger: appColorScheme)
     }
 }

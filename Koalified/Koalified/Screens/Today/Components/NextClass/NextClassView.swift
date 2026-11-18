@@ -28,7 +28,7 @@ struct NextClassView: View {
 
             VStack(spacing: 16) {
                 if nextSession == nil && todaySessions.isEmpty {
-                    NoClassView(onImport: {}, onAddManually: {})
+                    NoClassView()
                 } else if nextSession == nil {
                     AllDoneToday()
                 } else if let nextSession {
@@ -103,7 +103,7 @@ struct NextClassView: View {
                                     
                                     
                                     // Split-Flap Room Board (tappable to replay mechanical clack)
-                                    SplitFlapDisplay(text: nextSession.room, replayTrigger: refreshCount, tileHeight: 46)
+                                    SplitFlapDisplay(text: nextSession.clashable == true ? "CLASH" : nextSession.room, replayTrigger: refreshCount, tileHeight: 46)
                                         .onTapGesture { refreshCount += 1 }
                                         .sensoryFeedback(.impact(weight: .light), trigger: refreshCount)
 

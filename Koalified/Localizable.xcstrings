@@ -815,6 +815,9 @@
         }
       }
     },
+    "Add class" : {
+
+    },
     "Add classes manually" : {
 
     },
@@ -863,6 +866,9 @@
           }
         }
       }
+    },
+    "Add deadline" : {
+
     },
     "Add mark" : {
       "localizations" : {
@@ -956,6 +962,9 @@
           }
         }
       }
+    },
+    "Add widget" : {
+
     },
     "Add your assignments, quizzes and exams to track your marks and see what you need." : {
       "localizations" : {
