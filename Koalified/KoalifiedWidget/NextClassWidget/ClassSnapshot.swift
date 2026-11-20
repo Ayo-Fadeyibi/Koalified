@@ -8,7 +8,7 @@
 //This defines what the widget needs to display
 import Foundation
 
-struct ClassSnapshot {
+struct ClassSnapshot: Equatable {
     let courseCode: String
     let typeLabel: String
     let start: Date

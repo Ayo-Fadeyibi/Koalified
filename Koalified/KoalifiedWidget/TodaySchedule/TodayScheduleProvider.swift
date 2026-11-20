@@ -61,15 +61,9 @@ struct TodayScheduleProvider: TimelineProvider{
         
         for moment in moments {
             
-            var snapshot: [ClassSnapshot] = []
-            
-            let classesToday = findTodaysSessions(from: sessions, now: moment)
-            
-            for session in classesToday {
-                
-                snapshot.append(makeSnapshot(from: session))
-                
-            }
+            let snapshot = findTodaysSessions(from: sessions, now: moment)
+                .sorted { $0.start < $1.start }
+                .map(makeSnapshot)
             
             entries.append(TodayScheduleEntry(date: moment, classes: snapshot))
         }

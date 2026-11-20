@@ -31,7 +31,7 @@ struct TodayClassRow: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(event.course?.courseCode ?? "")
                         .font(.fredoka(.headline))
-                    Label("Room \(event.room)", systemImage: "mappin.and.ellipse")
+                    Label("Room: \(event.room ?? "")", systemImage: "mappin.and.ellipse")
                         .font(.fredoka(.caption))
                         .lineLimit(1)
                         .foregroundStyle(.secondary)

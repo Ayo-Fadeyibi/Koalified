@@ -1,18 +1,6 @@
 import WidgetKit
 import SwiftUI
 
-private func fredoka(_ size: CGFloat, _ weight: Font.Weight) -> Font {
-    // Fredoka ships as one file per weight, so pick the PostScript name rather than the family.
-    let name: String
-    switch weight {
-    case .bold, .heavy, .black: name = "Fredoka-Bold"
-    case .semibold:             name = "Fredoka-SemiBold"
-    case .medium:               name = "Fredoka-Medium"
-    default:                    name = "Fredoka-Regular"
-    }
-    return .custom(name, fixedSize: size)
-}
-
 /// Cream fill with a 2pt black border drawn cleanly inside the widget's corner radius.
 private struct WidgetBackground: View {
     var body: some View {

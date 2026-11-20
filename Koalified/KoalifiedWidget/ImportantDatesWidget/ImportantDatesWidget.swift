@@ -8,18 +8,6 @@
 import WidgetKit
 import SwiftUI
 
-private func fredoka(_ size: CGFloat, _ weight: Font.Weight) -> Font {
-    // Fredoka ships as one file per weight, so pick the PostScript name rather than the family.
-    let name: String
-    switch weight {
-    case .bold, .heavy, .black: name = "Fredoka-Bold"
-    case .semibold:             name = "Fredoka-SemiBold"
-    case .medium:               name = "Fredoka-Medium"
-    default:                    name = "Fredoka-Regular"
-    }
-    return .custom(name, fixedSize: size)
-}
-
 struct ImportantDatesWidgetView: View {
     let entry: ImportantDatesEntry
     @Environment(\.widgetFamily) private var family
@@ -101,7 +89,7 @@ struct ImportantDatesWidgetView: View {
 
             Text(label)
                 .font(fredoka(20, .bold))
-                .foregroundStyle(Color.inkBorder)
+                .foregroundStyle(Color.textPrimary)
                 .lineLimit(1)
                 .minimumScaleFactor(0.75)
 
@@ -142,7 +130,7 @@ struct ImportantDatesWidgetView: View {
             // Hero countdown number
             Text(label)
                 .font(fredoka(28, .bold))
-                .foregroundStyle(Color.inkBorder)
+                .foregroundStyle(Color.textSecondary)
                 .lineLimit(1)
                 .minimumScaleFactor(0.75)
 

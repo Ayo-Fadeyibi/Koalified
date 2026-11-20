@@ -4430,6 +4430,7 @@
 
     },
     "Room %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -4522,6 +4523,9 @@
       }
     },
     "Room, e.g. 03-318" : {
+
+    },
+    "Room: %@" : {
 
     },
     "Save assessment" : {
