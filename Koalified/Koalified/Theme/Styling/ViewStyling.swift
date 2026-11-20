@@ -17,6 +17,11 @@ extension View {
             .background(Color.screenBackground)
     }
     
+    func containerStyling() -> some View {
+        self.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            .background(Color.screenBackground)
+    }
+    
     /// Large bold screen title.
     func primaryTextStyling() -> some View {
         self.foregroundStyle(Color.textPrimary)
@@ -26,6 +31,11 @@ extension View {
     /// Subheadline text in the secondary ink colour (subtitles, captions).
     func secondaryTextStyling() -> some View {
         self.font(.fredoka(.subheadline))
+            .foregroundStyle(Color.textSecondary)
+    }
+    
+    func boldSecondaryTextStyling() -> some View{
+        self.font(.fredoka(.subheadline, .bold))
             .foregroundStyle(Color.textSecondary)
     }
     

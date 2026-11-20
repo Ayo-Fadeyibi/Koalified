@@ -14,6 +14,8 @@ struct FloatingDropdown<SelectionValue: Hashable>: View {
 
     @State private var isExpanded = false
     @State private var triggerHeight: CGFloat = 0
+    
+    var maxVisibleOptions = 7
 
     var body: some View {
         // 1. Trigger Button
@@ -51,36 +53,12 @@ struct FloatingDropdown<SelectionValue: Hashable>: View {
         // 2. Floating Menu Overlay (does not affect layout height)
         .overlay(alignment: .top) {
             if isExpanded {
-                VStack(spacing: 4) {
-                    ForEach(options, id: \.self) { option in
-                        Button {
-                            withAnimation(.spring(response: 0.28, dampingFraction: 0.82)) {
-                                selection = option
-                                isExpanded = false
-                            }
-                        } label: {
-                            HStack {
-                                Text(optionLabel(option))
-                                    .font(.fredoka(.subheadline, selection == option ? .bold : .regular))
-                                    .foregroundStyle(Color.textPrimary)
-
-                                Spacer()
-
-                                if selection == option {
-                                    Image(systemName: "checkmark")
-                                        .font(.caption.weight(.bold))
-                                        .foregroundStyle(Color.greenDeep)
-                                }
-                            }
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 10)
-                            .contentShape(Rectangle())
-                            .background(
-                                selection == option ? Color.mintFill.opacity(0.4) : Color.clear,
-                                in: RoundedRectangle(cornerRadius: Layout.radiusSmall - 4)
-                            )
-                        }
-                        .buttonStyle(.plain)
+                Group {
+                    if options.count > maxVisibleOptions {
+                        ScrollView { optionRows }.scrollIndicators(.visible)
+                            .frame(height: 300)
+                    } else {
+                        optionRows
                     }
                 }
                 .padding(6)
@@ -96,7 +74,46 @@ struct FloatingDropdown<SelectionValue: Hashable>: View {
         // 3. Ensure this dropdown floats ABOVE views rendered below it in a VStack
         .zIndex(isExpanded ? 10 : 0)
     }
+    
+    private var optionRows: some View {
+        VStack(spacing: 4) {
+            ForEach(options, id: \.self) { option in
+                Button {
+                    withAnimation(.spring(response: 0.28, dampingFraction: 0.82)) {
+                        selection = option
+                        isExpanded = false
+                    }
+                } label: {
+                    HStack {
+                        Text(optionLabel(option))
+                            .font(.fredoka(.subheadline, selection == option ? .bold : .regular))
+                            .foregroundStyle(Color.textPrimary)
+
+                        Spacer()
+
+                        if selection == option {
+                            Image(systemName: "checkmark")
+                                .font(.caption.weight(.bold))
+                                .foregroundStyle(Color.greenDeep)
+                        }
+                    }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 10)
+                    .contentShape(Rectangle())
+                    .background(
+                        selection == option ? Color.mintFill.opacity(0.4) : Color.clear,
+                        in: RoundedRectangle(cornerRadius: Layout.radiusSmall - 4)
+                    )
+                }
+                .buttonStyle(.plain)
+            }
+        }
+
+    }
+    
 }
+
+
 
 #Preview("Floating Dropdown") {
     struct PreviewWrapper: View {

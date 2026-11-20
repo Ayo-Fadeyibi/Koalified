@@ -27,7 +27,7 @@ struct TodayEmptyView: View {
             primaryAction1: onImport,
             secondaryTitle: "Add a class manually",
             secondaryAction: onAddManually
-        ).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        ).containerStyling()
     }
 }
 

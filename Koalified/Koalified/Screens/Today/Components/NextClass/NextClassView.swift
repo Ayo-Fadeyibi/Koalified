@@ -10,6 +10,8 @@ import SwiftData
 /// and a button for class details and directions.
 struct NextClassView: View {
     var sessions: [ClassSession]
+    var onSeeWeek: () -> Void = {}
+    let onViewAssessment: () -> Void
 
     /// Bumped on pull-to-refresh or board tap: re-reads the clock and flips the room board again.
     @State private var refreshCount = 0
@@ -28,9 +30,9 @@ struct NextClassView: View {
 
             VStack(spacing: 16) {
                 if nextSession == nil && todaySessions.isEmpty {
-                    NoClassView()
+                    NoClassView(onSeeWeek: onSeeWeek, onViewAssessment: {}, now: context.date)
                 } else if nextSession == nil {
-                    AllDoneToday()
+                    AllDoneToday(onSeeWeek: onSeeWeek)
                 } else if let nextSession {
                     // 1. Hero Next Class Card
                     Card {
@@ -103,9 +105,10 @@ struct NextClassView: View {
                                     
                                     
                                     // Split-Flap Room Board (tappable to replay mechanical clack)
-                                    SplitFlapDisplay(text: nextSession.clashable == true ? "CLASH" : nextSession.room, replayTrigger: refreshCount, tileHeight: 46)
+                                    SplitFlapDisplay(text: nextSession.clashable == true ? "CLASH" : nextSession.room ?? "", replayTrigger: refreshCount, tileHeight: 46)
                                         .onTapGesture { refreshCount += 1 }
                                         .sensoryFeedback(.impact(weight: .light), trigger: refreshCount)
+                                        .accessibilityHidden(true)
 
                                     if let building = nextSession.building, !building.isEmpty,
                                        let url = mapsWalkingURL(to: building) {
@@ -169,7 +172,7 @@ struct NextClassView: View {
             building: "ModWest"
         )
     ]
-    return NextClassView(sessions: sessions)
+    return NextClassView(sessions: sessions, onViewAssessment: {})
         .padding()
         .modelContainer(PreviewData.container)
 }

@@ -57,6 +57,7 @@ struct AddAssessmentSheet: View {
             PrimaryButton(title: "Save assessment", action: save)
         }
         .padding(Layout.screenPadding)
+        .containerStyling()
         .alert("Can't add assessment", isPresented: $showError) {
             Button("OK", role: .cancel) {}
         } message: {

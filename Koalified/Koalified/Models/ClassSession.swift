@@ -9,7 +9,7 @@ import SwiftData
 import SwiftUI
 
 /// The kind of class a session is.
-enum SessionType: String, Codable {
+enum SessionType: String, Codable, CaseIterable {
     // Original 5 cases
         case LEC   // Lecture
         case TUT   // Tutorial
@@ -89,13 +89,13 @@ final class ClassSession {
     var start: Date
     var end: Date
     var type: SessionType
-    var room: String
+    var room: String?
     var building: String?
     var icsUID: String?
     var course: Course?
     var clashable: Bool?
 
-    init(start: Date, end: Date, type: SessionType, room: String, building: String? = nil, icsUID: String? = nil, course: Course? = nil, clashable: Bool? = nil) {
+    init(start: Date, end: Date, type: SessionType, room: String? = nil, building: String? = nil, icsUID: String? = nil, course: Course? = nil, clashable: Bool? = nil) {
         self.start = start
         self.end = end
         self.type = type

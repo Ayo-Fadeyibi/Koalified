@@ -39,12 +39,15 @@ struct CourseCard: View {
                                 }
                             } label: {
                                 Image(showFolder ? "folder-open" : "folder-closed")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 25, height: 25)
+                                    //.resizable()
+                                    //.scaledToFit()
+                                    .padding()
+                                    .frame(width: 35, height: 35)
                                     .foregroundStyle(Color.textPrimary)
+                                    .neoBrutalist(backgroundColor: Color.cardSurface, cornerRadius: 5)
                             }
                             .buttonStyle(.plain)
+                            .sensoryFeedback(.impact(weight: .light), trigger: showFolder)
                         }
 
                         Text(title)

@@ -73,7 +73,7 @@
 				"Resources/Font/Fredoka-Regular.ttf",
 				"Resources/Font/Fredoka-SemiBold.ttf",
 				Resources/SharedColors.xcassets,
-				Screens/Today/Components/ImportantDates/MileStone.swift,
+				Screens/Today/Components/ImportantDates/Milestone.swift,
 				Screens/Today/Components/NextClass/Logic.swift,
 			);
 			target = BB79C9DF308E0138007F3C21 /* KoalifiedWidgetExtension */;

@@ -24,7 +24,7 @@ struct AddMenuSheet: View {
             }
             
             
-          SecondaryButton(title: "Add a class", message: "Add to your weekly timetable") {
+            SecondaryButton(title: "Add a class", message: "Add to your weekly timetable") {
                 onAddClass()
                 dismiss()
             }
@@ -36,8 +36,7 @@ struct AddMenuSheet: View {
                 onAddWidget()
                 dismiss()
             }
-        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            .padding()
+        }.padding()
     }
     
 }

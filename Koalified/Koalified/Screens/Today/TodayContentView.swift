@@ -14,17 +14,18 @@ import SwiftData
 struct TodayContentView: View {
     
     @Query var sessions: [ClassSession]
+    @Binding var selectedTab: AppTab
      
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             ImportantDates()
-                NextClassView(sessions: sessions)
+            NextClassView(sessions: sessions, onSeeWeek: { selectedTab = .timetable }, onViewAssessment: {selectedTab = .courses})
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .containerStyling()
         
     }
 }
 
 #Preview {
-    TodayContentView()
+    TodayContentView(selectedTab: .constant(.today))
 }

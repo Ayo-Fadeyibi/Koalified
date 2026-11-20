@@ -19,8 +19,7 @@ struct FormField<Content: View>: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(label)
-                .font(.fredoka(.subheadline, .bold))
-                .foregroundStyle(Color.textSecondary)
+                .boldSecondaryTextStyling()
 
             content
                 .font(.fredoka(.subheadline, .bold))

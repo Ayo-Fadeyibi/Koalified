@@ -28,6 +28,10 @@ struct ImportantDates: View {
                 HStack(spacing: 0) {
                     ForEach(Array(upcoming.enumerated()), id: \.element.id) { index, milestone in
                         tile(LocalizedStringKey(milestone.title), days: "\(daysUntil(milestone.date, from: context.date))d", fill: colors[index])
+                            .accessibilityElement(children: .ignore)
+                            .accessibilityLabel(spokenLabel(for: milestone, now: context.date))
+                            // Tapping the banner opens the full semester dates
+                            .accessibilityAddTraits(.isButton)
                         
                         if index < upcoming.count - 1 {
                             divider

@@ -88,11 +88,15 @@ func daysUntil(_ date: Date, from now: Date = .now) -> Int {
     return calendar.dateComponents([.day], from: calendar.startOfDay(for: now), to: calendar.startOfDay(for: date)).day ?? 0
 }
 
-func makeDate(day: Int, month: Int, year: Int = Calendar.current.component(.year, from: .now)) -> Date? {
+func makeDate(day: Int, month: Int,
+              year: Int = Calendar.current.component(.year, from: .now),
+              hour: Int = 0, minute: Int = 0) -> Date? {
     var components = DateComponents()
     components.year = year
     components.month = month
     components.day = day
+    components.hour = hour
+    components.minute = minute
     return Calendar.current.date(from: components)
 }
 
@@ -124,5 +128,32 @@ func daysLabel(_ days: Int) -> String {
     default:
         return "\(days) DAYS"
     }
+}
+
+func nextAssessment(from assessments: [AssessmentItem], now: Date = .now) -> AssessmentItem?{
+    var assignments = assessments
     
+    assignments.sort {
+        $0.dueDate < $1.dueDate
+    }
+    
+    let assignment = assignments.filter {
+        $0.mark == nil && $0.dueDate >= now
+    }
+    
+    return assignment.first
+    
+}
+
+func dueLabel(for date: Date, now: Date = .now) -> String{
+    let daysLeft = daysUntil(date, from: now)
+    
+    switch daysLeft{
+    case 0:
+        return "Due today"
+    case 1:
+        return "1 day left"
+    default:
+        return "\(daysLeft) days left"
+    }
 }

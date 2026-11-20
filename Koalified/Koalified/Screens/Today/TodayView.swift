@@ -11,6 +11,10 @@ struct TodayView: View {
     
     @Query private var courses: [Course]
     
+    @Binding var selectedTab: AppTab
+    
+    @State private var showAddedPopup = false
+    
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
@@ -19,9 +23,9 @@ struct TodayView: View {
                     
                     if courses.isEmpty{
                         TodayEmptyView(onImport: {activeSheet = .importTimetable},
-                                       onAddManually: {activeSheet = .addMenu})
+                                       onAddManually: {activeSheet = .addClass})
                     } else {
-                        TodayContentView()
+                        TodayContentView(selectedTab: $selectedTab)
                     }
                 }
                 .padding([.horizontal, .top], 16)
@@ -53,7 +57,7 @@ struct TodayView: View {
                     .presentationDetents([.height(350)])
                     
                 case .addClass:
-                    Text("Add class")
+                    AddClassSheet(onAdded: { showAddedPopup = true })
                     
                 case .addDeadline:
                     Text("Add deadline")
@@ -62,12 +66,13 @@ struct TodayView: View {
                     Text("Add widget")
                 }
             }
+            .PopUp(isPresented: $showAddedPopup, message: "Class added", image: "circle-check", colour: .accent)
             .profileDestination()
         }
     }
 }
 
 #Preview {
-    TodayView()
+    TodayView(selectedTab: .constant(.today))
 }
 

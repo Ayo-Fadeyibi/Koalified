@@ -63,6 +63,16 @@
         }
       }
     },
+    "%@ · %@%% of course grade" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ · %2$@%% of course grade"
+          }
+        }
+      }
+    },
     "%@ / %@ points earned" : {
       "localizations" : {
         "en" : {
@@ -466,9 +476,6 @@
         }
       }
     },
-    "3 days left · 15% of course grade" : {
-
-    },
     "a %lld is already banked" : {
 
     },
@@ -815,7 +822,13 @@
         }
       }
     },
+    "Add anyway" : {
+
+    },
     "Add class" : {
+
+    },
+    "Add Class" : {
 
     },
     "Add classes manually" : {
@@ -1316,6 +1329,12 @@
     "Bring in your timetable" : {
 
     },
+    "Building" : {
+
+    },
+    "Building, e.g. Priestley" : {
+
+    },
     "Calculator" : {
       "localizations" : {
         "hi" : {
@@ -1610,6 +1629,9 @@
       }
     },
     "Class" : {
+
+    },
+    "Class added" : {
 
     },
     "Class details & directions" : {
@@ -1959,9 +1981,6 @@
         }
       }
     },
-    "CSSE1001 · Individual" : {
-
-    },
     "CSSE1001 · Lecture" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -2057,6 +2076,9 @@
       }
     },
     "Dark Mode" : {
+
+    },
+    "Date" : {
 
     },
     "DAY" : {
@@ -2489,6 +2511,12 @@
       }
     },
     "Edit recorded marks" : {
+
+    },
+    "End time must be after the start time." : {
+
+    },
+    "Ends" : {
 
     },
     "Enter assessment from your own course information" : {
@@ -4380,9 +4408,6 @@
         }
       }
     },
-    "Quiz 1" : {
-
-    },
     "Ready when you are." : {
 
     },
@@ -4392,10 +4417,16 @@
     "Remove timetable link" : {
 
     },
+    "Repeats every week" : {
+
+    },
     "Replay the tour" : {
 
     },
     "Review courses" : {
+
+    },
+    "Room" : {
 
     },
     "Room %@" : {
@@ -4489,6 +4520,9 @@
           }
         }
       }
+    },
+    "Room, e.g. 03-318" : {
+
     },
     "Save assessment" : {
       "localizations" : {
@@ -4839,6 +4873,9 @@
     "Skip, I'll add classes by hand" : {
 
     },
+    "Starts" : {
+
+    },
     "Starts 09:00" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -5132,6 +5169,9 @@
         }
       }
     },
+    "These classes overlap" : {
+
+    },
     "This helps us set up the right tips for you." : {
       "localizations" : {
         "hi" : {
@@ -5177,6 +5217,9 @@
           }
         }
       }
+    },
+    "Time" : {
+
     },
     "Timetable" : {
 
@@ -5373,6 +5416,9 @@
         }
       }
     },
+    "Type" : {
+
+    },
     "University of your choice" : {
 
     },
@@ -5440,10 +5486,16 @@
     "We couldn't read any classes from this file" : {
 
     },
+    "We don't have dates for this semester yet. Turn off “Repeats every week” to add a single class." : {
+
+    },
     "WEEK" : {
 
     },
     "Week view →" : {
+
+    },
+    "WeekDay" : {
 
     },
     "Welcome to Koalified" : {

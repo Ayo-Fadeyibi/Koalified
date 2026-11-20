@@ -41,6 +41,10 @@ struct CoursesView: View {
                 
                 FloatingAddButton { showAddCourse = true }
                     .padding(40)
+                    .sensoryFeedback(.impact(weight: .medium), trigger: showAddCourse) { _, newValue in
+                        newValue
+                    }
+                
             } .background(Color.screenBackground)
                 .sheet(isPresented: $showAddCourse) { AddCourseSheet(onSaved: { showAdded = true }).sheetBorder() }
                 .PopUp(isPresented: $showAdded, message: "Course added successfully", image: "circle-check", colour: Color.mintFill)
