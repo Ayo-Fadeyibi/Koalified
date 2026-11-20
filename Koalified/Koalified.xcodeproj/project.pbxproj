@@ -64,6 +64,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				App/AppStore.swift,
+				Logic/MilestoneAccessibility.swift,
 				Models/AssessmentItem.swift,
 				Models/ClassSession.swift,
 				Models/Course.swift,
