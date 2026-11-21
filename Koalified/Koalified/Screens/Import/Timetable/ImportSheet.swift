@@ -8,33 +8,61 @@
 import SwiftUI
 import WebKit
 
-struct TimetableWebView: UIViewRepresentable {
+struct TimetableWebView: UIViewControllerRepresentable {
     let url: URL
     let onLink: (URL) -> Void
 
     func makeCoordinator() -> Coordinator { Coordinator(onLink: onLink) }
 
-    func makeUIView(context: Context) -> WKWebView {
+    func makeUIViewController(context: Context) -> WebContainerViewController {
         let config = WKWebViewConfiguration()
         config.websiteDataStore = .default()
         config.preferences.javaScriptCanOpenWindowsAutomatically = true
 
+        // Only inject into the main frame so Okta's hidden iframes aren't touched at all
         config.userContentController.addUserScript(
-            WKUserScript(source: Coordinator.finder, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+            WKUserScript(source: Coordinator.finder, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+        )
+        config.userContentController.addUserScript(
+            WKUserScript(source: Coordinator.nativeFieldTaps, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
         )
         config.userContentController.add(context.coordinator, name: "timetableLink")
 
         let web = WKWebView(frame: .zero, configuration: config)
         web.uiDelegate = context.coordinator
         web.navigationDelegate = context.coordinator
-        web.isUserInteractionEnabled = true
-        web.scrollView.keyboardDismissMode = .interactive
-        web.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1"
+
+        let vc = WebContainerViewController(webView: web)
         web.load(URLRequest(url: url))
-        return web
+        return vc
     }
 
-    func updateUIView(_ web: WKWebView, context: Context) {}
+    func updateUIViewController(_ vc: WebContainerViewController, context: Context) {}
+
+    static func dismantleUIViewController(_ vc: WebContainerViewController, coordinator: Coordinator) {
+        vc.webView.configuration.userContentController.removeScriptMessageHandler(forName: "timetableLink")
+    }
+
+    static func signOut() async {
+        let store = WKWebsiteDataStore.default()
+        await store.removeData(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(), modifiedSince: .distantPast)
+    }
+
+    /// Plain UIViewController whose view is the web view.
+    final class WebContainerViewController: UIViewController {
+        let webView: WKWebView
+
+        init(webView: WKWebView) {
+            self.webView = webView
+            super.init(nibName: nil, bundle: nil)
+        }
+
+        required init?(coder: NSCoder) { fatalError() }
+
+        override func loadView() {
+            self.view = webView
+        }
+    }
 
     final class Coordinator: NSObject, WKScriptMessageHandler, WKUIDelegate, WKNavigationDelegate {
         let onLink: (URL) -> Void
@@ -42,7 +70,6 @@ struct TimetableWebView: UIViewRepresentable {
 
         static let finder = #"""
         (function () {
-          // Do not touch Okta / SSO login pages so username & password inputs stay instant
           var host = window.location.hostname || '';
           if (host.indexOf('okta.com') !== -1 || host.indexOf('auth.uq.edu.au') !== -1) {
             return;
@@ -51,12 +78,9 @@ struct TimetableWebView: UIViewRepresentable {
           var sent = false;
           function scan() {
             if (sent) { return true; }
-            // Never run while a sign-in form is on screen, whatever host it is served from.
             if (document.querySelector('input[type="password"], input[name="identifier"], input[name="username"]')) {
               return false;
             }
-            // The page ships an unfilled template ("[%= iCalURL %]") before the real link arrives,
-            // so skip anything that still contains template markers.
             function isReal(link) {
               var decoded = link;
               try { decoded = decodeURIComponent(link); } catch (e) {}
@@ -81,11 +105,46 @@ struct TimetableWebView: UIViewRepresentable {
         })();
         """#
 
-        func userContentController(_ c: WKUserContentController, didReceive message: WKScriptMessage) {
-            guard let text = message.body as? String, let url = URL(string: text) else { return }
-            // Safety net: never hand on an unfilled page template.
-            guard !text.contains("[%"), !text.contains("%5B%25") else { return }
+        /// UQ's sign-in page runs a fast-click script that cancels every `touchend` and fakes the click itself.
+        /// That's fine for buttons and checkboxes, but on text fields it stops iOS from showing the keyboard.
+        /// A capture listener on `window` runs before the page's own listeners, so stopping touches on text
+        /// fields there keeps them away from that script and lets iOS handle the tap natively.
+        static let nativeFieldTaps = #"""
+        (function () {
+          var textTypes = /^(text|password|email|search|tel|url|number)$/i;
+          function isTextField(target) {
+            var el = target && target.closest ? target.closest('input, textarea') : null;
+            if (!el || el.disabled || el.readOnly) { return false; }
+            return el.tagName === 'TEXTAREA' || textTypes.test(el.type || 'text');
+          }
+          ['touchstart', 'touchend'].forEach(function (type) {
+            window.addEventListener(type, function (e) {
+              if (isTextField(e.target)) { e.stopPropagation(); }
+            }, true);
+          });
+        })();
+        """#
+
+        static func httpsURL(from text: String) -> URL? {
+            var trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
+            if trimmed.lowercased().hasPrefix("webcal://") {
+                trimmed = "https://" + trimmed.dropFirst("webcal://".count)
+            }
+            return URL(string: trimmed)
+        }
+
+        private var hasReported = false
+
+        private func report(_ text: String) {
+            guard !hasReported, let url = Self.httpsURL(from: text) else { return }
+            hasReported = true
             onLink(url)
+        }
+
+        func userContentController(_ c: WKUserContentController, didReceive message: WKScriptMessage) {
+            guard let text = message.body as? String else { return }
+            guard !text.contains("[%"), !text.contains("%5B%25") else { return }
+            report(text)
         }
 
         func webView(
@@ -107,10 +166,7 @@ struct TimetableWebView: UIViewRepresentable {
         ) {
             if let url = navigationAction.request.url,
                url.scheme?.lowercased() == "webcal" {
-                let httpsString = url.absoluteString.replacingOccurrences(of: "webcal://", with: "https://", options: .caseInsensitive)
-                if let httpsURL = URL(string: httpsString) {
-                    onLink(httpsURL)
-                }
+                report(url.absoluteString)
                 decisionHandler(.cancel)
                 return
             }
@@ -124,16 +180,27 @@ struct ImportSheet: View {
     let onDone: () -> Void
 
     private let targetURL = URL(string: "https://my.uq.edu.au/student-timetable")!
+    @State private var webViewID = UUID()
 
     var body: some View {
         NavigationStack {
             TimetableWebView(url: targetURL) { link in
                 onLink(link.absoluteString)
             }
-            .ignoresSafeArea(edges: .bottom)
+            .id(webViewID)
             .navigationTitle("UQ Timetable")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Sign out") {
+                        Task {
+                            await TimetableWebView.signOut()
+                            TimetableLinkStore.delete()
+                            webViewID = UUID()
+                        }
+                    }
+                    .font(.fredoka(.subheadline, .bold))
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Done") {
                         onDone()
@@ -142,12 +209,9 @@ struct ImportSheet: View {
                 }
             }
         }
-        // Prevents SwiftUI's sheet drag gesture from hijacking taps on Okta's text fields
         .interactiveDismissDisabled()
     }
 }
-
-
 
 #Preview {
     ImportSheet(onLink: { _ in }, onDone: {})

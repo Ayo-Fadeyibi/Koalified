@@ -56,15 +56,11 @@ final class ImportSession {
     }
 
     /// Downloads the calendar from a pasted link and says which screen comes next.
-    /// The link is only used for this request: it is not stored or logged.
+    /// Once the link has returned a real timetable it is saved to the Keychain. It is never logged.
     func loadLink(_ text: String) async -> ImportLoadOutcome {
         errorMessage = nil
-        var trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
         // Calendar apps hand out webcal:// links; they are plain https underneath.
-        if trimmed.lowercased().hasPrefix("webcal://") {
-            trimmed = "https://" + trimmed.dropFirst("webcal://".count)
-        }
-        guard let url = URL(string: trimmed), url.scheme?.lowercased() == "https" else {
+        guard let url = TimetableWebView.Coordinator.httpsURL(from: text), url.scheme?.lowercased() == "https" else {
             errorMessage = "That doesn't look like a timetable link."
             return .failed
         }
@@ -80,6 +76,7 @@ final class ImportSession {
                 errorMessage = "That link didn't give us a timetable."
                 return .failed
             }
+            TimetableLinkStore.save(url)
             return process(text)
         } catch {
             errorMessage = "Couldn't reach that link."
