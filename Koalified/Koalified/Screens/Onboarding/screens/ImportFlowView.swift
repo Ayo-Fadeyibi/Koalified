@@ -31,27 +31,48 @@ struct ImportFlowView: View {
     @State private var session = ImportSession()
     @State private var path: [Route] = []
     @State private var showPicker = false
+    @State private var showError = false
 
     var body: some View {
         NavigationStack(path: $path) {
             ImportTimetableView(
-                errorMessage: session.errorMessage,
                 isOnboarding: isOnboarding,
                 onImportLink: { link in Task { show(await session.loadLink(link)) } },
                 onChooseFile: { showPicker = true },
                 onSkip: isOnboarding ? { finish() } : nil
             )
-                .screenStyle()
-                .toolbar {
-                    if let onBack { OnboardingBackButton(action: onBack) }
+            .screenStyle()
+            .toolbar {
+                if let onBack {
+                    OnboardingBackButton(action: onBack)
                 }
-                .toolbarBackground(.hidden, for: .navigationBar)
-                .navigationDestination(for: Route.self) { route in
-                    destination(for: route)
-                        .screenStyle()
-                        .navigationBarTitleDisplayMode(.inline)
+
+                if isOnboarding {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            finish()
+                        } label: {
+                            Text("Skip")
+                                .font(.fredoka(.caption, .bold))
+                                .foregroundStyle(Color.accent)
+                                .padding()
+                               
+                        }
+                        .buttonStyle(.plain)
+                    }
                 }
+            }
+            .background(Color.screenBackground)
+            .toolbarBackground(.hidden, for: .navigationBar)
+            .navigationDestination(for: Route.self) { route in
+                destination(for: route)
+                    .screenStyle()
+                    .navigationBarTitleDisplayMode(.inline)
+            }
         }
+        .PopUp(isPresented: $showError,
+               message: LocalizedStringKey(session.errorMessage ?? "Something went wrong."),
+               image: "circle-x", colour: Color.redFill, feedback: .error)
         .fileImporter(isPresented: $showPicker,
                       allowedContentTypes: [.calendarEvent, .text]) { picked in
             if case .success(let url) = picked { show(session.load(url)) }
@@ -92,7 +113,9 @@ struct ImportFlowView: View {
         switch outcome {
         case .chooseSemester: path = [.chooseSemester]
         case .noClasses:      path = [.noClasses]
-        case .failed:         path = []
+        case .failed:
+            path = []
+            showError = true
         }
     }
 
@@ -100,6 +123,7 @@ struct ImportFlowView: View {
     private func runImport() {
         guard let result = session.runImport(into: context) else {
             path = []
+            showError = true
             return
         }
         path.append(.done(result))

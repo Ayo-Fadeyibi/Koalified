@@ -19,7 +19,15 @@ enum ICSKey: String {
 
 //Converts the .ics file into a list containing an event disctionary of keys and value
 func parseEvents(from text: String) -> [[ICSKey: String]] {
-    let lines = text.components(separatedBy: .newlines)
+    // Long lines are folded: a line starting with a space or tab continues the one before it.
+    var lines: [String] = []
+    for line in text.components(separatedBy: .newlines) {
+        if let first = line.first, first == " " || first == "\t", !lines.isEmpty {
+            lines[lines.count - 1] += line.dropFirst()
+        } else {
+            lines.append(line)
+        }
+    }
     var events: [[ICSKey: String]] = []
     var current: [ICSKey: String]? = nil
 

@@ -12,8 +12,7 @@ struct TimetableHelpView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Step 3 of 3")
-                .secondaryTextStyling()
+  
             Text("Do you need help finding your timetable?")
                 .primaryTextStyling()
             Text("Koalified can read your UQ timetable from a link or a downloaded file. We'll show you where to find it.")
@@ -24,19 +23,11 @@ struct TimetableHelpView: View {
                 
                 SecondaryButton(title: "No, I already have it", message: "Go straight to importing", action: onHaveIt)
                 
-                Spacer()
-                
-                PlainPrimaryButton(title: "I'll add it later"){finish()}
-                
             }
-            .mainContainerStyling()
-        }
+            
+        }.mainContainerStyling()
     }
     
-    // Marks onboarding as complete so RootView shows the main tabs.
-    private func finish() {
-        hasOnboarded = true
-    }
 }
 
 #Preview {

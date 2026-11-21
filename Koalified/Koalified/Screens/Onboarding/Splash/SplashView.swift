@@ -8,21 +8,21 @@ struct SplashView: View {
 
     let colours = [Color.mintFill, Color.tintPink, Color.tintAmber, Color.tintMint]
 
-    // One entry per floating tile: which symbol, colour, tilt, and where it sits.
-    private struct SplashIcon {
-        let symbol: String
-        let fill: Color
-        let tilt: Double
-        let x: CGFloat
-        let y: CGFloat
-    }
-
-    private let icons = [
-        SplashIcon(symbol: "calendar", fill: Color.tintPink, tilt: -10, x: -120, y: -130),
-        SplashIcon(symbol: "alarm", fill: Color.tintAmber, tilt: 8, x: 125, y: -104),
-        SplashIcon(symbol: "plus.forwardslash.minus", fill: Color.tintMint, tilt: 6, x: -115, y: 140),
-        SplashIcon(symbol: "note.text", fill: Color.mintFill, tilt: -8, x: 120, y: 120)
-    ]
+//    // One entry per floating tile: which symbol, colour, tilt, and where it sits.
+//    private struct SplashIcon {
+//        let symbol: String
+//        let fill: Color
+//        let tilt: Double
+//        let x: CGFloat
+//        let y: CGFloat
+//    }
+//
+//    private let icons = [
+//        SplashIcon(symbol: "calendar", fill: Color.tintPink, tilt: -10, x: -120, y: -130),
+//        SplashIcon(symbol: "alarm", fill: Color.tintAmber, tilt: 8, x: 125, y: -104),
+//        SplashIcon(symbol: "plus.forwardslash.minus", fill: Color.tintMint, tilt: 6, x: -115, y: 140),
+//        SplashIcon(symbol: "note.text", fill: Color.mintFill, tilt: -8, x: 120, y: 120)
+//    ]
 
     private let letterSpacing: CGFloat = 3
     private let maxTileSize: CGFloat = 44
@@ -46,21 +46,21 @@ struct SplashView: View {
             ZStack {
 
                 // Tiles first, so the name and tagline draw on top of them.
-                ForEach(icons.indices, id: \.self) { index in
-                    IconTile(
-                        symbolName: icons[index].symbol,
-                        colorFill: icons[index].fill,
-                        rotateDegrees: icons[index].tilt
-                    )
-                    .scaleEffect(appeared ? 1 : 0.2)
-                    .opacity(appeared ? 1 : 0)
-                    .animation(
-                        .spring(response: 0.4, dampingFraction: 0.6)
-                            .delay(0.8 + Double(index) * 0.1),
-                        value: appeared
-                    )
-                    .offset(x: icons[index].x, y: icons[index].y)
-                }
+//                ForEach(icons.indices, id: \.self) { index in
+////                    IconTile(
+////                        symbolName: icons[index].symbol,
+////                        colorFill: icons[index].fill,
+////                        rotateDegrees: icons[index].tilt
+////                    )
+//                    .scaleEffect(appeared ? 1 : 0.2)
+//                    .opacity(appeared ? 1 : 0)
+//                    .animation(
+//                        .spring(response: 0.4, dampingFraction: 0.6)
+//                            .delay(0.8 + Double(index) * 0.1),
+//                        value: appeared
+//                    )
+//                    .offset(x: icons[index].x, y: icons[index].y)
+//                }
 
                 VStack(spacing: 0) {
 

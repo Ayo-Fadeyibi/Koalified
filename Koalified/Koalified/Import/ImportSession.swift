@@ -75,6 +75,11 @@ final class ImportSession {
                 errorMessage = "Couldn't read a timetable from that link."
                 return .failed
             }
+            // A web page (e.g. a sign-in screen) is not a timetable; say so instead of "no classes".
+            guard text.contains("BEGIN:VCALENDAR") else {
+                errorMessage = "That link didn't give us a timetable."
+                return .failed
+            }
             return process(text)
         } catch {
             errorMessage = "Couldn't reach that link."
