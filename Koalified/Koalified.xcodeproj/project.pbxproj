@@ -11,6 +11,7 @@
 		BB79C9E3308E0138007F3C21 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB79C9E2308E0138007F3C21 /* WidgetKit.framework */; };
 		BB79C9E5308E0138007F3C21 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB79C9E4308E0138007F3C21 /* SwiftUI.framework */; };
 		BB79C9F0308E013B007F3C21 /* KoalifiedWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BB79C9E0308E0138007F3C21 /* KoalifiedWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BBA714A130B3F8290047FA8E /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BBA714A030B3F8290047FA8E /* InfoPlist.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		BB79C9E2308E0138007F3C21 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		BB79C9E4308E0138007F3C21 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		BB79C9F6308E018E007F3C21 /* KoalifiedWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KoalifiedWidgetExtension.entitlements; sourceTree = "<group>"; };
+		BBA714A030B3F8290047FA8E /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		BBF1B06F309382650018FAFF /* KoalifiedUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KoalifiedUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -140,6 +142,7 @@
 			children = (
 				BB79C9F6308E018E007F3C21 /* KoalifiedWidgetExtension.entitlements */,
 				BB79C9B0308CE6C4007F3C21 /* Localizable.xcstrings */,
+				BBA714A030B3F8290047FA8E /* InfoPlist.xcstrings */,
 				000000000000000000000010 /* Koalified */,
 				BB79C9E6308E0138007F3C21 /* KoalifiedWidget */,
 				BBF1B070309382650018FAFF /* KoalifiedUnitTests */,
@@ -285,6 +288,7 @@
 		000000000000000140000000 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
+				BBA714A130B3F8290047FA8E /* InfoPlist.xcstrings in Resources */,
 				BB79C9B1308CE6C4007F3C21 /* Localizable.xcstrings in Resources */,
 			);
 		};

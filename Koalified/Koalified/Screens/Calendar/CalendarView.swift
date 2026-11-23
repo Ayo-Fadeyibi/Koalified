@@ -17,7 +17,11 @@ struct CalendarView: View {
         VStack(alignment: .leading, spacing: 16) {
             
             if sessions.isEmpty {
-                CalendarEmptyView(onImport: {}, onAddManually: {})
+                NavigationStack {
+                    CalendarEmptyView(onImport: {}, onAddManually: {})
+                        .toolbar(.hidden, for: .navigationBar)
+                        .profileDestination()
+                }
             } else {
                 CalendarTabContent()
             }

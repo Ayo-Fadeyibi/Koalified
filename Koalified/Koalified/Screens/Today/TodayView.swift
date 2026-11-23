@@ -28,7 +28,7 @@ struct TodayView: View {
                         TodayContentView(selectedTab: $selectedTab)
                     }
                 }
-                .padding([.horizontal, .top], 16)
+                .padding([.horizontal, .top], Layout.screenPadding)
                 .padding(.bottom, courses.isEmpty ? 16 : 0)
                 // With classes, let the list run behind the tab bar instead of stopping above it.
                 .ignoresSafeArea(edges: courses.isEmpty ? [] : .bottom)
@@ -68,6 +68,7 @@ struct TodayView: View {
                 }
             }
             .PopUp(isPresented: $showAddedPopup, message: "Class added", image: "circle-check", colour: .accent)
+            .toolbar(.hidden, for: .navigationBar)
             .profileDestination()
         }
     }

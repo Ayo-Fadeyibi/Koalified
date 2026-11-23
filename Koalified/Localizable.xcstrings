@@ -60,6 +60,18 @@
             "state" : "new",
             "value" : "%1$@ – %2$@"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "%1$@ – %2$@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "%1$@ – %2$@"
+          }
         }
       }
     },
@@ -70,6 +82,34 @@
             "state" : "new",
             "value" : "%1$@ · %2$@ LEFT"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "%1$@ · %2$@ बाकी"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "%1$@ · 还剩 %2$@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "%1$@ · 還剩%2$@"
+          }
+        }
+      }
+    },
+    "%@ · %@%%" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ · %2$@%%"
+          }
         }
       }
     },
@@ -79,6 +119,24 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "%1$@ · %2$@%% of course grade"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "%1$@ · कोर्स ग्रेड का %2$@%%"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "%1$@ · 占课程成绩的 %2$@%%"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "%1$@ · 佔課程成績的%2$@%%"
           }
         }
       }
@@ -142,6 +200,24 @@
             "state" : "new",
             "value" : "%1$@ of %2$@ pts"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "%2$@ में से %1$@ अंक"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "%1$@ / %2$@ 分"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "%1$@ / %2$@分"
+          }
         }
       }
     },
@@ -151,6 +227,24 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "%1$@, %2$@. Check it looks right."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "%1$@, %2$@। जाँच लें कि सब सही दिख रहा है।"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "%1$@，%2$@。请检查是否正确。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "%1$@，%2$@。請確認是否正確。"
           }
         }
       }
@@ -282,7 +376,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "%lld门课程"
+            "value" : "%lld 门课程"
           }
         },
         "zh-Hant" : {
@@ -414,13 +508,13 @@
         "ko" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "과목의 %1$lld%% · 마감 %2$@"
+            "value" : "과목 비중 %1$lld%% · 마감 %2$@"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "%1$lld%% môn học · hạn %2$@"
+            "value" : "%1$lld%% điểm môn học · đến hạn %2$@"
           }
         },
         "zh-Hans" : {
@@ -490,19 +584,117 @@
 
     },
     "A %lld is out of reach this semester." : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "इस सेमेस्टर में ग्रेड %lld पाना मुमकिन नहीं है।"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "本学期无法达到 %lld 的成绩等级。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "本學期已無法達到%lld的等第。"
+          }
+        }
+      }
     },
     "A free day for a study session, catching up or taking a break." : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "पढ़ाई करने, पिछला काम पूरा करने या थोड़ा आराम करने के लिए खाली दिन।"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "今天有空，可以学习、补上进度，或休息一下。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "今天有空，可以讀書、趕上進度或休息一下。"
+          }
+        }
+      }
+    },
+    "A fresh set of tickets." : {
 
     },
     "A LITTLE BREATHING ROOM" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "थोड़ी राहत का समय"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "喘口气的时间"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "喘口氣的時間"
+          }
+        }
+      }
     },
     "About Koalified" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Koalified के बारे में"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "关于 Koalified"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "關於 Koalified"
+          }
+        }
+      }
     },
     "Account and settings · Koalified" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "अकाउंट और सेटिंग · Koalified"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "账户与设置 · Koalified"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "帳戶與設定 · Koalified"
+          }
+        }
+      }
     },
     "Add" : {
       "extractionState" : "stale",
@@ -568,8 +760,8 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "クラスを追加する"
+            "state" : "machine_translated",
+            "value" : "授業を追加"
           }
         },
         "ko" : {
@@ -599,7 +791,26 @@
       }
     },
     "Add a class manually" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कक्षा खुद जोड़ें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "手动添加课堂"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "手動新增課堂"
+          }
+        }
+      }
     },
     "Add a course" : {
       "localizations" : {
@@ -647,6 +858,9 @@
         }
       }
     },
+    "Add a course before adding a class, or import your timetable to add courses and classes." : {
+
+    },
     "Add a course to start" : {
       "localizations" : {
         "hi" : {
@@ -681,8 +895,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "\n添加课程以开始"
+            "state" : "machine_translated",
+            "value" : "添加课程即可开始"
           }
         },
         "zh-Hant" : {
@@ -710,8 +924,8 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "期限を追加する"
+            "state" : "machine_translated",
+            "value" : "期限を追加"
           }
         },
         "ko" : {
@@ -820,8 +1034,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "添加评估"
+            "state" : "machine_translated",
+            "value" : "添加考核项目"
           }
         },
         "zh-Hant" : {
@@ -832,14 +1046,74 @@
         }
       }
     },
-    "Add anyway" : {
+    "Add an assessment, or import a file that includes your deadlines." : {
 
+    },
+    "Add anyway" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "फिर भी जोड़ें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "仍然添加"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "仍要新增"
+          }
+        }
+      }
     },
     "Add Class" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कक्षा जोड़ें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "添加课堂"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "新增課堂"
+          }
+        }
+      }
     },
     "Add classes manually" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कक्षाएँ खुद जोड़ें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "手动添加课堂"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "手動新增課堂"
+          }
+        }
+      }
     },
     "Add course" : {
       "localizations" : {
@@ -888,7 +1162,26 @@
       }
     },
     "Add deadline" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "समय-सीमा जोड़ें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "添加截止日期"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "新增截止日期"
+          }
+        }
+      }
     },
     "Add mark" : {
       "localizations" : {
@@ -953,8 +1246,8 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "週間スケジュールに追加する"
+            "state" : "machine_translated",
+            "value" : "毎週の時間割に追加します"
           }
         },
         "ko" : {
@@ -972,7 +1265,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "添加到你的每周课表"
+            "value" : "添加到你的每周课程表"
           }
         },
         "zh-Hant" : {
@@ -984,7 +1277,26 @@
       }
     },
     "Add widget" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "विजेट जोड़ें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "添加小组件"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "新增小工具"
+          }
+        }
+      }
     },
     "Add your assignments, quizzes and exams to track your marks and see what you need." : {
       "localizations" : {
@@ -1067,8 +1379,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "\n添加课程以开始"
+            "state" : "machine_translated",
+            "value" : "添加课堂即可开始"
           }
         },
         "zh-Hant" : {
@@ -1096,7 +1408,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "科目を追加すると、成績を記録して、必要な点数を確認できます。時間割を読み込むと、科目が自動的に追加されます。"
+            "value" : "科目を追加すると、点数を記録して、必要な点数を確認できます。時間割を読み込むと、科目が自動的に追加されます。"
           }
         },
         "ko" : {
@@ -1113,8 +1425,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "\n添加课程以追踪成绩，并查看你还需要完成哪些要求。导入课程表即可自动完成添加。"
+            "state" : "machine_translated",
+            "value" : "添加课程即可追踪成绩，并查看你还需要拿到多少分。导入课程表即可自动添加课程。"
           }
         },
         "zh-Hant" : {
@@ -1142,8 +1454,8 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "議題"
+            "state" : "machine_translated",
+            "value" : "予定リスト"
           }
         },
         "ko" : {
@@ -1220,16 +1532,92 @@
       }
     },
     "All done for today" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "आज के लिए सब हो गया"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "今天的课都上完了"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "今天的課都結束了"
+          }
+        }
+      }
     },
     "Applied" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "अप्लाइड"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "应用课"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "應用課"
+          }
+        }
+      }
     },
     "Assessment Wallet" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "मूल्यांकन वॉलेट"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "考核项目钱包"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "考核項目錢包"
+          }
+        }
+      }
     },
     "Assessments" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "मूल्यांकन"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "考核项目"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "考核項目"
+          }
+        }
+      }
     },
     "Assignment, quiz or exam date" : {
       "extractionState" : "manual",
@@ -1261,13 +1649,13 @@
         "vi" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Ngày nộp bài tập, làm bài kiểm tra hoặc thi"
+            "value" : "Ngày của bài tập, bài kiểm tra ngắn hoặc kỳ thi"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "作业、测验或考试日期"
+            "value" : "作业、小测验或考试日期"
           }
         },
         "zh-Hant" : {
@@ -1328,22 +1716,136 @@
 
     },
     "Back" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "वापस जाएँ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "返回"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "返回"
+          }
+        }
+      }
     },
     "Banked so far" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "अब तक मिले अंक"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "目前已获得"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "目前已獲得"
+          }
+        }
+      }
     },
     "Bring in your timetable" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "अपनी समय-सारणी लाएँ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "导入你的课程表"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "匯入你的課表"
+          }
+        }
+      }
     },
     "Bring in your timetable." : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "अपनी समय-सारणी लाएँ।"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "导入你的课程表。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "匯入你的課表。"
+          }
+        }
+      }
     },
     "Building" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "बिल्डिंग"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "楼宇"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "大樓"
+          }
+        }
+      }
     },
     "Building, e.g. Priestley" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "बिल्डिंग, जैसे Priestley"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "楼宇，例如 Priestley"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "大樓，例如：Priestley"
+          }
+        }
+      }
     },
     "Calculator" : {
       "localizations" : {
@@ -1439,6 +1941,7 @@
       }
     },
     "Can't add assessment" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -1545,7 +2048,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Batal"
+            "value" : "Batalkan"
           }
         },
         "ja" : {
@@ -1581,16 +2084,95 @@
       }
     },
     "Check it before you keep it" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "सहेजने से पहले एक बार जाँच लें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "保存前请先检查"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "儲存前請先確認"
+          }
+        }
+      }
     },
     "Check official semester dates" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "सेमेस्टर की आधिकारिक तारीख़ें देखें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "查看官方学期日期"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "查看官方學期日期"
+          }
+        }
+      }
     },
     "Choose a .ics file" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : ".ics फ़ाइल चुनें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "选择 .ics 文件"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "選擇 .ics 檔案"
+          }
+        }
+      }
+    },
+    "Choose a course." : {
 
     },
     "Choose a different file" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कोई दूसरी फ़ाइल चुनें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "选择其他文件"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "選擇其他檔案"
+          }
+        }
+      }
     },
     "Choose your language" : {
       "localizations" : {
@@ -1639,13 +2221,70 @@
       }
     },
     "Class" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कक्षा"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "课堂"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "課堂"
+          }
+        }
+      }
     },
     "Class added" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कक्षा जोड़ी गई"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "已添加课堂"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "已新增課堂"
+          }
+        }
+      }
     },
     "Class Added successfully" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कक्षा सफलतापूर्वक जोड़ी गई"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "课堂添加成功"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "課堂已成功新增"
+          }
+        }
+      }
     },
     "Class details & directions" : {
       "extractionState" : "stale",
@@ -1695,19 +2334,169 @@
       }
     },
     "Class updated successfully" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कक्षा सफलतापूर्वक अपडेट की गई"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "课堂更新成功"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "課堂已成功更新"
+          }
+        }
+      }
     },
     "Class wrapped. Get some rest" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कक्षा ख़त्म हो गई। अब थोड़ा आराम करें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "课程结束了，休息一下吧"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "下課了，休息一下吧"
+          }
+        }
+      }
+    },
+    "Clear course code" : {
+
+    },
+    "Clear course name" : {
+
+    },
+    "Clear field" : {
 
     },
     "Clinical" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "क्लिनिकल"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "临床教学"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "臨床教學"
+          }
+        }
+      }
     },
     "Computing" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कंप्यूटिंग"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "计算机课"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "電腦課"
+          }
+        }
+      }
+    },
+    "Connect to Wi-Fi or mobile data, then try again to sign in to UQ." : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Wi-Fi या मोबाइल डेटा से कनेक्ट करें, फिर UQ में साइन इन करने के लिए फिर से कोशिश करें।"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Sambungkan ke Wi-Fi atau data seluler, lalu coba lagi untuk masuk ke UQ."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Wi-Fiまたはモバイルデータ通信に接続してから、UQへのサインインをやり直してみてください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Wi-Fi 또는 셀룰러 데이터에 연결한 후 UQ 로그인을 다시 시도해 주세요."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Hãy kết nối Wi-Fi hoặc dữ liệu di động, sau đó thử đăng nhập lại vào UQ."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "请连接 Wi-Fi 或蜂窝数据，然后再次尝试登录 UQ。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "請連接 Wi-Fi 或行動數據，然後再次嘗試登入 UQ。"
+          }
+        }
+      }
     },
     "Consultation" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कंसल्टेशन"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "答疑"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "課業諮詢"
+          }
+        }
+      }
     },
     "Continue" : {
       "localizations" : {
@@ -1802,13 +2591,263 @@
         }
       }
     },
+    "Couldn't open that file." : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "वह फ़ाइल खोली नहीं जा सकी।"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Tidak bisa membuka file itu."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "このファイルを開けませんでした。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "파일을 열 수 없어요."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Không thể mở tệp đó."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "无法打开该文件。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "無法開啟該檔案。"
+          }
+        }
+      }
+    },
+    "Couldn't reach that link." : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "उस लिंक तक पहुँचा नहीं जा सका।"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Tidak bisa terhubung ke tautan itu."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "このリンクにアクセスできませんでした。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "링크에 연결할 수 없어요."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Không thể truy cập liên kết đó."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "无法访问该链接。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "無法連線至該連結。"
+          }
+        }
+      }
+    },
+    "Couldn't read a timetable from that link." : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "उस लिंक से समय-सारणी पढ़ी नहीं जा सकी।"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Tidak bisa membaca jadwal kuliah dari tautan itu."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "このリンクから時間割を読み込めませんでした。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "이 링크에서 시간표를 읽을 수 없어요."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Không thể đọc thời khóa biểu từ liên kết đó."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "无法从该链接读取课程表。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "無法從該連結讀取課表。"
+          }
+        }
+      }
+    },
+    "Couldn't read that file." : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "वह फ़ाइल पढ़ी नहीं जा सकी।"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Tidak bisa membaca file itu."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "このファイルを読み込めませんでした。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "파일을 읽을 수 없어요."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Không thể đọc tệp đó."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "无法读取该文件。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "無法讀取該檔案。"
+          }
+        }
+      }
+    },
     "Course" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कोर्स"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "课程"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "課程"
+          }
+        }
+      }
     },
     "Course added successfully" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कोर्स सफलतापूर्वक जोड़ा गया"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "课程添加成功"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "課程已成功新增"
+          }
+        }
+      }
+    },
+    "Course code" : {
+
+    },
+    "Course name (optional)" : {
 
     },
     "Course timetable" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कोर्स की समय-सारणी"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "课程时间表"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "課程時間表"
+          }
+        }
+      }
+    },
+    "Course, assessment name, due date and weight. Missing details can be added later." : {
 
     },
     "Courses" : {
@@ -1922,7 +2961,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "科目ビュー"
+            "value" : "科目の表示"
           }
         },
         "ko" : {
@@ -2033,7 +3072,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "CSSE1001 · 讲座"
+            "value" : "CSSE1001 · 讲座课"
           }
         },
         "zh-Hant" : {
@@ -2092,16 +3131,92 @@
       }
     },
     "Dark Mode" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "डार्क मोड"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "深色模式"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "深色模式"
+          }
+        }
+      }
     },
     "Date" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "तारीख़"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "日期"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "日期"
+          }
+        }
+      }
     },
     "DAY" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "दिन"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "日"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "日"
+          }
+        }
+      }
     },
     "Day view" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "दिन का व्यू"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "日视图"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "日檢視"
+          }
+        }
+      }
     },
     "Degree plan" : {
       "localizations" : {
@@ -2150,16 +3265,92 @@
       }
     },
     "Delete" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "डिलीट करें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "删除"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "刪除"
+          }
+        }
+      }
     },
     "Delete semester data" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "सेमेस्टर का डेटा डिलीट करें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "删除学期数据"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "刪除學期資料"
+          }
+        }
+      }
     },
     "Delete Something" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कुछ डिलीट करें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "删除内容"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "刪除內容"
+          }
+        }
+      }
     },
     "Details added successfully" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "विवरण सफलतापूर्वक जोड़ा गया"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "信息添加成功"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "資料已成功新增"
+          }
+        }
+      }
     },
     "Do you need help finding your timetable?" : {
       "localizations" : {
@@ -2196,7 +3387,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "需要帮你找到课表吗？"
+            "value" : "需要帮你查找课程表吗？"
           }
         },
         "zh-Hant" : {
@@ -2208,7 +3399,26 @@
       }
     },
     "Don't have your link?" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "क्या आपके पास अपना लिंक नहीं है?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "没有课程表链接？"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "沒有課表連結嗎？"
+          }
+        }
+      }
     },
     "Done" : {
       "localizations" : {
@@ -2261,7 +3471,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "देय तिथि"
+            "value" : "देय तारीख़"
           }
         },
         "id" : {
@@ -2285,7 +3495,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Hạn chót"
+            "value" : "Ngày đến hạn"
           }
         },
         "zh-Hans" : {
@@ -2313,7 +3523,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "SEGERA JATUH TEMPO"
+            "value" : "TENGGAT SEBENTAR LAGI"
           }
         },
         "ja" : {
@@ -2347,6 +3557,9 @@
           }
         }
       }
+    },
+    "Due: Fri 23 Oct, 5:00 pm" : {
+
     },
     "e.g. 20" : {
       "localizations" : {
@@ -2389,10 +3602,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "例如 20"
+            "value" : "例如：20"
           }
         }
       }
+    },
+    "e.g. 50" : {
+
     },
     "e.g. Alex" : {
 
@@ -2438,7 +3654,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "例如 CSSE1001"
+            "value" : "例如：CSSE1001"
           }
         }
       }
@@ -2472,7 +3688,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Ví dụ: Bài kiểm tra 1"
+            "value" : "Ví dụ: Bài kiểm tra ngắn 1"
           }
         },
         "zh-Hans" : {
@@ -2484,7 +3700,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "例如 小考 1"
+            "value" : "例如：小考 1"
           }
         }
       }
@@ -2536,13 +3752,70 @@
       }
     },
     "Edit recorded marks" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "दर्ज किए गए मार्क्स संपादित करें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "编辑已记录的成绩"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "編輯已記錄的成績"
+          }
+        }
+      }
     },
     "End time must be after the start time." : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "ख़त्म होने का समय, शुरू होने के समय के बाद का होना चाहिए।"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "结束时间必须晚于开始时间。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "結束時間必須晚於開始時間。"
+          }
+        }
+      }
     },
     "Ends" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "ख़त्म होने का समय"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "结束"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "結束"
+          }
+        }
+      }
     },
     "Enter assessment from your own course information" : {
       "localizations" : {
@@ -2555,7 +3828,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Masukkan penilaian dari informasi mata kuliah milikmu"
+            "value" : "Masukkan penilaian dari informasi mata kuliahmu sendiri"
           }
         },
         "ja" : {
@@ -2591,6 +3864,7 @@
       }
     },
     "Enter assessment names, weights and dates yourself. No automatic lookup or course-profile extraction" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -2625,7 +3899,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "自行填写考核项目的名称、占比和日期。不会自动查找或提取课程简介。"
+            "value" : "自行填写考核项目的名称、权重和日期。不会自动查找或提取课程大纲。"
           }
         },
         "zh-Hant" : {
@@ -2683,16 +3957,92 @@
       }
     },
     "Event" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "इवेंट"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "活动"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "活動"
+          }
+        }
+      }
     },
     "Everything left · %lld%%" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "बाकी सब · %lld%%"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "剩余全部考核 · %lld%%"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "所有剩餘考核 · %lld%%"
+          }
+        }
+      }
     },
     "Exam" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "परीक्षा"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "考试"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "考試"
+          }
+        }
+      }
     },
     "Fieldwork" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "फ़ील्डवर्क"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "实地考察"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "實地考察"
+          }
+        }
+      }
     },
     "Find your timetable link" : {
       "localizations" : {
@@ -2729,7 +4079,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "查找你的课表链接"
+            "value" : "查找你的课程表链接"
           }
         },
         "zh-Hant" : {
@@ -2741,16 +4091,92 @@
       }
     },
     "Find your timetable link or download the file" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "अपनी समय-सारणी का लिंक खोजें या फ़ाइल डाउनलोड करें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "查找课程表链接或下载文件"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "查找你的課表連結或下載檔案"
+          }
+        }
+      }
     },
     "Found in your timetable" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "आपकी समय-सारणी में यह मिला"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "在你的课程表中找到"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "在你的課表中找到"
+          }
+        }
+      }
     },
     "Get started" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "शुरू करें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "开始使用"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "開始使用"
+          }
+        }
+      }
     },
     "Go straight to importing" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "सीधे इंपोर्ट करें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "直接导入"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "直接前往匯入"
+          }
+        }
+      }
     },
     "Good morning," : {
       "extractionState" : "stale",
@@ -2800,22 +4226,136 @@
       }
     },
     "Got it" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "ठीक है"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "知道了"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "知道了"
+          }
+        }
+      }
     },
     "Grade %lld" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "ग्रेड %lld"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "等级 %lld"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "等第%lld"
+          }
+        }
+      }
     },
     "Helllllo" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "नमस्ते"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "你好"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "你好"
+          }
+        }
+      }
     },
     "Hellllo" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "नमस्ते"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "你好"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "你好"
+          }
+        }
+      }
     },
     "Hello" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "नमस्ते"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "你好"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "你好"
+          }
+        }
+      }
     },
     "Hello World" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "नमस्ते दुनिया"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "你好，世界"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "哈囉，世界"
+          }
+        }
+      }
     },
     "Hello, world!" : {
       "localizations" : {
@@ -2864,7 +4404,26 @@
       }
     },
     "Help & feedback" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "मदद और फ़ीडबैक"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "帮助与反馈"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "說明與意見回饋"
+          }
+        }
+      }
     },
     "Helps organise your timetable and grades." : {
       "extractionState" : "stale",
@@ -2902,7 +4461,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "帮助你管理课表和成绩。"
+            "value" : "帮助你管理课程表和成绩。"
           }
         },
         "zh-Hant" : {
@@ -2916,13 +4475,19 @@
     "https://..." : {
 
     },
+    "Hurdle" : {
+
+    },
+    "Hurdle: %lld%%" : {
+
+    },
     "I'll add it later" : {
       "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "मैं इसे बाद में जोड़ूँगा"
+            "value" : "बाद में जोड़ें"
           }
         },
         "id" : {
@@ -2998,29 +4563,108 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "进口"
+            "state" : "machine_translated",
+            "value" : "导入"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "進口"
+            "state" : "machine_translated",
+            "value" : "匯入"
           }
         }
       }
     },
     "Import %@" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "%@ इंपोर्ट करें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "导入 %@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "匯入%@"
+          }
+        }
+      }
     },
     "Import again" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "फिर से इंपोर्ट करें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "重新导入"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "重新匯入"
+          }
+        }
+      }
     },
     "Import again any time. Changes update, nothing gets duplicated." : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "आप कभी भी फिर से इंपोर्ट कर सकते हैं। बदलाव अपडेट हो जाते हैं और कुछ भी दोहराया नहीं जाता।"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "随时可以重新导入。更改会得到更新，不会重复添加内容。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "隨時可以重新匯入。變更會更新，不會重複新增內容。"
+          }
+        }
+      }
+    },
+    "Import from Course Profile" : {
 
     },
     "Import from link" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "लिंक से इंपोर्ट करें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "从链接导入"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "從連結匯入"
+          }
+        }
+      }
     },
     "Import timetable" : {
       "localizations" : {
@@ -3033,7 +4677,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Impor Jadwal Kuliah"
+            "value" : "Impor jadwal kuliah"
           }
         },
         "ja" : {
@@ -3056,14 +4700,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "\n导入时间表"
+            "state" : "machine_translated",
+            "value" : "导入课程表"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "導入時間表"
+            "state" : "machine_translated",
+            "value" : "匯入課表"
           }
         }
       }
@@ -3109,20 +4753,71 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "\n匯入您的時間表"
+            "state" : "machine_translated",
+            "value" : "匯入你的課表"
           }
         }
       }
     },
     "Import your timetable file or link to get your classes in one place." : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "अपनी सभी कक्षाएँ एक ही जगह पाने के लिए अपनी समय-सारणी की फ़ाइल या लिंक इंपोर्ट करें।"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "导入课程表文件或链接，将所有课堂集中在一处。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "匯入課表檔案或連結，集中查看所有課堂。"
+          }
+        }
+      }
     },
     "Import your timetable to personalise your course list and semester progress." : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "अपनी कोर्स सूची और सेमेस्टर की प्रगति को अपने हिसाब से बनाने के लिए अपनी समय-सारणी इंपोर्ट करें।"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "导入课程表，显示你的课程列表和学期进度。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "匯入課表，即可顯示你的課程清單和學期進度。"
+          }
+        }
+      }
     },
     "Import your timetable to see your next class, deadlines and directions." : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "अपनी अगली कक्षा, समय-सीमाएँ और रास्ता देखने के लिए अपनी समय-सारणी इंपोर्ट करें।"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "导入课程表，查看下一节课、截止日期和路线。"
+          }
+        }
+      }
     },
     "in 20 min" : {
       "localizations" : {
@@ -3218,7 +4913,26 @@
       }
     },
     "IN PROGRESS" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "चल रही है"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "正在上课"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "上課中"
+          }
+        }
+      }
     },
     "Introduction to Software Engineering" : {
       "localizations" : {
@@ -3314,7 +5028,20 @@
       }
     },
     "Know your next milestone" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "अपना अगला अहम पड़ाव जानें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "了解下一个重要日期"
+          }
+        }
+      }
     },
     "Koalified can read your UQ timetable from a link or a downloaded file. We'll show you where to find it." : {
       "localizations" : {
@@ -3385,7 +5112,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Koalified는 독립적으로 운영되는 앱이에요. UQ 공식 앱이 아니며, The University of Queensland와 제휴하거나 승인받거나 운영하는 앱이 아니에요."
+            "value" : "Koalified는 독립적으로 운영되는 앱이에요. UQ 공식 앱이 아니며, The University of Queensland와 제휴 관계가 없고 대학교의 승인을 받거나 대학교가 운영하는 앱도 아니에요."
           }
         },
         "vi" : {
@@ -3397,19 +5124,32 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Koalified 是独立开发的 App，并非 UQ 官方应用，也不隶属于昆士兰大学，未获其认可，亦非由其运营。"
+            "value" : "Koalified 是一款独立 App，并非 UQ 官方 App，与昆士兰大学无隶属关系，也未获其认可或由其运营。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Koalified 是獨立開發的 App，並非 UQ 官方應用程式，也不隸屬於昆士蘭大學，未獲其認可，亦非由其營運。"
+            "value" : "Koalified 是獨立開發的 App，並非 UQ 官方 App，也不隸屬於昆士蘭大學，未獲其認可，亦非由其營運。"
           }
         }
       }
     },
     "Koalified will switch to this language, You can change this anytime." : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Koalified इस भाषा में बदल जाएगा। आप इसे कभी भी बदल सकते हैं।"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Koalified 将切换为此语言。你可以随时更改。"
+          }
+        }
+      }
     },
     "Koalified will switch to this language. You can change it later in Settings." : {
       "localizations" : {
@@ -3452,13 +5192,26 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Koalified會切換為這個語言。你之後可以在「設定」中更改。"
+            "value" : "Koalified 會切換為這個語言。你之後可以在「設定」中更改。"
           }
         }
       }
     },
     "Language" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "भाषा"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "语言"
+          }
+        }
+      }
     },
     "Lecture" : {
       "localizations" : {
@@ -3507,7 +5260,20 @@
       }
     },
     "Less chaos. More campus." : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कम उलझन। कैंपस का ज़्यादा मज़ा।"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "少些忙乱，多享校园生活。"
+          }
+        }
+      }
     },
     "Let's Go" : {
       "localizations" : {
@@ -3543,8 +5309,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "我们走吧"
+            "state" : "machine_translated",
+            "value" : "开始吧"
           }
         },
         "zh-Hant" : {
@@ -3556,18 +5322,86 @@
       }
     },
     "Light Mode" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "लाइट मोड"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "浅色模式"
+          }
+        }
+      }
     },
     "LOCKED IN" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "दर्ज मार्क्स"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "已记录的成绩"
+          }
+        }
+      }
     },
     "Looks right" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "सही है, आगे बढ़ें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "确认无误"
+          }
+        }
+      }
     },
     "MAKE IT YOUR SEMESTER" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "सेमेस्टर को अपना बनाएँ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "打造你的学期"
+          }
+        }
+      }
     },
     "Make it yours" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "इसे अपना बनाएँ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "个性化设置"
+          }
+        }
+      }
+    },
+    "Mark as Done" : {
 
     },
     "Marked · %lld" : {
@@ -3599,7 +5433,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Đã có điểm · %lld"
+            "value" : "Đã chấm điểm · %lld"
           }
         },
         "zh-Hans" : {
@@ -3708,11 +5542,40 @@
         }
       }
     },
-    "More" : {
+    "Minimum required (%)" : {
 
     },
+    "More" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "और भी"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "更多"
+          }
+        }
+      }
+    },
     "MORE SOON" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "जल्द और भी"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "更多大学即将上线"
+          }
+        }
+      }
     },
     "My courses" : {
       "extractionState" : "manual",
@@ -3726,13 +5589,13 @@
         "id" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Mata Kuliah Saya"
+            "value" : "Mata kuliah saya"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "マイ科目"
+            "value" : "履修科目"
           }
         },
         "ko" : {
@@ -3761,8 +5624,24 @@
         }
       }
     },
-    "Next" : {
+    "Name" : {
 
+    },
+    "Next" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "आगे बढ़ें"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "下一步"
+          }
+        }
+      }
     },
     "NEXT CLASS" : {
       "localizations" : {
@@ -3821,7 +5700,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Belum Ada Penilaian"
+            "value" : "Belum ada penilaian"
           }
         },
         "ja" : {
@@ -3857,10 +5736,82 @@
       }
     },
     "No classes found" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कोई कक्षा नहीं मिली"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "未找到课堂"
+          }
+        }
+      }
     },
     "No classes today." : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "आज कोई कक्षा नहीं है।"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "今天没有课。"
+          }
+        }
+      }
+    },
+    "No connection" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कोई कनेक्शन नहीं"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Tidak ada koneksi"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "接続なし"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "연결 없음"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Không có kết nối"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "无网络连接"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "沒有網路連線"
+          }
+        }
+      }
     },
     "No courses yet" : {
       "localizations" : {
@@ -3873,7 +5824,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Belum Ada Mata Kuliah"
+            "value" : "Belum ada mata kuliah"
           }
         },
         "ja" : {
@@ -3896,8 +5847,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "\n暂无课程"
+            "state" : "machine_translated",
+            "value" : "暂无课程"
           }
         },
         "zh-Hant" : {
@@ -3909,13 +5860,34 @@
       }
     },
     "No marks recorded yet" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "अभी कोई मार्क्स दर्ज नहीं किए गए हैं"
+          }
+        }
+      }
     },
     "No, I already have it" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "नहीं, मेरे पास पहले से है"
+          }
+        }
+      }
     },
     "Nothing changed. Your timetable was already up to date." : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कोई बदलाव नहीं हुआ। आपकी समय-सारणी पहले से अपडेट थी।"
+          }
+        }
+      }
     },
     "Nothing to show yet. Import your timetable, or add classes by hand." : {
       "extractionState" : "stale",
@@ -3929,7 +5901,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Belum ada yang bisa ditampilkan. Impor jadwal kuliah kamu, atau tambahkan kelas secara manual."
+            "value" : "Belum ada yang bisa ditampilkan. Impor jadwal kuliahmu, atau tambahkan kelas secara manual."
           }
         },
         "ja" : {
@@ -3952,8 +5924,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "\n暂无内容。请导入课程表，或手动添加课程。"
+            "state" : "machine_translated",
+            "value" : "暂无内容。请导入课程表，或手动添加课堂。"
           }
         },
         "zh-Hant" : {
@@ -3965,9 +5937,17 @@
       }
     },
     "Notifications" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "नोटिफ़िकेशन"
+          }
+        }
+      }
     },
     "OK" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -4025,7 +6005,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Sesuai Target"
+            "value" : "Sesuai target"
           }
         },
         "ja" : {
@@ -4107,7 +6087,14 @@
       }
     },
     "PASS" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "PASS"
+          }
+        }
+      }
     },
     "Past" : {
       "extractionState" : "manual",
@@ -4121,7 +6108,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Lalu"
+            "value" : "Sebelumnya"
           }
         },
         "ja" : {
@@ -4132,8 +6119,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "과거"
+            "state" : "machine_translated",
+            "value" : "이전"
           }
         },
         "vi" : {
@@ -4157,7 +6144,14 @@
       }
     },
     "Paste a link" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "लिंक पेस्ट करें"
+          }
+        }
+      }
     },
     "Paste link or choose file" : {
       "localizations" : {
@@ -4170,7 +6164,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Tempel Tautan atau Pilih File"
+            "value" : "Tempel tautan atau pilih file"
           }
         },
         "ja" : {
@@ -4193,8 +6187,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "\n粘贴链接或选择文件"
+            "state" : "machine_translated",
+            "value" : "粘贴链接或选择文件"
           }
         },
         "zh-Hant" : {
@@ -4217,7 +6211,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Tempel Tautan Jadwal Kuliah Kamu"
+            "value" : "Tempel tautan jadwal kuliahmu"
           }
         },
         "ja" : {
@@ -4253,7 +6247,14 @@
       }
     },
     "Placement" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "प्लेसमेंट"
+          }
+        }
+      }
     },
     "Practical" : {
       "localizations" : {
@@ -4302,7 +6303,14 @@
       }
     },
     "Preferences" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "पसंद"
+          }
+        }
+      }
     },
     "Preview" : {
       "localizations" : {
@@ -4361,13 +6369,13 @@
         "id" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Kumpulan Soal 3"
+            "value" : "Kumpulan soal 3"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "問題集 3"
+            "value" : "問題セット3"
           }
         },
         "ko" : {
@@ -4443,25 +6451,74 @@
       }
     },
     "Ready when you are." : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "आप तैयार हों तो हम भी तैयार हैं।"
+          }
+        }
+      }
     },
     "Recorded" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "रिकॉर्ड की गई कक्षा"
+          }
+        }
+      }
     },
     "Remove timetable link" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "समय-सारणी का लिंक हटाएँ"
+          }
+        }
+      }
     },
     "Repeats every week" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "हर सप्ताह दोहराएँ"
+          }
+        }
+      }
     },
     "Replay the tour" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "टूर फिर से देखें"
+          }
+        }
+      }
     },
     "Review courses" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कोर्स की जाँच करें"
+          }
+        }
+      }
     },
     "Room" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कमरा"
+          }
+        }
+      }
     },
     "Room %@" : {
       "extractionState" : "stale",
@@ -4557,13 +6614,34 @@
       }
     },
     "Room, e.g. 03-318" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कमरा, जैसे 03-318"
+          }
+        }
+      }
     },
     "Room: %@" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कमरा : %@"
+          }
+        }
+      }
     },
     "Save" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "सहेजें"
+          }
+        }
+      }
     },
     "Save assessment" : {
       "localizations" : {
@@ -4659,13 +6737,34 @@
       }
     },
     "Secured" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "पक्का हुआ"
+          }
+        }
+      }
     },
     "See tomorrow’s classes" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कल की कक्षाएँ देखें"
+          }
+        }
+      }
     },
     "See your week" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "अपना सप्ताह देखें"
+          }
+        }
+      }
     },
     "Semester" : {
       "localizations" : {
@@ -4761,13 +6860,34 @@
       }
     },
     "Semester Data" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "सेमेस्टर का डेटा"
+          }
+        }
+      }
     },
     "Semester Dates" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "सेमेस्टर की तारीख़ें"
+          }
+        }
+      }
     },
     "Seminar" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "सेमिनार"
+          }
+        }
+      }
     },
     "Set up manually" : {
       "extractionState" : "stale",
@@ -4775,13 +6895,13 @@
         "hi" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "मैन्युअली सेट अप करें"
+            "value" : "खुद सेट अप करें"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Atur Secara Manual"
+            "value" : "Atur secara manual"
           }
         },
         "ja" : {
@@ -4804,8 +6924,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "\n手动设置"
+            "state" : "machine_translated",
+            "value" : "手动设置"
           }
         },
         "zh-Hant" : {
@@ -4879,8 +6999,8 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "\nホーム画面にその週の予定を表示する"
+            "state" : "machine_translated",
+            "value" : "ホーム画面に1週間の予定を表示します"
           }
         },
         "ko" : {
@@ -4910,19 +7030,149 @@
       }
     },
     "Sign in to UQ inside Koalified and we'll find your timetable. Your password goes to UQ, never to us." : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Koalified में UQ पर साइन इन करें और हम आपकी समय-सारणी खोज लेंगे। आपका पासवर्ड UQ को जाता है, हमें कभी नहीं।"
+          }
+        }
+      }
     },
     "Sign out" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "साइन आउट करें"
+          }
+        }
+      }
     },
     "Skip" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "छोड़ें"
+          }
+        }
+      }
+    },
+    "Something went wrong while importing." : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "इंपोर्ट करते समय कुछ गड़बड़ हो गई।"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Terjadi kesalahan saat mengimpor."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "読み込み中に問題が発生しました。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "가져오는 중에 문제가 발생했어요."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Đã xảy ra lỗi khi nhập thời khóa biểu."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "导入时出现问题。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "匯入時發生問題。"
+          }
+        }
+      }
+    },
+    "Something went wrong." : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कुछ गड़बड़ हो गई।"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Terjadi kesalahan."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "問題が発生しました。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "문제가 발생했어요."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Đã xảy ra lỗi."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "出现问题。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "發生問題。"
+          }
+        }
+      }
     },
     "St Lucia · Gatton · Herston" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "सेंट लूसिया · गैटन · हर्स्टन"
+          }
+        }
+      }
+    },
+    "Start with the essentials" : {
 
     },
     "Starts" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "शुरू"
+          }
+        }
+      }
     },
     "Starts 09:00" : {
       "extractionState" : "stale",
@@ -4972,7 +7222,14 @@
       }
     },
     "Step 1 of 2" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "2 में से चरण 1"
+          }
+        }
+      }
     },
     "Step 1 of 3" : {
       "extractionState" : "stale",
@@ -5022,7 +7279,14 @@
       }
     },
     "Step 2 of 2" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "2 में से चरण 2"
+          }
+        }
+      }
     },
     "Step 2 of 3" : {
       "localizations" : {
@@ -5118,16 +7382,136 @@
       }
     },
     "Studio" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "स्टूडियो"
+          }
+        }
+      }
     },
     "Symposium" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "संगोष्ठी"
+          }
+        }
+      }
     },
     "TARGET GRADE" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "लक्षित ग्रेड"
+          }
+        }
+      }
     },
     "Tell us what to call you so we can personalise your dashboard." : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "हमें अपना नाम बताएँ, ताकि हम आपका डैशबोर्ड आपके हिसाब से बना सकें।"
+          }
+        }
+      }
+    },
+    "That doesn't look like a timetable link." : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "यह समय-सारणी का लिंक नहीं लगता।"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Sepertinya itu bukan tautan jadwal kuliah."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "時間割のリンクではないようです。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "시간표 링크가 아닌 것 같아요."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Liên kết đó có vẻ không phải là liên kết thời khóa biểu."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "这看起来不像是课程表链接。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "這看起來不像課表連結。"
+          }
+        }
+      }
+    },
+    "That link didn't give us a timetable." : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "उस लिंक से कोई समय-सारणी नहीं मिली।"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Tautan itu tidak berisi jadwal kuliah."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "このリンクから時間割を取得できませんでした。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "이 링크에서 시간표를 가져오지 못했어요."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Liên kết đó không trả về thời khóa biểu."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "该链接未返回课程表。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "該連結沒有提供課表。"
+          }
+        }
+      }
     },
     "The calculator needs a course with its assessments and weights. Add one and enter any marks you already have." : {
       "localizations" : {
@@ -5163,8 +7547,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "该计算器需要一门课程及其评估项目和权重。请添加一门课程，并输入您已有的成绩。"
+            "state" : "machine_translated",
+            "value" : "计算器需要一门课程及其考核项目和权重。请添加一门课程，并输入你已有的成绩。"
           }
         },
         "zh-Hant" : {
@@ -5210,8 +7594,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "The University of Queensland"
+            "state" : "machine_translated",
+            "value" : "昆士兰大学"
           }
         },
         "zh-Hant" : {
@@ -5223,7 +7607,14 @@
       }
     },
     "These classes overlap" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "इन कक्षाओं का समय टकरा रहा है"
+          }
+        }
+      }
     },
     "This helps us set up the right tips for you." : {
       "localizations" : {
@@ -5242,7 +7633,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "あなたに合ったヒントを用意するために使用します。"
+            "value" : "最適なヒントを用意するために使用します。"
           }
         },
         "ko" : {
@@ -5272,16 +7663,44 @@
       }
     },
     "Time" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "समय"
+          }
+        }
+      }
     },
     "Timetable" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "समय-सारणी"
+          }
+        }
+      }
     },
     "Timetable imported" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "समय-सारणी इंपोर्ट हो गई"
+          }
+        }
+      }
     },
     "TO REACH A %lld" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "ग्रेड %lld पाने के लिए"
+          }
+        }
+      }
     },
     "Today" : {
       "localizations" : {
@@ -5347,7 +7766,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "今日ビュー"
+            "value" : "今日の表示"
           }
         },
         "ko" : {
@@ -5359,7 +7778,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Chế độ xem hôm nay"
+            "value" : "Chế độ xem Hôm nay"
           }
         },
         "zh-Hans" : {
@@ -5372,6 +7791,52 @@
           "stringUnit" : {
             "state" : "machine_translated",
             "value" : "今日檢視"
+          }
+        }
+      }
+    },
+    "Try again" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "फिर से कोशिश करें"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Coba lagi"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "やり直す"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "다시 시도"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Thử lại"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "重试"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "再試一次"
           }
         }
       }
@@ -5439,8 +7904,8 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "学習用"
+            "state" : "machine_translated",
+            "value" : "演習"
           }
         },
         "ko" : {
@@ -5470,10 +7935,27 @@
       }
     },
     "Type" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "प्रकार"
+          }
+        }
+      }
+    },
+    "Undo" : {
 
     },
     "UNIVERSITY" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "यूनिवर्सिटी"
+          }
+        }
+      }
     },
     "Upcoming · %lld" : {
       "localizations" : {
@@ -5522,39 +8004,126 @@
       }
     },
     "UPCOMING TODAY" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "आज की आगामी कक्षाएँ"
+          }
+        }
+      }
     },
     "UQ Sign In" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "UQ में साइन इन करें"
+          }
+        }
+      }
     },
     "UQ Timetable" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "UQ समय-सारणी"
+          }
+        }
+      }
     },
     "UQ timetable link · Imported today" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "UQ समय-सारणी का लिंक · आज इंपोर्ट किया गया"
+          }
+        }
+      }
     },
     "View" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "देखें"
+          }
+        }
+      }
     },
     "View Assessment" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "मूल्यांकन देखें"
+          }
+        }
+      }
     },
     "Walk there in Apple Maps" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Apple Maps में पैदल रास्ता देखें"
+          }
+        }
+      }
     },
     "We couldn't read any classes from this file" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "इस फ़ाइल से कोई कक्षा पढ़ी नहीं जा सकी"
+          }
+        }
+      }
     },
     "We don't have dates for this semester yet. Turn off “Repeats every week” to add a single class." : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "इस सेमेस्टर की तारीख़ें अभी उपलब्ध नहीं हैं। एक कक्षा जोड़ने के लिए “हर सप्ताह दोहराएँ” बंद करें।"
+          }
+        }
+      }
     },
     "WEEK" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "सप्ताह"
+          }
+        }
+      }
     },
     "Week view" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "सप्ताह का व्यू"
+          }
+        }
+      }
     },
     "WeekDay" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "सप्ताह का दिन"
+          }
+        }
+      }
+    },
+    "Weight (%)" : {
 
     },
     "Welcome to Koalified" : {
@@ -5604,7 +8173,14 @@
       }
     },
     "Welcome to your semester" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "आपके सेमेस्टर में आपका स्वागत है"
+          }
+        }
+      }
     },
     "What year are you in?" : {
       "localizations" : {
@@ -5617,7 +8193,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Kamu di tahun berapa?"
+            "value" : "Kamu kuliah tahun ke berapa?"
           }
         },
         "ja" : {
@@ -5688,7 +8264,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "你在哪里上学？"
+            "value" : "你在哪所大学就读？"
           }
         },
         "zh-Hant" : {
@@ -5700,7 +8276,14 @@
       }
     },
     "Which semester?" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "कौन-सा सेमेस्टर?"
+          }
+        }
+      }
     },
     "Widget settings" : {
       "localizations" : {
@@ -5713,7 +8296,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Pengaturan Widget"
+            "value" : "Pengaturan widget"
           }
         },
         "ja" : {
@@ -5736,8 +8319,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "\n小组件设置"
+            "state" : "machine_translated",
+            "value" : "小组件设置"
           }
         },
         "zh-Hant" : {
@@ -5795,7 +8378,14 @@
       }
     },
     "Workshop" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "वर्कशॉप"
+          }
+        }
+      }
     },
     "Year" : {
       "localizations" : {
@@ -5814,7 +8404,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "年"
+            "value" : "年度"
           }
         },
         "ko" : {
@@ -5844,7 +8434,14 @@
       }
     },
     "Yes, show me how" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "हाँ, मुझे तरीका दिखाएँ"
+          }
+        }
+      }
     },
     "You do this on UQ's own page. Koalified never sees your UQ password." : {
       "localizations" : {
@@ -5857,13 +8454,13 @@
         "id" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "Kamu melakukannya di halaman UQ sendiri. Koalified tidak pernah melihat kata sandi UQ-mu."
+            "value" : "Kamu melakukannya langsung di halaman milik UQ. Koalified tidak pernah melihat kata sandi UQ-mu."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "machine_translated",
-            "value" : "この操作はUQ自身のページで行います。KoalifiedがUQのパスワードを見ることはありません。"
+            "value" : "この操作はUQのページで行います。KoalifiedがUQのパスワードを見ることはありません。"
           }
         },
         "ko" : {
@@ -5893,10 +8490,109 @@
       }
     },
     "You should review the courses, class times and any assessment data found in your import." : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "इंपोर्ट में मिले कोर्स, कक्षाओं के समय और मूल्यांकन के डेटा की जाँच करें।"
+          }
+        }
+      }
     },
     "You’re clear for the rest of the evening." : {
 
+    },
+    "You're offline" : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "आप ऑफ़लाइन हैं"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Kamu sedang offline"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "オフラインです"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "오프라인 상태예요"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Bạn đang ngoại tuyến"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "你已离线"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "你目前已離線"
+          }
+        }
+      }
+    },
+    "You're offline. Connect to Wi-Fi or mobile data and try again." : {
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "आप ऑफ़लाइन हैं। Wi-Fi या मोबाइल डेटा से कनेक्ट करें और फिर से कोशिश करें।"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Kamu sedang offline. Sambungkan ke Wi-Fi atau data seluler, lalu coba lagi."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "オフラインです。Wi-Fiまたはモバイルデータ通信に接続して、やり直してみてください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "오프라인 상태예요. Wi-Fi 또는 셀룰러 데이터에 연결한 후 다시 시도해 주세요."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Bạn đang ngoại tuyến. Hãy kết nối Wi-Fi hoặc dữ liệu di động rồi thử lại."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "你已离线。请连接 Wi-Fi 或蜂窝数据，然后重试。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "你目前已離線。請連接 Wi-Fi 或行動數據，然後再試一次。"
+          }
+        }
+      }
     },
     "Your classes are ready." : {
 
@@ -5917,10 +8613,24 @@
 
     },
     "YOUR NAME" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "आपका नाम"
+          }
+        }
+      }
     },
     "Your Semester receipt" : {
-
+      "localizations" : {
+        "hi" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "आपके सेमेस्टर की रसीद"
+          }
+        }
+      }
     },
     "Your semester, sorted." : {
       "localizations" : {
@@ -5967,6 +8677,9 @@
           }
         }
       }
+    },
+    "Your semester. One ticket at a time." : {
+
     },
     "Your timetable" : {
 

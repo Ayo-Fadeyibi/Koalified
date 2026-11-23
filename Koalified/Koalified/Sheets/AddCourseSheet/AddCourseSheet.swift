@@ -74,8 +74,6 @@ struct AddCourseSheet: View {
             
             PrimaryButton(title: "Add course"){save()}
             
-            Text("Enter assessment names, weights and dates yourself. No automatic lookup or course-profile extraction")
-                .secondaryTextStyling()
             
         }.padding(.top)
         .padding(.horizontal, Layout.screenPadding)

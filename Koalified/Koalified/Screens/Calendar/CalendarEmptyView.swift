@@ -37,14 +37,16 @@ struct CalendarEmptyView: View {
                 secondaryTitle: "Add a class manually",
                 secondaryAction: {openAddClassSheet = true}
             ).containerStyling()
-        }.mainContainerStyling()
+        }
+        .padding(.top, Layout.screenPadding)
+        .mainContainerStyling()
             .sheet(isPresented: $openImportSheet) {
                 ImportLinkSheet().sheetBorder()
             }
             .sheet(isPresented: $openAddClassSheet) {
                 AddClassSheet(onAdded: {onAdded = true}).sheetBorder()
             }
-            .PopUp(isPresented: $onAdded, message: "Class Added successfully", image: "circle-check", colour: Color.mintFill, feedback: .error)
+            .PopUp(isPresented: $onAdded, message: "Class Added successfully", image: "circle-check", colour: Color.mintFill, feedback: .success)
         
     }
 }

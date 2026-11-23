@@ -9,6 +9,7 @@
 import Foundation
 import Observation
 import SwiftData
+import SwiftUI   // LocalizedStringKey for errorMessage
 
 /// Which screen the flow should show after a file or link has been read.
 enum ImportLoadOutcome {
@@ -25,7 +26,8 @@ final class ImportSession {
     private(set) var parsedEvents: [ParsedEvent] = []
     private(set) var semesters: [DetectedSemester] = []
     private(set) var selected: Set<String> = []
-    var errorMessage: String?
+    /// A `LocalizedStringKey` so the messages below are added to the string catalog and translated.
+    var errorMessage: LocalizedStringKey?
 
     /// Semesters that have both a term and a year. Others wait for the "Other courses" update.
     var importable: [DetectedSemester] {
@@ -78,6 +80,9 @@ final class ImportSession {
             }
             TimetableLinkStore.save(url)
             return process(text)
+        } catch let error as URLError where error.code.meansOffline {
+            errorMessage = "You're offline. Connect to Wi-Fi or mobile data and try again."
+            return .failed
         } catch {
             errorMessage = "Couldn't reach that link."
             return .failed
@@ -158,6 +163,21 @@ final class ImportSession {
     func requestReminderPermission(in context: ModelContext) async {
         if await NotificationScheduler.requestPermissionIfNeeded() {
             AppSync.dataChanged(in: context)
+        }
+    }
+}
+
+extension URLError.Code {
+    /// True when the phone has no usable connection, as opposed to the server failing.
+    var meansOffline: Bool {
+        switch self {
+        case .notConnectedToInternet,    // Wi-Fi and mobile data both off, or Airplane Mode
+             .networkConnectionLost,     // the connection dropped mid-load
+             .dataNotAllowed,            // mobile data switched off for the app or the phone
+             .internationalRoamingOff:   // abroad with roaming off
+            return true
+        default:
+            return false
         }
     }
 }

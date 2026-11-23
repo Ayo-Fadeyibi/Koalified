@@ -1,0 +1,145 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%@ %@, %@ to %@, %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@, %3$@ to %4$@, %5$@"
+          }
+        }
+      }
+    },
+    "%lld" : {
+
+    },
+    "A LITTLE BREATHING ROOM" : {
+
+    },
+    "All done for today." : {
+
+    },
+    "All wrapped!" : {
+
+    },
+    "Applied" : {
+
+    },
+    "Class" : {
+
+    },
+    "Classes wrapped. Get some rest." : {
+
+    },
+    "Clinical" : {
+
+    },
+    "Computing" : {
+
+    },
+    "Consultation" : {
+
+    },
+    "Countdowns to census, breaks and other semester milestones." : {
+
+    },
+    "courses" : {
+
+    },
+    "Courses" : {
+
+    },
+    "DONE" : {
+
+    },
+    "Event" : {
+
+    },
+    "Exam" : {
+
+    },
+    "Fieldwork" : {
+
+    },
+    "Important dates" : {
+
+    },
+    "IN PROGRESS · NOW" : {
+
+    },
+    "Lecture" : {
+
+    },
+    "NEXT" : {
+
+    },
+    "NEXT · %@" : {
+
+    },
+    "Next class" : {
+
+    },
+    "No classes today" : {
+
+    },
+    "No milestones left this semester." : {
+
+    },
+    "NOW" : {
+
+    },
+    "Open class details" : {
+
+    },
+    "PASS" : {
+
+    },
+    "Placement" : {
+
+    },
+    "Practical" : {
+
+    },
+    "Recorded" : {
+
+    },
+    "SEMESTER MILESTONES" : {
+
+    },
+    "Seminar" : {
+
+    },
+    "Studio" : {
+
+    },
+    "Symposium" : {
+
+    },
+    "Today's schedule" : {
+
+    },
+    "TODAY'S SCHEDULE" : {
+
+    },
+    "Tutorial" : {
+
+    },
+    "UQ" : {
+
+    },
+    "Workshop" : {
+
+    },
+    "Your classes for today, with what's on now and what's next." : {
+
+    },
+    "Your next class, where it is and when it starts." : {
+
+    },
+    "Your schedule is completely clear." : {
+
+    }
+  },
+  "version" : "1.3"
+}

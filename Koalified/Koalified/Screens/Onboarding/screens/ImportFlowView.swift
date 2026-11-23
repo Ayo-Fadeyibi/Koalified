@@ -71,7 +71,7 @@ struct ImportFlowView: View {
             }
         }
         .PopUp(isPresented: $showError,
-               message: LocalizedStringKey(session.errorMessage ?? "Something went wrong."),
+               message: session.errorMessage ?? "Something went wrong.",
                image: "circle-x", colour: Color.redFill, feedback: .error)
         .fileImporter(isPresented: $showPicker,
                       allowedContentTypes: [.calendarEvent, .text]) { picked in

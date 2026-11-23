@@ -49,6 +49,17 @@ final class TimetableWebSession {
         return session
     }
 
+    /// Loads the page again after a failed load, e.g. once the phone is back online.
+    /// If nothing has loaded yet, starts from `url`.
+    static func retry(url: URL) {
+        guard let webView = current?.webView else { return }
+        if webView.backForwardList.currentItem == nil {
+            webView.load(URLRequest(url: url))
+        } else {
+            webView.reload()
+        }
+    }
+
     /// Throws the web view away. The next `resume` starts a fresh sign-in.
     static func end() {
         guard let current else { return }
@@ -62,17 +73,21 @@ final class TimetableWebSession {
 struct TimetableWebView: UIViewControllerRepresentable {
     let url: URL
     let onLink: (URL) -> Void
+    /// Called when a page fails to load because the phone has no connection.
+    let onOffline: () -> Void
 
     func makeCoordinator() -> Coordinator { TimetableWebSession.resume(url: url).coordinator }
 
     func makeUIViewController(context: Context) -> WebContainerViewController {
         context.coordinator.onLink = onLink
+        context.coordinator.onOffline = onOffline
         return WebContainerViewController(webView: TimetableWebSession.resume(url: url).webView)
     }
 
     func updateUIViewController(_ vc: WebContainerViewController, context: Context) {
-        // Keep the callback current in case the view that presented the sheet was rebuilt.
+        // Keep the callbacks current in case the view that presented the sheet was rebuilt.
         context.coordinator.onLink = onLink
+        context.coordinator.onOffline = onOffline
     }
 
     // No dismantleUIViewController: the web view belongs to `TimetableWebSession`, so the sign-in
@@ -117,6 +132,24 @@ struct TimetableWebView: UIViewControllerRepresentable {
     final class Coordinator: NSObject, WKScriptMessageHandler, WKUIDelegate, WKNavigationDelegate {
         /// Set by the view on screen; updated if that view is rebuilt.
         var onLink: (URL) -> Void = { _ in }
+        var onOffline: () -> Void = {}
+
+        func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+            reportIfOffline(error)
+        }
+
+        func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+            reportIfOffline(error)
+        }
+
+        /// Only no-connection failures show the offline screen. Others (e.g. a cancelled load when the
+        /// page redirects) are left to the page itself.
+        private func reportIfOffline(_ error: Error) {
+            let nsError = error as NSError
+            guard nsError.domain == NSURLErrorDomain,
+                  URLError.Code(rawValue: nsError.code).meansOffline else { return }
+            onOffline()
+        }
 
         static let finder = #"""
         (function () {
@@ -247,14 +280,23 @@ struct ImportSheet: View {
 
     private let targetURL = URL(string: "https://my.uq.edu.au/student-timetable")!
     @State private var webViewID = UUID()
+    /// True after a page failed to load because the phone has no connection.
+    @State private var isOffline = false
 
     var body: some View {
         NavigationStack {
-            TimetableWebView(url: targetURL) { link in
-                TimetableWebSession.end()
-                onLink(link.absoluteString)
-            }
+            TimetableWebView(
+                url: targetURL,
+                onLink: { link in
+                    TimetableWebSession.end()
+                    onLink(link.absoluteString)
+                },
+                onOffline: { isOffline = true }
+            )
             .id(webViewID)
+            .overlay {
+                if isOffline { offlineCard }
+            }
             .navigationTitle("UQ Timetable")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -264,6 +306,7 @@ struct ImportSheet: View {
                             await TimetableWebView.signOut()
                             TimetableLinkStore.delete()
                             TimetableWebSession.end()   // the next web view starts a fresh sign-in
+                            isOffline = false
                             webViewID = UUID()
                         }
                     }
@@ -279,6 +322,24 @@ struct ImportSheet: View {
             }
         }
         .interactiveDismissDisabled()
+    }
+
+    /// Covers the web view (which would show a blank or browser error page) with a plain explanation.
+    private var offlineCard: some View {
+        ZStack(alignment: .top) {
+            Color.screenBackground.ignoresSafeArea()
+            EmptyStateView(
+                header1: "No connection",
+                title1: "You're offline",
+                message1: "Connect to Wi-Fi or mobile data, then try again to sign in to UQ.",
+                primaryTitle1: "Try again",
+                primaryAction1: {
+                    isOffline = false
+                    TimetableWebSession.retry(url: targetURL)
+                }
+            )
+            .padding(Layout.screenPadding)
+        }
     }
 }
 

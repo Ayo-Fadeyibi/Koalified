@@ -9,8 +9,10 @@
 import SwiftUI
 import SwiftData
 
-/// The Courses tab. Shows the header and either the empty state or the list of courses,
-/// with a floating "+" button that opens the Add Course sheet. Tapping a course opens its detail screen.
+enum CoursesDestination: Hashable {
+    case assessmentWallet
+}
+
 struct CoursesView: View {
     @Query private var courses: [Course]
     @Environment(\.modelContext) private var modelContext
@@ -28,7 +30,7 @@ struct CoursesView: View {
                         .padding(.bottom, 10)
                     
                     if courses.isEmpty {
-                        CoursesEmptyView(onAdd: addTestCourse)
+                        CoursesEmptyView(onAdd: {showAddCourse = true})
                     } else {
                         CoursesContent(path: $path)
                     }
@@ -54,13 +56,16 @@ struct CoursesView: View {
                     CourseDetailView(course: course)
                         
                 }
+                .navigationDestination(for: CoursesDestination.self) { destination in
+                    switch destination {
+                    case .assessmentWallet:
+                        WalletView()
+                    }
+                }
+
         }
     }
     
-    /// Temporary helper: inserts a sample CSSE1001 course so the list can be tested.
-    private func addTestCourse(){
-        modelContext.insert(Course(courseCode: "CSSE1001", term: .S2, year: 2026, color: .teal))
-    }
 }
 
 

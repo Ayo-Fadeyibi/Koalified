@@ -5,7 +5,6 @@
 
 import SwiftUI
 
-/// Title at the top of the Timetable tab, with the profile avatar on the right.
 struct CalendarHeader: View {
     var body: some View {
         HStack {

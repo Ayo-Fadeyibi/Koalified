@@ -95,7 +95,7 @@ struct SessionDetailsView: View {
             EditClassSheet(selectedSession: session){showUpdatedMessage = true}
                 .sheetBorder()
         }
-        .PopUp(isPresented: $showUpdatedMessage, message: "Class updated successfully", image: "circle-check", colour: Color.mintFill, feedback: .error)
+        .PopUp(isPresented: $showUpdatedMessage, message: "Class updated successfully", image: "circle-check", colour: Color.mintFill, feedback: .success)
         
     }
     

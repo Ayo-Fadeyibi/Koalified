@@ -20,6 +20,7 @@ struct CalculatorView: View {
         NavigationStack {
             VStack(alignment: .leading, spacing: Layout.sectionSpacing) {
                 CalculatorHeader()
+                    .padding(.bottom, 10)
 
                 if courses.isEmpty {
                     CalculatorEmptyView(onAddCourse: { showAddCourse = true },
@@ -28,6 +29,7 @@ struct CalculatorView: View {
                     CalculatorContent()
                 }
             }
+            .padding(.top, Layout.screenPadding)
             .mainContainerStyling()
             .background(Color.screenBackground)
             .toolbar(.hidden, for: .navigationBar)

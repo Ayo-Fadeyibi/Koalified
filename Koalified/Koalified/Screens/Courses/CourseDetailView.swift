@@ -34,9 +34,9 @@ struct CourseDetailView: View {
         .toolbar(.visible, for: .navigationBar)
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $showAddAssessment) {
-            AddAssessmentSheet(course: course)
+            AddAssessmentSheet(onAdded: {}, currentCourse: course)
                 .sheetBorder(topInset: 2.5)
-                .presentationDetents([.height(320)])
+                .presentationDetents([.height(520)])
         }
         
         .toolbar {

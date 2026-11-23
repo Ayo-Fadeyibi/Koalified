@@ -16,6 +16,9 @@ import SwiftUI
 /// Every value is optional; a card with nothing to show is left out.
 struct EmptyStateView<Content: View>: View {
 
+    @State private var primaryActionTrigger1 = false
+    @State private var primaryActionTrigger2 = false
+
     let content: Content
 
     let header1: LocalizedStringKey?
@@ -70,7 +73,7 @@ struct EmptyStateView<Content: View>: View {
     var body: some View {
         VStack(spacing: 16) {
             if hasFirstCard {
-                Card {
+                PlainCard {
                     if let header1 { headerText(header1) }
                     if let title1 {
                         Text(title1)
@@ -78,10 +81,14 @@ struct EmptyStateView<Content: View>: View {
                     }
                     if let message1 { messageText(message1) }
                     if let primaryTitle1, let primaryAction1 {
-                        PlainPrimaryButton(title: primaryTitle1, action: primaryAction1, cornerRadius: 30)
+                        PrimaryButton(title: primaryTitle1, action: {
+                            primaryActionTrigger1.toggle()
+                            primaryAction1()
+                        }, cornerRadius: 30)
+                        .sensoryFeedback(.impact(weight: .light), trigger: primaryActionTrigger1)
                     }
                     if let secondaryTitle, let secondaryAction {
-                        secondaryRow(secondaryTitle, action: secondaryAction)
+                        SecondaryButton(title: secondaryTitle, action: secondaryAction)
                     }
                 }
             }
@@ -89,7 +96,7 @@ struct EmptyStateView<Content: View>: View {
             content
 
             if hasSecondCard {
-                Card {
+                PlainCard {
                     if let header2 { headerText(header2) }
                     if let title2 {
                         Text(title2)
@@ -98,11 +105,14 @@ struct EmptyStateView<Content: View>: View {
                     }
                     if let message2 { messageText(message2) }
                     if let primaryTitle2, let primaryAction2 {
-                        PrimaryButton(title: primaryTitle2, action: primaryAction2, cornerRadius: 30)
+                        PrimaryButton(title: primaryTitle2, action: {
+                            primaryActionTrigger2.toggle()
+                            primaryAction2()
+                        }, cornerRadius: 30)
                     }
                     
                     if let secondaryTitle2, let secondaryAction2 {
-                        secondaryRow(secondaryTitle2, action: secondaryAction2)
+                        SecondaryButton(title: secondaryTitle2, action: secondaryAction2)
                     }
                 }
             }
@@ -133,11 +143,6 @@ struct EmptyStateView<Content: View>: View {
             .font(.fredoka(.body))
             .foregroundStyle(Color.textSecondary)
             .frame(maxWidth: .infinity, alignment: .leading)
-    }
-
-    /// Flat bordered row with the label on the left and a chevron on the right.
-    private func secondaryRow(_ title: LocalizedStringKey, action: @escaping () -> Void) -> some View {
-        SecondaryButton(title: title, action: action)
     }
 }
 

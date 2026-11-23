@@ -17,12 +17,16 @@ final class AssessmentItem {
     var dueDate: Date
     var mark: Double?
     var course: Course?
+    var hurdle: Bool?
+    var hurdlePercent: Int?
     
-    init(title: String, weight: Double, dueDate: Date, mark: Double? = nil, course: Course? = nil) {
+    init(title: String, weight: Double, dueDate: Date, mark: Double? = nil, course: Course? = nil, hurdle: Bool? = nil, hurdlePercent: Int? = nil) {
         self.title = title
         self.weight = weight
         self.dueDate = dueDate
         self.mark = mark
         self.course = course
+        self.hurdle = hurdle
+        self.hurdlePercent = hurdlePercent
     }
 }
