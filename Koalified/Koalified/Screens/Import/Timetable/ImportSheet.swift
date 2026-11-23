@@ -8,47 +8,83 @@
 import SwiftUI
 import WebKit
 
-struct TimetableWebView: UIViewControllerRepresentable {
-    let url: URL
-    let onLink: (URL) -> Void
+/// Owns the sign-in web view for as long as a sign-in is in progress.
+/// Switching to Okta Verify sends Koalified to the background, and SwiftUI can rebuild the sheet's views
+/// when it comes back. A rebuilt web view starts the login again from the password step, so the web view
+/// lives here instead and is handed back to whichever view is on screen. Ended on Done, Sign out or
+/// once the link is found.
+final class TimetableWebSession {
+    private(set) static var current: TimetableWebSession?
 
-    func makeCoordinator() -> Coordinator { Coordinator(onLink: onLink) }
+    let webView: WKWebView
+    let coordinator: TimetableWebView.Coordinator
 
-    func makeUIViewController(context: Context) -> WebContainerViewController {
+    private init(url: URL) {
+        coordinator = TimetableWebView.Coordinator()
+
         let config = WKWebViewConfiguration()
         config.websiteDataStore = .default()
         config.preferences.javaScriptCanOpenWindowsAutomatically = true
 
         // Only inject into the main frame so Okta's hidden iframes aren't touched at all
         config.userContentController.addUserScript(
-            WKUserScript(source: Coordinator.finder, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+            WKUserScript(source: TimetableWebView.Coordinator.finder, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
         )
         config.userContentController.addUserScript(
-            WKUserScript(source: Coordinator.nativeFieldTaps, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+            WKUserScript(source: TimetableWebView.Coordinator.nativeFieldTaps, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
         )
-        config.userContentController.add(context.coordinator, name: "timetableLink")
+        config.userContentController.add(coordinator, name: "timetableLink")
 
-        let web = WKWebView(frame: .zero, configuration: config)
-        web.uiDelegate = context.coordinator
-        web.navigationDelegate = context.coordinator
-
-        let vc = WebContainerViewController(webView: web)
-        web.load(URLRequest(url: url))
-        return vc
+        webView = WKWebView(frame: .zero, configuration: config)
+        webView.uiDelegate = coordinator
+        webView.navigationDelegate = coordinator
+        webView.load(URLRequest(url: url))
     }
 
-    func updateUIViewController(_ vc: WebContainerViewController, context: Context) {}
-
-    static func dismantleUIViewController(_ vc: WebContainerViewController, coordinator: Coordinator) {
-        vc.webView.configuration.userContentController.removeScriptMessageHandler(forName: "timetableLink")
+    /// The session in progress, or a new one that starts loading `url`.
+    static func resume(url: URL) -> TimetableWebSession {
+        if let current { return current }
+        let session = TimetableWebSession(url: url)
+        current = session
+        return session
     }
+
+    /// Throws the web view away. The next `resume` starts a fresh sign-in.
+    static func end() {
+        guard let current else { return }
+        // The content controller holds its message handler strongly, so drop it or the coordinator leaks.
+        current.webView.configuration.userContentController.removeScriptMessageHandler(forName: "timetableLink")
+        current.webView.removeFromSuperview()
+        self.current = nil
+    }
+}
+
+struct TimetableWebView: UIViewControllerRepresentable {
+    let url: URL
+    let onLink: (URL) -> Void
+
+    func makeCoordinator() -> Coordinator { TimetableWebSession.resume(url: url).coordinator }
+
+    func makeUIViewController(context: Context) -> WebContainerViewController {
+        context.coordinator.onLink = onLink
+        return WebContainerViewController(webView: TimetableWebSession.resume(url: url).webView)
+    }
+
+    func updateUIViewController(_ vc: WebContainerViewController, context: Context) {
+        // Keep the callback current in case the view that presented the sheet was rebuilt.
+        context.coordinator.onLink = onLink
+    }
+
+    // No dismantleUIViewController: the web view belongs to `TimetableWebSession`, so the sign-in
+    // survives a rebuilt view. `TimetableWebSession.end()` does the cleanup.
 
     static func signOut() async {
         let store = WKWebsiteDataStore.default()
         await store.removeData(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(), modifiedSince: .distantPast)
     }
 
-    /// Plain UIViewController whose view is the web view.
+    /// Plain UIViewController that shows the session's web view. The web view is added as a subview,
+    /// not used as `view`, so a rebuilt container can take it over from the old one.
     final class WebContainerViewController: UIViewController {
         let webView: WKWebView
 
@@ -59,19 +95,35 @@ struct TimetableWebView: UIViewControllerRepresentable {
 
         required init?(coder: NSCoder) { fatalError() }
 
-        override func loadView() {
-            self.view = webView
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            attachWebView()
+        }
+
+        override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            // If another container briefly took the web view, take it back.
+            attachWebView()
+        }
+
+        private func attachWebView() {
+            guard webView.superview !== view else { return }
+            webView.frame = view.bounds
+            webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            view.addSubview(webView)   // also removes it from any previous container
         }
     }
 
     final class Coordinator: NSObject, WKScriptMessageHandler, WKUIDelegate, WKNavigationDelegate {
-        let onLink: (URL) -> Void
-        init(onLink: @escaping (URL) -> Void) { self.onLink = onLink }
+        /// Set by the view on screen; updated if that view is rebuilt.
+        var onLink: (URL) -> Void = { _ in }
 
         static let finder = #"""
         (function () {
+          // Stay off every sign-in page (old UQ Authenticate and Okta) so login works untouched.
           var host = window.location.hostname || '';
-          if (host.indexOf('okta.com') !== -1 || host.indexOf('auth.uq.edu.au') !== -1) {
+          if (host.indexOf('okta.com') !== -1 || host.indexOf('auth.uq.edu.au') !== -1 ||
+              host.indexOf('signin.uq.edu.au') !== -1) {
             return;
           }
 
@@ -109,8 +161,10 @@ struct TimetableWebView: UIViewControllerRepresentable {
         /// That's fine for buttons and checkboxes, but on text fields it stops iOS from showing the keyboard.
         /// A capture listener on `window` runs before the page's own listeners, so stopping touches on text
         /// fields there keeps them away from that script and lets iOS handle the tap natively.
+        /// Only runs on that page: on Okta's sign-in (signin.uq.edu.au) blocking touches breaks the login.
         static let nativeFieldTaps = #"""
         (function () {
+          if ((window.location.hostname || '').indexOf('auth.uq.edu.au') === -1) { return; }
           var textTypes = /^(text|password|email|search|tel|url|number)$/i;
           function isTextField(target) {
             var el = target && target.closest ? target.closest('input, textarea') : null;
@@ -132,6 +186,9 @@ struct TimetableWebView: UIViewControllerRepresentable {
             }
             return URL(string: trimmed)
         }
+
+        /// Schemes the web view loads itself; anything else is an app link for iOS to open.
+        private static let webSchemes: Set<String> = ["http", "https", "about", "data", "blob", "javascript"]
 
         private var hasReported = false
 
@@ -170,6 +227,15 @@ struct TimetableWebView: UIViewControllerRepresentable {
                 decisionHandler(.cancel)
                 return
             }
+            // A web view can't open app links (e.g. Okta Verify's oktaverify://) and silently drops them,
+            // which sends UQ's sign-in back to the password step. Hand them to iOS like Safari does.
+            if let url = navigationAction.request.url,
+               let scheme = url.scheme?.lowercased(),
+               !Self.webSchemes.contains(scheme) {
+                UIApplication.shared.open(url)
+                decisionHandler(.cancel)
+                return
+            }
             decisionHandler(.allow)
         }
     }
@@ -185,6 +251,7 @@ struct ImportSheet: View {
     var body: some View {
         NavigationStack {
             TimetableWebView(url: targetURL) { link in
+                TimetableWebSession.end()
                 onLink(link.absoluteString)
             }
             .id(webViewID)
@@ -196,6 +263,7 @@ struct ImportSheet: View {
                         Task {
                             await TimetableWebView.signOut()
                             TimetableLinkStore.delete()
+                            TimetableWebSession.end()   // the next web view starts a fresh sign-in
                             webViewID = UUID()
                         }
                     }
@@ -203,6 +271,7 @@ struct ImportSheet: View {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Done") {
+                        TimetableWebSession.end()
                         onDone()
                     }
                     .font(.fredoka(.subheadline, .bold))

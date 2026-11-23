@@ -69,6 +69,7 @@
 				Models/ClassSession.swift,
 				Models/Course.swift,
 				Models/CourseColour.swift,
+				Models/UserDetails.swift,
 				"Resources/Font/Fredoka-Bold.ttf",
 				"Resources/Font/Fredoka-Medium.ttf",
 				"Resources/Font/Fredoka-Regular.ttf",

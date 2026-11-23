@@ -32,6 +32,7 @@ struct CourseCard: View {
                             Text(code)
                                 .font(.fredoka(.headline))
                                 .foregroundStyle(accent)
+                            
                             Spacer()
                             Button {
                                 withAnimation(.spring(response: 0.32, dampingFraction: 0.82)) {
@@ -55,7 +56,7 @@ struct CourseCard: View {
                             .foregroundStyle(Color.textPrimary)
 
                         ProgressView(value: earned, total: 100)
-                            .tint(Color.mintFill)
+                            .tint(accent)
 
                         HStack {
                             Text("\(Int(earned)) of 100 points earned so far")
@@ -71,7 +72,7 @@ struct CourseCard: View {
                     VStack{
                         // Spans the whole card, under both the badge and the details.
                         HStack(spacing: 8) {
-                            ActionButton(title: "Edit", action: onEdit)
+                            ActionButton(title: "Edit", color: Color.tintMint, action: onEdit)
                             ActionButton(title: "View") {
                                 onView()
                                 path.append(course)

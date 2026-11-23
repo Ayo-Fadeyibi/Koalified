@@ -36,9 +36,12 @@ struct AddClassSheet: View {
     @State private var pendingTimes: [(start: Date, end: Date)] = []
     @State private var showClashAlert = false
     
+    @FocusState private var isBuildingInputFocused: Bool
+    @FocusState private var isRoomInputFocused: Bool
+    
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Add class")
+            Text("Add a class")
                 .primaryTextStyling()
                 .padding(.bottom, 20)
             
@@ -69,12 +72,12 @@ struct AddClassSheet: View {
                         type.localizedName
                     }
                 }
-            }.padding(.bottom, 10)
+            }.padding(.bottom, 24)
                 .zIndex(3)
             
             Toggle("Repeats every week", isOn: $repeatsWeekly)
                 .boldSecondaryTextStyling()
-                .padding(.bottom, 10)
+                .padding(.bottom, 24)
             
             if repeatsWeekly {
                 VStack(alignment: .leading) {
@@ -87,13 +90,14 @@ struct AddClassSheet: View {
                     ) { day in
                         Calendar.current.weekdaySymbols[day - 1]
                     }
-                }.padding(.bottom, 10)
+                }.padding(.bottom, 24)
                     .zIndex(2)
             } else {
                 DatePicker("Date", selection: $date, displayedComponents: .date)
                     .font(.fredoka(.body, .bold))
                     .padding()
                     .plainStyling()
+                    .padding(.bottom, 24)
             }
             
             VStack(alignment: .leading) {
@@ -113,30 +117,65 @@ struct AddClassSheet: View {
                         .font(.fredoka(.body, .bold))
                         .padding()
                         .plainStyling()
-                }.padding(.bottom, 10)
+                }.padding(.bottom, 24)
                     .zIndex(1)
                 
                 VStack(alignment: .leading) {
-                    Text("Building")
-                        .boldSecondaryTextStyling()
+                    VStack(alignment: .leading) {
+                        Text("Building")
+                            .boldSecondaryTextStyling()
+                        
+                        HStack(spacing: 10) {
+                            
+                            TextField("Building, e.g. Priestley", text: $building)
+                                .font(.fredoka(.body, .medium))
+                                .foregroundStyle(Color.textPrimary)
+                                .autocorrectionDisabled()
+                                .submitLabel(.done)
+                                .focused($isBuildingInputFocused)
+                            
+                            if !building.isEmpty {
+                                Button {
+                                    building = ""
+                                } label: {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .font(.system(size: 16, weight: .semibold))
+                                        .foregroundStyle(Color.textSecondary)
+                                }
+                                .buttonStyle(.plain)
+                            }
+                            
+                        }.textFieldStyling(isFocused: isBuildingInputFocused)
+                    }.padding(.bottom, 24)
                     
-                    TextField("Building, e.g. Priestley", text: $building)
-                        .textInputAutocapitalization(.words)
-                        .autocorrectionDisabled()
-                        .font(.fredoka(.body, .bold))
-                        .padding()
-                        .plainStyling()
-                        .padding(.bottom, 10)
+                    
+                    VStack(alignment: .leading) {
+                        Text("Room")
+                            .boldSecondaryTextStyling()
+                        
+                        HStack(spacing: 10) {
+                            
+                            TextField("Room, e.g. 03-318", text: $room)
+                                .font(.fredoka(.body, .medium))
+                                .foregroundStyle(Color.textPrimary)
+                                .autocorrectionDisabled()
+                                .submitLabel(.done)
+                                .focused($isRoomInputFocused)
+                            
+                            if !room.isEmpty {
+                                Button {
+                                    room = ""
+                                } label: {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .font(.system(size: 16, weight: .semibold))
+                                        .foregroundStyle(Color.textSecondary)
+                                }
+                                .buttonStyle(.plain)
+                            }
+                            
+                        }.textFieldStyling(isFocused: isRoomInputFocused)
+                    }.padding(.bottom, 24)
 
-                    Text("Room")
-                        .boldSecondaryTextStyling()
-                    
-                    TextField("Room, e.g. 03-318", text: $room)
-                        .textInputAutocapitalization(.characters)
-                        .autocorrectionDisabled()
-                        .font(.fredoka(.body, .bold))
-                        .padding()
-                        .plainStyling()
                 }
                 
                 if !isValid {
@@ -150,11 +189,12 @@ struct AddClassSheet: View {
                 
                 PrimaryButton(title: "Add Class") { save() }
                     .disabled(!canSave)
+                    .opacity(canSave ? 1 : 0.5)
                 
             }
             
         }.padding()
-            .containerStyling()
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             .alert("These classes overlap", isPresented: $showClashAlert) {
                 Button("Add anyway") { insertSessions(pendingTimes) }
                 Button("Cancel", role: .cancel) { }

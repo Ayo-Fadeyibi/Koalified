@@ -27,7 +27,7 @@ struct RequiredMarkCard: View {
         // Mirrors the design: also warn when the next grade up is already out of reach.
         let nextOutOfReach = rows.first { $0.grade == targetGrade + 1 }.map { !$0.obtainable } ?? false
 
-        Card {
+        PlainCard {
             CardHeading("TO REACH A \(targetGrade)")
 
             // Headline

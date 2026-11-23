@@ -6,46 +6,51 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ProfileContentView: View {
     
     @State private var showImport = false
-    
+
     private var destination1 = [ProfileDestination.notifications, .language, .replayTour]
     private var destination2 = [ProfileDestination.removeLink, ProfileDestination.deleteData]
     private var destination3 = [ProfileDestination.addWidget, .semesterReceipt, .about, .helpFeedback]
+    
+    @Query private var userDetail: [UserDetails]
+    
+    private var content: UserDetails? { userDetail.first }
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 12) {
                 
-                PlainCard {
             
-                    Button {
-                        print("Hello")
-                    } label: {
-                        HStack {
-                            //Custom koala mascot will be here
-                            VStack(alignment: .leading) {
-                                Text("Your name")
-                                    .font(.fredoka(.body, .bold))
-                                    .foregroundStyle(Color.primary)
-                                
-                                Text("University of your choice")
-                                    .secondaryTextStyling()
-                            }
-                            
-                            Spacer()
-                            
-                            Image(systemName: "chevron.right")
-                                .font(.footnote.weight(.semibold))
-                                .foregroundStyle(Color.textSecondary)
-                           
-                        }
-                    }
-            
-                }
+             
                 
+                NavigationLink(value: ProfileDestination.userDetails) {
+                    HStack {
+                        VStack(alignment: .leading) {
+                                
+                            Text(content?.userName ?? "Your name")
+                                    .font(.fredoka(.body, .semibold))
+                                    .foregroundStyle(Color.textPrimary)
+                                
+                            Text(content?.userUniversity ?? "University of your choice")
+                                    .secondaryTextStyling()
+                                
+                        }
+                        
+                        Spacer()
+
+                        Image(systemName: "chevron.right")
+                            .font(.footnote.weight(.semibold))
+                            .foregroundStyle(Color.textSecondary)
+                    }
+                    .padding()
+                    .plainStyling()
+              
+                }
+                .buttonStyle(.plain)
                 
               
                 PlainCard {
@@ -56,7 +61,10 @@ struct ProfileContentView: View {
                         Text("UQ timetable link · Imported today")
                             .secondaryTextStyling()
                         
-                        PlainPrimaryButton(title: "Import again"){}
+                        PrimaryButton(title: "Import again"){showImport = true}
+                            .sensoryFeedback(.impact(weight: .light), trigger: showImport) { _, newValue in
+                                newValue 
+                            }
 
                         ProfileRow(destination: .reviewCourses)
                             .background(Color.cardSurface, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
@@ -114,7 +122,8 @@ struct ProfileContentView: View {
             }
         }.scrollIndicators(.hidden)
             .background(Color.screenBackground.ignoresSafeArea())
-            .sheet(isPresented: $showImport) { ImportFlowView().sheetBorder() }
+            .sheet(isPresented: $showImport) { ImportLinkSheet().sheetBorder() }
+
     }
 }
 

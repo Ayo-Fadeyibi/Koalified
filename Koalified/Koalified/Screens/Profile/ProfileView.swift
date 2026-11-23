@@ -48,6 +48,8 @@ struct ProfileView: View {
                     RemoveTimetableLinkView()
                 case .deleteData:
                     DeleteSemesterDataView()
+                case .userDetails:
+                    UserDetailsView()
                 }
             }
     }

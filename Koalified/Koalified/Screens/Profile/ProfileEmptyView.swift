@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ProfileEmptyView: View {
+    
+    @State var showImport = false
+    
     var body: some View {
         EmptyStateView(
             header1: "MAKE IT YOUR SEMESTER",
@@ -15,11 +18,12 @@ struct ProfileEmptyView: View {
             title2: "Preferences",
             message1: "Import your timetable to personalise your course list and semester progress.",
             primaryTitle1: "Import timetable",
-            primaryAction1: {},
+            primaryAction1: {showImport = true},
             secondaryTitle2: "Language",
             secondaryAction2: {}
             
         ).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            .sheet(isPresented: $showImport) { ImportLinkSheet().sheetBorder() }
     }
 }
 

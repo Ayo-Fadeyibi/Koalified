@@ -47,6 +47,29 @@ extension View {
             )
     }
     
+    /// Text input box: padded card surface with a faint border that thickens and gains an offset ink
+    /// shadow while `isFocused` is true.
+    func textFieldStyling(isFocused: Bool) -> some View {
+        self.padding(.horizontal, 14)
+            .padding(.vertical, 14)
+            .background(Color.cardSurface, in: RoundedRectangle(cornerRadius: 14))
+            .overlay(
+                RoundedRectangle(cornerRadius: 14)
+                    .strokeBorder(
+                        isFocused ? Color.inkBorder : Color.inkBorder.opacity(0.45),
+                        lineWidth: isFocused ? 2.5 : 1.5
+                    )
+            )
+            .background {
+                if isFocused {
+                    RoundedRectangle(cornerRadius: 14)
+                        .fill(Color.inkBorder)
+                        .offset(x: 3, y: 3)
+                }
+            }
+            .animation(.easeOut(duration: 0.15), value: isFocused)
+    }
+
     /// Small secondary text; currently styled the same as `secondaryTextStyling`.
     func tinyText () -> some View {
         self.font(.fredoka(.subheadline))

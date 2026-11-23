@@ -33,6 +33,24 @@ enum PreviewData {
         ]
         items.forEach { context.insert($0) }
 
+        // Sample classes in the current week, so the timetable grid has something to show.
+        let calendar = Calendar.current
+        let monday = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: .now))!
+        func session(_ dayOffset: Int, _ hour: Int, _ hours: Int, _ type: SessionType,
+                     _ room: String, _ building: String, _ course: Course) -> ClassSession {
+            let date = calendar.date(byAdding: .day, value: dayOffset, to: monday)!
+            let start = calendar.date(bySettingHour: hour, minute: 0, second: 0, of: date)!
+            return ClassSession(start: start, end: start.addingTimeInterval(Double(hours) * 3600),
+                                type: type, room: room, building: building, course: course)
+        }
+        let sessions = [
+            session(0, 10, 2, .LEC, "E302", "Forgan Smith Building", csse),
+            session(1, 14, 2, .PRA, "Room 222", "General Purpose South", csse),
+            session(2, 9, 1, .LEC, "Room 101", "Hawken Engineering", math),
+            session(3, 13, 1, .TUT, "Room 204", "Priestley Building", math),
+        ]
+        sessions.forEach { context.insert($0) }
+
         return container
     }()
 }

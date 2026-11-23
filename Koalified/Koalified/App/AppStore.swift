@@ -15,7 +15,7 @@ enum AppStore {
 
     /// The SwiftData models persisted by the app.
     static let schema = Schema([
-        Course.self, ClassSession.self, AssessmentItem.self
+        Course.self, ClassSession.self, AssessmentItem.self, UserDetails.self
     ])
 
     /// The single shared model container, stored in the App Group container with CloudKit off.

@@ -23,10 +23,12 @@ enum ProfileDestination: Hashable {
     case notifications, language, replayTour
     case addWidget, semesterReceipt, about, helpFeedback
     case reviewCourses, removeLink, deleteData
+    case userDetails
 
     /// Row and screen title.
     var title: LocalizedStringKey {
         switch self {
+        case .userDetails: "Your details"
         case .notifications: "Notifications"
         case .language: "Language"
         case .replayTour: "Replay the tour"

@@ -23,7 +23,7 @@ struct LockedInCard: View {
     var body: some View {
         let banked = MarkCalculator.calculateTotalScore(course.markInputs)
 
-        Card {
+        PlainCard {
             CardHeading("LOCKED IN")
 
             if marked.isEmpty {

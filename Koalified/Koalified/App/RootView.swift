@@ -29,7 +29,7 @@ struct RootView: View {
                     }
                     
                     Tab("Timetable", image: "calendar-range", value: AppTab.timetable) {
-                        CalendarTabContent()
+                        CalendarView()
                     }
                     
                     Tab ("Courses", image: "book-open", value: AppTab.courses) {

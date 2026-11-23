@@ -53,6 +53,16 @@
     "·" : {
 
     },
+    "%@ – %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ – %2$@"
+          }
+        }
+      }
+    },
     "%@ · %@ LEFT" : {
       "localizations" : {
         "en" : {
@@ -825,9 +835,6 @@
     "Add anyway" : {
 
     },
-    "Add class" : {
-
-    },
     "Add Class" : {
 
     },
@@ -1329,6 +1336,9 @@
     "Bring in your timetable" : {
 
     },
+    "Bring in your timetable." : {
+
+    },
     "Building" : {
 
     },
@@ -1634,6 +1644,9 @@
     "Class added" : {
 
     },
+    "Class Added successfully" : {
+
+    },
     "Class details & directions" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -1680,6 +1693,9 @@
           }
         }
       }
+    },
+    "Class updated successfully" : {
+
     },
     "Class wrapped. Get some rest" : {
 
@@ -2084,7 +2100,7 @@
     "DAY" : {
 
     },
-    "Day view →" : {
+    "Day view" : {
 
     },
     "Degree plan" : {
@@ -2140,6 +2156,9 @@
 
     },
     "Delete Something" : {
+
+    },
+    "Details added successfully" : {
 
     },
     "Do you need help finding your timetable?" : {
@@ -2374,6 +2393,9 @@
           }
         }
       }
+    },
+    "e.g. Alex" : {
+
     },
     "e.g. CSSE1001" : {
       "localizations" : {
@@ -2845,6 +2867,7 @@
 
     },
     "Helps organise your timetable and grades." : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -3091,6 +3114,9 @@
           }
         }
       }
+    },
+    "Import your timetable file or link to get your classes in one place." : {
+
     },
     "Import your timetable to personalise your course list and semester progress." : {
 
@@ -3381,6 +3407,9 @@
           }
         }
       }
+    },
+    "Koalified will switch to this language, You can change this anytime." : {
+
     },
     "Koalified will switch to this language. You can change it later in Settings." : {
       "localizations" : {
@@ -3680,6 +3709,9 @@
       }
     },
     "More" : {
+
+    },
+    "MORE SOON" : {
 
     },
     "My courses" : {
@@ -4530,6 +4562,9 @@
     "Room: %@" : {
 
     },
+    "Save" : {
+
+    },
     "Save assessment" : {
       "localizations" : {
         "hi" : {
@@ -4577,6 +4612,7 @@
       }
     },
     "Search or enter university" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -4882,6 +4918,9 @@
     "Skip" : {
 
     },
+    "St Lucia · Gatton · Herston" : {
+
+    },
     "Starts" : {
 
     },
@@ -5087,6 +5126,9 @@
     "TARGET GRADE" : {
 
     },
+    "Tell us what to call you so we can personalise your dashboard." : {
+
+    },
     "The calculator needs a course with its assessments and weights. Add one and enter any marks you already have." : {
       "localizations" : {
         "hi" : {
@@ -5134,6 +5176,7 @@
       }
     },
     "The University of Queensland" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -5429,7 +5472,7 @@
     "Type" : {
 
     },
-    "University of your choice" : {
+    "UNIVERSITY" : {
 
     },
     "Upcoming · %lld" : {
@@ -5508,7 +5551,7 @@
     "WEEK" : {
 
     },
-    "Week view →" : {
+    "Week view" : {
 
     },
     "WeekDay" : {
@@ -5610,6 +5653,7 @@
       }
     },
     "Where do you study?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -5860,6 +5904,9 @@
     "Your day starts here." : {
 
     },
+    "Your details" : {
+
+    },
     "Your file has classes from %@" : {
 
     },
@@ -5869,7 +5916,7 @@
     "Your link stays on this phone" : {
 
     },
-    "Your name" : {
+    "YOUR NAME" : {
 
     },
     "Your Semester receipt" : {

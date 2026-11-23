@@ -43,7 +43,7 @@ struct TodayView: View {
             .sheet(item: $activeSheet, onDismiss: { activeSheet = pendingSheet; pendingSheet = nil }){ sheet in
                 switch sheet {
                 case .importTimetable:
-                    ImportFlowView()
+                    ImportLinkSheet()
                         .sheetBorder()
                     
                 case .addMenu:
@@ -58,6 +58,7 @@ struct TodayView: View {
                     
                 case .addClass:
                     AddClassSheet(onAdded: { showAddedPopup = true })
+                        .sheetBorder()
                     
                 case .addDeadline:
                     Text("Add deadline")

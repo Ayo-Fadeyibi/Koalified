@@ -18,24 +18,32 @@ struct ColorPickerRow: View {
 
     var body: some View {
         FormField("Colour") {
-            HStack(spacing: 14) {
-                ForEach(CourseColor.allCases, id: \.self) { option in
-                    Button { selection = option } label: {
-                        Circle()
-                            .fill(option.color)
-                            .frame(width: 32, height: 32)
-                            .overlay {
-                                if option == current {
-                                    Image(systemName: "checkmark")
-                                        .font(.caption.weight(.bold))
-                                        .foregroundStyle(.white)
-                                }
+            // All ten swatches are wider than a phone screen, so the row scrolls sideways.
+            ScrollViewReader { proxy in
+                ScrollView(.horizontal) {
+                    HStack(spacing: 14) {
+                        ForEach(CourseColor.allCases, id: \.self) { option in
+                            Button { selection = option } label: {
+                                Circle()
+                                    .fill(option.color)
+                                    .frame(width: 32, height: 32)
+                                    .overlay {
+                                        if option == current {
+                                            Image(systemName: "checkmark")
+                                                .font(.caption.weight(.bold))
+                                                .foregroundStyle(.white)
+                                        }
+                                    }
                             }
+                            .buttonStyle(.plain)
+                            .accessibilityLabel(option.rawValue.capitalized)
+                            .id(option)
+                        }
                     }
-                    .buttonStyle(.plain)
-                    .accessibilityLabel(option.rawValue.capitalized)
                 }
-                Spacer()
+                .scrollIndicators(.hidden)
+                // When editing a course whose colour is off-screen, bring its swatch into view.
+                .onAppear { proxy.scrollTo(current) }
             }
         }
     }

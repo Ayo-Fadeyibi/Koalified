@@ -45,22 +45,22 @@ struct SplashView: View {
 
             ZStack {
 
-                // Tiles first, so the name and tagline draw on top of them.
-                ForEach(icons.indices, id: \.self) { index in
-                    IconTile(
-                        symbolName: icons[index].symbol,
-                        colorFill: icons[index].fill,
-                        rotateDegrees: icons[index].tilt
-                    )
-                    .scaleEffect(appeared ? 1 : 0.2)
-                    .opacity(appeared ? 1 : 0)
-                    .animation(
-                        .spring(response: 0.4, dampingFraction: 0.6)
-                            .delay(0.8 + Double(index) * 0.1),
-                        value: appeared
-                    )
-                    .offset(x: icons[index].x, y: icons[index].y)
-                }
+//                // Tiles first, so the name and tagline draw on top of them.
+//                ForEach(icons.indices, id: \.self) { index in
+//                    IconTile(
+//                        symbolName: icons[index].symbol,
+//                        colorFill: icons[index].fill,
+//                        rotateDegrees: icons[index].tilt
+//                    )
+//                    .scaleEffect(appeared ? 1 : 0.2)
+//                    .opacity(appeared ? 1 : 0)
+//                    .animation(
+//                        .spring(response: 0.4, dampingFraction: 0.6)
+//                            .delay(0.8 + Double(index) * 0.1),
+//                        value: appeared
+//                    )
+//                    .offset(x: icons[index].x, y: icons[index].y)
+//                }
 
                 VStack(spacing: 0) {
 
@@ -85,7 +85,7 @@ struct SplashView: View {
                     }
 
                     Text("Less chaos. More campus.")
-                        .font(.fredoka(.headline, .medium))
+                        .font(.fredoka(.headline, .bold))
                         .foregroundStyle(Color.textPrimary)
                         .padding(.top, 20)
                         .opacity(appeared ? 1 : 0)
