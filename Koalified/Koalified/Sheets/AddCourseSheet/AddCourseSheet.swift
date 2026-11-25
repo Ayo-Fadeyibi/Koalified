@@ -70,7 +70,7 @@ struct AddCourseSheet: View {
             
             Spacer()
             
-            PrimaryButton(title: "Add course"){save()}
+            PrimaryButton(title: course == nil ? "Add course" : "Save") { save() }
             
             
         }.padding(.top)
