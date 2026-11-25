@@ -15,6 +15,12 @@ extension Array where Element == Course {
         }
     }
 
+    /// The courses in the newest semester; empty when there are no courses.
+    var currentSemester: [Course] {
+        guard let newest = newestFirst.first else { return [] }
+        return filter { $0.year == newest.year && $0.term == newest.term }
+    }
+
     /// The distinct years across the courses, newest first, e.g. [2026, 2025, 2024].
     var availableYears: [Int] {
         Set(map { $0.year }).sorted(by: >)

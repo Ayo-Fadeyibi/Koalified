@@ -66,16 +66,4 @@ final class Course {
             return total + item.weight * mark / 100
         }
     }
-    
-    /// Total weight (percent of the final grade) of the assessments that already have a mark.
-    var markedWeight: Double {
-        assessments.reduce(0) { total, item in
-            item.mark == nil ? total : total + item.weight
-        }
-    }
-
-    /// Average mark (0–100) across marked assessments, weighted; nil if nothing is marked yet.
-    var markedAverage: Double? {
-        markedWeight > 0 ? earnedPoints / markedWeight * 100 : nil
-    }
 }

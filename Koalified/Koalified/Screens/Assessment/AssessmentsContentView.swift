@@ -27,12 +27,7 @@ struct AssessmentsContentView: View {
     private var upcoming: [AssessmentItem] {
         course.assessments.filter { $0.mark == nil }.sorted { $0.dueDate < $1.dueDate }
     }
-    
-    /// Formats a number with at most one decimal place (e.g. 12.5, 20).
-    private func num(_ value: Double) -> String {
-        value.formatted(.number.precision(.fractionLength(0...1)))
-    }
-    
+
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var openAssessment: Bool
 
@@ -145,18 +140,6 @@ struct AssessmentsContentView: View {
         .modelContainer(PreviewData.container)
         .mainContainerStyling()
 }
-
-//#Preview("Open") {
-//    let course = try! PreviewData.container.mainContext
-//        .fetch(FetchDescriptor<Course>(predicate: #Predicate { $0.courseCode == "CSSE1001" }))
-//        .first!
-//
-//    ScrollView {
-//        AssessmentsContentView(course: course, startsOpen: true, onAdd: {})
-//    }
-//    .modelContainer(PreviewData.container)
-//    .mainContainerStyling()
-//}
 
 #Preview("Empty") {
     // A course with no assessments, in the empty container.

@@ -6,6 +6,13 @@
 //
 
 import Foundation
+import SwiftData
+
+/// Every class session in the shared store, for the widgets' timelines.
+func loadClassSessions() -> [ClassSession] {
+    let context = ModelContext(AppStore.container)
+    return (try? context.fetch(FetchDescriptor<ClassSession>())) ?? []
+}
 
 func makeSnapshot(from session: ClassSession) -> ClassSnapshot {
     ClassSnapshot(

@@ -70,12 +70,6 @@ extension View {
             .animation(.easeOut(duration: 0.15), value: isFocused)
     }
 
-    /// Small secondary text; currently styled the same as `secondaryTextStyling`.
-    func tinyText () -> some View {
-        self.font(.fredoka(.subheadline))
-            .foregroundStyle(Color.textSecondary)
-    }
-    
     /// Applies `BoxStyling` with the given background, corner radius, border colour and border width.
     func boxStyling(bgColor: Color, cRadius: CGFloat, sColor: Color, lWidth: CGFloat) -> some View {
         self.modifier(BoxStyling(backgroundColor: bgColor, cornerRadius: cRadius, strokeColor: sColor, lineWidth: lWidth))

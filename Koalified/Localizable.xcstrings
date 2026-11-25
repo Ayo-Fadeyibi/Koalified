@@ -570,6 +570,7 @@
 
     },
     "1 day left" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -1333,6 +1334,7 @@
       }
     },
     "Add your assignments, quizzes and exams to track your marks and see what you need." : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -3045,6 +3047,7 @@
       }
     },
     "CSSE1001" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -3579,6 +3582,7 @@
 
     },
     "DUE SOON" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -4434,6 +4438,7 @@
       }
     },
     "Hello, world!" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -4905,6 +4910,7 @@
       }
     },
     "in 20 min" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -5589,6 +5595,7 @@
       }
     },
     "MATH1051 15%" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -5782,6 +5789,7 @@
       }
     },
     "No assessments yet" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -6476,6 +6484,7 @@
       }
     },
     "Problem set 3" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -6688,6 +6697,7 @@
       }
     },
     "Room 50-201" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {

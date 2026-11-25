@@ -27,10 +27,7 @@ struct AddClassSheet: View {
     @State private var repeatsWeekly = true
     @State private var date = Date.now
     
-    private var currentSemesterCourses: [Course] {
-        guard let newest = courses.newestFirst.first else { return [] }
-        return courses.filter { $0.year == newest.year && $0.term == newest.term }
-    }
+    private var currentSemesterCourses: [Course] { courses.currentSemester }
 
     private var isValid: Bool { timesAreValid(from: start, to: end) }
     
@@ -90,35 +87,11 @@ struct AddClassSheet: View {
                 Button("Add anyway") { insertSessions(pendingTimes) }
                 Button("Cancel", role: .cancel) { }
             } message: {
-                Text(clashText)
+                Text(clashMessage(for: clashes(with: existingSessions, newTimes: pendingTimes)))
             }
             .PopUp(isPresented: $showError, message: errorMessage, image: "circle-x", colour: Color.redFill, feedback: .error)
-        
-        
     }
-    
-    private var clashText: String {
-        let hits = clashes(with: existingSessions, newTimes: pendingTimes)
-        guard let first = hits.first else { return "" }
 
-        let name = first.course?.courseCode ?? "another class"
-        let when = first.start.formatted(.dateTime.weekday(.wide).hour().minute())
-
-        if hits.count == 1 {
-            return "This overlaps \(name) on \(when). Both classes will be marked as clashing."
-        } else {
-            return "This overlaps \(hits.count) classes, starting with \(name) on \(when). All of them will be marked as clashing."
-        }
-    }
-    
-    private func makeTimes(from days: [Date]) -> [(start: Date, end: Date)] {
-        days.compactMap { day in
-            guard let s = combine(day: day, time: start),
-                  let e = combine(day: day, time: end) else { return nil }
-            return (s, e)
-        }
-    }
-    
     private func save() {
         guard let course else {
             errorMessage = "Choose a course."
@@ -131,10 +104,8 @@ struct AddClassSheet: View {
             showError = true
             return
         }
-        
-        print("COURSE:", course.courseCode, course.term, course.year)
 
-        // 1. Which days does this class fall on?
+        // Which days does this class fall on?
         let days: [Date]
         if repeatsWeekly {
             guard let semester = semesterDates(term: course.term, year: course.year) else {
@@ -147,7 +118,7 @@ struct AddClassSheet: View {
             days = [date]
         }
         
-        let times = makeTimes(from: days)
+        let times = classTimes(on: days, start: start, end: end)
         guard !times.isEmpty else { return }
 
         guard !exceedsClashLimit(existing: existingSessions, newTimes: times) else {

@@ -84,18 +84,6 @@ struct TimetableWeek {
         return calendar.date(byAdding: component, value: direction, to: anchor) ?? anchor
     }
 
-    /// Minutes from the top of the grid (the first shown hour) to the class's start.
-    func startMinutes(of session: ClassSession) -> Int {
-        let firstHour = hours.first ?? 9
-        return calendar.component(.hour, from: session.start) * 60
-            + calendar.component(.minute, from: session.start) - firstHour * 60
-    }
-
-    /// How long the class runs, in hours.
-    func durationHours(of session: ClassSession) -> Double {
-        session.end.timeIntervalSince(session.start) / 3600
-    }
-
     func isToday(_ day: Date) -> Bool {
         calendar.isDateInToday(day)
     }

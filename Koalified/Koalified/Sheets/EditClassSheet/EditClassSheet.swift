@@ -24,26 +24,20 @@ struct EditClassSheet: View {
     @State private var end = Calendar.current.date(bySettingHour: 10, minute: 0, second: 0, of: .now) ?? .now.addingTimeInterval(3600)
     @State private var building = ""
     @State private var room = ""
-    @State private var weekday = 2   // 1 = Sunday ... 7 = Saturday, so 2 = Monday
     @State private var date = Date.now
-    
+
     /// Every session except the one being edited, so it never counts as clashing with itself.
     private var otherSessions: [ClassSession] {
         existingSessions.filter { $0 !== selectedSession }
     }
 
     private var isValid: Bool { timesAreValid(from: start, to: end) }
-    private var canSave: Bool { Koalified.canSave(course: course, valid: isValid) }
-    
-    
-    @State private var showNoDatesMessage = false
+    private var canSave: Bool { course != nil && isValid }
+
     @State private var showClashLimitMessage = false
     @State private var pendingTimes: [(start: Date, end: Date)] = []
     @State private var showClashAlert = false
-    
-    @FocusState private var isBuildingInputFocused: Bool
-    @FocusState private var isRoomInputFocused: Bool
-    
+
     let onAdded: () -> Void
     
     var body: some View {
@@ -113,63 +107,7 @@ struct EditClassSheet: View {
                 }.padding(.bottom, 24)
                     .zIndex(1)
                 
-                VStack(alignment: .leading) {
-                    VStack(alignment: .leading) {
-                        Text("Building")
-                            .boldSecondaryTextStyling()
-                        
-                        HStack(spacing: 10) {
-                            
-                            TextField("Building, e.g. Priestley", text: $building)
-                                .font(.fredoka(.body, .medium))
-                                .foregroundStyle(Color.textPrimary)
-                                .autocorrectionDisabled()
-                                .submitLabel(.done)
-                                .focused($isBuildingInputFocused)
-                            
-                            if !building.isEmpty {
-                                Button {
-                                    building = ""
-                                } label: {
-                                    Image(systemName: "xmark.circle.fill")
-                                        .font(.system(size: 16, weight: .semibold))
-                                        .foregroundStyle(Color.textSecondary)
-                                }
-                                .buttonStyle(.plain)
-                            }
-                            
-                        }.textFieldStyling(isFocused: isBuildingInputFocused)
-                    }.padding(.bottom, 24)
-                    
-                    
-                    VStack(alignment: .leading) {
-                        Text("Room")
-                            .boldSecondaryTextStyling()
-                        
-                        HStack(spacing: 10) {
-                            
-                            TextField("Room, e.g. 03-318", text: $room)
-                                .font(.fredoka(.body, .medium))
-                                .foregroundStyle(Color.textPrimary)
-                                .autocorrectionDisabled()
-                                .submitLabel(.done)
-                                .focused($isRoomInputFocused)
-                            
-                            if !room.isEmpty {
-                                Button {
-                                    room = ""
-                                } label: {
-                                    Image(systemName: "xmark.circle.fill")
-                                        .font(.system(size: 16, weight: .semibold))
-                                        .foregroundStyle(Color.textSecondary)
-                                }
-                                .buttonStyle(.plain)
-                            }
-                            
-                        }.textFieldStyling(isFocused: isRoomInputFocused)
-                    }.padding(.bottom, 24)
-
-                }
+                ClassLocationFields(building: $building, room: $room)
                 
                 if !isValid {
                     Text("End time must be after the start time.")
@@ -188,96 +126,31 @@ struct EditClassSheet: View {
             
         }.padding()
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            .onAppear{
-                
-                var calendar = Calendar(identifier: .iso8601)
-                calendar.timeZone = .current
-                calendar.locale = .current
-                
-                if let savedCourseCode = selectedSession?.course{
-                    course = savedCourseCode
-                }
-                
-                if let savedSessionType = selectedSession?.type {
-                    type = savedSessionType
-                }
-                
-                if let savedDate = selectedSession?.start {
-                    date = savedDate
-                }
-                
-                if let savedStartTime = selectedSession?.start {
-                       
-                    let hour   = calendar.component(.hour, from: savedStartTime)
-                    let minute = calendar.component(.minute, from: savedStartTime)
-                    let second = calendar.component(.second, from: savedStartTime)
-                    
-                    start = Calendar.current.date(bySettingHour: hour, minute: minute, second: second, of: .now) ?? .now
-                }
-                
-                if let savedEndTime = selectedSession?.end {
-                       
-                    let hour   = calendar.component(.hour, from: savedEndTime)
-                    let minute = calendar.component(.minute, from: savedEndTime)
-                    let second = calendar.component(.second, from: savedEndTime)
-                    
-                    end = Calendar.current.date(bySettingHour: hour, minute: minute, second: second, of: .now) ?? .now.addingTimeInterval(3600)
-                }
-                
-                if let savedBuilding = selectedSession?.building {
-                    building = savedBuilding
-                }
-                
-                if let savedRoom = selectedSession?.room {
-                    room = savedRoom
-                }
+            .onAppear {
+                // Prefill the form from the class being edited. Only the hour and minute of
+                // `start`/`end` are used when saving, so the session's own dates can go straight in.
+                guard let selectedSession else { return }
+                course = selectedSession.course
+                type = selectedSession.type
+                date = selectedSession.start
+                start = selectedSession.start
+                end = selectedSession.end
+                building = selectedSession.building ?? ""
+                room = selectedSession.room ?? ""
             }
             .alert("These classes overlap", isPresented: $showClashAlert) {
                 Button("Add anyway") { insertSessions(pendingTimes) }
                 Button("Cancel", role: .cancel) { }
             } message: {
-                Text(clashText)
+                Text(clashMessage(for: clashes(with: otherSessions, newTimes: pendingTimes)))
             }
-            .PopUp(isPresented: $showNoDatesMessage, message: "We don't have dates for this semester yet. Turn off “Repeats every week” to add a single class.", image: "circle-x", colour: Color.redFill, feedback: .error)
             .PopUp(isPresented: $showClashLimitMessage, message: "No more than \(maxClashingClasses) classes can clash at once. Choose a different time for this class.", image: "circle-x", colour: Color.redFill, feedback: .error)
-        
-        
     }
-    
-    private var clashText: String {
-        let hits = clashes(with: otherSessions, newTimes: pendingTimes)
-        guard let first = hits.first else { return "" }
 
-        let name = first.course?.courseCode ?? "another class"
-        let when = first.start.formatted(.dateTime.weekday(.wide).hour().minute())
-
-        if hits.count == 1 {
-            return "This overlaps \(name) on \(when). Both classes will be marked as clashing."
-        } else {
-            return "This overlaps \(hits.count) classes, starting with \(name) on \(when). All of them will be marked as clashing."
-        }
-    }
-    
-    private func makeTimes(from days: [Date]) -> [(start: Date, end: Date)] {
-        days.compactMap { day in
-            guard let s = combine(day: day, time: start),
-                  let e = combine(day: day, time: end) else { return nil }
-            return (s, e)
-        }
-    }
-    
     private func save() {
-        guard let course else { return }
-        
-        print("COURSE:", course.courseCode, course.term, course.year)
+        guard course != nil else { return }
 
-        // 1. Which days does this class fall on?
-        let days: [Date]
-    
-            days = [date]
-        
-        
-        let times = makeTimes(from: days)
+        let times = classTimes(on: [date], start: start, end: end)
         guard !times.isEmpty else { return }
 
         guard !exceedsClashLimit(existing: otherSessions, newTimes: times) else {

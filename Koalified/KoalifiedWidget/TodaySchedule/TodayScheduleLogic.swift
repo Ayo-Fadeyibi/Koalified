@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum RowState {
+enum RowState: String {
     case done, now, next, later
 }
 

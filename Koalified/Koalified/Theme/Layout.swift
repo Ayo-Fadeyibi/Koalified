@@ -24,5 +24,4 @@ enum Layout {
 
     // Floating add button
     static let fabSize: CGFloat = 56
-    static let fabPadding: CGFloat = 20
 }

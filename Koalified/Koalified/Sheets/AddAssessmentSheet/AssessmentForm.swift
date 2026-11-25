@@ -54,7 +54,7 @@ struct AssessmentForm: View {
                         }
 
                     if !name.isEmpty {
-                        clearButton {
+                        ClearFieldButton {
                             name = ""
                         }
                     }
@@ -79,7 +79,7 @@ struct AssessmentForm: View {
                         .focused($isWeightFocused)
 
                         if weight != nil {
-                            clearButton {
+                            ClearFieldButton {
                                 weight = nil
                             }
                         }
@@ -127,7 +127,7 @@ struct AssessmentForm: View {
                             .focused($isHurdleFocused)
 
                             if hurdlePercent != nil {
-                                clearButton {
+                                ClearFieldButton {
                                     hurdlePercent = nil
                                 }
                             }
@@ -140,16 +140,5 @@ struct AssessmentForm: View {
         }
     }
 
-    private func clearButton(
-        action: @escaping () -> Void
-    ) -> some View {
-        Button(action: action) {
-            Image(systemName: "xmark.circle.fill")
-                .font(.system(size: 16, weight: .semibold))
-                .foregroundStyle(Color.textSecondary)
-        }
-        .buttonStyle(.plain)
-        .accessibilityLabel("Clear field")
-    }
 
 }

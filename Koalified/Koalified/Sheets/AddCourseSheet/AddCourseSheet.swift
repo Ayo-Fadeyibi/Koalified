@@ -19,9 +19,6 @@ struct AddCourseSheet: View {
     @State private var courseCode = ""
     @State private var courseName = ""
 
-    enum Field { case code, name }
-    @FocusState private var focused: Field?
-
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     @Query private var courses: [Course]
@@ -84,48 +81,40 @@ struct AddCourseSheet: View {
     /// Validates the form and then updates the existing course or inserts a new one.
     /// Shows an alert instead of saving if the code is empty or the course is a duplicate.
     private func save() {
-        // 1. Clean the text
         let cleanCode = courseCode
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .uppercased()
         let cleanName = courseName
             .trimmingCharacters(in: .whitespacesAndNewlines)
 
-        // 2. Validate: a course needs a code
         guard !cleanCode.isEmpty else {
             errorMessage = "Enter a course code."
             showError = true
             return
         }
-        
-        // 3. Duplicate check: same code, term and year
-        let exists =    courses.contains { $0 !== course && $0.courseCode == cleanCode && $0.term == term && $0.year == year }
 
-        if exists {
+        // Same code, term and year as another course
+        if courses.contains(where: { $0 !== course && $0.courseCode == cleanCode && $0.term == term && $0.year == year }) {
             errorMessage = "You already have \(cleanCode) in \(term.label), \(year)."
             showError = true
             return
         }
 
-        // 4. Pick the next colour
-        let colour = selectedColor
-        // 5. Create and insert
         if let course {
             course.courseCode = cleanCode
-               course.title = cleanName.isEmpty ? nil : cleanName
-               course.term = term
-               course.year = year
+            course.title = cleanName.isEmpty ? nil : cleanName
+            course.term = term
+            course.year = year
         } else {
             modelContext.insert(Course(courseCode: cleanCode,
                                        title: cleanName.isEmpty ? nil : cleanName,
-                                       term: term, year: year, color: colour))
+                                       term: term, year: year, color: selectedColor))
         }
-       
-        //Update the widget
+
+        // Save now so the widget reloads with the change
         try? modelContext.save()
         WidgetCenter.shared.reloadAllTimelines()
-        
-        // 6. Close the sheet and let the presenter confirm
+
         onSaved?()
         dismiss()
     }

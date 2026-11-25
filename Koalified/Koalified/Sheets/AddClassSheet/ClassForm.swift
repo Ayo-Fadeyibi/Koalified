@@ -14,9 +14,6 @@ struct ClassForm: View {
     let isValid: Bool
     let onSave: () -> Void
 
-    @FocusState private var isBuildingInputFocused: Bool
-    @FocusState private var isRoomInputFocused: Bool
-
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -95,63 +92,7 @@ struct ClassForm: View {
                 }.padding(.bottom, 24)
                     .zIndex(1)
 
-                VStack(alignment: .leading) {
-                    VStack(alignment: .leading) {
-                        Text("Building")
-                            .boldSecondaryTextStyling()
-
-                        HStack(spacing: 10) {
-
-                            TextField("Building, e.g. Priestley", text: $building)
-                                .font(.fredoka(.body, .medium))
-                                .foregroundStyle(Color.textPrimary)
-                                .autocorrectionDisabled()
-                                .submitLabel(.done)
-                                .focused($isBuildingInputFocused)
-
-                            if !building.isEmpty {
-                                Button {
-                                    building = ""
-                                } label: {
-                                    Image(systemName: "xmark.circle.fill")
-                                        .font(.system(size: 16, weight: .semibold))
-                                        .foregroundStyle(Color.textSecondary)
-                                }
-                                .buttonStyle(.plain)
-                            }
-
-                        }.textFieldStyling(isFocused: isBuildingInputFocused)
-                    }.padding(.bottom, 24)
-
-
-                    VStack(alignment: .leading) {
-                        Text("Room")
-                            .boldSecondaryTextStyling()
-
-                        HStack(spacing: 10) {
-
-                            TextField("Room, e.g. 03-318", text: $room)
-                                .font(.fredoka(.body, .medium))
-                                .foregroundStyle(Color.textPrimary)
-                                .autocorrectionDisabled()
-                                .submitLabel(.done)
-                                .focused($isRoomInputFocused)
-
-                            if !room.isEmpty {
-                                Button {
-                                    room = ""
-                                } label: {
-                                    Image(systemName: "xmark.circle.fill")
-                                        .font(.system(size: 16, weight: .semibold))
-                                        .foregroundStyle(Color.textSecondary)
-                                }
-                                .buttonStyle(.plain)
-                            }
-
-                        }.textFieldStyling(isFocused: isRoomInputFocused)
-                    }.padding(.bottom, 24)
-
-                }
+                ClassLocationFields(building: $building, room: $room)
 
                 if !isValid {
                     Text("End time must be after the start time.")

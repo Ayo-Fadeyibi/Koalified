@@ -27,12 +27,6 @@ func parseDescription(_ text: String) -> DescriptionInfo? {
     
     let year: Int? = item(from: parts, at: 2).flatMap { Int($0) } //2026
     
-    let campus = item(from: parts, at: 3) //STLUCIA
-    
-    let classNumber = item(from: parts, at: 4) //21275
-    
-    let mode = item(from: parts, at: 5) //IN
-    
     let typeCode: String? = item(from: pieces, at: 1)
         .map { String($0.prefix(while: { $0.isLetter })) } //LEC
     
@@ -42,5 +36,5 @@ func parseDescription(_ text: String) -> DescriptionInfo? {
          staffName = (name == "-") ? nil : name
     }
     
-    return DescriptionInfo(title: title, courseCode: courseCode, term: term, year: year, campus: campus, classNumber: classNumber, mode: mode, typeCode: typeCode, staffName: staffName, isClashable: isClashable, isRecorded: isRecorded)
+    return DescriptionInfo(title: title, courseCode: courseCode, term: term, year: year, typeCode: typeCode, staffName: staffName, isClashable: isClashable, isRecorded: isRecorded)
 }

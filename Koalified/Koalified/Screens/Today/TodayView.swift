@@ -6,15 +6,11 @@ import SwiftData
  */
 struct TodayView: View {
     @State private var activeSheet: ActiveSheet?
-    
-    @State private var pendingSheet: ActiveSheet?
-    
+
     @Query private var courses: [Course]
-    
+
     @Binding var selectedTab: AppTab
-    
-    @State private var showAddedPopup = false
-    
+
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
@@ -40,34 +36,7 @@ struct TodayView: View {
                         newSheet == .addMenu
                     }
             }
-            .sheet(item: $activeSheet, onDismiss: { activeSheet = pendingSheet; pendingSheet = nil }){ sheet in
-                switch sheet {
-                case .importTimetable:
-                    ImportLinkSheet()
-                        .sheetBorder()
-                    
-                case .addMenu:
-                    // your AddMenuSheet, with its .sheetBorder and .presentationDetents
-                    AddMenuSheet(
-                        onAddClass: {pendingSheet = .addClass; activeSheet = nil },
-                        onAddDeadline: {pendingSheet = .addDeadline; activeSheet = nil },
-                        onAddWidget: {pendingSheet = .addWidget; activeSheet = nil }
-                    )
-                    .sheetBorder(topInset: 0.4)
-                    .presentationDetents([.height(350)])
-                    
-                case .addClass:
-                    AddClassSheet(onAdded: { showAddedPopup = true })
-                        .sheetBorder()
-                    
-                case .addDeadline:
-                    Text("Add deadline")
-                    
-                case .addWidget:
-                    Text("Add widget")
-                }
-            }
-            .PopUp(isPresented: $showAddedPopup, message: "Class added", image: "circle-check", colour: .accent)
+            .addMenuSheets($activeSheet)
             .toolbar(.hidden, for: .navigationBar)
             .profileDestination()
         }

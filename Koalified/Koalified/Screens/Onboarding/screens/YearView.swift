@@ -23,7 +23,7 @@ struct YearView: View {
             Text("What year are you in?")
                 .primaryTextStyling()
             Text("This helps us set up the right tips for you.")
-                .tinyText()
+                .secondaryTextStyling()
 
             VStack(spacing: 8) {
                 ForEach(years, id: \.self) { year in

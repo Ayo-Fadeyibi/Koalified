@@ -16,10 +16,6 @@ func timesAreValid(from start: Date, to end: Date) -> Bool {
     minutesIntoDay(end) > minutesIntoDay(start)
 }
 
-func canSave(course: Course?, valid: Bool) -> Bool {
-    course != nil && valid
-}
-
 struct SemesterDates {
     let classesStart: Date
     let classesEnd: Date
@@ -120,6 +116,29 @@ func combine(day: Date, time: Date) -> Date? {
           let hour = t.hour, let minute = t.minute else { return nil }
 
     return makeDate(day: dayNumber, month: month, year: year, hour: hour, minute: minute)
+}
+
+/// The class's start and end on each of `days`, using the hour and minute of `start` and `end`.
+func classTimes(on days: [Date], start: Date, end: Date) -> [(start: Date, end: Date)] {
+    days.compactMap { day in
+        guard let s = combine(day: day, time: start),
+              let e = combine(day: day, time: end) else { return nil }
+        return (s, e)
+    }
+}
+
+/// The "These classes overlap" alert text for a class that clashes with `hits`.
+func clashMessage(for hits: [ClassSession]) -> String {
+    guard let first = hits.first else { return "" }
+
+    let name = first.course?.courseCode ?? "another class"
+    let when = first.start.formatted(.dateTime.weekday(.wide).hour().minute())
+
+    if hits.count == 1 {
+        return "This overlaps \(name) on \(when). Both classes will be marked as clashing."
+    } else {
+        return "This overlaps \(hits.count) classes, starting with \(name) on \(when). All of them will be marked as clashing."
+    }
 }
 
 func overlaps(_ aStart: Date, _ aEnd: Date, _ bStart: Date, _ bEnd: Date) -> Bool{

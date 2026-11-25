@@ -100,7 +100,7 @@ struct ClassContentView: View {
                                                 .font(.fredoka(.subheadline, .bold))
                                                 .foregroundStyle(Color.textPrimary)
 
-                                            if let location = location(of: session) {
+                                            if let location = session.locationText {
                                                 Text(location)
                                                     .secondaryTextStyling()
                                             }
@@ -127,12 +127,6 @@ struct ClassContentView: View {
         }
         // Keeps the sliding content from drawing over the header or outside the card while it animates.
         .clipShape(RoundedRectangle(cornerRadius: Layout.radiusCard))
-    }
-
-    /// "Building · Room", skipping whichever part is missing; `nil` when neither is known.
-    private func location(of session: ClassSession) -> String? {
-        let parts = [session.building, session.room].compactMap { $0 }.filter { !$0.isEmpty }
-        return parts.isEmpty ? nil : parts.joined(separator: " · ")
     }
 
     /// A small grey section title with its list underneath.

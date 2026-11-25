@@ -22,12 +22,6 @@ struct TodayScheduleProvider: TimelineProvider{
         TodayScheduleEntry(date: .now, classes: [ClassSnapshot(courseCode: "COMP3400", typeLabel: "Tutorial", start: .now.addingTimeInterval(20 * 60), end: .now.addingTimeInterval(80 * 60), room: "18-026", building: "Advanced Engineering"), ClassSnapshot(courseCode: "COMP3506", typeLabel: "Lecture", start: .now.addingTimeInterval(40 * 60), end: .now.addingTimeInterval(50 * 60), room: "72-322", building: "Andrew Liveris")])
     }
     
-    private func loadSessions() -> [ClassSession] {
-        let context = ModelContext(AppStore.container)
-        return (try? context.fetch(FetchDescriptor<ClassSession>())) ?? []
-    }
-    
-    
     func placeholder(in context: Context) -> TodayScheduleEntry {
         return sampleEntry
     }
@@ -37,7 +31,7 @@ struct TodayScheduleProvider: TimelineProvider{
     }
     
     func getTimeline(in context: Context, completion: @escaping (Timeline<TodayScheduleEntry>) -> Void) {
-        let sessions = loadSessions()
+        let sessions = loadClassSessions()
         let now = Date.now
         
         let calendar = Calendar.current
@@ -57,15 +51,9 @@ struct TodayScheduleProvider: TimelineProvider{
         }
         moments = Array(Set(moments)).sorted()
         
-        var entries: [TodayScheduleEntry] = []
-        
-        for moment in moments {
-            
-            let snapshot = findTodaysSessions(from: sessions, now: moment)
-                .sorted { $0.start < $1.start }
-                .map(makeSnapshot)
-            
-            entries.append(TodayScheduleEntry(date: moment, classes: snapshot))
+        // `findTodaysSessions` already returns them in start order.
+        let entries = moments.map { moment in
+            TodayScheduleEntry(date: moment, classes: findTodaysSessions(from: sessions, now: moment).map(makeSnapshot))
         }
         
         completion(Timeline(entries: entries, policy: .after(moments.last ?? now)))

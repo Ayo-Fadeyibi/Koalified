@@ -46,15 +46,7 @@ struct WalletContent: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.modelContext) private var modelContext
 
-    private var currentSemesterCourses: [Course] {
-        guard let newest = courses.newestFirst.first else {
-            return []
-        }
-
-        return courses.filter {
-            $0.year == newest.year && $0.term == newest.term
-        }
-    }
+    private var currentSemesterCourses: [Course] { courses.currentSemester }
 
     /// Assessments for the selected course (or every current-semester course when "All" is
     /// selected) that match the status filter. Latest due first: later cards sit on top of the

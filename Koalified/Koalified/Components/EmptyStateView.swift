@@ -17,7 +17,6 @@ import SwiftUI
 struct EmptyStateView<Content: View>: View {
 
     @State private var primaryActionTrigger1 = false
-    @State private var primaryActionTrigger2 = false
 
     let content: Content
 
@@ -105,10 +104,7 @@ struct EmptyStateView<Content: View>: View {
                     }
                     if let message2 { messageText(message2) }
                     if let primaryTitle2, let primaryAction2 {
-                        PrimaryButton(title: primaryTitle2, action: {
-                            primaryActionTrigger2.toggle()
-                            primaryAction2()
-                        }, cornerRadius: 30)
+                        PrimaryButton(title: primaryTitle2, action: primaryAction2, cornerRadius: 30)
                     }
                     
                     if let secondaryTitle2, let secondaryAction2 {

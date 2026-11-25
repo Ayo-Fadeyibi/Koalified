@@ -7,15 +7,11 @@
 
 import Foundation
 
-//Returns the class sessions that occurs today
+/// Today's class sessions, in start order.
 func findTodaysSessions (from sessions: [ClassSession], now: Date = .now) -> [ClassSession] {
-    let calendar = Calendar.current
-    var todaySessions = sessions.filter{calendar.isDate($0.start, inSameDayAs: now)}
-    todaySessions.sort{
-        $0.start < $1.start
-    }
-    
-    return todaySessions
+    sessions
+        .filter { Calendar.current.isDate($0.start, inSameDayAs: now) }
+        .sorted { $0.start < $1.start }
 }
 
 /// Today's sessions that are in progress or still to come, in start order. Empty when nothing is left.
@@ -100,17 +96,11 @@ func makeDate(day: Int, month: Int,
     return Calendar.current.date(from: components)
 }
 
-func upcomingMilestones(from: [Milestone], now: Date = .now) -> [Milestone] {
-    var mileStones = from
-    mileStones.sort {
-        $0.date < $1.date
-    }
-    
-    let upcoming = mileStones.filter {
-        daysUntil($0.date, from: now) >= 0
-    }
-    
-    return upcoming
+/// Milestones from today onwards, soonest first.
+func upcomingMilestones(from milestones: [Milestone], now: Date = .now) -> [Milestone] {
+    milestones
+        .filter { daysUntil($0.date, from: now) >= 0 }
+        .sorted { $0.date < $1.date }
 }
 
 func nextMileStone(from list: [Milestone], now date: Date = .now) -> [Milestone] {
@@ -130,19 +120,11 @@ func daysLabel(_ days: Int) -> String {
     }
 }
 
-func nextAssessment(from assessments: [AssessmentItem], now: Date = .now) -> AssessmentItem?{
-    var assignments = assessments
-    
-    assignments.sort {
-        $0.dueDate < $1.dueDate
-    }
-    
-    let assignment = assignments.filter {
-        $0.mark == nil && $0.dueDate >= now
-    }
-    
-    return assignment.first
-    
+/// The soonest unmarked assessment that isn't due yet.
+func nextAssessment(from assessments: [AssessmentItem], now: Date = .now) -> AssessmentItem? {
+    assessments
+        .filter { $0.mark == nil && $0.dueDate >= now }
+        .min { $0.dueDate < $1.dueDate }
 }
 
 func dueLabel(for date: Date, now: Date = .now) -> String{

@@ -17,10 +17,9 @@ struct RequiredMarkCard: View {
     }
 
     var body: some View {
-        let items = course.markInputs
-        let rows = MarkCalculator.gradeDetailsRows(items: items)
+        let rows = MarkCalculator.gradeDetailsRows(items: course.assessments)
         let target = rows.first { $0.grade == targetGrade }
-        let remainingWeight = MarkCalculator.targetSummary(items: items, targetGrade: targetGrade).remainingWeight
+        let remainingWeight = MarkCalculator.remainingWeight(course.assessments)
         let needed = Int((target?.requiredPercent ?? 0).rounded(.up))
         let achieved = target?.achieved ?? false
         let obtainable = target?.obtainable ?? false

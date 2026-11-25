@@ -21,7 +21,7 @@ struct CourseDetailsFields: View {
                         .onSubmit { focused = .name }
 
                     if !code.isEmpty {
-                        clearButton(label: "Clear course code") { code = "" }
+                        ClearFieldButton(label: "Clear course code") { code = "" }
                     }
                 }
                 .textFieldStyling(isFocused: focused == .code)
@@ -36,21 +36,11 @@ struct CourseDetailsFields: View {
                         .focused($focused, equals: .name)
 
                     if !name.isEmpty {
-                        clearButton(label: "Clear course name") { name = "" }
+                        ClearFieldButton(label: "Clear course name") { name = "" }
                     }
                 }
                 .textFieldStyling(isFocused: focused == .name)
             }
         }
-    }
-
-    private func clearButton(label: LocalizedStringKey, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            Image(systemName: "xmark.circle.fill")
-                .font(.system(size: 16, weight: .semibold))
-                .foregroundStyle(Color.textSecondary)
-        }
-        .buttonStyle(.plain)
-        .accessibilityLabel(label)
     }
 }

@@ -105,4 +105,10 @@ final class ClassSession {
         self.course = course
         self.clashable = clashable
     }
+
+    /// "Building · Room", skipping whichever part is missing; `nil` when neither is known.
+    var locationText: String? {
+        let parts = [building, room].compactMap { $0 }.filter { !$0.isEmpty }
+        return parts.isEmpty ? nil : parts.joined(separator: " · ")
+    }
 }

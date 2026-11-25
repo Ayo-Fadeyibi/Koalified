@@ -83,8 +83,6 @@ enum NotificationScheduler {
             center.add(UNNotificationRequest(identifier: reminder.id,
                                              content: content, trigger: trigger))
         }
-        center.getPendingNotificationRequests { print("Scheduled reminders:", $0.count) }
     }
 }
-
 

@@ -7,37 +7,23 @@
 
 import Foundation
 
+/// The semesters in the events, newest first. Events with no term or year are grouped together and sort last.
 func detectSemesters(from events: [ParsedEvent]) -> [DetectedSemester] {
-    let groups = Dictionary(grouping: events, by: { SemesterKey(term: $0.term, year: $0.year) })
-
-    let result = groups.map { key, bucket in
-        // build DetectedSemester from this key and its bucket
-        let codes = Set(bucket.map { $0.courseCode })   // {"COMP3506", "CSSE3200", ...}
-        let courseCount = codes.count
-        
-        let term = key.term
-        let year = key.year
-        
-        let classCount = bucket.count
-        
-        return DetectedSemester(term: term, year: year, courseCount: courseCount, classCount: classCount)
-        
-    }
-    
-    return result.sorted {
-        let year0 = $0.year ?? 0      // a missing year counts as 0, so it sorts last
-        let year1 = $1.year ?? 0
-        if year0 != year1 { return year0 > year1 } else {
-            let term0 = $0.term?.sortOrder ?? 0
-            let term1 = $1.term?.sortOrder ?? 0
-            
-            return term0 > term1
+    Dictionary(grouping: events, by: { SemesterKey(term: $0.term, year: $0.year) })
+        .map { key, bucket in
+            DetectedSemester(term: key.term, year: key.year,
+                             courseCount: Set(bucket.map(\.courseCode)).count,
+                             classCount: bucket.count)
         }
-    
-    }
+        .sorted {
+            // A missing year or term counts as 0, so it sorts last.
+            let year0 = $0.year ?? 0, year1 = $1.year ?? 0
+            if year0 != year1 { return year0 > year1 }
+            return ($0.term?.sortOrder ?? 0) > ($1.term?.sortOrder ?? 0)
+        }
 }
 
 
 func events(in semester: DetectedSemester, from events: [ParsedEvent]) -> [ParsedEvent] {
-    return events.filter { $0.term == semester.term && $0.year == semester.year }
+    events.filter { $0.term == semester.term && $0.year == semester.year }
 }

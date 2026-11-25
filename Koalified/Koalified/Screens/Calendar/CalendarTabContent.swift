@@ -12,9 +12,7 @@ import SwiftData
 struct CalendarTabContent: View {
     
     @State private var activeSheet: ActiveSheet?
-    @State private var pendingSheet: ActiveSheet?
-    @State private var showAddedPopup = false
-    
+
     var body: some View {
         NavigationStack {
             // The header and week controls stay put; only the timetable and button below them scroll.
@@ -39,38 +37,10 @@ struct CalendarTabContent: View {
                     }
             }
             .toolbar(.hidden, for: .navigationBar)
-            .sheet(item: $activeSheet, onDismiss: { activeSheet = pendingSheet; pendingSheet = nil }){ sheet in
-                switch sheet {
-                case .importTimetable:
-                    ImportLinkSheet()
-                        .sheetBorder()
-                    
-                case .addMenu:
-                    // your AddMenuSheet, with its .sheetBorder and .presentationDetents
-                    AddMenuSheet(
-                        onAddClass: {pendingSheet = .addClass; activeSheet = nil },
-                        onAddDeadline: {pendingSheet = .addDeadline; activeSheet = nil },
-                        onAddWidget: {pendingSheet = .addWidget; activeSheet = nil }
-                    )
-                    .sheetBorder(topInset: 0.4)
-                    .presentationDetents([.height(350)])
-                    
-                case .addClass:
-                    AddClassSheet(onAdded: { showAddedPopup = true })
-                        .sheetBorder()
-                    
-                case .addDeadline:
-                    Text("Add deadline")
-                    
-                case .addWidget:
-                    Text("Add widget")
-                }
-            }
-            .PopUp(isPresented: $showAddedPopup, message: "Class added", image: "circle-check", colour: .accent)
+            .addMenuSheets($activeSheet)
             .profileDestination()
             .navigationDestination(for: ClassSession.self) { session in
                 SessionDetailsView(session: session)
-                    
             }
         }
     }

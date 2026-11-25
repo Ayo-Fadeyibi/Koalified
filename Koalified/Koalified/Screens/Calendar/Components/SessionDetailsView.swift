@@ -68,17 +68,8 @@ struct SessionDetailsView: View {
 
                     // Location Tiles: Building & Room Side-by-Side
                     HStack(spacing: 10) {
-                        locationTile(
-                            label: "BUILDING",
-                            value: session?.building?.isEmpty == false ? session!.building! : "TBA",
-                            icon: "building.2.fill"
-                        )
-
-                        locationTile(
-                            label: "ROOM",
-                            value: session?.room?.isEmpty == false ? session!.room! : "TBA",
-                            icon: "door.left.hand.open"
-                        )
+                        locationTile(label: "BUILDING", value: session?.building, icon: "building.2.fill")
+                        locationTile(label: "ROOM", value: session?.room, icon: "door.left.hand.open")
                     }
                 }
             }
@@ -99,14 +90,15 @@ struct SessionDetailsView: View {
         
     }
     
-    private func locationTile(label: String, value: String, icon: String) -> some View {
+    /// A small labelled tile; shows "TBA" when `value` is missing or empty.
+    private func locationTile(label: String, value: String?, icon: String) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             Label(label, systemImage: icon)
                 .font(.fredoka(.caption2, .bold))
                 .tracking(0.5)
                 .foregroundStyle(Color.textSecondary)
 
-            Text(value)
+            Text(value.flatMap { $0.isEmpty ? nil : $0 } ?? "TBA")
                 .font(.fredoka(.subheadline, .bold))
                 .foregroundStyle(Color.textPrimary)
                 .lineLimit(1)

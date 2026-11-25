@@ -29,15 +29,7 @@ struct AddAssessmentSheet: View {
     @State private var openImportSheet = false
 
 
-    private var currentSemesterCourses: [Course] {
-        guard let newest = courses.newestFirst.first else {
-            return []
-        }
-
-        return courses.filter {
-            $0.year == newest.year && $0.term == newest.term
-        }
-    }
+    private var currentSemesterCourses: [Course] { courses.currentSemester }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {

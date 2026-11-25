@@ -6,12 +6,6 @@ struct NextClassProvider: TimelineProvider{
     
     private var sampleEntry: NextClassEntry = NextClassEntry(date: .now, next: ClassSnapshot(courseCode: "COMP3400", typeLabel: "Tutorial", start: .now.addingTimeInterval(20 * 60), end: .now.addingTimeInterval(80 * 60), room: "18-026", building: "Advanced Engineering"))
     
-    private func loadSessions() -> [ClassSession] {
-        let context = ModelContext(AppStore.container)
-        return (try? context.fetch(FetchDescriptor<ClassSession>())) ?? []
-    }
-    
-    
     func placeholder(in context: Context) -> NextClassEntry {
         return sampleEntry
     }
@@ -21,26 +15,23 @@ struct NextClassProvider: TimelineProvider{
     }
     
     func getTimeline(in context: Context, completion: @escaping (Timeline<NextClassEntry>) -> Void) {
-        let sessions = loadSessions()
+        let sessions = loadClassSessions()
         let now = Date.now
 
         // Step 1: the classes still to come today
         let upcoming = findUpcomingSessions(from: sessions, now: now)
 
-        // Step 2: the moments when the widget should change
+        // Step 2: the moments when the widget should change (every upcoming class is still running, so its end is ahead)
         var moments: [Date] = [now]
         for session in upcoming {
             if session.start > now { moments.append(session.start) }
-            if session.end > now { moments.append(session.end) }
+            moments.append(session.end)
         }
         moments.sort()
 
-        // Step 3: one entry for each moment
-        var entries: [NextClassEntry] = []
-        for moment in moments {
-            let classesLeft = findUpcomingSessions(from: sessions, now: moment)
-            let snapshot = classesLeft.first.map(makeSnapshot)   // nil if nothing is left
-            entries.append(NextClassEntry(date: moment, next: snapshot))
+        // Step 3: one entry for each moment; `next` is nil once nothing is left
+        let entries = moments.map { moment in
+            NextClassEntry(date: moment, next: findUpcomingSessions(from: sessions, now: moment).first.map(makeSnapshot))
         }
 
         // Step 4: when to ask for a fresh timeline

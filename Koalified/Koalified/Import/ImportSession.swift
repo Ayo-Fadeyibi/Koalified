@@ -3,7 +3,7 @@
 //  Koalified
 //
 //  The logic behind the import flow: loading a file or link, working out semesters and courses,
-//  and running the import. `ImportFlowView` only shows screens and moves between them.
+//  and running the import. `ImportLinkSheet` only shows screens and moves between them.
 //
 
 import Foundation

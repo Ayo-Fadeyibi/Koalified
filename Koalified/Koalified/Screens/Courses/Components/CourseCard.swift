@@ -40,8 +40,6 @@ struct CourseCard: View {
                                 }
                             } label: {
                                 Image(showFolder ? "folder-open" : "folder-closed")
-                                    //.resizable()
-                                    //.scaledToFit()
                                     .padding()
                                     .frame(width: 35, height: 35)
                                     .foregroundStyle(Color.textPrimary)

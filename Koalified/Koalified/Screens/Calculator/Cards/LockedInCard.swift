@@ -21,7 +21,7 @@ struct LockedInCard: View {
     }
 
     var body: some View {
-        let banked = MarkCalculator.calculateTotalScore(course.markInputs)
+        let banked = MarkCalculator.calculateTotalScore(course.assessments)
 
         PlainCard {
             CardHeading("LOCKED IN")

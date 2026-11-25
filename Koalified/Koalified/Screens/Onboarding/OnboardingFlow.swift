@@ -29,9 +29,9 @@ struct OnboardingFlow: View {
             case .importTimetable:
                 // The import flow finishes onboarding whether the student imports or skips.
                 // It has its own NavigationStack, so it adds the back button itself.
-                ImportFlowView(isOnboarding: true,
-                               onFinish: { finish() },
-                               onBack: { step = .language })
+                ImportLinkSheet(isOnboarding: true,
+                                onFinish: { finish() },
+                                onBack: { step = .language })
             }
         }
         .background(Color.screenBackground.ignoresSafeArea())

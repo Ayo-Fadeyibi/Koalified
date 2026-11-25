@@ -17,8 +17,6 @@ struct ChartPoint: Identifiable {
     var id: Int { index }   // also fixes the UUID flicker
 }
 
-
-
 struct CourseGraph: View {
     
     let course: Course
@@ -27,51 +25,23 @@ struct CourseGraph: View {
     /// Flips to true the first time the card scrolls into view, which kicks off the entrance animation.
     @State private var hasAppeared = false
 
-    private var sortedAssessments: [AssessmentItem] {
-        
-        let assessments = course.assessments
-        
-        return assessments.sorted {
-            $0.dueDate < $1.dueDate
-        }
-        
-    }
-    
     private var hasMarks: Bool {
         course.assessments.contains { $0.mark != nil }
     }
 
-    
-    /// Running weighted average: updates the accumulated mark×weight and weight totals in place.
-    private func assessmentValue (previousMarkWeight: inout Double, currentMark: Double, previousWeight: inout Double, currentWeight: Double) -> Double {
-        
-        let totalWeight = previousWeight + currentWeight
-        guard totalWeight > 0 else { return 0 }
-        
-        let value = (previousMarkWeight + (currentMark * currentWeight)) / (previousWeight + currentWeight)
-
-        previousMarkWeight = previousMarkWeight + (currentMark * currentWeight)
-        previousWeight = previousWeight + currentWeight
-        
-        return value
-    }
-
-
+    /// One point per assessment in due order, valued at the weighted average of the marks so far.
+    /// Unmarked assessments carry the current average forward as a projection.
     private var chartPoints: [ChartPoint] {
-    
-        var markWeight = 0.0
-        var weight = 0.0
-        
-        return sortedAssessments.enumerated().map {index, assessment -> ChartPoint in
+        var markWeight = 0.0   // sum of mark × weight
+        var weight = 0.0       // sum of weight
 
-            if let assessmentMark = assessment.mark {
-                let value = assessmentValue(previousMarkWeight: &markWeight, currentMark: assessmentMark, previousWeight: &weight, currentWeight: assessment.weight)
-                return ChartPoint(index: index, label: assessment.title, value: value, isMarked: true)
+        return course.assessments.sorted { $0.dueDate < $1.dueDate }.enumerated().map { index, assessment in
+            if let mark = assessment.mark {
+                markWeight += mark * assessment.weight
+                weight += assessment.weight
             }
-
-            // Not marked yet: project the current running average forward.
-            let projected = weight > 0 ? markWeight / weight : 0
-            return ChartPoint(index: index, label: assessment.title, value: projected, isMarked: false)
+            let average = weight > 0 ? markWeight / weight : 0
+            return ChartPoint(index: index, label: assessment.title, value: average, isMarked: assessment.mark != nil)
         }
     }
     

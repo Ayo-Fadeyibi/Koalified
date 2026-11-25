@@ -26,7 +26,7 @@ struct NextClassView: View {
             let nextSession = upcomingSessions.first
             let laterSessions = Array(upcomingSessions.dropFirst())
             let timeLeft = countdownLabel(to: nextSession, now: now)
-            let isLive = timeLeft.caseInsensitiveCompare("Now") == .orderedSame
+            let isLive = nextSession.map { $0.start <= now } ?? false
 
             VStack(spacing: 16) {
                 if nextSession == nil && todaySessions.isEmpty {

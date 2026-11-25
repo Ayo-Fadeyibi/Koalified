@@ -5,13 +5,6 @@
 //  Created by Ayooluwa Fadeyibi on 20/11/2026.
 //
 
-//
-//  TodayScheduleWidget.swift
-//  Koalified
-//
-//  Created by Ayooluwa Fadeyibi on 20/11/2026.
-//
-
 import WidgetKit
 import SwiftUI
 
@@ -75,14 +68,6 @@ struct TodayScheduleWidgetView: View {
         let isDone = status == .done
         let startText = session.start.formatted(date: .omitted, time: .shortened)
         let endText = session.end.formatted(date: .omitted, time: .shortened)
-        let statusWord: String = {
-            switch status {
-            case .done:  return "done"
-            case .now:   return "now"
-            case .next:  return "next"
-            case .later: return "later"
-            }
-        }()
         let bgColor: Color = {
             switch status {
             case .done:     return Color.widgetCream
@@ -95,11 +80,11 @@ struct TodayScheduleWidgetView: View {
         HStack(spacing: 12) {
             // Left Column: Start & End Times
             VStack(alignment: .leading, spacing: 1) {
-                Text(verbatim: session.start.formatted(date: .omitted, time: .shortened).uppercased())
+                Text(verbatim: startText.uppercased())
                     .font(fredoka(12, .bold))
                     .foregroundStyle(isDone ? Color.widgetDoneText : Color.textSecondary)
 
-                Text(verbatim: session.end.formatted(date: .omitted, time: .shortened).uppercased())
+                Text(verbatim: endText.uppercased())
                     .font(fredoka(11, .medium))
                     .foregroundStyle(isDone ? Color.widgetDoneText : Color.textSecondary)
             }
@@ -138,7 +123,7 @@ struct TodayScheduleWidgetView: View {
                     .offset(x: 2.5, y: 2.5)
             }
         }.accessibilityElement(children: .ignore)
-            .accessibilityLabel("\(session.courseCode) \(session.typeLabel), \(startText) to \(endText), \(statusWord)")
+            .accessibilityLabel("\(session.courseCode) \(session.typeLabel), \(startText) to \(endText), \(status.rawValue)")
     }
 
     // MARK: - Right-Side Status Pill

@@ -36,7 +36,7 @@ struct CalculatorView: View {
             .profileDestination()
             .sheet(isPresented: $showAddCourse) { AddCourseSheet(onSaved: { showAdded = true }).sheetBorder() }
             .PopUp(isPresented: $showAdded, message: "Course added successfully", image: "circle-check", colour: Color.mintFill)
-            .sheet(isPresented: $showImport) { ImportFlowView().sheetBorder() }
+            .sheet(isPresented: $showImport) { ImportLinkSheet().sheetBorder() }
         }
     }
 }

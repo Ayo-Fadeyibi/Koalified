@@ -19,14 +19,10 @@ func makeParsedEvent(from raw: [ICSKey: String]) -> ParsedEvent? {
     let type: SessionType? = info.typeCode.flatMap { SessionType(rawValue: $0) }
     let location = raw[.location].map(unescape)
     
-    return ParsedEvent(uid: UID, courseCode: info.courseCode, title: info.title, start: start, end: end, location: location, term: info.term, year: info.year, type: type, typeCode: info.typeCode, staff: info.staffName, campus: info.campus, classNumber: info.classNumber, isClashable: info.isClashable, isRecorded: info.isRecorded)
+    return ParsedEvent(uid: UID, courseCode: info.courseCode, title: info.title, start: start, end: end, location: location, term: info.term, year: info.year, type: type, isClashable: info.isClashable)
 }
 
+/// Every class event in the calendar text that has the fields an import needs.
 func parseICS(_ text: String) -> [ParsedEvent] {
-    // 1. rawEvents from parseEvents(from: text)
-    let rawEvents = parseEvents(from: text)
-    // 2. compactMap to ParsedEvents
-    let events: [ParsedEvent] = rawEvents.compactMap { makeParsedEvent(from: $0) }
-    // 3. return them
-    return events
+    parseEvents(from: text).compactMap(makeParsedEvent)
 }

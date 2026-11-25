@@ -62,14 +62,7 @@ struct UserDetailsView: View {
                         .focused($isTextInputFocused)
 
                     if !userName.isEmpty {
-                        Button {
-                            userName = ""
-                        } label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .font(.system(size: 16, weight: .semibold))
-                                .foregroundStyle(Color.textSecondary)
-                        }
-                        .buttonStyle(.plain)
+                        ClearFieldButton { userName = "" }
                     }
                 }
                 .textFieldStyling(isFocused: isTextInputFocused)

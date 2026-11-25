@@ -33,7 +33,7 @@ func roomCode(from location: String?) -> String {
     return first.trimmingCharacters(in: .whitespaces)
 }
 
-//Handles importation and update of timetable
+/// Adds the events as class sessions (creating their courses as needed), or updates the ones already imported.
 func importEvents(_ events: [ParsedEvent], into context: ModelContext) throws -> ImportResult {
     var result = ImportResult()
 
@@ -64,31 +64,27 @@ func importEvents(_ events: [ParsedEvent], into context: ModelContext) throws ->
             courses.append(course)
         }
 
-        // TODO: session logic goes here
-        if let existing = byUID[event.uid] {
-            let newType = event.type ?? .unknown
-            let newRoom = roomCode(from: event.location)
-            let newBuilding = buildingName(from: event.location)
+        let type = event.type ?? .unknown
+        let room = roomCode(from: event.location)
+        let building = buildingName(from: event.location)
 
+        // Already imported: update it if the timetable changed.
+        if let existing = byUID[event.uid] {
             if existing.start != event.start || existing.end != event.end
-                || existing.type != newType || existing.room != newRoom
-                || existing.building != newBuilding {
-                // update the fields on existing
+                || existing.type != type || existing.room != room
+                || existing.building != building {
                 existing.start = event.start
                 existing.end = event.end
-                existing.room = newRoom
-                existing.building = newBuilding
-                existing.type = newType
+                existing.room = room
+                existing.building = building
+                existing.type = type
                 result.updated += 1
             } else {
                 result.unchanged += 1
             }
-            
         } else {
-            let session = ClassSession(start: event.start, end: event.end,
-                                       type: event.type ?? .unknown,
-                                       room: roomCode(from: event.location),
-                                       building: buildingName(from: event.location),
+            let session = ClassSession(start: event.start, end: event.end, type: type,
+                                       room: room, building: building,
                                        icsUID: event.uid, course: course, clashable: event.isClashable)
             context.insert(session)
             result.added += 1
