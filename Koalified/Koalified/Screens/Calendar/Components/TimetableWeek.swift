@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import SwiftData
 
 /// The date maths behind `WeekGridView`: which days and hours to show, the title, and where each class sits.
 struct TimetableWeek {
@@ -98,4 +99,88 @@ struct TimetableWeek {
     func isToday(_ day: Date) -> Bool {
         calendar.isDateInToday(day)
     }
+
+    // MARK: - Clashes
+
+    /// The day's classes grouped into clusters of overlapping classes, each class given a lane.
+    func clusters(on day: Date) -> [SessionCluster] {
+        let daySessions = sessions(on: day)
+        let placements = Self.lanes(for: daySessions.map { DateInterval(start: $0.start, end: max($0.start, $0.end)) })
+        let byCluster = Dictionary(grouping: zip(daySessions, placements), by: { $0.1.cluster })
+
+        return byCluster.keys.sorted().compactMap { key in
+            guard let members = byCluster[key] else { return nil }
+            let lanes = members.map { SessionCluster.Lane(session: $0.0, lane: $0.1.lane) }
+                .sorted { $0.session.start < $1.session.start }
+            return SessionCluster(lanes: lanes, laneCount: members[0].1.laneCount)
+        }
+    }
+
+    /// Where one interval sits among the ones it overlaps.
+    struct LanePlacement: Equatable {
+        /// Index of its cluster: a run of intervals linked by overlaps.
+        let cluster: Int
+        /// Its lane (0, 1, 2…) inside the cluster; intervals in the same lane never overlap.
+        let lane: Int
+        /// How many lanes its cluster needs.
+        let laneCount: Int
+    }
+
+    /// Splits intervals into clusters of overlapping ones and gives each the first free lane in its cluster.
+    /// Results are in the same order as `intervals`. Back-to-back intervals (one ends as the next starts) don't clash.
+    static func lanes(for intervals: [DateInterval]) -> [LanePlacement] {
+        // Earliest first; when two start together the longer one goes first so it takes the leftmost lane.
+        let order = intervals.indices.sorted {
+            intervals[$0].start != intervals[$1].start
+                ? intervals[$0].start < intervals[$1].start
+                : intervals[$0].end > intervals[$1].end
+        }
+
+        var result = [LanePlacement?](repeating: nil, count: intervals.count)
+        var cluster = 0
+        var clusterMembers: [(index: Int, lane: Int)] = []
+        var clusterEnd = Date.distantPast
+        var laneEnds: [Date] = []   // when each lane in the current cluster frees up
+
+        func closeCluster() {
+            for member in clusterMembers {
+                result[member.index] = LanePlacement(cluster: cluster, lane: member.lane, laneCount: laneEnds.count)
+            }
+            cluster += 1
+            clusterMembers = []
+            laneEnds = []
+        }
+
+        for index in order {
+            let interval = intervals[index]
+            // Nothing still running overlaps this one, so it starts a new cluster.
+            if !clusterMembers.isEmpty && interval.start >= clusterEnd { closeCluster() }
+
+            let lane = laneEnds.firstIndex { $0 <= interval.start } ?? laneEnds.count
+            if lane == laneEnds.count { laneEnds.append(interval.end) } else { laneEnds[lane] = interval.end }
+            clusterMembers.append((index, lane))
+            clusterEnd = max(clusterEnd, interval.end)
+        }
+        if !clusterMembers.isEmpty { closeCluster() }
+
+        return result.compactMap { $0 }
+    }
+}
+
+/// Classes on one day that overlap each other (or a single class with no clash).
+struct SessionCluster: Identifiable {
+    struct Lane {
+        let session: ClassSession
+        let lane: Int
+    }
+
+    /// The classes in start order, each with its lane.
+    let lanes: [Lane]
+    let laneCount: Int
+
+    var id: [ClassSession.ID] { lanes.map(\.session.id) }
+    var sessions: [ClassSession] { lanes.map(\.session) }
+    var isClash: Bool { lanes.count > 1 }
+    var start: Date { lanes.map(\.session.start).min() ?? .now }
+    var end: Date { lanes.map(\.session.end).max() ?? .now }
 }

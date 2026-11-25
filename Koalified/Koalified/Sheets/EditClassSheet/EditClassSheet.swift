@@ -37,6 +37,7 @@ struct EditClassSheet: View {
     
     
     @State private var showNoDatesMessage = false
+    @State private var showClashLimitMessage = false
     @State private var pendingTimes: [(start: Date, end: Date)] = []
     @State private var showClashAlert = false
     
@@ -238,6 +239,7 @@ struct EditClassSheet: View {
                 Text(clashText)
             }
             .PopUp(isPresented: $showNoDatesMessage, message: "We don't have dates for this semester yet. Turn off “Repeats every week” to add a single class.", image: "circle-x", colour: Color.redFill, feedback: .error)
+            .PopUp(isPresented: $showClashLimitMessage, message: "No more than \(maxClashingClasses) classes can clash at once. Choose a different time for this class.", image: "circle-x", colour: Color.redFill, feedback: .error)
         
         
     }
@@ -277,6 +279,11 @@ struct EditClassSheet: View {
         
         let times = makeTimes(from: days)
         guard !times.isEmpty else { return }
+
+        guard !exceedsClashLimit(existing: otherSessions, newTimes: times) else {
+            showClashLimitMessage = true
+            return
+        }
 
         if clashes(with: otherSessions, newTimes: times).isEmpty {
             insertSessions(times)

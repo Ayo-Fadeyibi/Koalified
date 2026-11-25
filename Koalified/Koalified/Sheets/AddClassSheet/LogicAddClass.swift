@@ -134,3 +134,12 @@ func clashes(with existing: [ClassSession],
         }
     }
 }
+
+/// The most classes that can run at the same moment; the timetable grid can't lay out more than this.
+let maxClashingClasses = 3
+
+/// Whether adding a class at any of these times would make more than `maxClashingClasses` classes overlap.
+/// Each time is checked on its own, so a weekly class isn't blocked by adding up clashes from every week.
+func exceedsClashLimit(existing: [ClassSession], newTimes: [(start: Date, end: Date)]) -> Bool {
+    newTimes.contains { clashes(with: existing, newTimes: [$0]).count >= maxClashingClasses }
+}

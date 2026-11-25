@@ -37,6 +37,10 @@ struct CalendarView: View {
     CalendarView().modelContainer(PreviewData.container)
 }
 
+#Preview("Clashes") {
+    CalendarView().modelContainer(PreviewData.clashContainer)
+}
+
 #Preview("Empty") {
     CalendarView().modelContainer(EmptyPreviewData.container)
 }

@@ -9,7 +9,12 @@ private func day(_ d: Int, _ m: Int) -> Date {
 /// In-memory SwiftData container pre-filled with sample courses and assessments, for previews.
 @MainActor
 enum PreviewData {
-    static let container: ModelContainer = {
+    static let container: ModelContainer = makeContainer(withClashes: false)
+
+    /// The same sample data plus overlapping classes: two clashing on Monday and three on Wednesday.
+    static let clashContainer: ModelContainer = makeContainer(withClashes: true)
+
+    private static func makeContainer(withClashes: Bool) -> ModelContainer {
         let container = try! ModelContainer(
             for: Course.self, ClassSession.self, AssessmentItem.self,
             configurations: ModelConfiguration(isStoredInMemoryOnly: true)
@@ -51,6 +56,21 @@ enum PreviewData {
         ]
         sessions.forEach { context.insert($0) }
 
+        if withClashes {
+            let deco = Course(courseCode: "DECO1400", title: "Introduction to Web Design",
+                              term: .S2, year: 2026, color: .violet)
+            let stat = Course(courseCode: "STAT1201", title: "Analysis of Scientific Data",
+                              term: .S2, year: 2026, color: .amber)
+            context.insert(deco)
+            context.insert(stat)
+            let clashing = [
+                session(0, 10, 2, .TUT, "Room 115", "Hawken Engineering", deco),
+                session(2, 9, 2, .LEC, "E215", "Priestley Building", deco),
+                session(2, 9, 1, .PRA, "Lab 3", "Michie Building", stat),
+            ]
+            clashing.forEach { context.insert($0) }
+        }
+
         return container
-    }()
+    }
 }

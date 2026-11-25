@@ -150,6 +150,12 @@ struct AddClassSheet: View {
         let times = makeTimes(from: days)
         guard !times.isEmpty else { return }
 
+        guard !exceedsClashLimit(existing: existingSessions, newTimes: times) else {
+            errorMessage = "No more than \(maxClashingClasses) classes can clash at once. Choose a different time for this class."
+            showError = true
+            return
+        }
+
         if clashes(with: existingSessions, newTimes: times).isEmpty {
             insertSessions(times)
         } else {

@@ -357,6 +357,9 @@
         }
       }
     },
+    "%lld classes clash" : {
+
+    },
     "%lld Classes per week" : {
 
     },
@@ -2414,6 +2417,9 @@
           }
         }
       }
+    },
+    "classes" : {
+
     },
     "Classes" : {
 
@@ -5962,6 +5968,9 @@
       }
     },
     "No marks yet. Add a mark to see your projected grade." : {
+
+    },
+    "No more than %lld classes can clash at once. Choose a different time for this class." : {
 
     },
     "No, I already have it" : {
