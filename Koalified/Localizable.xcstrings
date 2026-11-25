@@ -3188,6 +3188,7 @@
       }
     },
     "Dark Mode" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -5416,6 +5417,7 @@
       }
     },
     "Light Mode" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -8150,6 +8152,9 @@
           }
         }
       }
+    },
+    "UPCOMING ASSESSMENTS" : {
+
     },
     "UPCOMING TODAY" : {
       "localizations" : {

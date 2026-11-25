@@ -101,7 +101,7 @@ struct CourseDetailView: View {
             Text(course.semesterLabel)
                 .font(.fredoka(.subheadline))
                 .foregroundStyle(Color.textSecondary)
-        }.padding(.bottom, 20)
+        }.padding(.bottom, 10)
     }
 }
 

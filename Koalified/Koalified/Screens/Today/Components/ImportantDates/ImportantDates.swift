@@ -17,8 +17,8 @@ struct ImportantDates: View {
             let upcoming = nextMileStone(from: Milestone.all, now: context.date)
             
             let colors = [
-                Color.tintAmber,
-                Color.tintMint,
+                Color.widgetAmber,
+                Color.widgetMint,
                 Color.cardSurface
             ]
             

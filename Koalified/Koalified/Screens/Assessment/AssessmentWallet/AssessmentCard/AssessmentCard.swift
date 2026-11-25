@@ -24,6 +24,8 @@ struct AssessmentCard: View {
     let openCard: Bool
     /// Saved done state; the card starts with its stub already ripped off when true.
     var isDone: Bool = false
+    /// A smaller card for lists outside the wallet; see `AssessmentCardTop.compact`.
+    var compact = false
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var isTorn = false
@@ -61,7 +63,8 @@ struct AssessmentCard: View {
                 isDone: stubGone,
                 showsStub: showsStub,
                 onAddMark: onView,
-                onUndo: undoDone
+                onUndo: undoDone,
+                compact: compact
             )
             .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { topHeight = $0 }
             .zIndex(1) // The stub slides out from underneath when the card opens
@@ -87,7 +90,7 @@ struct AssessmentCard: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         // Soft glow in the course colour under the card.
-        .shadow(color: courseColor.opacity(0.35), radius: 12, y: 6)
+        .shadow(color: courseColor.opacity(0.35), radius: compact ? 8 : 12, y: compact ? 4 : 6)
         .sensoryFeedback(.impact(weight: .light), trigger: buttonPressed)
         .onAppear(perform: syncWithSavedState)
         .onChange(of: isDone) {

@@ -24,8 +24,6 @@ struct ProfileContentView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 12) {
                 
-            
-             
                 
                 NavigationLink(value: ProfileDestination.userDetails) {
                     HStack {

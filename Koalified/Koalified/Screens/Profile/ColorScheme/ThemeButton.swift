@@ -27,8 +27,6 @@ struct ThemeToggleButton: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 18, height: 18)
-                Text(isDark ? "Light Mode" : "Dark Mode")
-                    .font(.fredoka(.subheadline, .bold))
             }
             .foregroundStyle(Color.textPrimary)
             .padding(.horizontal, 16)

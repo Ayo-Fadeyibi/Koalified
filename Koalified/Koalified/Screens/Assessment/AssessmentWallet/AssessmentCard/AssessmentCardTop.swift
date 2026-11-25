@@ -29,6 +29,8 @@ struct AssessmentCardTop: View {
 
     var onAddMark: () -> Void
     var onUndo: () -> Void
+    /// A smaller ticket for lists outside the wallet (e.g. Today): tighter padding, smaller icon and countdown.
+    var compact = false
 
     /// Height of the strip each card shows when tucked in the wallet stack: top padding, the header
     /// row and a little breathing room below it.
@@ -37,11 +39,14 @@ struct AssessmentCardTop: View {
     private static let padding: CGFloat = 20
     private static let iconSize: CGFloat = 48
 
+    private var padding: CGFloat { compact ? 14 : Self.padding }
+    private var iconSize: CGFloat { compact ? 36 : Self.iconSize }
+
     /// Whole days until the due date; negative once it's overdue.
     private var days: Int { daysUntil(dueDate) }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .leading, spacing: compact ? 12 : 20) {
             header
 
             HStack(alignment: .bottom) {
@@ -63,7 +68,7 @@ struct AssessmentCardTop: View {
             }
         }
         .foregroundStyle(onCourse)
-        .padding(Self.padding)
+        .padding(padding)
         .frame(maxWidth: .infinity, alignment: .leading)
         .ticketPiece(seam: isTorn || showsStub ? .bottom : .none, tear: isTorn ? 1 : 0, fill: courseColor)
     }
@@ -71,17 +76,17 @@ struct AssessmentCardTop: View {
     // --- HEADER: icon, title over course code, status badge ---
     // Everything that identifies the card sits here so it still shows when the card is tucked in the stack.
     private var header: some View {
-        HStack(spacing: 14) {
+        HStack(spacing: compact ? 10 : 14) {
             Image(systemName: "doc.text.fill")
-                .font(.title3.weight(.semibold))
-                .frame(width: Self.iconSize, height: Self.iconSize)
-                .background(onCourse.opacity(0.18), in: RoundedRectangle(cornerRadius: 14))
-                .overlay(RoundedRectangle(cornerRadius: 14).strokeBorder(onCourse.opacity(0.3), lineWidth: 1))
+                .font((compact ? Font.body : .title3).weight(.semibold))
+                .frame(width: iconSize, height: iconSize)
+                .background(onCourse.opacity(0.18), in: RoundedRectangle(cornerRadius: compact ? 10 : 14))
+                .overlay(RoundedRectangle(cornerRadius: compact ? 10 : 14).strokeBorder(onCourse.opacity(0.3), lineWidth: 1))
                 .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(assessmentTitle)
-                    .font(.fredoka(.title3, .bold))
+                    .font(.fredoka(compact ? .headline : .title3, .bold))
                     .lineLimit(1)
                 Text(courseCode.uppercased())
                     .font(.fredoka(.footnote, .semibold))
@@ -92,9 +97,9 @@ struct AssessmentCardTop: View {
             Spacer(minLength: 8)
 
             Text(isDone ? "Done" : "To do")
-                .font(.fredoka(.subheadline, .bold))
-                .padding(.horizontal, 14)
-                .padding(.vertical, 7)
+                .font(.fredoka(compact ? .caption : .subheadline, .bold))
+                .padding(.horizontal, compact ? 10 : 14)
+                .padding(.vertical, compact ? 5 : 7)
                 .background(onCourse.opacity(0.2), in: Capsule())
                 .overlay(Capsule().strokeBorder(onCourse.opacity(0.3), lineWidth: 1))
                 .fixedSize()
@@ -112,12 +117,12 @@ struct AssessmentCardTop: View {
             HStack(alignment: .firstTextBaseline, spacing: 6) {
                 if days == 0 {
                     Text("Today")
-                        .font(Self.bigNumberFont)
+                        .font(bigNumberFont)
                 } else {
                     Text(abs(days), format: .number)
-                        .font(Self.bigNumberFont)
+                        .font(bigNumberFont)
                     Text(abs(days) == 1 ? "day" : "days")
-                        .font(.fredoka(.title2, .semibold))
+                        .font(.fredoka(compact ? .headline : .title2, .semibold))
                         .opacity(0.85)
                 }
             }
@@ -127,6 +132,8 @@ struct AssessmentCardTop: View {
     }
 
     private static let bigNumberFont = Font.custom(FredokaWeight.semibold.fontName, size: 56, relativeTo: .largeTitle)
+    private static let compactNumberFont = Font.custom(FredokaWeight.semibold.fontName, size: 34, relativeTo: .largeTitle)
+    private var bigNumberFont: Font { compact ? Self.compactNumberFont : Self.bigNumberFont }
 
     // --- DUE DATE AND HURDLE (right-aligned) ---
     private var dueDetails: some View {
@@ -138,18 +145,18 @@ struct AssessmentCardTop: View {
                     .fontWeight(.bold)
             }
         }
-        .font(.fredoka(.subheadline, .medium))
+        .font(.fredoka(compact ? .footnote : .subheadline, .medium))
         .multilineTextAlignment(.trailing)
         .opacity(0.9)
-        .padding(.bottom, 8)
+        .padding(.bottom, compact ? 4 : 8)
     }
 
     // --- WEIGHT BAR ---
     private var weightBar: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: compact ? 6 : 8) {
             Capsule()
                 .fill(onCourse.opacity(0.25))
-                .frame(height: 6)
+                .frame(height: compact ? 4 : 6)
                 .overlay(alignment: .leading) {
                     GeometryReader { proxy in
                         Capsule()

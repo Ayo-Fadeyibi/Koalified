@@ -22,6 +22,7 @@ struct ProfileHeader: View {
             
             ThemeToggleButton()
         }.frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.bottom,  20)
     }
 }
 

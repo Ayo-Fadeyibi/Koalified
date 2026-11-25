@@ -33,6 +33,7 @@ struct NextClassView: View {
                     NoClassView(onSeeWeek: onSeeWeek, onViewAssessment: onViewAssessment, now: context.date)
                 } else if nextSession == nil {
                     AllDoneToday(onSeeWeek: onSeeWeek)
+                    upcomingList(laterSessions: [])
                 } else if let nextSession {
                     // 1. Hero Next Class Card
                     Card {
@@ -122,35 +123,44 @@ struct NextClassView: View {
                         }
                     }
 
-                    // 2. Later Classes List (only rendered when there are more classes today)
-                    if !laterSessions.isEmpty {
-                        ScrollView {
-                            VStack(alignment: .leading, spacing: 10) {
-                                Text("UPCOMING TODAY")
-                                    .font(.fredoka(.caption, .bold))
-                                    .foregroundStyle(Color.textSecondary)
-                                    .padding(.horizontal, 4)
-
-                                ForEach(laterSessions) { session in
-                                    TodayClassRow(event: session)
-                                }
-                            }
-                            .padding(.bottom, 140)
-                        }
-                        .scrollIndicators(.hidden)
-                        .scrollBounceBehavior(.always)
-                        .refreshable {
-                            refreshCount += 1
-                            try? await Task.sleep(for: .milliseconds(600))
-                        }
-                    } else {
-                        Spacer(minLength: 0)
-                    }
-                    
+                    // 2. Later classes and upcoming assessments, scrolling together under the card
+                    upcomingList(laterSessions: laterSessions)
                 }
             }
         }
-        
+
+    }
+
+    /// One scroll view for everything below the top card: the rest of today's classes (if any),
+    /// then the upcoming assessments. Pull to refresh replays the room board.
+    private func upcomingList(laterSessions: [ClassSession]) -> some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 10) {
+                if !laterSessions.isEmpty {
+                    Text("UPCOMING TODAY")
+                        .font(.fredoka(.caption, .bold))
+                        .foregroundStyle(Color.textSecondary)
+                        .padding(.horizontal, 4)
+
+                    ForEach(laterSessions) { session in
+                        TodayClassRow(event: session)
+                    }
+                }
+
+                if laterSessions.count <= 2 {
+                    UpcomingAssessments()
+                        .padding(.top, laterSessions.isEmpty ? 0 : 10)
+                }
+            }
+            // Lets the last item scroll clear of the tab bar.
+            .padding(.bottom, 140)
+        }
+        .scrollIndicators(.hidden)
+        .scrollBounceBehavior(.always)
+        .refreshable {
+            refreshCount += 1
+            try? await Task.sleep(for: .milliseconds(600))
+        }
     }
 }
 

@@ -20,6 +20,7 @@ struct TodayContentView: View {
         VStack(alignment: .leading, spacing: 10) {
             ImportantDates()
             NextClassView(sessions: sessions, onSeeWeek: { selectedTab = .timetable }, onViewAssessment: {selectedTab = .courses})
+
         }
         .containerStyling()
         

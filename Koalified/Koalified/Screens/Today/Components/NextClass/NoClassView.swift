@@ -33,7 +33,6 @@ struct NoClassView: View {
             secondaryTitle2: next != nil ? "View Assessment" : nil,
             secondaryAction2: onViewAssessment
             
-            
         ).containerStyling()
     }
 }
