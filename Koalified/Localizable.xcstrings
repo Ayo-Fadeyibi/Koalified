@@ -5,6 +5,7 @@
 
     },
     "–" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -103,16 +104,6 @@
         }
       }
     },
-    "%@ · %@%%" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ · %2$@%%"
-          }
-        }
-      }
-    },
     "%@ · %@%% of course grade" : {
       "localizations" : {
         "en" : {
@@ -141,7 +132,18 @@
         }
       }
     },
+    "%@ · about %lld%%" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ · about %2$lld%%"
+          }
+        }
+      }
+    },
     "%@ / %@ points earned" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -189,6 +191,16 @@
           "stringUnit" : {
             "state" : "machine_translated",
             "value" : "已獲得 %1$@ / %2$@ 分"
+          }
+        }
+      }
+    },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
           }
         }
       }
@@ -250,6 +262,7 @@
       }
     },
     "%@%%" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -294,6 +307,9 @@
           }
         }
       }
+    },
+    "%@%% of final grade" : {
+
     },
     "%lld" : {
       "localizations" : {
@@ -341,6 +357,9 @@
         }
       }
     },
+    "%lld Classes per week" : {
+
+    },
     "%lld courses" : {
       "localizations" : {
         "hi" : {
@@ -383,6 +402,16 @@
           "stringUnit" : {
             "state" : "machine_translated",
             "value" : "%lld 門課程"
+          }
+        }
+      }
+    },
+    "%lld of %lld assessments marked. Solid line is your results so far; dashed line assumes you keep your current average." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld of %2$lld assessments marked. Solid line is your results so far; dashed line assumes you keep your current average."
           }
         }
       }
@@ -532,6 +561,9 @@
       }
     },
     ">" : {
+
+    },
+    "≈ %lld%%" : {
 
     },
     "1 day left" : {
@@ -697,7 +729,6 @@
       }
     },
     "Add" : {
-      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -1575,6 +1606,12 @@
         }
       }
     },
+    "Assessment" : {
+
+    },
+    "Assessment Added successfully" : {
+
+    },
     "Assessment Wallet" : {
       "localizations" : {
         "hi" : {
@@ -1667,6 +1704,7 @@
       }
     },
     "At your current average" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -2377,6 +2415,9 @@
         }
       }
     },
+    "Classes" : {
+
+    },
     "Clear course code" : {
 
     },
@@ -2407,6 +2448,9 @@
           }
         }
       }
+    },
+    "Collapsed" : {
+
     },
     "Computing" : {
       "localizations" : {
@@ -2822,10 +2866,14 @@
     "Course code" : {
 
     },
+    "Course edited successfully" : {
+
+    },
     "Course name (optional)" : {
 
     },
     "Course timetable" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -3174,6 +3222,9 @@
         }
       }
     },
+    "day" : {
+
+    },
     "DAY" : {
       "localizations" : {
         "hi" : {
@@ -3217,6 +3268,9 @@
           }
         }
       }
+    },
+    "days" : {
+
     },
     "Degree plan" : {
       "localizations" : {
@@ -3466,6 +3520,9 @@
         }
       }
     },
+    "DUE" : {
+
+    },
     "Due date" : {
       "localizations" : {
         "hi" : {
@@ -3511,6 +3568,9 @@
           }
         }
       }
+    },
+    "DUE IN" : {
+
     },
     "DUE SOON" : {
       "localizations" : {
@@ -3558,7 +3618,7 @@
         }
       }
     },
-    "Due: Fri 23 Oct, 5:00 pm" : {
+    "e.g. 17" : {
 
     },
     "e.g. 20" : {
@@ -3751,6 +3811,9 @@
         }
       }
     },
+    "Edit mark, %lld percent" : {
+
+    },
     "Edit recorded marks" : {
       "localizations" : {
         "hi" : {
@@ -3910,7 +3973,11 @@
         }
       }
     },
+    "Enter what the assessment was marked out of." : {
+
+    },
     "ESTIMATED GRADE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -4021,6 +4088,9 @@
           }
         }
       }
+    },
+    "Expanded" : {
+
     },
     "Fieldwork" : {
       "localizations" : {
@@ -4472,13 +4542,19 @@
         }
       }
     },
+    "Hides your assessments" : {
+
+    },
+    "Hides your clases" : {
+
+    },
     "https://..." : {
 
     },
     "Hurdle" : {
 
     },
-    "Hurdle: %lld%%" : {
+    "Hurdle %lld%%" : {
 
     },
     "I'll add it later" : {
@@ -4527,6 +4603,9 @@
           }
         }
       }
+    },
+    "If you keep this pace" : {
+
     },
     "Import" : {
       "extractionState" : "stale",
@@ -5401,7 +5480,13 @@
         }
       }
     },
+    "Mark added successfully" : {
+
+    },
     "Mark as Done" : {
+
+    },
+    "Mark updated successfully" : {
 
     },
     "Marked · %lld" : {
@@ -5451,6 +5536,7 @@
       }
     },
     "MARKED AVERAGE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -5735,6 +5821,9 @@
         }
       }
     },
+    "No assessments yet." : {
+
+    },
     "No classes found" : {
       "localizations" : {
         "hi" : {
@@ -5766,6 +5855,9 @@
           }
         }
       }
+    },
+    "No Classes yet." : {
+
     },
     "No connection" : {
       "localizations" : {
@@ -5868,6 +5960,9 @@
           }
         }
       }
+    },
+    "No marks yet. Add a mark to see your projected grade." : {
+
     },
     "No, I already have it" : {
       "localizations" : {
@@ -6040,7 +6135,11 @@
         }
       }
     },
+    "Open assessment wallet" : {
+
+    },
     "Open what-if calculator" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -6085,6 +6184,12 @@
           }
         }
       }
+    },
+    "OVERDUE BY" : {
+
+    },
+    "Pass" : {
+
     },
     "PASS" : {
       "localizations" : {
@@ -6245,6 +6350,9 @@
           }
         }
       }
+    },
+    "Percent" : {
+
     },
     "Placement" : {
       "localizations" : {
@@ -6449,6 +6557,9 @@
           }
         }
       }
+    },
+    "Projected grade" : {
+
     },
     "Ready when you are." : {
       "localizations" : {
@@ -6688,6 +6799,9 @@
           }
         }
       }
+    },
+    "Save mark" : {
+
     },
     "Search or enter university" : {
       "extractionState" : "stale",
@@ -7028,6 +7142,12 @@
           }
         }
       }
+    },
+    "Shows your assessments" : {
+
+    },
+    "Shows your classes" : {
+
     },
     "Sign in to UQ inside Koalified and we'll find your timetable. Your password goes to UQ, never to us." : {
       "localizations" : {
@@ -7513,6 +7633,9 @@
         }
       }
     },
+    "That's %@%%" : {
+
+    },
     "The calculator needs a course with its assessments and weights. Add one and enter any marks you already have." : {
       "localizations" : {
         "hi" : {
@@ -7691,6 +7814,9 @@
           }
         }
       }
+    },
+    "To do" : {
+
     },
     "TO REACH A %lld" : {
       "localizations" : {
@@ -8387,6 +8513,9 @@
         }
       }
     },
+    "Worth %@%% of your grade" : {
+
+    },
     "Year" : {
       "localizations" : {
         "hi" : {
@@ -8621,6 +8750,9 @@
           }
         }
       }
+    },
+    "Your score must be between 0 and what it was out of." : {
+
     },
     "Your Semester receipt" : {
       "localizations" : {

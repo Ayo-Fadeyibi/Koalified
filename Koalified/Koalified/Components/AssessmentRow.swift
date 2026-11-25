@@ -21,7 +21,7 @@ struct AssessmentList<Trailing: View>: View {
     }
 
     var body: some View {
-        Card {
+        PlainCard {
             VStack(spacing: 0) {
                 ForEach(items) { item in
                     AssessmentRow(item: item) { trailing(item) }
@@ -54,9 +54,6 @@ var body: some View {
         }
         Spacer()
         trailing
-        Image(systemName: "chevron.right")
-            .font(.footnote.weight(.semibold))
-            .foregroundStyle(Color.textSecondary)
     }
     .padding(14)
 }

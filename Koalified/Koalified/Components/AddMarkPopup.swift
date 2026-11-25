@@ -25,10 +25,7 @@ private struct AddMarkPopup: ViewModifier {
                             .ignoresSafeArea()
                             .onTapGesture { close() }
 
-                        AddMarkCard(item: item, onCancel: close, onSaved: {
-                            close()
-                            onSaved()
-                        })
+                        AddMarkCard(item: item, onCancel: close, onSaved: saved)
                         .frame(maxWidth: 340) // Prevents full-screen stretch on wider iPhones
                         .padding(.horizontal, 24)
                         .transition(.scale(scale: 0.9).combined(with: .opacity))
@@ -41,6 +38,11 @@ private struct AddMarkPopup: ViewModifier {
     private func close() {
         withAnimation(.snappy(duration: 0.2)) { item = nil }
     }
+
+    private func saved() {
+        close()
+        onSaved()
+    }
 }
 
 /// The card inside the pop-up: assessment details, a mark field and Save/Cancel buttons.
@@ -50,32 +52,55 @@ private struct AddMarkCard: View {
     let onSaved: () -> Void
 
     @Environment(\.modelContext) private var context
-    @FocusState private var isMarkFocused: Bool
+    @FocusState private var isScoreFocused: Bool
 
-    @State private var mark: Double?
+    /// The raw score the user got, e.g. 17 in "17 out of 20".
+    @State private var score: Double?
+    /// What the assessment was marked out of, e.g. 20 in "17 out of 20".
+    @State private var outOf: Double?
     @State private var errorMessage: LocalizedStringKey?
+
+    /// The score as a percentage, or nil until both fields hold a usable value.
+    private var percentage: Double? {
+        guard let score, let outOf, outOf > 0, score >= 0 else { return nil }
+        return score / outOf * 100
+    }
 
     var body: some View {
         Card {
             VStack(alignment: .leading, spacing: 16) {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Add mark")
-                        .font(.fredoka(.title2, .bold))
-                        .foregroundStyle(Color.textPrimary)
 
                     Text(item.title)
-                        .font(.fredoka(.subheadline, .semibold))
+                        .font(.fredoka(.title2, .semibold))
                         .foregroundStyle(Color.textPrimary)
 
                     Text("Worth \(item.weight.formatted(.number.precision(.fractionLength(0...1))))% of your grade")
                         .secondaryTextStyling()
                 }
 
-                FormField("Mark (%)") {
-                    TextField("e.g. 85", value: $mark, format: .number)
-                        .keyboardType(.decimalPad)
-                        .focused($isMarkFocused)
+                HStack(alignment: .bottom, spacing: 12) {
+                    FormField("Your score") {
+                        TextField("e.g. 17", value: $score, format: .number)
+                            .keyboardType(.decimalPad)
+                            .focused($isScoreFocused)
+                            .foregroundStyle(Color.textPrimary)
+                    }
+
+                    FormField("Out of") {
+                        TextField("e.g. 20", value: $outOf, format: .number)
+                            .keyboardType(.decimalPad)
+                            .foregroundStyle(Color.textPrimary)
+                    }
+                }
+
+                // Live conversion so the user sees the percentage that will be saved.
+                if let percentage {
+                    Text("That's \(percentage.formatted(.number.precision(.fractionLength(0...1))))%")
+                        .font(.fredoka(.headline, .bold))
                         .foregroundStyle(Color.textPrimary)
+                        .contentTransition(.numericText())
+                        .animation(.snappy, value: percentage)
                 }
 
                 if let errorMessage {
@@ -93,20 +118,40 @@ private struct AddMarkCard: View {
             .padding(.vertical, 12)
             .padding(.horizontal, 8)
         }
-        .onAppear {
-            mark = item.mark
-            isMarkFocused = true
+        .onAppear(perform: loadMark)
+        .sensoryFeedback(.error, trigger: showsError) { _, newValue in newValue }
+    }
+
+    private var showsError: Bool { errorMessage != nil }
+
+    /// Prefills the score the user last entered and opens the keyboard. Marks saved before the raw
+    /// score was stored only have a percentage, so those are shown out of 100.
+    private func loadMark() {
+        if let markScore = item.markScore, let markOutOf = item.markOutOf {
+            score = markScore
+            outOf = markOutOf
+        } else if let mark = item.mark {
+            score = mark
+            outOf = 100
         }
-        .sensoryFeedback(.error, trigger: errorMessage != nil) { _, newValue in newValue }
+        isScoreFocused = true
     }
 
     private func save() {
-        guard let mark, mark >= 0, mark <= 100 else {
-            errorMessage = "Mark must be between 0 and 100."
+        guard let outOf, outOf > 0 else {
+            errorMessage = "Enter what the assessment was marked out of."
             return
         }
 
-        item.mark = mark
+        guard let score, score >= 0, score <= outOf else {
+            errorMessage = "Your score must be between 0 and what it was out of."
+            return
+        }
+
+        // Marks are stored as a percentage everywhere else in the app.
+        item.mark = score / outOf * 100
+        item.markScore = score
+        item.markOutOf = outOf
         AppSync.dataChanged(in: context)
         onSaved()
     }

@@ -9,7 +9,7 @@ import SwiftUI
 
 /// The accent colours a course can be given. Stored by name so it can be saved with the course.
 enum CourseColor: String, Codable, CaseIterable {
-    case teal, blue, amber, rose, violet, green, red, indigo, orange, fuchsia
+    case teal, blue, amber, rose, violet, green, red, indigo, orange, yellow, fuchsia
 
     /// The SwiftUI colour for this choice.
     var color: Color {
@@ -23,7 +23,17 @@ enum CourseColor: String, Codable, CaseIterable {
         case .red:     return Color.courseRed
         case .indigo:  return Color.courseIndigo
         case .orange:  return Color.courseOrange
+        case .yellow:  return Color.courseYellow
         case .fuchsia: return Color.courseFuchsia
+        }
+    }
+
+    /// Text and icons drawn on top of this colour. Yellow and orange are too bright for white,
+    /// so they get dark ink (`onMint` stays dark in both modes); the deeper colours get white.
+    var onColor: Color {
+        switch self {
+        case .yellow, .orange: return Color.onMint
+        default:               return .white
         }
     }
 

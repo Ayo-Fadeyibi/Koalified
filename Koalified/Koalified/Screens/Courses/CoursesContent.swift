@@ -51,16 +51,17 @@ struct CoursesContent: View {
                 // must sit above the button and list below it for the menu to float on top.
                 .zIndex(1)
 
-                PlainPrimaryButton(title: "Assessment Wallet") {
+                PlainPrimaryButton(title: "Open assessment wallet") {
                     path.append(CoursesDestination.assessmentWallet)
-                }.padding(.bottom, 20)
+                }
+                .padding(.bottom, 20)
 
                 ScrollView {
                     // Section header
                     ForEach(sections) { section in
                         SemesterSectionView(section: section, path: $path)
                     }
-                    // Lets the last card scroll clear of the + button and tab bar
+                    // Lets the last card scroll clear of the wallet button and tab bar
                     Color.clear.frame(height: 140)
                 }.scrollIndicators(.hidden)
             } else {

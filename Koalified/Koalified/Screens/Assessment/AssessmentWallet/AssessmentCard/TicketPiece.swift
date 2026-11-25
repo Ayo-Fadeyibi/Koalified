@@ -26,9 +26,9 @@ extension View {
         )
     }
 
-    /// Diagonal sheen across the course colour: lighter top-left, deeper bottom-right.
+    /// Diagonal sheen across the course colour: the true colour top-left, deeper bottom-right.
     private static func ticketGradient(_ base: Color, continuesBelow aboveRatio: CGFloat?) -> LinearGradient {
-        let colors = [base.mix(with: .white, by: 0.35), base, base.mix(with: .black, by: 0.15)]
+        let colors = [base.mix(with: .white, by: 0.08), base.mix(with: .black, by: 0.15), base.mix(with: .black, by: 0.32)]
         guard let aboveRatio else {
             return LinearGradient(colors: colors, startPoint: .topLeading, endPoint: .bottomTrailing)
         }

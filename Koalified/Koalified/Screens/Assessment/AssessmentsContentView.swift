@@ -15,7 +15,10 @@ struct AssessmentsContentView: View {
     
     /// Called when the user taps "Add an assessment".
     let onAdd: () -> Void
-    
+
+    /// Called when the user taps "Add mark" on an upcoming assessment.
+    let onAddMark: (AssessmentItem) -> Void
+
     /// Assessments that already have a mark, earliest due date first.
     private var marked: [AssessmentItem] {
         course.assessments.filter { $0.mark != nil }.sorted { $0.dueDate < $1.dueDate }
@@ -30,73 +33,139 @@ struct AssessmentsContentView: View {
         value.formatted(.number.precision(.fractionLength(0...1)))
     }
     
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var openAssessment: Bool
+
+    /// - Parameter startsOpen: Whether the card begins expanded (handy for previews).
+    init(course: Course, startsOpen: Bool = false, onAdd: @escaping () -> Void,
+         onAddMark: @escaping (AssessmentItem) -> Void = { _ in }) {
+        self.course = course
+        self.onAdd = onAdd
+        self.onAddMark = onAddMark
+        _openAssessment = State(initialValue: startsOpen)
+    }
+
+    private var toggleAnimation: Animation {
+        reduceMotion ? .easeInOut(duration: 0.2) : .snappy(duration: 0.35)
+    }
+
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: Layout.sectionSpacing) {
-                summaryCard
-                    .padding(.bottom, 20)
-                
-                if !marked.isEmpty {
-                    Text("Marked · \(marked.count)")
-                        .font(.fredoka(.subheadline, .semibold))
-                        .foregroundStyle(Color.textSecondary)
-                    AssessmentList(marked) { item in
-                        Text("\(Int((item.mark ?? 0).rounded()))%")
-                            .font(.fredoka(.headline))
-                            .foregroundStyle(Color.textPrimary)
-                    }
-                }
-                
-                if !upcoming.isEmpty {
-                    Text("Upcoming · \(upcoming.count)")
-                        .font(.fredoka(.subheadline, .semibold))
-                        .foregroundStyle(Color.textSecondary)
-                    AssessmentList(upcoming) { _ in
-                        PillButton(title: "Add mark", systemImage: "plus", color: Color.accent,
-                                   horizontalPadding: 12, verticalPadding: 7, shadowOffset: 2) { print("add mark") }
-                    }
-                }
-                
-                
-                PrimaryButton(title: "Add an assessment") { onAdd() }
-                SecondaryButton(title: "Open what-if calculator") { print("calculator") }
-            }
-            
-        }
-        .background(Color.screenBackground)
-    }
-    
-    /// Two-column card: the weighted average of marked work and points earned (left),
-    /// and an estimated grade (right; not calculated yet, shows a dash).
-    private var summaryCard: some View {
-        Card {
-            HStack(spacing: 16) {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("MARKED AVERAGE").font(.fredoka(.caption2, .semibold))
-                        .foregroundStyle(Color.textSecondary)
-                    Text(course.markedAverage.map { "\(num($0))%" } ?? "–")
-                        .font(.fredoka(.title, .bold))
+        PlainCard {
+            // The whole header row is the tap target, not just the chevron.
+            Button {
+                withAnimation(toggleAnimation) { openAssessment.toggle() }
+            } label: {
+                HStack {
+                    Text("Assessments")
+                        .font(.fredoka(.title3, .bold))
                         .foregroundStyle(Color.textPrimary)
-                    Text("\(num(course.earnedPoints)) / \(num(course.markedWeight)) points earned")
-                        .font(.fredoka(.caption)).foregroundStyle(Color.textSecondary)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                
-                Divider().frame(height: 60)
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("ESTIMATED GRADE").font(.fredoka(.caption2, .semibold))
-                        .foregroundStyle(Color.textSecondary)
-                    Text("–")
-                        .font(.fredoka(.title, .bold))
+
+                    Spacer()
+
+                    // Points down when closed ("tap to open") and turns to point up when open.
+                    Image(systemName: "chevron.down")
+                        .fontWeight(.bold)
                         .foregroundStyle(Color.textPrimary)
-                    Text("At your current average")
-                        .font(.fredoka(.caption)).foregroundStyle(Color.textSecondary)
+                        .rotationEffect(.degrees(openAssessment ? 180 : 0))
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .contentShape(Rectangle())
             }
-            .padding(14)
+            .buttonStyle(.plain)
+            .accessibilityValue(openAssessment ? Text("Expanded") : Text("Collapsed"))
+            .accessibilityHint(openAssessment ? Text("Hides your assessments") : Text("Shows your assessments"))
+
+            if openAssessment {
+                // No inner ScrollView: the course screen already scrolls, so the card just grows to fit.
+                VStack(alignment: .leading, spacing: Layout.sectionSpacing) {
+                    if marked.isEmpty && upcoming.isEmpty {
+                        Text("No assessments yet.")
+                            .font(.fredoka(.subheadline))
+                            .foregroundStyle(Color.textSecondary)
+                    }
+
+                    if !marked.isEmpty {
+                        section("Marked · \(marked.count)") {
+                            AssessmentList(marked) { item in
+                                // Tapping the mark reopens the pop-up, prefilled, so it can be corrected.
+                                Button { onAddMark(item) } label: {
+                                    HStack(spacing: 6) {
+                                        Text("\(Int((item.mark ?? 0).rounded()))%")
+                                            .font(.fredoka(.headline))
+                                            .foregroundStyle(Color.textPrimary)
+
+                                        Image(systemName: "pencil")
+                                            .font(.subheadline.weight(.bold))
+                                            .foregroundStyle(Color.textSecondary)
+                                    }
+                                    .contentShape(Rectangle())
+                                }
+                                .buttonStyle(.plain)
+                                .accessibilityLabel(Text("Edit mark, \(Int((item.mark ?? 0).rounded())) percent"))
+                            }
+                        }
+                    }
+
+                    if !upcoming.isEmpty {
+                        section("Upcoming · \(upcoming.count)") {
+                            AssessmentList(upcoming) { item in
+                                PillButton(title: "Add mark", color: Color.accent,
+                                           horizontalPadding: 12, verticalPadding: 7, shadowOffset: 2) { onAddMark(item) }
+                            }
+                        }
+                    }
+
+                    PrimaryButton(title: "Add an assessment") { onAdd() }
+                }
+                .padding(.top, 4)
+                .transition(reduceMotion ? .opacity : .opacity.combined(with: .move(edge: .top)))
+            }
+        }
+        // Keeps the sliding content from drawing over the header or outside the card while it animates.
+        .clipShape(RoundedRectangle(cornerRadius: Layout.radiusCard))
+    }
+
+    /// A small grey section title with its list underneath.
+    private func section<Content: View>(_ title: LocalizedStringKey, @ViewBuilder content: () -> Content) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(title)
+                .font(.fredoka(.subheadline, .semibold))
+                .foregroundStyle(Color.textSecondary)
+            content()
         }
     }
+
+}
+
+#Preview {
+    let course = try! PreviewData.container.mainContext
+        .fetch(FetchDescriptor<Course>(predicate: #Predicate { $0.courseCode == "CSSE1001" }))
+        .first!
+
+    AssessmentsContentView(course: course, onAdd: {})
+        .modelContainer(PreviewData.container)
+        .mainContainerStyling()
+}
+
+//#Preview("Open") {
+//    let course = try! PreviewData.container.mainContext
+//        .fetch(FetchDescriptor<Course>(predicate: #Predicate { $0.courseCode == "CSSE1001" }))
+//        .first!
+//
+//    ScrollView {
+//        AssessmentsContentView(course: course, startsOpen: true, onAdd: {})
+//    }
+//    .modelContainer(PreviewData.container)
+//    .mainContainerStyling()
+//}
+
+#Preview("Empty") {
+    // A course with no assessments, in the empty container.
+    let course = Course(courseCode: "COMP3506", title: "Algorithms & Data Structures",
+                        term: .S2, year: 2026, color: .violet)
+    EmptyPreviewData.container.mainContext.insert(course)
+
+    return AssessmentsContentView(course: course, startsOpen: true, onAdd: {})
+        .modelContainer(EmptyPreviewData.container)
+        .mainContainerStyling()
 }
    

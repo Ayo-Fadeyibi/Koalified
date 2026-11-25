@@ -27,7 +27,7 @@ struct AssessmentCardStub: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             // A deeper shade of the course colour so it stands out from the card.
-            TicketButton(title: "Mark as Done", ink: onCourse, fill: courseColor.mix(with: .black, by: 0.25), action: onDone)
+            TicketButton(title: "Mark as Done", ink: onCourse, fill: courseColor.mix(with: .black, by: 0.45), action: onDone)
 
             HStack(spacing: 8) {
                 TicketButton(title: "Edit", ink: onCourse, action: onEdit)

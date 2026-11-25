@@ -95,7 +95,6 @@ struct AddAssessmentSheet: View {
             }
         }
         .padding(Layout.screenPadding)
-        .containerStyling()
         .PopUp(
             isPresented: $showError,
             message: LocalizedStringKey(errorMessage),

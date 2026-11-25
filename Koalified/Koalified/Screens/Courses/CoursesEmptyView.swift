@@ -11,6 +11,8 @@ import SwiftUI
 struct CoursesEmptyView: View {
     /// Called when the user taps "Add a course".
     let onAdd: () -> Void
+    
+    let onImport: () -> Void
 
     var body: some View {
         EmptyStateView(
@@ -19,11 +21,11 @@ struct CoursesEmptyView: View {
             primaryTitle1: "Add a course",
             primaryAction1: onAdd,
             secondaryTitle: "Import timetable",
-            secondaryAction: { print("import timetable") }
+            secondaryAction: onImport
         ).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
 }
 
 #Preview {
-    CoursesEmptyView(onAdd: {})
+    CoursesEmptyView(onAdd: {}, onImport: {})
 }

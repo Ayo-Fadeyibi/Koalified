@@ -19,6 +19,8 @@ struct CoursesView: View {
     
     @State private var showAddCourse = false
     @State private var showAdded = false
+    
+    @State private var showImport = false
 
     @State var path = NavigationPath()
     
@@ -30,7 +32,7 @@ struct CoursesView: View {
                         .padding(.bottom, 10)
                     
                     if courses.isEmpty {
-                        CoursesEmptyView(onAdd: {showAddCourse = true})
+                        CoursesEmptyView(onAdd: {showAddCourse = true}, onImport: {showImport = true})
                     } else {
                         CoursesContent(path: $path)
                     }
@@ -41,14 +43,17 @@ struct CoursesView: View {
                 .ignoresSafeArea(edges: courses.isEmpty ? [] : .bottom)
                 .background(Color.screenBackground)
                 
-                FloatingAddButton { showAddCourse = true }
-                    .padding(40)
-                    .sensoryFeedback(.impact(weight: .medium), trigger: showAddCourse) { _, newValue in
-                        newValue
-                    }
-                
+                FloatingAddButton(accessibilityLabel: "Add a course") {
+                    showAddCourse = true
+                }
+                .padding(40)
+
             } .background(Color.screenBackground)
+                .sensoryFeedback(.impact(weight: .medium), trigger: showAddCourse) { _, newValue in
+                    newValue
+                }
                 .sheet(isPresented: $showAddCourse) { AddCourseSheet(onSaved: { showAdded = true }).sheetBorder() }
+                .sheet(isPresented: $showImport) { ImportLinkSheet().sheetBorder() }
                 .PopUp(isPresented: $showAdded, message: "Course added successfully", image: "circle-check", colour: Color.mintFill)
                 .toolbar(.hidden, for: .navigationBar)
                 .profileDestination()

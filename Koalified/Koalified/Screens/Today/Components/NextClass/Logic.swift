@@ -149,6 +149,8 @@ func dueLabel(for date: Date, now: Date = .now) -> String{
     let daysLeft = daysUntil(date, from: now)
     
     switch daysLeft{
+    case ..<0:
+        return "Overdue"
     case 0:
         return "Due today"
     case 1:

@@ -18,7 +18,7 @@ struct ColorPickerRow: View {
 
     var body: some View {
         FormField("Colour") {
-            // All ten swatches are wider than a phone screen, so the row scrolls sideways.
+            // All eleven swatches are wider than a phone screen, so the row scrolls sideways.
             ScrollViewReader { proxy in
                 ScrollView(.horizontal) {
                     HStack(spacing: 14) {
@@ -31,7 +31,7 @@ struct ColorPickerRow: View {
                                         if option == current {
                                             Image(systemName: "checkmark")
                                                 .font(.caption.weight(.bold))
-                                                .foregroundStyle(.white)
+                                                .foregroundStyle(option.onColor)
                                         }
                                     }
                             }

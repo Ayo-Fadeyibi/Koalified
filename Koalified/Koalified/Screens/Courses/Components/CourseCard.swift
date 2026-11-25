@@ -80,8 +80,6 @@ struct CourseCard: View {
                             ActionButton(title: "Delete", color: Color.errorText, action: onDelete)
                         }
                         
-                        SecondaryButton(title: "Assessments"){}
-                        SecondaryButton(title: "Course timetable"){}
                     }
                     
                 }

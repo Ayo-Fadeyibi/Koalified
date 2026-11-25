@@ -41,7 +41,7 @@ struct WalletEmptyView: View {
             .sheet(isPresented: $openAssessmentSheet) {
                 AddAssessmentSheet(onAdded: {onAdded = true}).sheetBorder()
             }
-            .PopUp(isPresented: $onAdded, message: "Class Added successfully", image: "circle-check", colour: Color.mintFill, feedback: .error)
+            .PopUp(isPresented: $onAdded, message: "Class Added successfully", image: "circle-check", colour: Color.mintFill, feedback: .success)
         
     }
     

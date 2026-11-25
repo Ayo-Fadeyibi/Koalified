@@ -182,11 +182,11 @@ struct WeekGridView: View {
             VStack(alignment: .leading, spacing: 0) {
                 Text(verbatim: session.course?.courseCode ?? "")
                     .font(.fredoka(.caption, .bold))
-                    .foregroundStyle(Color.white)
-                
+                    .foregroundStyle(session.course?.color.onColor ?? Color.white)
+
                 Text(session.type.label)
                     .font(.fredoka(.caption))
-                    .foregroundStyle(Color.white)
+                    .foregroundStyle(session.course?.color.onColor ?? Color.white)
             }
             .lineLimit(1)
             .minimumScaleFactor(0.6)
