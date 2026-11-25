@@ -42,7 +42,7 @@ struct EditClassSheet: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Add a class")
+            Text(selectedSession == nil ? "Add a class" : "Edit class")
                 .primaryTextStyling()
                 .padding(.bottom, 20)
             

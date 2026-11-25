@@ -30,7 +30,7 @@ struct NextClassView: View {
 
             VStack(spacing: 16) {
                 if nextSession == nil && todaySessions.isEmpty {
-                    NoClassView(onSeeWeek: onSeeWeek, onViewAssessment: {}, now: context.date)
+                    NoClassView(onSeeWeek: onSeeWeek, onViewAssessment: onViewAssessment, now: context.date)
                 } else if nextSession == nil {
                     AllDoneToday(onSeeWeek: onSeeWeek)
                 } else if let nextSession {

@@ -29,9 +29,10 @@ struct AddCourseSheet: View {
     /// The colour the user tapped; nil means they haven't chosen one.
     @State private var chosenColor: CourseColor?
 
-    /// Colour used when none is chosen: cycles through the palette based on how many courses exist.
+    /// Colour used when none is chosen: the edited course's own colour, or for a new course the next
+    /// one in the palette based on how many courses exist.
     private var autoColor: CourseColor {
-        CourseColor.allCases[courses.count % CourseColor.allCases.count]
+        course?.color ?? CourseColor.allCases[courses.count % CourseColor.allCases.count]
     }
     /// The chosen colour, or the automatic one.
     private var selectedColor: CourseColor { chosenColor ?? autoColor }
@@ -105,6 +106,7 @@ struct AddCourseSheet: View {
             course.title = cleanName.isEmpty ? nil : cleanName
             course.term = term
             course.year = year
+            course.color = selectedColor
         } else {
             modelContext.insert(Course(courseCode: cleanCode,
                                        title: cleanName.isEmpty ? nil : cleanName,
