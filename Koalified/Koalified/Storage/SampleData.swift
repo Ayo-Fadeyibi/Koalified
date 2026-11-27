@@ -14,6 +14,5 @@ enum SampleData {
         "Open your timetable on UQ's website and sign in there.",
         "Look for the option to export or download your calendar (an .ics file, or a calendar link).",
         "Copy the link, or save the file to your phone.",
-        "Come back here and paste the link, or choose the file."
     ]
 }

@@ -31,19 +31,25 @@ struct TimetableWeek {
         sessions.filter { calendar.isDate($0.start, inSameDayAs: day) }
     }
 
+    /// All seven days of the week being shown, Monday first (the day view's date strip).
+    var weekDays: [Date] {
+        (0..<7).compactMap { calendar.date(byAdding: .day, value: $0, to: weekStart) }
+    }
+
     /// The columns: the one chosen day, or Mon–Fri (Mon–Sun when a weekend day has a class).
     var days: [Date] {
         if isDayView { return [calendar.startOfDay(for: anchor)] }
-        let week = (0..<7).compactMap { calendar.date(byAdding: .day, value: $0, to: weekStart) }
+        let week = weekDays
         let weekendHasClass = week.suffix(2).contains { !sessions(on: $0).isEmpty }
         return weekendHasClass ? week : Array(week.prefix(5))
     }
 
-    /// The hours drawn: 9:00–17:00 at least, stretched to fit any earlier or later class.
+    /// The hours drawn: from the hour the first class starts to the hour the last class ends,
+    /// or 9:00–17:00 when there are no classes to show.
     var hours: [Int] {
         let shown = days.flatMap(sessions(on:))
-        let first = min(9, shown.map { calendar.component(.hour, from: $0.start) }.min() ?? 9)
-        let last = max(17, shown.map(endHour).max() ?? 17)
+        let first = shown.map { calendar.component(.hour, from: $0.start) }.min() ?? 9
+        let last = shown.map(endHour).max() ?? 17
         return Array(first..<max(last, first + 1))
     }
 
@@ -167,8 +173,6 @@ struct SessionCluster: Identifiable {
     let laneCount: Int
 
     var id: [ClassSession.ID] { lanes.map(\.session.id) }
-    var sessions: [ClassSession] { lanes.map(\.session) }
-    var isClash: Bool { lanes.count > 1 }
     var start: Date { lanes.map(\.session.start).min() ?? .now }
     var end: Date { lanes.map(\.session.end).max() ?? .now }
 }

@@ -17,10 +17,9 @@ struct ComicPanel: Identifiable {
 
 struct OnboardingComicView: View {
     @State private var pageNumber = 0
+    @Environment(\.dismiss) private var dismiss
     
-    let onFinish: () -> Void
-    /// Label on the last panel's button.
-    var finishTitle: LocalizedStringKey = "Get started"
+    var finishTitle: LocalizedStringKey = "Done"
     
     let panels = [
         ComicPanel(imageName: "comic_01_chaos", caption: "Too many apps. Too many tabs."),
@@ -30,13 +29,15 @@ struct OnboardingComicView: View {
     ]
     
     var body: some View {
-        VStack{
+        VStack {
             
             TabView(selection: $pageNumber) {
                 
                 ForEach(panels.indices, id: \.self) {index in
                     
-                        ComicPanelView(imageName: panels[index].imageName, caption: panels[index].caption).tag(index)
+                        ComicPanelView(imageName: panels[index].imageName, caption: panels[index].caption)
+                            .frame(maxHeight: .infinity, alignment: .top)
+                            .tag(index)
                     
                 }
                 
@@ -50,21 +51,17 @@ struct OnboardingComicView: View {
                     if pageNumber < panels.count - 1 {
                         withAnimation {pageNumber += 1 }
                     } else {
-                        onFinish()
+                        dismiss()
                     }
                 }.padding(.horizontal)
+                .padding(.bottom, 48)
             
-        }.padding(.top, 40)
+        }
         .background(Color.screenBackground.ignoresSafeArea())
-            .overlay(alignment: .topTrailing) { SecondaryButton(title: "Skip") {onFinish()}
-                    .frame(width: 100, height: 40).padding(.horizontal, 16)
-                    .opacity(pageNumber < panels.count - 1 ? 1 : 0)
-                    .disabled(pageNumber == panels.count - 1)
-                    .padding(.top, 10)
-            }
+
     }
 }
 
 #Preview {
-    OnboardingComicView(){}
+    OnboardingComicView()
 }

@@ -6,6 +6,9 @@
 import SwiftUI
 
 struct CalendarHeader: View {
+    
+    @Binding var activeSheet: ActiveSheet?
+    
     var body: some View {
         HStack {
             Text("Timetable")
@@ -14,6 +17,10 @@ struct CalendarHeader: View {
 
             Spacer()
 
+            HeaderAddButton { activeSheet = .addMenu }
+                .sensoryFeedback(.impact(weight: .medium), trigger: activeSheet) { _, newSheet in
+                    newSheet == .addMenu
+                }
             ProfileAvatarButton()
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -22,7 +29,7 @@ struct CalendarHeader: View {
 
 #Preview {
     NavigationStack {
-        CalendarHeader()
+        CalendarHeader(activeSheet: .constant(.addMenu))
             .padding()
     }
 }

@@ -20,9 +20,9 @@ extension View {
 }
 
 enum ProfileDestination: Hashable {
-    case notifications, language, replayTour
-    case addWidget, semesterReceipt, about, helpFeedback
-    case reviewCourses, removeLink, deleteData
+    case notifications, language, privacySecurity
+    case addWidget, about, helpFeedback, comic
+    case removeLink, deleteData
     case userDetails
 
     /// Row and screen title.
@@ -31,13 +31,12 @@ enum ProfileDestination: Hashable {
         case .userDetails: "Your details"
         case .notifications: "Notifications"
         case .language: "Language"
-        case .replayTour: "Replay the tour"
+        case .privacySecurity: "Privacy and Security"
         case .addWidget: "Add a widget"
-        case .semesterReceipt: "Your Semester receipt"
         case .about: "About Koalified"
         case .helpFeedback: "Help & feedback"
-        case .reviewCourses: "Review courses"
         case .removeLink: "Remove timetable link"
+        case .comic: "Comic"
         case .deleteData: "Delete semester data"
         }
     }

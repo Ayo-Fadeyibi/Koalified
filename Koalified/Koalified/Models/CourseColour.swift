@@ -11,6 +11,11 @@ import SwiftUI
 enum CourseColor: String, Codable, CaseIterable {
     case teal, blue, amber, rose, violet, green, red, indigo, orange, yellow, fuchsia
 
+    /// The colours offered when picking or auto-assigning a course colour. Red is left out: the app saves red
+    /// for things that are overdue or due soon, so it shouldn't also mean "just a course". The `red` case stays
+    /// so courses saved with it still load; they're drawn in a calm terracotta.
+    static let selectable: [CourseColor] = allCases.filter { $0 != .red }
+
     /// The SwiftUI colour for this choice.
     var color: Color {
         switch self {

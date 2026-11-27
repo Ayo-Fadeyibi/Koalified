@@ -11,11 +11,18 @@ import SwiftData
 @Model
 final class UserDetails{
     var userName: String?
+    var studentNumber: String?
+    var graduationDate: Date?
     var userUniversity: String?
-    
-    init(userName: String? = nil, userUniversity: String? = nil) {
+    /// Degree program, e.g. "Bachelor of Computer Science".
+    var program: String?
+
+    init(userName: String? = nil, studentNumber: String? = nil, graduationDate: Date? = nil, userUniversity: String? = nil, program: String? = nil) {
         self.userName = userName
+        self.studentNumber = studentNumber
+        self.graduationDate = graduationDate
         self.userUniversity = userUniversity
+        self.program = program
     }
 
 }

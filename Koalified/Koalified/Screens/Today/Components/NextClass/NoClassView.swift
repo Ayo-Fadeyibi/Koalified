@@ -19,21 +19,21 @@ struct NoClassView: View {
     let now: Date
     
     var body: some View {
-        let next = nextAssessment(from: assessments, now: now)
-        
-        EmptyStateView(
-            header1: "A LITTLE BREATHING ROOM",
-            header2: (next?.course?.courseCode).map { LocalizedStringKey($0) },
-            title1: "No classes today.",
-            title2: next.map { LocalizedStringKey($0.title) },
-            message1: "A free day for a study session, catching up or taking a break.",
-            message2: next.map{LocalizedStringKey("\(dueLabel(for: $0.dueDate, now: now)) · \($0.weight.formatted())% of course grade")},
-            primaryTitle1: "See your week",
-            primaryAction1: onSeeWeek,
-            secondaryTitle2: next != nil ? "View Assessment" : nil,
-            secondaryAction2: onViewAssessment
+       
+        VStack {
+            EmptyStateView(
+                header1: "A LITTLE BREATHING ROOM",
+                title1: "No classes today.",
+                message1: "A free day for a study session, catching up or taking a break.",
+                primaryTitle1: "See your week",
+                primaryAction1: onSeeWeek,
+            ).padding(.bottom, 10)
             
-        ).containerStyling()
+            ScrollView {
+                UpcomingAssessments()
+            }.scrollIndicators(.hidden)
+        }.containerStyling()
+    
     }
 }
 

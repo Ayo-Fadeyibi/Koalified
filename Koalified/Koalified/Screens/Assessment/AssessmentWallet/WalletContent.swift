@@ -184,6 +184,7 @@ struct WalletContent: View {
             hurdlePercent: item.hurdlePercent,
             openCard: isOpen,
             isDone: item.isDone,
+            isMarked: item.mark != nil,
             onDone: { setDone(true, for: item) },
             onUndo: { setDone(false, for: item) }
         )

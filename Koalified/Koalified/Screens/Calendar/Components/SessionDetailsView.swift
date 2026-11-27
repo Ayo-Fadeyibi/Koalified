@@ -10,9 +10,13 @@ import SwiftData
 
 struct SessionDetailsView: View {
     
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
+    
     let session: ClassSession?
     
     @State private var showEditCourse = false
+    @State private var showDeleteConfirm = false
     
     private var sessionDate: String? {
         session?.start.formatted(.dateTime.weekday(.abbreviated).day().month(.abbreviated))
@@ -76,11 +80,45 @@ struct SessionDetailsView: View {
 
 
         }
-        .mainContainerStyling()
+        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button("Edit") { showEditCourse = true }
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                Button {
+                    showDeleteConfirm = true
+                } label: {
+                    Image("trash")
+                        .renderingMode(.template)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
+                        .foregroundStyle(Color.redFill)
+                }
+                .accessibilityLabel("Delete course")
+
+                Button {
+                    showEditCourse = true
+                } label: {
+                    Image("square-pen")
+                        .renderingMode(.template)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
+                        .foregroundStyle(Color.textPrimary)
+                }
+                .accessibilityLabel("Edit course")
             }
+        }
+        .confirmationDialog("Delete this class?", isPresented: $showDeleteConfirm, titleVisibility: .visible) {
+            Button("Delete", role: .destructive) {
+                if let session {
+                    modelContext.delete(session)
+                }
+                try? modelContext.save()
+                AppSync.dataChanged(in: modelContext)
+                dismiss()
+            }
+            Button("Cancel", role: .cancel) { }
         }
         .sheet(isPresented: $showEditCourse) {
             EditClassSheet(selectedSession: session){showUpdatedMessage = true}

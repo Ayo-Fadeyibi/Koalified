@@ -24,6 +24,8 @@ struct AssessmentCardTop: View {
     let isTorn: Bool
     /// The stub has been ripped off.
     let isDone: Bool
+    /// A mark has been recorded, so it was handed in; never shown as overdue or due soon.
+    var isMarked = false
     /// The stub is attached below this piece.
     let showsStub: Bool
 
@@ -52,6 +54,8 @@ struct AssessmentCardTop: View {
             HStack(alignment: .bottom) {
                 countdown
                     .layoutPriority(1) // Keep the big number full size next to the details
+                    // Don't let a taller details column (e.g. with a hurdle) squash the number down.
+                    .fixedSize(horizontal: false, vertical: true)
                 Spacer(minLength: 12)
                 dueDetails
             }
@@ -96,14 +100,28 @@ struct AssessmentCardTop: View {
 
             Spacer(minLength: 8)
 
-            Text(isDone ? "Done" : "To do")
+            Text(status.label)
                 .font(.fredoka(compact ? .caption : .subheadline, .bold))
+                .foregroundStyle(status.isUrgent ? Color.white : onCourse)
                 .padding(.horizontal, compact ? 10 : 14)
                 .padding(.vertical, compact ? 5 : 7)
-                .background(onCourse.opacity(0.2), in: Capsule())
-                .overlay(Capsule().strokeBorder(onCourse.opacity(0.3), lineWidth: 1))
+                .background(status.isUrgent ? Color.redFill : onCourse.opacity(0.2), in: Capsule())
+                .overlay(Capsule().strokeBorder(status.isUrgent ? Color.white.opacity(0.6) : onCourse.opacity(0.3), lineWidth: 1))
                 .fixedSize()
         }
+    }
+
+    /// Days before the due date that an unfinished assessment counts as "due soon".
+    private static let dueSoonDays = 2
+
+    /// The badge on the ticket. Red is kept for this alone (course colours never use it), so an urgent
+    /// ticket stands out from the rest of the stack.
+    private var status: (label: LocalizedStringKey, isUrgent: Bool) {
+        if isDone { return ("Done", false) }
+        if isMarked { return ("Marked", false) }
+        if days < 0 { return ("Overdue", true) }
+        if days <= Self.dueSoonDays { return ("Due soon", true) }
+        return ("To do", false)
     }
 
     // --- BIG COUNTDOWN ---

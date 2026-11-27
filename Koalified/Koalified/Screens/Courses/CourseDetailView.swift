@@ -4,6 +4,12 @@ import SwiftData
 /// Detail screen for one course: its code and title, then either an empty state or its assessments.
 /// Offers sheets to add an assessment and (via the Edit button) to edit the course.
 struct CourseDetailView: View {
+    
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
+    
+    @State private var showDeleteConfirm = false
+    
     let course: Course
     @State private var showAddAssessment = false
     @State private var showEditCourse = false
@@ -70,9 +76,47 @@ struct CourseDetailView: View {
         .addMarkPopup(item: $markingItem, onSaved: { onAddedMark = true })
         .PopUp(isPresented: $onAddedMark, message: isEditingMark ? "Mark updated successfully" : "Mark added successfully", image: "circle-check", colour: Color.mintFill, feedback: .success)
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button("Edit") { showEditCourse = true }
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                Button {
+                    showDeleteConfirm = true
+                } label: {
+                    Image("trash")
+                        .renderingMode(.template)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
+                        .foregroundStyle(Color.redFill)
+                }
+                .accessibilityLabel("Delete course")
+
+                Button {
+                    showEditCourse = true
+                } label: {
+                    Image("square-pen")
+                        .renderingMode(.template)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
+                        .foregroundStyle(Color.textPrimary)
+                }
+                .accessibilityLabel("Edit course")
             }
+        }
+        .confirmationDialog("Delete \(course.courseCode)?", isPresented: $showDeleteConfirm, titleVisibility: .visible) {
+            Button("Delete", role: .destructive) {
+                
+                let toDelete = course          // keep a reference
+                    dismiss()                      // leave the screen first
+                    DispatchQueue.main.async {     // delete on the next tick, once it's gone
+                        modelContext.delete(toDelete)
+                        try? modelContext.save()
+                        AppSync.dataChanged(in: modelContext)
+                    }
+
+            }
+            Button("Cancel", role: .cancel) { }
+        } message: {
+            Text("This also deletes its \(course.sessions.count) classes and \(course.assessments.count) assessments, including any marks you've entered. This can't be undone.")
         }
         .sheet(isPresented: $showEditCourse) {
             AddCourseSheet(course: course, onSaved: {onEditCourse = true})

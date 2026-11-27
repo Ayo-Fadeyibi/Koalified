@@ -93,14 +93,7 @@ struct AssessmentForm: View {
                     Text("Due date")
                         .boldSecondaryTextStyling()
 
-                    DatePicker(
-                        "Due date",
-                        selection: $dueDate,
-                        displayedComponents: .date
-                    )
-                    .labelsHidden()
-                    .padding(7)
-                    .plainStyling()
+                    PopoverDatePicker(selection: $dueDate)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }

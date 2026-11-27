@@ -1,8 +1,8 @@
 import SwiftUI
 import SwiftData
 
-/// The Courses tab when courses exist: a "My courses / Degree plan" switch, year and term
-/// dropdowns, and a scrolling list of course cards that link to each course's detail.
+/// The Courses tab when courses exist: a "My courses / Degree plan" switch, one row with the semester
+/// picker and a wallet shortcut, then a scrolling list of course cards that link to each course's detail.
 struct CoursesContent: View {
     /// Which segment is showing: "My courses" or "Degree plan".
     @State private var selectedView = "My courses"
@@ -12,23 +12,22 @@ struct CoursesContent: View {
     let options = ["My courses", "Degree plan"]
 
     @Query private var courses: [Course]
-    
-    /// The semester and year picked in the dropdowns.
-    @State private var selectedTerm: Term = .S1
-    @State private var selectedYear = Calendar.current.component(.year, from: .now)
 
-    /// Sections for the courses in the selected year and term.
-    private var sections: [SemesterSection] {
-        courses
-            .filter { $0.year == selectedYear && $0.term == selectedTerm }
-            .semesterSections
+    /// The semester picked in the dropdown; nil until `selectNewestSemester` runs.
+    @State private var selectedSemester: SemesterChoice?
+
+    /// The courses in the picked semester.
+    private var shownCourses: [Course] {
+        guard let selectedSemester else { return [] }
+        return courses.filter(selectedSemester.contains)
     }
 
-    /// Starts the dropdowns on the newest semester that has courses.
+    /// Starts the dropdown on the newest semester that has courses, and moves back to it when the
+    /// picked semester no longer has any (e.g. after Delete semester data).
     private func selectNewestSemester() {
-        guard let newest = courses.newestFirst.first else { return }
-        selectedYear = newest.year
-        selectedTerm = newest.term
+        let choices = courses.semesterChoices
+        if let selectedSemester, choices.contains(selectedSemester) { return }
+        selectedSemester = choices.first
     }
 
     var body: some View {
@@ -36,33 +35,29 @@ struct CoursesContent: View {
             NeoSegmentedPicker(options: options, selection: $selectedView)
 
             if selectedView == "My courses" {
-                HStack {
-                    FloatingDropdown(options: courses.availableYears, selection: $selectedYear) { year in
-                        String(year)
+                HStack(alignment: .top, spacing: 10) {
+                    // Only semesters that have courses, so every choice shows something.
+                    FloatingDropdown(options: courses.semesterChoices.map { Optional($0) },
+                                     selection: $selectedSemester) { semester in
+                        semester?.label ?? ""
                     }
 
-                    Spacer()
-
-                    FloatingDropdown(options: courses.availableSemesters, selection: $selectedTerm) { term in
-                        term.label
-                    }
-                }.padding(.bottom, 20)
+                    walletButton
+                }
+                .padding(.bottom, 8)
                 // A dropdown's zIndex only orders it among its own siblings, so the row
-                // must sit above the button and list below it for the menu to float on top.
+                // must sit above the list below it for the menu to float on top.
                 .zIndex(1)
 
-                PlainPrimaryButton(title: "Open assessment wallet") {
-                    path.append(CoursesDestination.assessmentWallet)
-                }
-                .padding(.bottom, 20)
-
                 ScrollView {
-                    // Section header
-                    ForEach(sections) { section in
-                        SemesterSectionView(section: section, path: $path)
+                    // Folders have no shadow to separate them, so space them out here.
+                    VStack(alignment: .leading, spacing: 16) {
+                        ForEach(shownCourses) { course in
+                            CourseCard(course: course, onView: { path.append(course) })
+                        }
+                        // Lets the last card scroll clear of the add button and tab bar
+                        Color.clear.frame(height: 140)
                     }
-                    // Lets the last card scroll clear of the wallet button and tab bar
-                    Color.clear.frame(height: 140)
                 }.scrollIndicators(.hidden)
             } else {
                 Text("Degree plan")
@@ -71,6 +66,27 @@ struct CoursesContent: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .onAppear(perform: selectNewestSemester)
+        .onChange(of: courses.semesterChoices) { selectNewestSemester() }
+    }
+
+    /// A small shortcut to the assessment wallet, styled to sit beside the semester dropdown.
+    private var walletButton: some View {
+        Button {
+            path.append(CoursesDestination.assessmentWallet)
+        } label: {
+            Label("Wallet", systemImage: "wallet.pass")
+                .font(.fredoka(.body, .bold))
+                .foregroundStyle(Color.textPrimary)
+                .padding()
+                .background(Color.tintMint)
+                .overlay(
+                    RoundedRectangle(cornerRadius: Layout.radiusSmall - 4)
+                        .stroke(Color.inkBorder, lineWidth: 2)
+                )
+        }
+        .buttonStyle(.plain)
+        .fixedSize()
+        .accessibilityLabel(Text("Open assessment wallet"))
     }
 }
 

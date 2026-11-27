@@ -41,6 +41,7 @@ struct UpcomingAssessments: View {
                         hurdlePercent: item.hurdlePercent,
                         openCard: false,
                         isDone: item.isDone,
+                        isMarked: item.mark != nil,
                         compact: true
                     )
                 }
@@ -68,9 +69,6 @@ struct UpcomingAssessments: View {
         AssessmentCard(courseCode: "MATH1051", courseColor: CourseColor.blue.color, onCourseColor: CourseColor.blue.onColor,
                        assessmentTitle: "Assignment 2", weight: 25, dueDate: .now.addingTimeInterval(9 * 86_400),
                        hasHurdle: false, hurdlePercent: nil, openCard: false, compact: true)
-        AssessmentCard(courseCode: "CSSE3200", courseColor: CourseColor.teal.color, onCourseColor: CourseColor.teal.onColor,
-                       assessmentTitle: "Quiz 1 (TEMP full size)", weight: 10, dueDate: .now.addingTimeInterval(3 * 86_400),
-                       hasHurdle: true, hurdlePercent: 20, openCard: false)
     }
     .padding()
     .background(Color.screenBackground)

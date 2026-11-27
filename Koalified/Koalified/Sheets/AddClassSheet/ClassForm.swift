@@ -65,10 +65,7 @@ struct ClassForm: View {
                 }.padding(.bottom, 24)
                     .zIndex(2)
             } else {
-                DatePicker("Date", selection: $date, displayedComponents: .date)
-                    .font(.fredoka(.body, .bold))
-                    .padding()
-                    .plainStyling()
+                PopoverDatePicker(title: "Date", selection: $date)
                     .padding(.bottom, 24)
             }
 
@@ -78,17 +75,11 @@ struct ClassForm: View {
                     .boldSecondaryTextStyling()
 
                 HStack {
-                    DatePicker("Starts", selection: $start, displayedComponents: .hourAndMinute)
-                        .font(.fredoka(.body, .bold))
-                        .padding()
-                        .plainStyling()
+                    PopoverDatePicker(title: "Starts", selection: $start, displayedComponents: .hourAndMinute)
 
                     Spacer()
 
-                    DatePicker("Ends", selection: $end, displayedComponents: .hourAndMinute)
-                        .font(.fredoka(.body, .bold))
-                        .padding()
-                        .plainStyling()
+                    PopoverDatePicker(title: "Ends", selection: $end, displayedComponents: .hourAndMinute)
                 }.padding(.bottom, 24)
                     .zIndex(1)
 

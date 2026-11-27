@@ -12,6 +12,7 @@ struct FloatingAddButton: View {
     var image: String? = nil
     /// Spoken by VoiceOver; describe what the button does when it isn't plain "Add".
     var accessibilityLabel: LocalizedStringKey = "Add"
+    var usesGlass = false
     let action: () -> Void
 
     var body: some View {
@@ -29,8 +30,8 @@ struct FloatingAddButton: View {
                 }
             }
             .foregroundStyle(Color.onMint)
-            .frame(width: Layout.fabSize, height: Layout.fabSize)
-            .neoBrutalist(backgroundColor: Color.mintFill, cornerRadius: Layout.fabSize / 2)
+            .frame(width: 48, height: 48)
+            .modifier(FloatingAddBackground(usesGlass: usesGlass))
         }
         .accessibilityLabel(accessibilityLabel)
     }

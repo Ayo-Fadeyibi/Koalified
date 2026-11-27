@@ -31,12 +31,7 @@ struct NeoSegmentedPicker: View {
                         .padding(.vertical, 10)
                         .background {
                             if isSelected {
-                                RoundedRectangle(cornerRadius: Layout.radiusSmall - 4)
-                                    .fill(Color.mintFill)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: Layout.radiusSmall - 4)
-                                            .stroke(Color.inkBorder, lineWidth: 1.5)
-                                    )
+                                selectedSegment
                                     .matchedGeometryEffect(id: "ACTIVE_SEGMENT", in: animationNamespace)
                             }
                         }
@@ -51,6 +46,21 @@ struct NeoSegmentedPicker: View {
             RoundedRectangle(cornerRadius: Layout.radiusSmall - 4)
                 .stroke(Color.inkBorder, lineWidth: 2)
         )
+    }
+
+    @ViewBuilder
+    private var selectedSegment: some View {
+        if #available(iOS 26.0, *) {
+            Color.clear
+                .glassEffect(.regular.tint(Color.mintFill).interactive(), in: .rect(cornerRadius: Layout.radiusSmall - 4))
+        } else {
+            RoundedRectangle(cornerRadius: Layout.radiusSmall - 4)
+                .fill(Color.mintFill)
+                .overlay(
+                    RoundedRectangle(cornerRadius: Layout.radiusSmall - 4)
+                        .stroke(Color.inkBorder, lineWidth: 1.5)
+                )
+        }
     }
 }
 

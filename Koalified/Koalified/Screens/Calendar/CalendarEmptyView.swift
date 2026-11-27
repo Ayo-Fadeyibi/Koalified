@@ -17,13 +17,14 @@ struct CalendarEmptyView: View {
     @State var openImportSheet = false
     @State var openAddClassSheet = false
     @State var onAdded = false
-    
+    @State private var activeSheet: ActiveSheet?
+
     
     var body: some View {
         
         VStack(alignment: .leading, spacing: 16) {
             
-            CalendarHeader()
+            CalendarHeader(activeSheet: $activeSheet)
                 .padding(.bottom, 10)
             
             EmptyStateView(
@@ -40,6 +41,7 @@ struct CalendarEmptyView: View {
         }
         .padding(.top, Layout.screenPadding)
         .mainContainerStyling()
+            .addMenuSheets($activeSheet)
             .sheet(isPresented: $openImportSheet) {
                 ImportLinkSheet().sheetBorder()
             }

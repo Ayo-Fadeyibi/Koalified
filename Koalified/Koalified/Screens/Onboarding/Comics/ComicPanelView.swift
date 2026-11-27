@@ -25,14 +25,10 @@ struct ComicPanelView: View {
                 Card {
                     Text(caption)
                         .font(.fredoka(.title3, .semibold))
-                }
+                }.padding(.bottom, 10)
                 
-                Spacer()
             }
-        }.frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.screenBackground.ignoresSafeArea())
-        
-        
+        }
     }
 }
 

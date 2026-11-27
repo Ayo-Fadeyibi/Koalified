@@ -26,9 +26,9 @@ extension View {
         )
     }
 
-    /// Diagonal sheen across the course colour: the true colour top-left, deeper bottom-right.
+    /// A gentle diagonal sheen across the course colour, kept subtle so a stack of tickets doesn't feel heavy.
     private static func ticketGradient(_ base: Color, continuesBelow aboveRatio: CGFloat?) -> LinearGradient {
-        let colors = [base.mix(with: .white, by: 0.08), base.mix(with: .black, by: 0.15), base.mix(with: .black, by: 0.32)]
+        let colors = [base.mix(with: .white, by: 0.06), base, base.mix(with: .black, by: 0.1)]
         guard let aboveRatio else {
             return LinearGradient(colors: colors, startPoint: .topLeading, endPoint: .bottomTrailing)
         }

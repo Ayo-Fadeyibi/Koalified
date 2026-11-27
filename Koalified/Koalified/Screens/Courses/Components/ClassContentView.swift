@@ -33,7 +33,7 @@ struct ClassContentView: View {
     @State private var openAssessment: Bool
 
     /// - Parameter startsOpen: Whether the card begins expanded (handy for previews).
-    init(course: Course, startsOpen: Bool = false, onAdd: @escaping () -> Void) {
+    init(course: Course, startsOpen: Bool = true, onAdd: @escaping () -> Void) {
         self.course = course
         self.onAdd = onAdd
         _openAssessment = State(initialValue: startsOpen)

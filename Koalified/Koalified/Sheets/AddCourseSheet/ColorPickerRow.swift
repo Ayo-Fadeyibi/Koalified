@@ -18,11 +18,11 @@ struct ColorPickerRow: View {
 
     var body: some View {
         FormField("Colour") {
-            // All eleven swatches are wider than a phone screen, so the row scrolls sideways.
+            // All the swatches are wider than a phone screen, so the row scrolls sideways.
             ScrollViewReader { proxy in
                 ScrollView(.horizontal) {
                     HStack(spacing: 14) {
-                        ForEach(CourseColor.allCases, id: \.self) { option in
+                        ForEach(CourseColor.selectable, id: \.self) { option in
                             Button { selection = option } label: {
                                 Circle()
                                     .fill(option.color)

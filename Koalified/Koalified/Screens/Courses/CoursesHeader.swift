@@ -9,6 +9,9 @@ import SwiftUI
 
 /// Title and subtitle at the top of the Courses tab.
 struct CoursesHeader: View {
+    
+    @Binding var showAddCourse: Bool
+    
     var body: some View {
         HStack {
             Text("Courses")
@@ -16,6 +19,13 @@ struct CoursesHeader: View {
                 .foregroundStyle(Color.textPrimary)
             
             Spacer()
+            
+            HeaderAddButton(accessibilityLabel: "Add a course") {
+                showAddCourse = true
+            }.sensoryFeedback(.impact(weight: .medium), trigger: showAddCourse) { _, newValue in
+                newValue
+            }
+    
             
             ProfileAvatarButton()
            
@@ -25,5 +35,5 @@ struct CoursesHeader: View {
 }
 
 #Preview {
-    CoursesHeader()
+    CoursesHeader(showAddCourse: .constant(false))
 }

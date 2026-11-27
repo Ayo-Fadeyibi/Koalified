@@ -11,6 +11,10 @@ import SwiftData
 /// The body of the course detail screen when the course has assessments: a summary card,
 /// the marked and upcoming assessment lists, and buttons to add an assessment or open the calculator.
 struct AssessmentsContentView: View {
+    @Environment(\.modelContext) private var modelContext
+    
+    @State private var showConfirmation = false
+    
     let course: Course
     
     /// Called when the user taps "Add an assessment".
@@ -32,7 +36,7 @@ struct AssessmentsContentView: View {
     @State private var openAssessment: Bool
 
     /// - Parameter startsOpen: Whether the card begins expanded (handy for previews).
-    init(course: Course, startsOpen: Bool = false, onAdd: @escaping () -> Void,
+    init(course: Course, startsOpen: Bool = true, onAdd: @escaping () -> Void,
          onAddMark: @escaping (AssessmentItem) -> Void = { _ in }) {
         self.course = course
         self.onAdd = onAdd
@@ -81,21 +85,52 @@ struct AssessmentsContentView: View {
                     if !marked.isEmpty {
                         section("Marked · \(marked.count)") {
                             AssessmentList(marked) { item in
-                                // Tapping the mark reopens the pop-up, prefilled, so it can be corrected.
-                                Button { onAddMark(item) } label: {
-                                    HStack(spacing: 6) {
-                                        Text("\(Int((item.mark ?? 0).rounded()))%")
-                                            .font(.fredoka(.headline))
-                                            .foregroundStyle(Color.textPrimary)
-
-                                        Image(systemName: "pencil")
-                                            .font(.subheadline.weight(.bold))
-                                            .foregroundStyle(Color.textSecondary)
+                                
+                                Text("\(Int((item.mark ?? 0).rounded()))%")
+                                    .font(.fredoka(.headline))
+                                    .foregroundStyle(Color.textPrimary)
+                                HStack(spacing: 6) {
+                                    Button { onAddMark(item) } label: {
+                                    
+                                            Image("square-pen")
+                                                .font(.subheadline.weight(.bold))
+                                                .foregroundStyle(Color.textPrimary)
+                                       
                                     }
-                                    .contentShape(Rectangle())
+                                    .padding(.trailing, 10)
+                                    .buttonStyle(.plain)
+                                    .accessibilityLabel(Text("Edit mark, \(Int((item.mark ?? 0).rounded())) percent"))
+                                    
+                                    //Spacer()
+                                    
+                                    Button {
+                                                showConfirmation = true
+                                    } label: {
+                                        Image("trash")
+                                            .renderingMode(.template)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 24, height: 24)
+                                            .foregroundStyle(Color.redFill)
+                                    }
+                                            .confirmationDialog(
+                                                "Are you sure you want to delete this?",
+                                                isPresented: $showConfirmation,
+                                                titleVisibility: .visible
+                                            ) {
+                                                Button("Delete", role: .destructive) {
+                                                    // Perform delete action
+                                                    modelContext.delete(item)
+                                                    try? modelContext.save()
+                                                    AppSync.dataChanged(in: modelContext)
+                                                }
+                                                Button("Cancel", role: .cancel) { }
+                                            } message: {
+                                                Text("This action cannot be undone.")
+                                            }
+
                                 }
-                                .buttonStyle(.plain)
-                                .accessibilityLabel(Text("Edit mark, \(Int((item.mark ?? 0).rounded())) percent"))
+                                .contentShape(Rectangle())
                             }
                         }
                     }
@@ -128,7 +163,6 @@ struct AssessmentsContentView: View {
             content()
         }
     }
-
 }
 
 #Preview {

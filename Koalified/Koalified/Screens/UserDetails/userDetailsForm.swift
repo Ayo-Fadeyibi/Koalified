@@ -3,7 +3,7 @@ import SwiftData
 import WidgetKit
 
 /// Onboarding screen asking for the student's name and university.
-struct UserDetailsView: View {
+struct UserDetailsForm: View {
     
     @Query private var userDetail: [UserDetails]
     
@@ -12,11 +12,18 @@ struct UserDetailsView: View {
     
     @State private var userName = ""
     @State private var universityName = "University of Queensland"
+    @State private var studentNumber = ""
     @State private var isUQSelected = true
+    @State private var graduationDate: Date = .now
+    
     @FocusState private var isTextInputFocused: Bool
+    @FocusState private var isStudentNumberFocused: Bool
     
     @State private var showAdded = false
-    
+
+    /// Called after saving. When set (e.g. editing from a sheet), the caller closes the form and
+    /// shows its own confirmation instead of this view's popup.
+    var onSaved: (() -> Void)? = nil
 
     private var trimmedName: String {
         userName.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -28,7 +35,6 @@ struct UserDetailsView: View {
     
     private let universityList = [
         "University of Queensland",
-        "Queensland University of Technology"
     ]
     
     @Environment(\.modelContext) private var modelContext
@@ -42,6 +48,8 @@ struct UserDetailsView: View {
 
                 Text("Tell us what to call you so we can personalise your dashboard.")
                     .secondaryTextStyling()
+                    // Wrap instead of truncating.
+                    .fixedSize(horizontal: false, vertical: true)
             }
             .padding(.bottom, 24)
 
@@ -68,6 +76,36 @@ struct UserDetailsView: View {
                 .textFieldStyling(isFocused: isTextInputFocused)
             }
             .padding(.bottom, 24)
+            
+            HStack {
+                
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("YOUR STUDENT NUMBER")
+                        .font(.fredoka(.caption, .bold))
+                        .tracking(0.6)
+                        .foregroundStyle(Color.textSecondary)
+
+                    HStack(spacing: 10) {
+                        TextField("e.g. s12345678", text:$studentNumber)
+                            .font(.fredoka(.body, .medium))
+                            .foregroundStyle(Color.textPrimary)
+                            .autocorrectionDisabled()
+                            .submitLabel(.done)
+                            .focused($isStudentNumberFocused)
+
+                        if !studentNumber.isEmpty {
+                            ClearFieldButton { studentNumber = "" }
+                        }
+                    }
+                    .textFieldStyling(isFocused: isStudentNumberFocused)
+                }
+                .padding(.bottom, 24)
+                
+                Spacer()
+                
+                PopoverDatePicker(selection: $graduationDate)
+                
+            }
 
             // University Selection
             VStack(alignment: .leading, spacing: 8) {
@@ -113,8 +151,10 @@ struct UserDetailsView: View {
                
                 }
                
-            }.padding(.bottom, 250)
-            
+            }
+
+            // Pushes the button to the bottom without forcing the form taller than the screen.
+            Spacer(minLength: 24)
 
             // Bottom CTA & Disclaimer
             VStack(spacing: 12) {
@@ -132,7 +172,9 @@ struct UserDetailsView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
         }
-        .mainContainerStyling()
+        .padding(.top)
+        .padding(.horizontal, Layout.screenPadding)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .contentShape(Rectangle())
         .onTapGesture {
             isTextInputFocused = false
@@ -145,6 +187,14 @@ struct UserDetailsView: View {
             if let savedUniversity = content?.userUniversity {
                 universityName = savedUniversity
             }
+            
+            if let savedStudentNumber = content?.studentNumber {
+                studentNumber = savedStudentNumber
+            }
+            
+            if let savedGraduationDate = content?.graduationDate{
+                graduationDate = savedGraduationDate
+            }
         }
         .PopUp(isPresented: $showAdded, message: "Details added successfully", image: "circle-check", colour: Color.mintFill)
     }
@@ -154,18 +204,24 @@ struct UserDetailsView: View {
     private func save() {
         if let content {
             content.userName = trimmedName
+            content.studentNumber = studentNumber
+            content.graduationDate = graduationDate
             content.userUniversity = universityName
         } else {
-            modelContext.insert(UserDetails(userName: trimmedName, userUniversity: universityName))
+            modelContext.insert(UserDetails(userName: trimmedName,studentNumber: studentNumber, graduationDate: graduationDate, userUniversity: universityName))
         }
 
         try? modelContext.save()
         WidgetCenter.shared.reloadAllTimelines()
-        
-        showAdded = true
+
+        if let onSaved {
+            onSaved()
+        } else {
+            showAdded = true
+        }
     }
 }
 
 #Preview {
-    UserDetailsView()
+    UserDetailsForm()
 }

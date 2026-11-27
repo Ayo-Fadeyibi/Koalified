@@ -9,7 +9,7 @@ enum OnboardingStep: Hashable {
  This view handles the flow of the onboarding: welcome, then language, then the timetable import.
  It keeps track of which screen is showing with a switch case, starting at the WelcomeView.
  Every screen after the welcome has a back button in the toolbar that returns to the previous step.
- (UniversityView, YearView, TimetableHelpView, FindLinkView and ImportTimetableView are no longer part of the flow.)
+ (YearView and ImportTimetableView are no longer part of the flow.)
  */
 struct OnboardingFlow: View {
     @State private var step: OnboardingStep = .welcome

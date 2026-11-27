@@ -38,7 +38,7 @@ struct SemesterKey: Hashable {
     let year: Int?
 }
 
-struct DetectedSemester: Identifiable {
+struct DetectedSemester: Identifiable, Hashable {
     let term: Term?
     let year: Int?
     let courseCount: Int

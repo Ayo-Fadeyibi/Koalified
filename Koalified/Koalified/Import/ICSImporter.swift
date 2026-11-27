@@ -58,7 +58,7 @@ func importEvents(_ events: [ParsedEvent], into context: ModelContext) throws ->
             course = found
         } else {
             let sameSemester = courses.filter { $0.term == term && $0.year == year }.count
-            let colour = CourseColor.allCases[sameSemester % CourseColor.allCases.count]
+            let colour = CourseColor.selectable[sameSemester % CourseColor.selectable.count]
             course = Course(courseCode: event.courseCode, title: event.title, term: term, year: year, color: colour)
             context.insert(course)
             courses.append(course)

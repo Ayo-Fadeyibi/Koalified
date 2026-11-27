@@ -32,18 +32,16 @@ struct ProfileView: View {
                     NotificationSettingsView()
                 case .language:
                     LanguageSettingsView()
-                case .replayTour:
-                    OnboardingComicView(onFinish: {})
+                case .comic:
+                    OnboardingComicView()
                 case .addWidget:
                     WidgetGuideView()
-                case .semesterReceipt:
-                    SemesterReceiptView()
+                case .privacySecurity:
+                    PrivacySecurity()
                 case .about:
                     AboutKoalifiedView()
                 case .helpFeedback:
                     HelpFeedbackView()
-                case .reviewCourses:
-                    ReviewCoursesView()
                 case .removeLink:
                     RemoveTimetableLinkView()
                 case .deleteData:

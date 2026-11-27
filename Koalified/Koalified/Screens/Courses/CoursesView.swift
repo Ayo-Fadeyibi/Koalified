@@ -26,9 +26,9 @@ struct CoursesView: View {
     
     var body: some View{
         NavigationStack (path: $path){
-            ZStack(alignment: .bottomTrailing) {
+
                 VStack(alignment: .leading, spacing: 16) {
-                    CoursesHeader()
+                    CoursesHeader(showAddCourse: $showAddCourse)
                         .padding(.bottom, 10)
                     
                     if courses.isEmpty {
@@ -42,16 +42,6 @@ struct CoursesView: View {
                 // With courses, let the list run behind the tab bar instead of stopping above it.
                 .ignoresSafeArea(edges: courses.isEmpty ? [] : .bottom)
                 .background(Color.screenBackground)
-                
-                FloatingAddButton(accessibilityLabel: "Add a course") {
-                    showAddCourse = true
-                }
-                .padding(40)
-
-            } .background(Color.screenBackground)
-                .sensoryFeedback(.impact(weight: .medium), trigger: showAddCourse) { _, newValue in
-                    newValue
-                }
                 .sheet(isPresented: $showAddCourse) { AddCourseSheet(onSaved: { showAdded = true }).sheetBorder() }
                 .sheet(isPresented: $showImport) { ImportLinkSheet().sheetBorder() }
                 .PopUp(isPresented: $showAdded, message: "Course added successfully", image: "circle-check", colour: Color.mintFill)

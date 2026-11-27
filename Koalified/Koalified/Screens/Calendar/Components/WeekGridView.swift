@@ -7,7 +7,8 @@ import SwiftUI
 import SwiftData
 
 /// A weekly timetable: one column per day (Mon–Fri, plus the weekend when it has classes) and one row per hour,
-/// with each class drawn as a mint block where it starts. "Day view" switches to a single day.
+/// with each class drawn as a coloured block where it starts. "Day view" switches to a date strip and
+/// an open timeline for a single day.
 /// The week controls stay fixed at the top; the grid and the optional `footer` below it scroll.
 struct WeekGridView: View {
     @Query private var sessions: [ClassSession]
@@ -31,81 +32,78 @@ struct WeekGridView: View {
     
     @State private var selectedSession: ClassSession?
     
+    @State private var selectedDate: Date = .now
+    
     @State private var path = NavigationPath()
-
-    /// The clashing classes listed in the sheet, after tapping a stack in week view.
-    @State private var clashGroup: SessionCluster?
-    /// The class picked in that sheet, opened once the sheet has closed.
-    @State private var pendingSession: ClassSession?
-
-    /// How far each class in a week-view clash stack sits to the right of the one beneath it.
-    private let stackStep: CGFloat = 6
+    
+    let options = ["Week", "Day"]
 
     // MARK: - Body
 
     var body: some View {
         VStack(spacing: 16) {
             // Header: < Week 5 · 19–23 October >
+//            HStack {
+//                
+//                Button { shift(-1) } label: {
+//                    Image(systemName: "chevron.left")
+//                        .frame(width: 40, height: 40)
+//                        .neoBrutalist(backgroundColor: Color.cardSurface, cornerRadius: 10)
+//                }
+//
+//                Spacer()
+//                
+//                Text(verbatim: week.title)
+//                    .font(.fredoka(.headline, .bold))
+//                    
+//                
+//                Spacer()
+//                
+//                Button { shift(1) } label: {
+//                    Image(systemName: "chevron.right")
+//                        .frame(width: 40, height: 40)
+//                        .neoBrutalist(backgroundColor: Color.cardSurface, cornerRadius: 10)
+//                }
+//
+//            }
+//            .sensoryFeedback(.impact(weight: .light), trigger: anchor)
+//            .font(.body.weight(.bold))
+//            .foregroundStyle(Color.textPrimary)
+//            .buttonStyle(.plain)
+//            .padding(5)
+//            .background(Color.cardSurface)
+//            .plainStyling()
+
+            // Mode label and switchd
             HStack {
                 
-                Button { shift(-1) } label: {
-                    Image(systemName: "chevron.left")
-                        .frame(width: 40, height: 40)
-                        .neoBrutalist(backgroundColor: Color.cardSurface, cornerRadius: Layout.radiusSmall)
-                }
+                PopoverDatePicker(selection: $anchor)
 
                 Spacer()
                 
-                Text(verbatim: week.title)
-                    .font(.fredoka(.headline, .bold))
-                
-                Spacer()
-                
-                Button { shift(1) } label: {
-                    Image(systemName: "chevron.right")
-                        .frame(width: 40, height: 40)
-                        .neoBrutalist(backgroundColor: Color.cardSurface, cornerRadius: Layout.radiusSmall)
-                }
-
+                // The picker works in option names, so map "Day"/"Week" onto `isDayView`
+                NeoSegmentedPicker(
+                    options: options,
+                    selection: Binding(
+                        get: { isDayView ? "Day" : "Week" },
+                        set: { isDayView = $0 == "Day" }
+                    )
+                ).frame(width: 150)
             }
-            // `anchor` changes on every chevron tap, so each shift plays one haptic.
-            .sensoryFeedback(.impact(weight: .light), trigger: anchor)
-            .font(.body.weight(.bold))
-            .foregroundStyle(Color.textPrimary)
-            .buttonStyle(.plain)
-            .padding(.bottom, 10)
+            .sensoryFeedback(.impact(weight: .light), trigger: isDayView)
 
-            // Mode label and switch
-            HStack {
-                
-                Label(isDayView ? "DAY" : "WEEK", systemImage: "dot.square")
-                    .font(.fredoka(.headline, .bold))
-                    .foregroundStyle(isDayView ? Color.accent : Color.courseAmber)
-                Spacer()
-                
-                Button{
-                    isDayView.toggle();
-    
-                } label: {
-                    
-                    Text(isDayView ? "Week view" : "Day view")
-                        .font(.fredoka(.body, .bold))
-                        .foregroundStyle(Color.textPrimary)
-                        .padding(.horizontal, 14)
-                        .padding(.vertical, 10)
-                        .neoBrutalist(
-                            backgroundColor: isDayView ? Color.tintMint : Color.tintAmber,
-                            cornerRadius: Layout.radiusSmall
-                        )
-                    
-                }.sensoryFeedback(.impact(weight: .light), trigger: isDayView)
-                
+            if isDayView {
+                dayStrip
             }
 
             // Only the timetable (and whatever follows it) scrolls
             ScrollView {
                 VStack(spacing: 16) {
-                    grid
+                    if isDayView {
+                        dayTimeline
+                    } else {
+                        grid
+                    }
 
                     // Lets the last item scroll clear of the tab bar
                     Color.clear.frame(height: 100)
@@ -113,16 +111,15 @@ struct WeekGridView: View {
             }
             .scrollIndicators(.hidden)
         }
-        .sheet(item: $clashGroup, onDismiss: {
-            selectedSession = pendingSession
-            pendingSession = nil
-        }) { cluster in
-            ClashListSheet(sessions: cluster.sessions) { pendingSession = $0 }
-                .sheetBorder()
-                .presentationDetents([.medium])
-        }
-        .navigationDestination(item: $selectedSession) { session in
-            SessionDetailsView(session: session)
+        // Wrapped in a stack so the details view's "Edit" toolbar button shows.
+        .sheet(item: $selectedSession) { session in
+            NavigationStack {
+                SessionDetailsView(session: session)
+            }
+            // Set on the sheet's root, not inside the stack: from inside, the detent can be lost
+            // when the sheet is re-presented for another class, and it opens full height instead.
+            .presentationDetents([.height(450)])
+            .sheetBorder()
         }
     }
 
@@ -130,13 +127,13 @@ struct WeekGridView: View {
         VStack(spacing: 0) {
             // Column titles
             HStack(spacing: 0) {
-                headerCell("TIME").frame(width: timeColumnWidth + lineWidth)
+                headerCell(weekday: "", dayNumber: "").frame(width: timeColumnWidth + lineWidth)
                 ForEach(week.days, id: \.self) { day in
-                    headerCell(day.formatted(.dateTime.weekday(.abbreviated)).uppercased(),
+                    headerCell(weekday: day.formatted(.dateTime.weekday(.abbreviated)).uppercased(), dayNumber: day.formatted(.dateTime.day()),
                                highlighted: week.isToday(day))
                 }
             }
-            .background(Color.inkBorder)
+            .background(Color.cardSurface)
 
             // Hours and days
             HStack(alignment: .top, spacing: lineWidth) {
@@ -148,15 +145,26 @@ struct WeekGridView: View {
             .padding(lineWidth)
             .background(Color.cardBorder)
         }
-        .overlay(Rectangle().strokeBorder(Color.inkBorder, lineWidth: lineWidth))
+        .overlay(RoundedRectangle(cornerRadius: 10).strokeBorder(Color.inkBorder, lineWidth: lineWidth))
     }
 
-    private func headerCell(_ text: String, highlighted: Bool = false) -> some View {
-        Text(verbatim: text)
-            .font(.fredoka(.footnote, .bold))
-            .foregroundStyle(highlighted ? Color.mintFill : Color.white)
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, 14)
+    private func headerCell(weekday text: String, dayNumber number: String, highlighted: Bool = false) -> some View {
+        VStack {
+            Text(verbatim: text)
+                .font(.fredoka(.footnote, .semibold))
+                .foregroundStyle(highlighted ? Color.mintFill : Color.textSecondary)
+                .frame(maxWidth: .infinity)
+                .padding(.top, 15)
+            
+            Text(verbatim: number)
+                .font(.fredoka(.title3, .bold))
+                .foregroundStyle(highlighted ? Color.mintFill : Color.textPrimary)
+                .padding(.bottom, 5)
+                .frame(maxWidth: .infinity)
+                
+        }
+        
+        
     }
 
     private var timeColumn: some View {
@@ -166,7 +174,7 @@ struct WeekGridView: View {
                     .font(.fredoka(.footnote, .bold))
                     .foregroundStyle(Color.textPrimary)
                     .frame(width: timeColumnWidth, height: rowHeight)
-                    .background(Color.tintAmber.opacity(0.4))
+                    .background(Color.cardSurface)
             }
         }
     }
@@ -182,11 +190,13 @@ struct WeekGridView: View {
     /// Overlapping classes are drawn together as one cluster (see `clusterView`).
     private func dayColumn(_ day: Date) -> some View {
         let week = week
+        // Today's column is tinted so it stands out from the rest of the week
+        let cellColor = week.isToday(day) ? Color.tintMint : Color.cardSurface
 
         return ZStack(alignment: .topLeading) {
             VStack(spacing: lineWidth) {
                 ForEach(week.hours, id: \.self) { _ in
-                    Rectangle().fill(Color.cardSurface).frame(height: rowHeight)
+                    Rectangle().fill(cellColor).frame(height: rowHeight)
                 }
             }
 
@@ -202,41 +212,150 @@ struct WeekGridView: View {
         .frame(maxWidth: .infinity)
     }
 
-    /// A lone class, or a group of clashing ones:
-    /// - Day view: side-by-side lanes, each class opening on its own.
-    /// - Week view: a fanned stack (or one "N classes" block for three or more) that opens a list of the clash.
-    @ViewBuilder
-    private func clusterView(_ cluster: SessionCluster) -> some View {
-        if !cluster.isClash, let session = cluster.sessions.first {
-            NavigationLink(value: session) {
-                sessionCard(session, detailed: isDayView)
-            }
-            .buttonStyle(.plain)
-        } else if isDayView {
-            dayLanes(cluster)
-        } else {
-            Button { clashGroup = cluster } label: {
-                if cluster.lanes.count >= 3 {
-                    collapsedClash(cluster)
-                } else {
-                    // Bottom corner, clear of the course code at the top.
-                    stackedClash(cluster)
-                        .overlay(alignment: .bottomTrailing) { clashBadge(cluster.lanes.count) }
+    // MARK: - Day view
+
+    /// Mon–Sun of the shown week. The chosen day is highlighted, days with classes get a dot,
+    /// and tapping a day shows it.
+    private var dayStrip: some View {
+        let week = week
+
+        return HStack(spacing: 4) {
+            ForEach(week.weekDays, id: \.self) { day in
+                let isSelected = TimetableWeek.calendar.isDate(day, inSameDayAs: anchor)
+
+                Button { anchor = day } label: {
+                    VStack(spacing: 4) {
+                        Text(verbatim: day.formatted(.dateTime.weekday(.abbreviated)))
+                            .font(.fredoka(.footnote))
+                            .foregroundStyle(Color.textSecondary)
+
+                        Text(verbatim: day.formatted(.dateTime.day()))
+                            .font(.fredoka(.title2, .bold))
+                            .foregroundStyle(week.isToday(day) && !isSelected ? Color.mintFill : Color.textPrimary)
+
+                        Circle()
+                            .fill(week.sessions(on: day).isEmpty ? Color.clear : Color.mintFill)
+                            .frame(width: 6, height: 6)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 8)
+                    .background(isSelected ? Color.tintMint : Color.clear, in: RoundedRectangle(cornerRadius: 14))
+                    .contentShape(Rectangle())
                 }
+                .buttonStyle(.plain)
             }
-            .buttonStyle(.plain)
-            .accessibilityLabel(Text("\(cluster.lanes.count) classes clash"))
         }
     }
 
-    /// Day view: the cluster split into equal-width lanes, with each class placed at its time inside its lane.
-    private func dayLanes(_ cluster: SessionCluster) -> some View {
-        HStack(alignment: .top, spacing: 4) {
+    /// The chosen day as an open timeline: an hour label and a thin line for each hour,
+    /// with the day's classes laid across them.
+    private var dayTimeline: some View {
+        let week = week
+        let day = week.days.first ?? anchor
+        let firstHour = week.hours.first ?? 9
+        let topOfGrid = TimetableWeek.calendar.date(bySettingHour: firstHour, minute: 0, second: 0, of: day) ?? day
+        // One more line than there are hours, to close off the last one
+        let lineHours = week.hours + [(week.hours.last ?? firstHour) + 1]
+
+        return ZStack(alignment: .topLeading) {
+            VStack(spacing: 0) {
+                ForEach(lineHours, id: \.self) { hour in
+                    // Each hour's line sits at the top of its slot, with the label centred on it.
+                    // Overlays don't affect layout, so the slots stay exactly `hourHeight` apart.
+                    Color.clear
+                        .frame(height: hour == lineHours.last ? 0 : hourHeight)
+                        .overlay(alignment: .top) {
+                            HStack(spacing: 0) {
+                                Text(verbatim: "\(hour):00")
+                                    .font(.fredoka(.footnote))
+                                    .foregroundStyle(Color.textSecondary)
+                                    .frame(width: timeColumnWidth, alignment: .leading)
+
+                                Rectangle()
+                                    .fill(Color.cardBorder)
+                                    .frame(height: 1)
+                            }
+                            .alignmentGuide(.top) { $0[VerticalAlignment.center] }
+                        }
+                }
+            }
+
+            ForEach(week.clusters(on: day)) { cluster in
+                clusterView(cluster)
+                    .frame(height: blockHeight(from: cluster.start, to: cluster.end))
+                    .padding(.leading, timeColumnWidth)
+                    .offset(y: cluster.start.timeIntervalSince(topOfGrid) / 3600 * hourHeight + lineWidth / 2)
+            }
+        }
+        // Room for the first and last labels, which hang half above and below their lines
+        .padding(.vertical, 12)
+    }
+
+    /// A class in the day view: a light wash of the course colour with a solid accent bar,
+    /// the course code, and the type and length. Adds the location when the block has room.
+    private func dayCard(_ session: ClassSession, isClash: Bool) -> some View {
+        let accent = session.course?.color.color ?? Color.mintFill
+        let detail = "\(session.type.localizedName) · \(Duration.seconds(session.end.timeIntervalSince(session.start)).formatted(.units(allowed: [.hours, .minutes], width: .narrow)))"
+
+        return HStack(alignment: .top, spacing: 10) {
+            Capsule()
+                .fill(accent)
+                .frame(width: 5)
+                .frame(maxHeight: .infinity)
+                .padding(.vertical, 6)
+
+            ViewThatFits(in: .vertical) {
+                VStack(alignment: .leading, spacing: 2) {
+                    dayCardTitle(session)
+                    Text(verbatim: detail)
+                    if let location = session.locationText {
+                        Text(verbatim: location)
+                    }
+                }
+                VStack(alignment: .leading, spacing: 2) {
+                    dayCardTitle(session)
+                    Text(verbatim: detail)
+                }
+                dayCardTitle(session)
+            }
+            .font(.fredoka(.subheadline))
+            .foregroundStyle(Color.textPrimary)
+            .lineLimit(1)
+            .minimumScaleFactor(0.7)
+            .padding(.vertical, 5)
+
+            Spacer(minLength: 0)
+        }
+        .padding(.leading, 4)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .background(accent.opacity(0.2), in: RoundedRectangle(cornerRadius: 14))
+        .overlay {
+            if isClash {
+                RoundedRectangle(cornerRadius: 14).strokeBorder(Color.redFill, lineWidth: 2)
+            }
+        }
+    }
+
+    private func dayCardTitle(_ session: ClassSession) -> some View {
+        Text(verbatim: session.course?.courseCode ?? "")
+            .font(.fredoka(.body, .bold))
+    }
+
+    // MARK: - Classes
+
+    /// A lone class, or a group of clashing ones split into equal-width lanes side by side.
+    /// Each class sits at its own time inside its lane and opens its own details.
+    private func clusterView(_ cluster: SessionCluster) -> some View {
+        HStack(alignment: .top, spacing: 2) {
             ForEach(0..<cluster.laneCount, id: \.self) { lane in
                 ZStack(alignment: .top) {
                     ForEach(cluster.lanes.filter { $0.lane == lane }, id: \.session.id) { item in
-                        NavigationLink(value: item.session) {
-                            sessionCard(item.session, detailed: true)
+                        Button { selectedSession = item.session } label: {
+                            if isDayView {
+                                dayCard(item.session, isClash: cluster.laneCount > 1)
+                            } else {
+                                sessionCard(item.session, isClash: cluster.laneCount > 1)
+                            }
                         }
                         .buttonStyle(.plain)
                         .frame(height: blockHeight(from: item.session.start, to: item.session.end))
@@ -248,132 +367,27 @@ struct WeekGridView: View {
         }
     }
 
-    /// Week view, two lanes: each class nudged right of the one beneath it, like a fanned stack of tickets.
-    private func stackedClash(_ cluster: SessionCluster) -> some View {
-        ZStack(alignment: .top) {
-            ForEach(cluster.lanes, id: \.session.id) { item in
-                sessionCard(item.session, detailed: false)
-                    .frame(height: blockHeight(from: item.session.start, to: item.session.end))
-                    .padding(.leading, CGFloat(item.lane) * stackStep)
-                    .padding(.trailing, CGFloat(cluster.laneCount - 1 - item.lane) * stackStep)
-                    .offset(y: item.session.start.timeIntervalSince(cluster.start) / 3600 * hourHeight)
-                    .zIndex(Double(item.lane))
-            }
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-    }
-
-    /// Week view, three or more lanes: one striped block covering the whole clash.
-    private func collapsedClash(_ cluster: SessionCluster) -> some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Text(verbatim: "\(cluster.lanes.count)")
-                .font(.fredoka(.caption, .bold))
-            Text("classes")
-                .font(.fredoka(.caption))
-        }
-        .lineLimit(1)
-        .minimumScaleFactor(0.6)
-        .foregroundStyle(Color.textPrimary)
-        .padding(6)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .background {
-            // A colour stripe per class along the bottom, so the courses involved stay recognisable.
-            VStack(spacing: 0) {
-                Color.cardSurface
-                HStack(spacing: 0) {
-                    ForEach(cluster.sessions) { session in
-                        session.course?.color.color ?? Color.tintMint
-                    }
-                }
-                .frame(height: 8)
-            }
-            .clipShape(RoundedRectangle(cornerRadius: 8))
-        }
-        .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(Color.redFill, lineWidth: 3))
-    }
-
-    /// The little red count on the corner of a week-view clash.
-    private func clashBadge(_ count: Int) -> some View {
-        Text(verbatim: "\(count)")
-            .font(.fredoka(.caption2, .bold))
-            .foregroundStyle(Color.white)
-            .frame(width: 18, height: 18)
-            .background(Color.redFill, in: Circle())
-            .overlay(Circle().strokeBorder(Color.inkBorder, lineWidth: 1.5))
-            .offset(x: 5, y: 5)
-            .zIndex(1)
-    }
-
-    /// A class's coloured block. `detailed` (day view, where there's room) adds the building and room.
-    private func sessionCard(_ session: ClassSession, detailed: Bool) -> some View {
+    /// A class's coloured block in the week view. `isClash` outlines it in red when it overlaps another class.
+    private func sessionCard(_ session: ClassSession, isClash: Bool) -> some View {
         let textColor = session.course?.color.onColor ?? Color.white
+        let fillColor: Color = session.course?.color.color ?? Color.tintMint
 
-        return Group {
-            if detailed {
-                // Show as much as the block's height allows: everything, then a tighter layout, then just the class.
-                ViewThatFits(in: .vertical) {
-                    VStack(alignment: .leading, spacing: 2) {
-                        classTitle(session)
-                        if let building = session.building, !building.isEmpty {
-                            Label(building, systemImage: "building.2.fill")
-                        }
-                        if let room = session.room, !room.isEmpty {
-                            Label(room, systemImage: "door.left.hand.open")
-                        }
-                    }
-                    VStack(alignment: .leading, spacing: 0) {
-                        classTitle(session)
-                        if let location = session.locationText {
-                            Text(verbatim: location)
-                        }
-                    }
-                    classTitle(session)
-                }
-                .labelStyle(SessionLocationLabelStyle())
-            } else {
-                VStack(alignment: .leading, spacing: 0) {
-                    Text(verbatim: session.course?.courseCode ?? "")
-                        .font(.fredoka(.caption, .bold))
-                    Text(session.type.label)
-                        .font(.fredoka(.caption))
-                }
-            }
-        }
-        .font(.fredoka(.caption))
-        .lineLimit(1)
-        .minimumScaleFactor(0.6)
-        .foregroundStyle(textColor)
-        .padding(6)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .background(session.course?.color.color ?? Color.tintMint, in: RoundedRectangle(cornerRadius: 8))
-        .overlay(
-            RoundedRectangle(cornerRadius: 8)
-                .strokeBorder(session.clashable == true ? Color.redFill
-                              : Color.inkBorder, lineWidth:session.clashable == true ? 6 : 2)
-        )
-    }
-
-    /// "CSSE1001 Lecture" on one line, for the day view.
-    private func classTitle(_ session: ClassSession) -> some View {
-        HStack(spacing: 4) {
+        return VStack(alignment: .leading, spacing: 0) {
             Text(verbatim: session.course?.courseCode ?? "")
                 .font(.fredoka(.caption, .bold))
             Text(session.type.label)
                 .font(.fredoka(.caption))
         }
-    }
-    
-}
-
-/// A small icon tight against its text, for the building and room lines in a day-view class block.
-private struct SessionLocationLabelStyle: LabelStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        HStack(spacing: 4) {
-            configuration.icon
-                .font(.caption2)
-                .frame(width: 14)
-            configuration.title
-        }
+        .lineLimit(1)
+        .minimumScaleFactor(0.6)
+        .foregroundStyle(textColor)
+        .padding(6)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .background(fillColor, in: RoundedRectangle(cornerRadius: 8))
+        .overlay(
+            RoundedRectangle(cornerRadius: 8)
+                .strokeBorder(isClash ? Color.redFill : Color.inkBorder, lineWidth: isClash ? 3 : 2)
+        )
     }
 }
 

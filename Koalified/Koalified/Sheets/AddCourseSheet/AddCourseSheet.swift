@@ -32,7 +32,7 @@ struct AddCourseSheet: View {
     /// Colour used when none is chosen: the edited course's own colour, or for a new course the next
     /// one in the palette based on how many courses exist.
     private var autoColor: CourseColor {
-        course?.color ?? CourseColor.allCases[courses.count % CourseColor.allCases.count]
+        course?.color ?? CourseColor.selectable[courses.count % CourseColor.selectable.count]
     }
     /// The chosen colour, or the automatic one.
     private var selectedColor: CourseColor { chosenColor ?? autoColor }

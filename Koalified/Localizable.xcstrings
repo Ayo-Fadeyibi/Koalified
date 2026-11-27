@@ -54,6 +54,9 @@
     "·" : {
 
     },
+    "/ 100 pts" : {
+
+    },
     "%@ – %@" : {
       "localizations" : {
         "en" : {
@@ -105,6 +108,7 @@
       }
     },
     "%@ · %@%% of course grade" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -357,13 +361,14 @@
         }
       }
     },
-    "%lld classes clash" : {
+    "%lld cards" : {
 
     },
     "%lld Classes per week" : {
 
     },
     "%lld courses" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -420,6 +425,7 @@
       }
     },
     "%lld of 100 points earned so far" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -688,6 +694,9 @@
         }
       }
     },
+    "A nudge before it's due" : {
+
+    },
     "About Koalified" : {
       "localizations" : {
         "hi" : {
@@ -709,6 +718,9 @@
           }
         }
       }
+    },
+    "ACADEMIC DETAILS" : {
+
     },
     "Account and settings · Koalified" : {
       "localizations" : {
@@ -1473,6 +1485,12 @@
         }
       }
     },
+    "After 1 min" : {
+
+    },
+    "After 5 min" : {
+
+    },
     "Agenda" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1589,6 +1607,9 @@
         }
       }
     },
+    "App lock" : {
+
+    },
     "Applied" : {
       "localizations" : {
         "hi" : {
@@ -1611,10 +1632,19 @@
         }
       }
     },
+    "Are you sure you want to delete this?" : {
+
+    },
+    "Ask for it" : {
+
+    },
     "Assessment" : {
 
     },
     "Assessment Added successfully" : {
+
+    },
+    "Assessment reminders" : {
 
     },
     "Assessment Wallet" : {
@@ -1801,6 +1831,12 @@
           }
         }
       }
+    },
+    "Before class (hours)" : {
+
+    },
+    "Blur app in app switcher" : {
+
     },
     "Bring in your timetable" : {
       "localizations" : {
@@ -2170,6 +2206,9 @@
         }
       }
     },
+    "Check that notifications are allowed for Koalified in the Settings app, and that reminders are turned on under Profile > Notifications." : {
+
+    },
     "Choose a .ics file" : {
       "localizations" : {
         "hi" : {
@@ -2216,6 +2255,15 @@
           }
         }
       }
+    },
+    "Choose a semester" : {
+
+    },
+    "Choose a semester. Its courses, classes, assessments and marks will be deleted from this phone." : {
+
+    },
+    "Choose the reminders you want for classes and assessments." : {
+
     },
     "Choose your language" : {
       "localizations" : {
@@ -2376,6 +2424,9 @@
         }
       }
     },
+    "Class reminders" : {
+
+    },
     "Class updated successfully" : {
       "localizations" : {
         "hi" : {
@@ -2420,9 +2471,6 @@
         }
       }
     },
-    "classes" : {
-
-    },
     "Classes" : {
 
     },
@@ -2458,6 +2506,12 @@
       }
     },
     "Collapsed" : {
+
+    },
+    "Comic" : {
+
+    },
+    "Common questions" : {
 
     },
     "Computing" : {
@@ -2596,6 +2650,9 @@
         }
       }
     },
+    "Controls" : {
+
+    },
     "Copy a previous semester" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -2642,6 +2699,9 @@
           }
         }
       }
+    },
+    "Couldn't open Mail" : {
+
     },
     "Couldn't open that file." : {
       "localizations" : {
@@ -3236,6 +3296,7 @@
 
     },
     "DAY" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -3258,6 +3319,7 @@
       }
     },
     "Day view" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -3280,6 +3342,9 @@
       }
     },
     "days" : {
+
+    },
+    "Default reminder (days)" : {
 
     },
     "Degree plan" : {
@@ -3350,6 +3415,21 @@
         }
       }
     },
+    "Delete %@" : {
+
+    },
+    "Delete %@?" : {
+
+    },
+    "Delete course" : {
+
+    },
+    "Delete details" : {
+
+    },
+    "Delete semester" : {
+
+    },
     "Delete semester data" : {
       "localizations" : {
         "hi" : {
@@ -3373,6 +3453,7 @@
       }
     },
     "Delete Something" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -3393,6 +3474,12 @@
           }
         }
       }
+    },
+    "Delete this class?" : {
+
+    },
+    "Delete your details?" : {
+
     },
     "Details added successfully" : {
       "localizations" : {
@@ -3416,7 +3503,14 @@
         }
       }
     },
+    "Details updated successfully" : {
+
+    },
+    "Device permissions control whether alerts can appear. Changes apply to future reminders." : {
+
+    },
     "Do you need help finding your timetable?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -3580,6 +3674,9 @@
       }
     },
     "DUE IN" : {
+
+    },
+    "Due soon" : {
 
     },
     "DUE SOON" : {
@@ -3776,6 +3873,9 @@
         }
       }
     },
+    "e.g. s12345678" : {
+
+    },
     "Edit" : {
       "localizations" : {
         "hi" : {
@@ -3825,6 +3925,12 @@
     "Edit class" : {
 
     },
+    "Edit course" : {
+
+    },
+    "Edit details" : {
+
+    },
     "Edit mark, %lld percent" : {
 
     },
@@ -3849,6 +3955,9 @@
           }
         }
       }
+    },
+    "Email your feedback to %@." : {
+
     },
     "End time must be after the start time." : {
       "localizations" : {
@@ -4059,6 +4168,9 @@
         }
       }
     },
+    "Every course with its classes, assessments and marks." : {
+
+    },
     "Everything left · %lld%%" : {
       "localizations" : {
         "hi" : {
@@ -4080,6 +4192,12 @@
           }
         }
       }
+    },
+    "Everything stays on this phone" : {
+
+    },
+    "Everything stays on this phone. There's no account to make, nothing is synced to iCloud, and your timetable link is kept in the Keychain." : {
+
     },
     "Exam" : {
       "localizations" : {
@@ -4106,6 +4224,9 @@
     "Expanded" : {
 
     },
+    "Expected graduation" : {
+
+    },
     "Fieldwork" : {
       "localizations" : {
         "hi" : {
@@ -4129,6 +4250,7 @@
       }
     },
     "Find your timetable link" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -4175,6 +4297,7 @@
       }
     },
     "Find your timetable link or download the file" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -4195,6 +4318,15 @@
           }
         }
       }
+    },
+    "Flip card" : {
+
+    },
+    "Flips the card" : {
+
+    },
+    "Found a bug or have an idea? Send us a note. We read every message." : {
+
     },
     "Found in your timetable" : {
       "localizations" : {
@@ -4219,6 +4351,7 @@
       }
     },
     "Get started" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -4241,6 +4374,7 @@
       }
     },
     "Go straight to importing" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -4354,6 +4488,7 @@
       }
     },
     "Helllllo" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -4376,6 +4511,7 @@
       }
     },
     "Hellllo" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -4557,10 +4693,28 @@
         }
       }
     },
+    "Hide assessments" : {
+
+    },
+    "Hide details in notifications" : {
+
+    },
+    "Hide marks in widgets" : {
+
+    },
+    "Hide student number" : {
+
+    },
+    "Hides the answer" : {
+
+    },
     "Hides your assessments" : {
 
     },
     "Hides your clases" : {
+
+    },
+    "Hides your GPA when you swipe between apps." : {
 
     },
     "https://..." : {
@@ -4807,7 +4961,6 @@
       }
     },
     "Import your timetable" : {
-      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -5029,6 +5182,9 @@
         }
       }
     },
+    "Instantly" : {
+
+    },
     "Introduction to Software Engineering" : {
       "localizations" : {
         "hi" : {
@@ -5138,7 +5294,14 @@
         }
       }
     },
+    "Koalified %@" : {
+
+    },
+    "Koalified brings your UQ timetable, assessments and marks together in one place, so you always know what's next." : {
+
+    },
     "Koalified can read your UQ timetable from a link or a downloaded file. We'll show you where to find it." : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -5292,6 +5455,9 @@
         }
       }
     },
+    "Koalified." : {
+
+    },
     "Language" : {
       "localizations" : {
         "hi" : {
@@ -5433,6 +5599,9 @@
         }
       }
     },
+    "Lock with Face ID" : {
+
+    },
     "LOCKED IN" : {
       "localizations" : {
         "hi" : {
@@ -5464,6 +5633,12 @@
           }
         }
       }
+    },
+    "Made for students, by students." : {
+
+    },
+    "Made for UQ students. Not affiliated with The University of Queensland." : {
+
     },
     "MAKE IT YOUR SEMESTER" : {
       "localizations" : {
@@ -5497,6 +5672,9 @@
         }
       }
     },
+    "Make sure you copied the whole calendar link, or try downloading the .ics file and choosing it instead. If it still fails, send us feedback below." : {
+
+    },
     "Mark added successfully" : {
 
     },
@@ -5504,6 +5682,9 @@
 
     },
     "Mark updated successfully" : {
+
+    },
+    "Marked" : {
 
     },
     "Marked · %lld" : {
@@ -5727,6 +5908,12 @@
           }
         }
       }
+    },
+    "My details" : {
+
+    },
+    "My timetable didn't import. What now?" : {
+
     },
     "Name" : {
 
@@ -5986,7 +6173,11 @@
     "No more than %lld classes can clash at once. Choose a different time for this class." : {
 
     },
+    "No timetable linked" : {
+
+    },
     "No, I already have it" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -5995,6 +6186,12 @@
           }
         }
       }
+    },
+    "Not an official university identification card." : {
+
+    },
+    "Not set" : {
+
     },
     "Nothing changed. Your timetable was already up to date." : {
       "localizations" : {
@@ -6005,6 +6202,9 @@
           }
         }
       }
+    },
+    "Nothing to delete" : {
+
     },
     "Nothing to show yet. Import your timetable, or add classes by hand." : {
       "extractionState" : "stale",
@@ -6064,7 +6264,6 @@
       }
     },
     "OK" : {
-      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -6157,6 +6356,12 @@
         }
       }
     },
+    "Only on this phone. Your courses and marks aren't synced to iCloud, and your timetable link is kept in the Keychain so it isn't copied to backups or a new phone." : {
+
+    },
+    "Only you can see this. It is stored on this phone and never uploaded." : {
+
+    },
     "Open assessment wallet" : {
 
     },
@@ -6206,6 +6411,12 @@
           }
         }
       }
+    },
+    "Or your phone passcode if Face ID fails." : {
+
+    },
+    "Overdue" : {
+
     },
     "OVERDUE BY" : {
 
@@ -6376,6 +6587,9 @@
     "Percent" : {
 
     },
+    "Personal reference · not an official ID" : {
+
+    },
     "Placement" : {
       "localizations" : {
         "hi" : {
@@ -6488,6 +6702,18 @@
         }
       }
     },
+    "Privacy & security" : {
+
+    },
+    "Privacy and Security" : {
+
+    },
+    "Private by design" : {
+
+    },
+    "Private copy of your real card" : {
+
+    },
     "Problem set 3" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -6581,6 +6807,9 @@
         }
       }
     },
+    "Program" : {
+
+    },
     "Projected grade" : {
 
     },
@@ -6604,6 +6833,12 @@
         }
       }
     },
+    "Reminders show the course code only." : {
+
+    },
+    "Remove link" : {
+
+    },
     "Remove timetable link" : {
       "localizations" : {
         "hi" : {
@@ -6613,6 +6848,9 @@
           }
         }
       }
+    },
+    "Remove your timetable link?" : {
+
     },
     "Repeats every week" : {
       "localizations" : {
@@ -6625,6 +6863,7 @@
       }
     },
     "Replay the tour" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -6635,6 +6874,7 @@
       }
     },
     "Review courses" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -6827,6 +7067,9 @@
     "Save mark" : {
 
     },
+    "Saved securely on this phone from %@." : {
+
+    },
     "Search or enter university" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -6883,6 +7126,9 @@
           }
         }
       }
+    },
+    "See today's schedule and your next class from the Home Screen." : {
+
     },
     "See tomorrow’s classes" : {
       "localizations" : {
@@ -7017,6 +7263,9 @@
         }
       }
     },
+    "Semester deleted" : {
+
+    },
     "Seminar" : {
       "localizations" : {
         "hi" : {
@@ -7026,6 +7275,9 @@
           }
         }
       }
+    },
+    "Send feedback" : {
+
     },
     "Set up manually" : {
       "extractionState" : "stale",
@@ -7120,6 +7372,15 @@
         }
       }
     },
+    "Show \"3 assessments due\" instead of grades." : {
+
+    },
+    "Show assessments" : {
+
+    },
+    "Show student number" : {
+
+    },
     "Show your week on the Home screen" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -7167,6 +7428,9 @@
         }
       }
     },
+    "Shows the answer" : {
+
+    },
     "Shows your assessments" : {
 
     },
@@ -7202,6 +7466,9 @@
           }
         }
       }
+    },
+    "Something not right?" : {
+
     },
     "Something went wrong while importing." : {
       "localizations" : {
@@ -7525,6 +7792,21 @@
         }
       }
     },
+    "Student" : {
+
+    },
+    "Student card photo" : {
+
+    },
+    "STUDENT NAME" : {
+
+    },
+    "STUDENT NUMBER" : {
+
+    },
+    "STUDENT PROFILE" : {
+
+    },
     "Studio" : {
       "localizations" : {
         "hi" : {
@@ -7544,6 +7826,9 @@
           }
         }
       }
+    },
+    "Tap the card to reveal the other side." : {
+
     },
     "TARGET GRADE" : {
       "localizations" : {
@@ -7706,6 +7991,9 @@
         }
       }
     },
+    "The private link is deleted from this phone." : {
+
+    },
     "The University of Queensland" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -7753,6 +8041,9 @@
         }
       }
     },
+    "There's no timetable link saved on this phone. Any classes you've added or imported are still in the app." : {
+
+    },
     "These classes overlap" : {
       "localizations" : {
         "hi" : {
@@ -7762,6 +8053,22 @@
           }
         }
       }
+    },
+    "This action cannot be undone." : {
+
+    },
+    "This also deletes its %lld classes and %lld assessments, including any marks you've entered. This can't be undone." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "This also deletes its %1$lld classes and %2$lld assessments, including any marks you've entered. This can't be undone."
+          }
+        }
+      }
+    },
+    "This can't be undone." : {
+
     },
     "This helps us set up the right tips for you." : {
       "localizations" : {
@@ -7809,6 +8116,9 @@
         }
       }
     },
+    "This removes your name, student number, university, program and graduation date from this phone. This can't be undone." : {
+
+    },
     "Time" : {
       "localizations" : {
         "hi" : {
@@ -7839,6 +8149,9 @@
         }
       }
     },
+    "Timetable link removed" : {
+
+    },
     "To do" : {
 
     },
@@ -7851,6 +8164,9 @@
           }
         }
       }
+    },
+    "To remove your classes and marks too, use Delete semester data in your profile." : {
+
     },
     "Today" : {
       "localizations" : {
@@ -8097,6 +8413,9 @@
     "Undo" : {
 
     },
+    "University" : {
+
+    },
     "UNIVERSITY" : {
       "localizations" : {
         "hi" : {
@@ -8197,6 +8516,7 @@
       }
     },
     "View" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -8207,6 +8527,7 @@
       }
     },
     "View Assessment" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -8215,6 +8536,9 @@
           }
         }
       }
+    },
+    "View course" : {
+
     },
     "Walk there in Apple Maps" : {
       "localizations" : {
@@ -8225,6 +8549,9 @@
           }
         }
       }
+    },
+    "Wallet" : {
+
     },
     "We couldn't read any classes from this file" : {
       "localizations" : {
@@ -8247,6 +8574,7 @@
       }
     },
     "WEEK" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -8257,6 +8585,7 @@
       }
     },
     "Week view" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -8335,6 +8664,9 @@
         }
       }
     },
+    "What happens when you remove it" : {
+
+    },
     "What year are you in?" : {
       "localizations" : {
         "hi" : {
@@ -8380,6 +8712,12 @@
           }
         }
       }
+    },
+    "What's inside" : {
+
+    },
+    "When your phone is locked" : {
+
     },
     "Where do you study?" : {
       "extractionState" : "stale",
@@ -8428,6 +8766,9 @@
         }
       }
     },
+    "Where is my data stored?" : {
+
+    },
     "Which semester?" : {
       "localizations" : {
         "hi" : {
@@ -8437,6 +8778,9 @@
           }
         }
       }
+    },
+    "Why am I not getting reminders?" : {
+
     },
     "Widget settings" : {
       "localizations" : {
@@ -8484,6 +8828,9 @@
         }
       }
     },
+    "Widgets" : {
+
+    },
     "Widgets are added from your Home Screen: touch and hold, tap +, then choose Koalified and a size." : {
       "localizations" : {
         "hi" : {
@@ -8529,6 +8876,9 @@
           }
         }
       }
+    },
+    "Work out the marks you need to hit your target grade." : {
+
     },
     "Workshop" : {
       "localizations" : {
@@ -8590,6 +8940,7 @@
       }
     },
     "Yes, show me how" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -8598,6 +8949,9 @@
           }
         }
       }
+    },
+    "You can import your timetable again at any time." : {
+
     },
     "You do this on UQ's own page. Koalified never sees your UQ password." : {
       "localizations" : {
@@ -8644,6 +8998,9 @@
           }
         }
       }
+    },
+    "You don't have any courses saved yet." : {
+
     },
     "You should review the courses, class times and any assessment data found in your import." : {
       "localizations" : {
@@ -8750,7 +9107,16 @@
         }
       }
     },
+    "You're signed out of UQ inside Koalified." : {
+
+    },
+    "Your classes and marks stay. You can import your timetable again at any time." : {
+
+    },
     "Your classes are ready." : {
+
+    },
+    "Your classes, courses and marks stay as they are." : {
 
     },
     "Your day starts here." : {
@@ -8778,10 +9144,20 @@
         }
       }
     },
+    "Your next class, upcoming assessments and important dates at a glance." : {
+
+    },
+    "Your personal student profile." : {
+
+    },
+    "Your report, GPA and marks are stored on your device and are not uploaded." : {
+
+    },
     "Your score must be between 0 and what it was out of." : {
 
     },
     "Your Semester receipt" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hi" : {
           "stringUnit" : {
@@ -8840,7 +9216,16 @@
     "Your semester. One ticket at a time." : {
 
     },
+    "YOUR STUDENT NUMBER" : {
+
+    },
     "Your timetable" : {
+
+    },
+    "Your timetable is linked" : {
+
+    },
+    "Your week of classes, imported straight from UQ." : {
 
     }
   },

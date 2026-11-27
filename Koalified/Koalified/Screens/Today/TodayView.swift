@@ -15,7 +15,7 @@ struct TodayView: View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
                 VStack(alignment: .leading, spacing: 16) {
-                    TodayHeader()
+                    TodayHeader(activeSheet: $activeSheet)
                     
                     if courses.isEmpty{
                         TodayEmptyView(onImport: {activeSheet = .importTimetable},
@@ -30,11 +30,7 @@ struct TodayView: View {
                 .ignoresSafeArea(edges: courses.isEmpty ? [] : .bottom)
                 .background(Color.screenBackground)
                 
-                FloatingAddButton { activeSheet = .addMenu }
-                    .padding(40)
-                    .sensoryFeedback(.impact(weight: .medium), trigger: activeSheet) { _, newSheet in
-                        newSheet == .addMenu
-                    }
+                
             }
             .addMenuSheets($activeSheet)
             .toolbar(.hidden, for: .navigationBar)

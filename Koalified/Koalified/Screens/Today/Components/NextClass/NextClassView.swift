@@ -36,7 +36,7 @@ struct NextClassView: View {
                     upcomingList(laterSessions: [])
                 } else if let nextSession {
                     // 1. Hero Next Class Card
-                    Card {
+                    PlainCard {
                         VStack(alignment: .leading, spacing: 14) {
 
                             // Header: Eyebrow label + live countdown pill
@@ -113,7 +113,7 @@ struct NextClassView: View {
 
                                     if let building = nextSession.building, !building.isEmpty,
                                        let url = mapsWalkingURL(to: building) {
-                                        PlainPrimaryButton(title: "Walk there in Apple Maps") {
+                                        PrimaryButton(title: "Walk there in Apple Maps") {
                                             openURL(url)
                                         }
                                     }

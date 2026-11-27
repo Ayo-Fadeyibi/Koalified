@@ -12,9 +12,9 @@ struct ProfileContentView: View {
     
     @State private var showImport = false
 
-    private var destination1 = [ProfileDestination.notifications, .language, .replayTour]
+    private var destination1 = [ProfileDestination.notifications, .language, .privacySecurity]
     private var destination2 = [ProfileDestination.removeLink, ProfileDestination.deleteData]
-    private var destination3 = [ProfileDestination.addWidget, .semesterReceipt, .about, .helpFeedback]
+    private var destination3 = [ProfileDestination.addWidget, .about, .comic, .helpFeedback]
     
     @Query private var userDetail: [UserDetails]
     
@@ -63,15 +63,6 @@ struct ProfileContentView: View {
                             .sensoryFeedback(.impact(weight: .light), trigger: showImport) { _, newValue in
                                 newValue 
                             }
-
-                        ProfileRow(destination: .reviewCourses)
-                            .background(Color.cardSurface, in: RoundedRectangle(cornerRadius: Layout.radiusSmall))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: Layout.radiusSmall)
-                                    .strokeBorder(Color.inkBorder, lineWidth: 2)
-                            )
-
-                                
                     }
                     
                 }.padding(.bottom, 20)

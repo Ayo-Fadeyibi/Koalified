@@ -18,7 +18,7 @@ struct CalendarTabContent: View {
             // The header and week controls stay put; only the timetable and button below them scroll.
             ZStack(alignment: .bottomTrailing) {
                 VStack(alignment: .leading, spacing: 16) {
-                    CalendarHeader()
+                    CalendarHeader(activeSheet: $activeSheet)
                         .padding(.bottom, 10)
 
                     // Week controls are fixed; the grid and the button scroll beneath them.
@@ -29,19 +29,10 @@ struct CalendarTabContent: View {
                 // Applied to the content only, so the button stays above the tab bar.
                 .ignoresSafeArea(edges: .bottom)
                 .background(Color.screenBackground)
-
-                FloatingAddButton { activeSheet = .addMenu }
-                    .padding(40)
-                    .sensoryFeedback(.impact(weight: .medium), trigger: activeSheet) { _, newSheet in
-                        newSheet == .addMenu
-                    }
             }
             .toolbar(.hidden, for: .navigationBar)
             .addMenuSheets($activeSheet)
             .profileDestination()
-            .navigationDestination(for: ClassSession.self) { session in
-                SessionDetailsView(session: session)
-            }
         }
     }
 }
