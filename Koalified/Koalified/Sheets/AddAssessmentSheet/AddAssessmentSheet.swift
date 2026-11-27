@@ -2,12 +2,15 @@
 import SwiftUI
 import SwiftData
 
-/// Sheet for adding an assessment to a course.
+/// Sheet for adding an assessment to a course, or editing an existing one when `assessment` is passed in.
 struct AddAssessmentSheet: View {
     
     let onAdded: () -> Void
     
     var currentCourse: Course?
+
+    /// The assessment being edited, or nil when adding a new one.
+    var assessment: AssessmentItem?
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var context
@@ -28,6 +31,18 @@ struct AddAssessmentSheet: View {
     @State private var openAddCourseSheet = false
     @State private var openImportSheet = false
 
+    /// Pre-fills the fields from `assessment` when editing.
+    init(onAdded: @escaping () -> Void, currentCourse: Course? = nil, assessment: AssessmentItem? = nil) {
+        self.onAdded = onAdded
+        self.currentCourse = currentCourse
+        self.assessment = assessment
+        _course = State(initialValue: assessment?.course)
+        _name = State(initialValue: assessment?.title ?? "")
+        _weight = State(initialValue: assessment?.weight)
+        _dueDate = State(initialValue: assessment?.dueDate ?? Date())
+        _hurdleExist = State(initialValue: assessment?.hurdle ?? false)
+        _hurdlePercent = State(initialValue: assessment?.hurdlePercent)
+    }
 
     private var currentSemesterCourses: [Course] { courses.currentSemester }
 
@@ -36,7 +51,7 @@ struct AddAssessmentSheet: View {
 
             // MARK: - Header
             HStack {
-                Text("Add an assessment")
+                Text(assessment == nil ? "Add an assessment" : "Edit assessment")
                     .font(.fredoka(.title2, .bold))
                     .foregroundStyle(Color.textPrimary)
 
@@ -81,7 +96,7 @@ struct AddAssessmentSheet: View {
             // MARK: - Save
             if !courses.isEmpty || currentCourse != nil {
                 PrimaryButton(
-                    title: "Save assessment",
+                    title: assessment == nil ? "Save assessment" : "Save",
                     action: save
                 )
             }
@@ -145,16 +160,25 @@ struct AddAssessmentSheet: View {
             }
         }
 
-        context.insert(
-            AssessmentItem(
-                title: cleanName,
-                weight: weight,
-                dueDate: dueDate,
-                course: selectedCourse,
-                hurdle: hurdleExist,
-                hurdlePercent: hurdleExist ? hurdlePercent : nil
+        if let assessment {
+            assessment.title = cleanName
+            assessment.weight = weight
+            assessment.dueDate = dueDate
+            assessment.course = selectedCourse
+            assessment.hurdle = hurdleExist
+            assessment.hurdlePercent = hurdleExist ? hurdlePercent : nil
+        } else {
+            context.insert(
+                AssessmentItem(
+                    title: cleanName,
+                    weight: weight,
+                    dueDate: dueDate,
+                    course: selectedCourse,
+                    hurdle: hurdleExist,
+                    hurdlePercent: hurdleExist ? hurdlePercent : nil
+                )
             )
-        )
+        }
 
         Task {
             _ = await NotificationScheduler.requestPermission()

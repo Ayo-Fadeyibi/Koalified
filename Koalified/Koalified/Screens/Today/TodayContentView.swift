@@ -19,7 +19,9 @@ struct TodayContentView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             ImportantDates()
+                .appearAnimation(order: 0)
             NextClassView(sessions: sessions, onSeeWeek: { selectedTab = .timetable }, onViewAssessment: {selectedTab = .courses})
+                .appearAnimation(order: 1)
 
         }
         .containerStyling()

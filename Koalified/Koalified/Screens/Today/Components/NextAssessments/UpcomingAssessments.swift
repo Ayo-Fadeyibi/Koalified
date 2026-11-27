@@ -10,7 +10,8 @@ import SwiftData
 
 struct UpcomingAssessments: View {
     
-    @Query(sort: \AssessmentItem.dueDate) private var assessments: [AssessmentItem]
+    // Animated so added, deleted or newly past assessments ease in and out
+    @Query(sort: \AssessmentItem.dueDate, animation: .snappy) private var assessments: [AssessmentItem]
     
     private var dueAssessments: [AssessmentItem] {
         return assessments.filter {
@@ -29,21 +30,24 @@ struct UpcomingAssessments: View {
                     .padding(.horizontal, 4)
 
                 ForEach(dueAssessments.prefix(5)) { item in
-                    // The wallet's ticket, closed (no stub), so it reads as a card rather than something to act on.
-                    AssessmentCard(
-                        courseCode: item.course?.courseCode ?? "",
-                        courseColor: item.course?.color.color ?? Color.cardSurface,
-                        onCourseColor: item.course?.color.onColor ?? Color.textPrimary,
-                        assessmentTitle: item.title,
-                        weight: item.weight,
-                        dueDate: item.dueDate,
-                        hasHurdle: item.hurdle ?? false,
-                        hurdlePercent: item.hurdlePercent,
-                        openCard: false,
-                        isDone: item.isDone,
-                        isMarked: item.mark != nil,
-                        compact: true
-                    )
+                    // Skips a card whose assessment was just deleted (e.g. with its semester)
+                    if item.isLive {
+                        // The wallet's ticket, closed (no stub), so it reads as a card rather than something to act on.
+                        AssessmentCard(
+                            courseCode: item.course?.courseCode ?? "",
+                            courseColor: item.course?.color.color ?? Color.cardSurface,
+                            onCourseColor: item.course?.color.onColor ?? Color.textPrimary,
+                            assessmentTitle: item.title,
+                            weight: item.weight,
+                            dueDate: item.dueDate,
+                            hasHurdle: item.hurdle ?? false,
+                            hurdlePercent: item.hurdlePercent,
+                            openCard: false,
+                            isDone: item.isDone,
+                            isMarked: item.mark != nil,
+                            compact: true
+                        )
+                    }
                 }
             }
         }

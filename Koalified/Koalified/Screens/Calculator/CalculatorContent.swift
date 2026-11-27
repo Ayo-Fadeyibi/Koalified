@@ -35,8 +35,11 @@ struct CalculatorContent: View {
                 VStack(alignment: .leading, spacing: Layout.sectionSpacing) {
                     if let course = selectedCourse {
                         TargetGradeCard(targetGrade: $selectedGrade)
+                            .appearAnimation(order: 0)
                         RequiredMarkCard(course: course, targetGrade: selectedGrade)
+                            .appearAnimation(order: 1)
                         LockedInCard(course: course) { editingCourse = course }
+                            .appearAnimation(order: 2)
                     }
 
                     // Lets the last card scroll clear of the tab bar

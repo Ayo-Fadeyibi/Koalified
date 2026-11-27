@@ -17,6 +17,8 @@ struct RemoveTimetableLinkView: View {
     @State private var showConfirm = false
     @State private var showImport = false
     @State private var showRemoved = false
+    /// True while the link and UQ sign-in are being cleared.
+    @State private var isRemoving = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -27,8 +29,10 @@ struct RemoveTimetableLinkView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     if let savedLink {
                         linkedContent(savedLink)
+                            .appearAnimation()
                     } else {
                         notLinkedContent
+                            .appearAnimation()
                     }
                 }
                 .padding(.bottom, 24)
@@ -48,6 +52,7 @@ struct RemoveTimetableLinkView: View {
         .sheet(isPresented: $showImport, onDismiss: { savedLink = TimetableLinkStore.load() }) {
             ImportLinkSheet().sheetBorder()
         }
+        .loadingOverlay(isPresented: isRemoving, message: "Removing your link…")
         .PopUp(isPresented: $showRemoved, message: "Timetable link removed", image: "circle-check", colour: Color.mintFill, feedback: .success)
     }
 
@@ -106,6 +111,8 @@ struct RemoveTimetableLinkView: View {
 
     /// Deletes the link and clears the UQ sign-in, the same cleanup as the import sheet's Sign out.
     private func removeLink() async {
+        isRemoving = true
+        defer { isRemoving = false }
         TimetableLinkStore.delete()
         TimetableWebSession.end()
         await TimetableWebView.signOut()

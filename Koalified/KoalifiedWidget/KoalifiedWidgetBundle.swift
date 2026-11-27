@@ -16,5 +16,6 @@ struct KoalifiedWidgetBundle: WidgetBundle {
         NextClassWidget()
         ImportantDatesWidget()
         TodayScheduleWidget()
+        AssessmentWidget()
     }
 }

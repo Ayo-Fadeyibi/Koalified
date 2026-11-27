@@ -350,16 +350,19 @@ struct WeekGridView: View {
             ForEach(0..<cluster.laneCount, id: \.self) { lane in
                 ZStack(alignment: .top) {
                     ForEach(cluster.lanes.filter { $0.lane == lane }, id: \.session.id) { item in
-                        Button { selectedSession = item.session } label: {
-                            if isDayView {
-                                dayCard(item.session, isClash: cluster.laneCount > 1)
-                            } else {
-                                sessionCard(item.session, isClash: cluster.laneCount > 1)
+                        // Skips a class that was just deleted (e.g. with its semester)
+                        if item.session.isLive {
+                            Button { selectedSession = item.session } label: {
+                                if isDayView {
+                                    dayCard(item.session, isClash: cluster.laneCount > 1)
+                                } else {
+                                    sessionCard(item.session, isClash: cluster.laneCount > 1)
+                                }
                             }
+                            .buttonStyle(.plain)
+                            .frame(height: blockHeight(from: item.session.start, to: item.session.end))
+                            .offset(y: item.session.start.timeIntervalSince(cluster.start) / 3600 * hourHeight)
                         }
-                        .buttonStyle(.plain)
-                        .frame(height: blockHeight(from: item.session.start, to: item.session.end))
-                        .offset(y: item.session.start.timeIntervalSince(cluster.start) / 3600 * hourHeight)
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)

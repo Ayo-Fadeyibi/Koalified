@@ -113,6 +113,7 @@ struct EmptyStateView<Content: View>: View {
                 }
             }
         }
+        .appearAnimation()
     }
 
     // MARK: - Pieces

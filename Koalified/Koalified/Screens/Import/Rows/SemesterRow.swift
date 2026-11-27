@@ -50,9 +50,11 @@ struct SemesterRow: View {
                     Image(systemName: "checkmark")
                         .font(.caption.weight(.bold))
                         .foregroundStyle(Color.textPrimary)
+                        .transition(.scale.combined(with: .opacity))
                 }
             }
             .frame(width: 22, height: 22)
+            .animation(.spring(response: 0.25, dampingFraction: 0.6), value: isOn)
     }
 }
 

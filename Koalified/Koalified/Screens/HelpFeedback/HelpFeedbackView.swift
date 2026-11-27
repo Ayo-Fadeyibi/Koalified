@@ -26,9 +26,9 @@ struct HelpFeedbackView: View {
 
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
-                    timetableSection
-                    questionsSection
-                    feedbackSection
+                    timetableSection.appearAnimation(order: 0)
+                    questionsSection.appearAnimation(order: 1)
+                    feedbackSection.appearAnimation(order: 2)
                 }
                 .padding(.bottom, 24)
             }

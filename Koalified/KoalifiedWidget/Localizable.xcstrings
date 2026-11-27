@@ -11,10 +11,26 @@
         }
       }
     },
+    "%@ %@, worth %@, due %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@, worth %3$@, due %4$@"
+          }
+        }
+      }
+    },
     "%lld" : {
 
     },
     "A LITTLE BREATHING ROOM" : {
+
+    },
+    "AFTER THAT" : {
+
+    },
+    "ALL CAUGHT UP" : {
 
     },
     "All done for today." : {
@@ -53,6 +69,15 @@
     "DONE" : {
 
     },
+    "DUE · %@" : {
+
+    },
+    "Due %@" : {
+
+    },
+    "DUE NOW" : {
+
+    },
     "Event" : {
 
     },
@@ -86,7 +111,19 @@
     "No milestones left this semester." : {
 
     },
+    "No upcoming assessments. Enjoy the quiet." : {
+
+    },
+    "Nothing due." : {
+
+    },
+    "Nothing else coming up." : {
+
+    },
     "NOW" : {
+
+    },
+    "Open assessments" : {
 
     },
     "Open class details" : {
@@ -102,6 +139,9 @@
 
     },
     "Recorded" : {
+
+    },
+    "See your next assessment's course, title and a live countdown to its due date." : {
 
     },
     "SEMESTER MILESTONES" : {
@@ -123,6 +163,12 @@
 
     },
     "Tutorial" : {
+
+    },
+    "Upcoming Assessments" : {
+
+    },
+    "UPCOMING ASSESSMENTS" : {
 
     },
     "UQ" : {

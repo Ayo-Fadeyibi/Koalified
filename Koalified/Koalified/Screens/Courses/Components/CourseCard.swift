@@ -34,6 +34,14 @@ struct CourseCard: View {
     }
 
     var body: some View {
+        // Empty for a course that was just deleted (e.g. with its semester), so a stale card never reads it
+        if course.isLive {
+            folder
+        }
+    }
+
+    @ViewBuilder
+    private var folder: some View {
         let ink = course.color.onColor
 
         FolderCardBackground(color: course.color.color, ink: ink, papers: papers, isOpen: isOpen) {

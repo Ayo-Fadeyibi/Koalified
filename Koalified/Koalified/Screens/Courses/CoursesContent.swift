@@ -11,7 +11,8 @@ struct CoursesContent: View {
 
     let options = ["My courses", "Degree plan"]
 
-    @Query private var courses: [Course]
+    // Animated so added or deleted courses ease in and out of the list
+    @Query(animation: .snappy) private var courses: [Course]
 
     /// The semester picked in the dropdown; nil until `selectNewestSemester` runs.
     @State private var selectedSemester: SemesterChoice?
@@ -52,8 +53,9 @@ struct CoursesContent: View {
                 ScrollView {
                     // Folders have no shadow to separate them, so space them out here.
                     VStack(alignment: .leading, spacing: 16) {
-                        ForEach(shownCourses) { course in
+                        ForEach(Array(shownCourses.enumerated()), id: \.element.id) { index, course in
                             CourseCard(course: course, onView: { path.append(course) })
+                                .appearAnimation(order: index)
                         }
                         // Lets the last card scroll clear of the add button and tab bar
                         Color.clear.frame(height: 140)

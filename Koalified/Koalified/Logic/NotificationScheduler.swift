@@ -37,16 +37,16 @@ enum NotificationScheduler {
         let body: String
     }
 
-    /// Builds a reminder for every unmarked assessment, set for 9:00 the day before it is due.
+    /// Builds a reminder for every unmarked assessment, set for 10:00 the day before it is due.
     /// Reminders that would fire in the past are skipped.
     static func reminders(for courses: [Course]) -> [Reminder] {
         let cal = Calendar.current
         var result: [Reminder] = []
 
         for course in courses {
-            for item in course.assessments where item.mark == nil {
+            for item in course.assessments where !item.isDone {
                 guard let dayBefore = cal.date(byAdding: .day, value: -1, to: item.dueDate),
-                      let fire = cal.date(bySettingHour: 9, minute: 0, second: 0, of: dayBefore),
+                      let fire = cal.date(bySettingHour: 10, minute: 0, second: 0, of: dayBefore),
                       fire > .now
                 else { continue }
 
@@ -54,7 +54,7 @@ enum NotificationScheduler {
                     id: "due-\(course.courseCode)-\(item.title)-\(item.dueDate.timeIntervalSince1970)",
                     fireDate: fire,
                     title: "\(item.title) is due tomorrow",
-                    body: "\(course.courseCode) · \(Int(item.weight))% of your grade"
+                    body: "\(course.courseCode) · \(item.weight.formatted(.number.precision(.fractionLength(0...1))))% of your grade"
                 ))
             }
         }
@@ -63,9 +63,11 @@ enum NotificationScheduler {
 
     /// Clears all pending notifications and schedules the soonest 60 reminders
     /// (iOS allows at most 64 pending local notifications).
-    static func reschedule(courses: [Course]) {
+    static func reschedule(courses: [Course]) async {
         let center = UNUserNotificationCenter.current()
-        center.removeAllPendingNotificationRequests()
+        let pending = await center.pendingNotificationRequests()
+        let ours = pending.map(\.identifier).filter { $0.hasPrefix("due-") }
+        center.removePendingNotificationRequests(withIdentifiers: ours)
 
         let upcoming = reminders(for: courses)
             .sorted { $0.fireDate < $1.fireDate }
@@ -80,8 +82,9 @@ enum NotificationScheduler {
             let parts = Calendar.current.dateComponents(
                 [.year, .month, .day, .hour, .minute], from: reminder.fireDate)
             let trigger = UNCalendarNotificationTrigger(dateMatching: parts, repeats: false)
-            center.add(UNNotificationRequest(identifier: reminder.id,
-                                             content: content, trigger: trigger))
+            // A single failed request shouldn't stop the remaining reminders from scheduling.
+            try? await center.add(UNNotificationRequest(identifier: reminder.id,
+                                                  content: content, trigger: trigger))
         }
     }
 }

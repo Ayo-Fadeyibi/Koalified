@@ -18,10 +18,10 @@ struct AboutKoalifiedView: View {
 
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
-                    introCard
-                    featuresSection
-                    privacyCard
-                    footer
+                    introCard.appearAnimation(order: 0)
+                    featuresSection.appearAnimation(order: 1)
+                    privacyCard.appearAnimation(order: 2)
+                    footer.appearAnimation(order: 3)
                 }
                 .padding(.bottom, 24)
             }

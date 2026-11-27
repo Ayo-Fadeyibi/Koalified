@@ -41,6 +41,14 @@ struct WalletContent: View {
     @State private var presented: AssessmentItem?
     /// Whether the presented card's stub is out. Opens after the card arrives and closes before it leaves.
     @State private var isCardOpen = false
+    /// Whether the add-assessment sheet is showing.
+    @State private var isAdding = false
+    /// The assessment open in the edit sheet.
+    @State private var editing: AssessmentItem?
+    /// The assessment shown in the add-mark pop-up.
+    @State private var marking: AssessmentItem?
+    /// The assessment waiting on the delete confirmation.
+    @State private var deleting: AssessmentItem?
 
     @Namespace private var walletNamespace
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -127,6 +135,40 @@ struct WalletContent: View {
             }
         }
         .sensoryFeedback(.impact(weight: .light), trigger: presented?.id)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    isAdding = true
+                } label: {
+                    Image(systemName: "plus")
+                        .font(.body.weight(.bold))
+                        .foregroundStyle(Color.textPrimary)
+                }
+                .accessibilityLabel("Add an assessment")
+                // The dimmed backdrop doesn't cover the navigation bar, so keep it out of reach while a card is up.
+                .disabled(presented != nil)
+            }
+        }
+        .sheet(isPresented: $isAdding) {
+            AddAssessmentSheet(onAdded: {})
+                .sheetBorder()
+        }
+        .sheet(item: $editing) { item in
+            AddAssessmentSheet(onAdded: {}, assessment: item)
+                .sheetBorder()
+        }
+        .addMarkPopup(item: $marking)
+        .confirmationDialog(
+            "Are you sure you want to delete this?",
+            isPresented: Binding(get: { deleting != nil }, set: { if !$0 { deleting = nil } }),
+            titleVisibility: .visible,
+            presenting: deleting
+        ) { item in
+            Button("Delete", role: .destructive) { delete(item) }
+            Button("Cancel", role: .cancel) { }
+        } message: { _ in
+            Text("This action cannot be undone.")
+        }
     }
 
     /// Overlapping cards; later cards sit on top, so only the header strip of each earlier card shows.
@@ -172,28 +214,46 @@ struct WalletContent: View {
         }
     }
 
+    /// Empty for an assessment that was just deleted, so a stale card never reads it.
+    @ViewBuilder
     private func card(for item: AssessmentItem, isOpen: Bool) -> some View {
-        AssessmentCard(
-            courseCode: item.course?.courseCode ?? "",
-            courseColor: item.course?.color.color ?? Color.cardSurface,
-            onCourseColor: item.course?.color.onColor ?? Color.textPrimary,
-            assessmentTitle: item.title,
-            weight: item.weight,
-            dueDate: item.dueDate,
-            hasHurdle: item.hurdle ?? false,
-            hurdlePercent: item.hurdlePercent,
-            openCard: isOpen,
-            isDone: item.isDone,
-            isMarked: item.mark != nil,
-            onDone: { setDone(true, for: item) },
-            onUndo: { setDone(false, for: item) }
-        )
+        if item.isLive {
+            AssessmentCard(
+                courseCode: item.course?.courseCode ?? "",
+                courseColor: item.course?.color.color ?? Color.cardSurface,
+                onCourseColor: item.course?.color.onColor ?? Color.textPrimary,
+                assessmentTitle: item.title,
+                weight: item.weight,
+                dueDate: item.dueDate,
+                hasHurdle: item.hurdle ?? false,
+                hurdlePercent: item.hurdlePercent,
+                openCard: isOpen,
+                isDone: item.isDone,
+                isMarked: item.mark != nil,
+                onEdit: { editing = item },
+                onView: { marking = item },
+                onDelete: { deleting = item },
+                onDone: { setDone(true, for: item) },
+                onUndo: { setDone(false, for: item) }
+            )
+        }
     }
 
     /// Saves straight away: autosave alone sometimes lost the change when the app was closed soon after.
+    /// Also refreshes the reminders and widget, which both skip assessments that are done.
     private func setDone(_ isDone: Bool, for item: AssessmentItem) {
         item.isDone = isDone
-        try? modelContext.save()
+        AppSync.dataChanged(in: modelContext)
+    }
+
+    /// Puts the card back out of view, then deletes the assessment.
+    private func delete(_ item: AssessmentItem) {
+        if presented?.id == item.id {
+            isCardOpen = false
+            withAnimation(moveAnimation) { presented = nil }
+        }
+        modelContext.delete(item)
+        AppSync.dataChanged(in: modelContext)
     }
 
     /// Lifts the card out of the stack, then slides its stub out.

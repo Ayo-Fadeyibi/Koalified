@@ -27,12 +27,21 @@ struct ImportLinkSheet: View {
     @State private var path: [Route] = []
     @State private var showPicker = false
     @State private var showError = false
+    /// True while a pasted link is being downloaded.
+    @State private var isLoadingLink = false
 
     var body: some View {
         NavigationStack(path: $path) {
             ImportTimetableView(
                 isOnboarding: isOnboarding,
-                onImportLink: { link in Task { show(await session.loadLink(link)) } },
+                onImportLink: { link in
+                    Task {
+                        isLoadingLink = true
+                        let outcome = await session.loadLink(link)
+                        isLoadingLink = false
+                        show(outcome)
+                    }
+                },
                 onChooseFile: { showPicker = true },
                 onSkip: isOnboarding ? { finish() } : nil
             )
@@ -63,6 +72,7 @@ struct ImportLinkSheet: View {
             }
         }
         .tint(Color.accent)
+        .loadingOverlay(isPresented: isLoadingLink, message: "Fetching your timetable…")
         .overlay {
             // Pushed screens get an opaque background from the NavigationStack, which hides the border
             // `sheetBorder` draws behind the content. Drawing it on top keeps it visible on every screen,

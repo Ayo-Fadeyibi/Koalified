@@ -16,7 +16,7 @@ enum AppSync {
     static func dataChanged(in context: ModelContext) {
         try? context.save()
         let courses = (try? context.fetch(FetchDescriptor<Course>())) ?? []
-        NotificationScheduler.reschedule(courses: courses)
+        Task { await NotificationScheduler.reschedule(courses: courses) }
         WidgetCenter.shared.reloadAllTimelines()
     }
 }

@@ -67,3 +67,10 @@ final class Course {
         }
     }
 }
+
+extension PersistentModel {
+    /// False once the model has been deleted and the delete saved. SwiftUI can redraw a row for a model
+    /// before the `@Query` that listed it refreshes, and reading a deleted model's attributes then
+    /// crashes ("backing data was detached from a context"), so rows check this first.
+    var isLive: Bool { modelContext != nil && !isDeleted }
+}

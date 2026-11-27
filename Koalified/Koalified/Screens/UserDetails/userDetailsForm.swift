@@ -99,13 +99,21 @@ struct UserDetailsForm: View {
                     }
                     .textFieldStyling(isFocused: isStudentNumberFocused)
                 }
-                .padding(.bottom, 24)
+                
                 
                 Spacer()
                 
-                PopoverDatePicker(selection: $graduationDate)
                 
-            }
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("GRADUATION DATE")
+                        .font(.fredoka(.caption, .bold))
+                        .tracking(0.6)
+                        .foregroundStyle(Color.textSecondary)
+                    
+                    PopoverDatePicker(selection: $graduationDate)
+                }
+                
+            }.padding(.bottom, 24)
 
             // University Selection
             VStack(alignment: .leading, spacing: 8) {

@@ -24,9 +24,9 @@ struct PrivacySecurity: View {
 
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
-                    appLockCard
-                    lockedPhoneCard
-                    onDeviceCard
+                    appLockCard.appearAnimation(order: 0)
+                    lockedPhoneCard.appearAnimation(order: 1)
+                    onDeviceCard.appearAnimation(order: 2)
                 }
                 .padding(.bottom, 24)
             }

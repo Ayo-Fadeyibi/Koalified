@@ -2256,13 +2256,10 @@
         }
       }
     },
-    "Choose a semester" : {
-
-    },
-    "Choose a semester. Its courses, classes, assessments and marks will be deleted from this phone." : {
-
-    },
     "Choose the reminders you want for classes and assessments." : {
+
+    },
+    "Choose the semesters to delete. Their courses, classes, assessments and marks will be removed from this phone." : {
 
     },
     "Choose your language" : {
@@ -3427,9 +3424,6 @@
     "Delete details" : {
 
     },
-    "Delete semester" : {
-
-    },
     "Delete semester data" : {
       "localizations" : {
         "hi" : {
@@ -3922,6 +3916,9 @@
         }
       }
     },
+    "Edit assessment" : {
+
+    },
     "Edit class" : {
 
     },
@@ -4227,6 +4224,9 @@
     "Expected graduation" : {
 
     },
+    "Fetching your timetable…" : {
+
+    },
     "Fieldwork" : {
       "localizations" : {
         "hi" : {
@@ -4486,6 +4486,9 @@
           }
         }
       }
+    },
+    "GRADUATION DATE" : {
+
     },
     "Helllllo" : {
       "extractionState" : "stale",
@@ -6852,6 +6855,9 @@
     "Remove your timetable link?" : {
 
     },
+    "Removing your link…" : {
+
+    },
     "Repeats every week" : {
       "localizations" : {
         "hi" : {
@@ -7253,6 +7259,9 @@
         }
       }
     },
+    "Semester data deleted" : {
+
+    },
     "Semester Dates" : {
       "localizations" : {
         "hi" : {
@@ -7262,9 +7271,6 @@
           }
         }
       }
-    },
-    "Semester deleted" : {
-
     },
     "Seminar" : {
       "localizations" : {
@@ -7456,6 +7462,9 @@
           }
         }
       }
+    },
+    "Signing out…" : {
+
     },
     "Skip" : {
       "localizations" : {

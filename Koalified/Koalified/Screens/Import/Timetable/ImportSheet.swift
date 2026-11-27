@@ -282,6 +282,8 @@ struct ImportSheet: View {
     @State private var webViewID = UUID()
     /// True after a page failed to load because the phone has no connection.
     @State private var isOffline = false
+    /// True while the UQ sign-in data is being cleared.
+    @State private var isSigningOut = false
 
     var body: some View {
         NavigationStack {
@@ -291,18 +293,24 @@ struct ImportSheet: View {
                     TimetableWebSession.end()
                     onLink(link.absoluteString)
                 },
-                onOffline: { isOffline = true }
+                onOffline: { withAnimation(.easeOut(duration: 0.25)) { isOffline = true } }
             )
             .id(webViewID)
             .overlay {
-                if isOffline { offlineCard }
+                if isOffline {
+                    offlineCard
+                        .transition(.scale(scale: 0.95).combined(with: .opacity))
+                }
             }
+            .loadingOverlay(isPresented: isSigningOut, message: "Signing out…")
             .navigationTitle("UQ Timetable")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Sign out") {
                         Task {
+                            isSigningOut = true
+                            defer { isSigningOut = false }
                             await TimetableWebView.signOut()
                             TimetableLinkStore.delete()
                             TimetableWebSession.end()   // the next web view starts a fresh sign-in
@@ -334,7 +342,7 @@ struct ImportSheet: View {
                 message1: "Connect to Wi-Fi or mobile data, then try again to sign in to UQ.",
                 primaryTitle1: "Try again",
                 primaryAction1: {
-                    isOffline = false
+                    withAnimation(.easeIn(duration: 0.2)) { isOffline = false }
                     TimetableWebSession.retry(url: targetURL)
                 }
             )

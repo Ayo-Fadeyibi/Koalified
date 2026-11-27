@@ -32,6 +32,7 @@ struct NotificationSettingsView: View {
                         Text("Choose the reminders you want for classes and assessments.")
                             .secondaryTextStyling()
                     }
+                    .appearAnimation(order: 0)
                     
                     PlainCard {
                         Text("Controls")
@@ -63,6 +64,7 @@ struct NotificationSettingsView: View {
                             .plainStyling()
                             // Keeps the open menu floating above anything below this row
                             .zIndex(10)
+                            .transition(.move(edge: .top).combined(with: .opacity))
                         }
                         
                         Toggle(isOn: $isToggleClassReminder.animation(.easeInOut(duration: 0.2))) {
@@ -89,13 +91,16 @@ struct NotificationSettingsView: View {
                             .plainStyling()
                             // Keeps the open menu floating above anything below this row
                             .zIndex(5)
+                            .transition(.move(edge: .top).combined(with: .opacity))
                         }
                     }
                     // Floats the open menus above the footnote below the card
                     .zIndex(1)
+                    .appearAnimation(order: 1)
                     
                     Text("Device permissions control whether alerts can appear. Changes apply to future reminders.")
                         .secondaryTextStyling()
+                        .appearAnimation(order: 2)
                 }
                 // Room for the last dropdown's menu to open without being clipped by the scroll view
                 .padding(.bottom, 300)
